@@ -26,6 +26,7 @@ rss: rss
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://snovvcrash.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /:year/:month/:day/:title:output_ext  # https://jekyllrb.com/docs/permalinks/
+excerpt_separator: <!--cut-->
 show_excerpts: true
 
 header_pages:
