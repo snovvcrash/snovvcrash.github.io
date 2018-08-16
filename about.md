@@ -4,7 +4,7 @@ title: Обо мне
 permalink: /about
 ---
 
-![Hack The Box](https://www.hackthebox.eu/badge/image/51037)
+<p><script src="https://www.hackthebox.eu/badge/51037"></script></p>
 
 Приветствую!
 
