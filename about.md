@@ -23,4 +23,4 @@ See ya!
 
 Угостить меня кофе можно по ссылке ниже :coffee:
 
-[![Coffee]({{ "/img/coffee-purple.png" | relative_url }})](https://buymeacoff.ee/snovvcrash "Buy snovvcrash a Coffee - BuyMeACoffee.com")
+[![Coffee]({{ "/img/coffee-orange.png" | relative_url }})](https://buymeacoff.ee/snovvcrash "Buy snovvcrash a Coffee - BuyMeACoffee.com")
