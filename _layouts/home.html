@@ -15,7 +15,7 @@ layout: default
       {%- for page in site.posts -%}
       <li class="post-list-li">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ page.date | localize: date_format }}</span>
+        <span class="post-meta">{{ page.date | date: date_format }}</span>
         <span class="post-meta">• </span>
         <span class="post-meta time">{{ page.content | number_of_words | divided_by:201 }} мин на прочтение </span>
         <h3 class="post-list-h3">
