@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 # JEKYLL_ENV=production bundle exec jekyll serve
-title: snovvcrash's InfoSec Blog
+title: snovvcrash's Security Blog
 email: snovvcrash@protonmail.ch
 timezone: Europe/Moscow
 description: >- # this means to ignore newlines until "baseurl:"
