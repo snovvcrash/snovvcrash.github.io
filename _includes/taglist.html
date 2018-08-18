@@ -1,4 +1,4 @@
 {% assign tag-len = page.tags.size %}
 {% if tag-len > 0 %}
-  <span class="tag-list">{% for tag in page.tags %} <a href="{{ site.tag_page | relative_url }}#{{ tag | slugify }}" class="post-tag">{{ tag }}</a> {% endfor %}</span><br/><br/>
+  <span class="tag-list">{% for tag in page.tags %}<a href="{{ site.tag_page | relative_url }}#{{ tag | slugify }}" class="post-tag">{{ tag }}</a> {% endfor %}</span><br/><br/>
 {% endif %}
