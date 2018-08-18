@@ -6,35 +6,21 @@ permalink: /tags
 
 <div class="tags-expo">
   <div class="tag-list">
-    {% capture site_tags %}
-      {% for tag in site.tags %}
-        {{ tag | first | downcase }}#{{ tag | first }}
-        {% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    {% endcapture %}
+    {% capture site_tags %}{% for tag in site.tags %}{{ tag | first | downcase }}#{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
     {% assign tag_hashes = site_tags | split:',' | sort %}
     {% for hash in tag_hashes %}
       {% assign keyValue = hash | split: '#' %}
-      {% capture tag_word %}
-        {{ keyValue[1] | strip_newlines }}
-      {% endcapture %}
+      {% capture tag_word %}{{ keyValue[1] | strip_newlines }}{% endcapture %}
       <a href="#{{ tag_word | slugify }}" class="post-tag">{{ tag_word }}</a>
     {% endfor %}
   </div>
   <br/><hr/>
   <div class="tags-expo-section">
-    {% capture site_tags %}
-      {% for tag in site.tags %}
-        {{ tag[1].size | prepend: '000000' | slice: -6, 6 }}#{{ tag | first | downcase }}#{{ tag | first }}
-        {% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    {% endcapture %}
+    {% capture site_tags %}{% for tag in site.tags %}{{ tag[1].size | prepend: '000000' | slice: -6, 6 }}#{{ tag | first | downcase }}#{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
     {% assign tag_hashes = site_tags | split:',' | sort | reverse %}
     {% for hash in tag_hashes %}
       {% assign keyValue = hash | split: '#' %}
-      {% capture tag_word %}
-        {{ keyValue[2] | strip_newlines }}
-      {% endcapture %}
+      {% capture tag_word %}{{ keyValue[2] | strip_newlines }}{% endcapture %}
       <h2 id="{{ tag_word | slugify }}">{{ tag_word }}<small>[{{ site.tags[tag_word].size }}]</small></h2>
       <ul class="tags-expo-posts">
         {% for post in site.tags[tag_word] %}
