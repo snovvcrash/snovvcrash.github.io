@@ -189,7 +189,7 @@ hackthebox
 
 С помощью скриптового движка `nmap` подтвердим свое предположение относительно уязвимости сервера к Heartbleed:
 ```
-root@kali:~# nmap -n -v -sS -oN nmap/ssl-heartbleed-nse.nmap --script=ssl-heartbleed -p443 10.10.10.79
+root@kali:~# nmap -n -v -sS -oN --script=ssl-heartbleed nmap/nse-ssl-heartbleed.nmap -p443 10.10.10.79
 
 Nmap scan report for 10.10.10.79
 Host is up (0.062s latency).
