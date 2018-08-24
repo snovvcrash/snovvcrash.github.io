@@ -4,7 +4,7 @@ title: Обо мне
 permalink: /about
 ---
 
-[![HTB](https://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/home/users/profile/51037)
+[![HTB](https://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/profile/51037)
 
 Приветствую!
 
@@ -17,9 +17,13 @@ See ya!
 # Аккаунты
 
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
-* [Hack The Box](https://www.hackthebox.eu/home/users/profile/51037 "Hack The Box :: snovvcrash")
+* [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [Хабр](https://habr.com/users/snovvcrash "Профиль snovvcrash / Хабр")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
+
+# Контакты
+
+* <a href="mailto:{{ 'snovvcrash@protonmail.ch' | encode_email }}" title="E-Mail">E-Mail</a>
 
 Сказать спасибо за то, что я тут натворил, можно, угостив меня кофе по ссылке ниже :coffee:
 

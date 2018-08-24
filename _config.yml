@@ -14,14 +14,15 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 # JEKYLL_ENV=production bundle exec jekyll serve
-title: snovvcrash's Security Blog
-email: snovvcrash@protonmail.ch
-timezone: Europe/Moscow
-description: >- # this means to ignore newlines until "baseurl:"
-  Заметки этичного хакера
-author: snovvcrash
-github_username: snovvcrash
-rss: rss
+title: "snovvcrash's Security Blog"
+email: "scr.im/emsnovvcrash"
+timezone: "Europe/Moscow"
+locale: "ru-RU"
+description: >- # this means to ignore newlines until "author:"
+  "Заметки этичного хакера"
+author: "snovvcrash"
+github_username: "snovvcrash"
+rss: "rss"
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://snovvcrash.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -35,20 +36,21 @@ header_pages:
   - tags.html
 
 # Build settings
-markdown: kramdown
-theme: minima
+markdown: "kramdown"
+theme: "minima"
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-email-protect
   - jemoji
 
 # Google Analytics
-google_analytics: UA-123831726-1
+google_analytics: "UA-123831726-1"
 
 # Disqus comments
 disqus:
-  shortname: snovvcrash-github-io
+  shortname: "snovvcrash-github-io"
 
 # Page locations
 tag_page: /tags.html
