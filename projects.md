@@ -4,7 +4,7 @@ title: Проекты
 permalink: /projects
 ---
 
-[![Built with Love](https://img.shields.io/badge/built%20with-%F0%9F%92%97%F0%9F%92%97%F0%9F%92%97-lightgrey.svg)](https://emojipedia.org/growing-heart/)
+[![Built with Love](https://img.shields.io/badge/built%20with-%F0%9F%92%97%F0%9F%92%97%F0%9F%92%97-lightgrey.svg)](http://project.cyberpunk.ru/lib/burning_chrome/)
 
 Некоторые мои работы.
 
