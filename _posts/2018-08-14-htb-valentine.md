@@ -82,7 +82,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 Первым делом глянем, что творится на веб-страничке, предоставленной сервером Apache на 80-м порту. Запустим браузер и перейдем по `10.10.10.79`:
 
-![valentine-port80-index-php.png]({{ "/img/htb/boxes/valentine-port80-index-php.png" | relative_url }})
+[![valentine-port80-index-php.png]({{ "/img/htb/boxes/valentine-port80-index-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine-port80-index-php.png" | relative_url }})
 
 Хмм, картинка... В исходниках ничего интересного, да и не за чем смотреть было на самом деле — изображение, как впрочем и само название машины, уже кричит в лицо о направлении, которого следует придерживаться. Скоро мы вернемся к Heartbleed'у, а пока еще немного помучаем веб-сайт.
 
@@ -121,7 +121,7 @@ DOWNLOADED: 4612 - FOUND: 6
 ### /dev
 Нашли директорию с кокетливым названием **dev**, внутри 2 файла:
 
-![valentine-port80-dev.png]({{ "/img/htb/boxes/valentine-port80-dev.png" | relative_url }})
+[![valentine-port80-dev.png]({{ "/img/htb/boxes/valentine-port80-dev.png" | relative_url }})]({{ "/img/htb/boxes/valentine-port80-dev.png" | relative_url }})
 
 **hype_key**
 
@@ -156,7 +156,7 @@ To do:
 ### /encode
 Base64-кодировщик:
 
-![valentine-port80-encode-php.png]({{ "/img/htb/boxes/valentine-port80-encode-php.png" | relative_url }})
+[![valentine-port80-encode-php.png]({{ "/img/htb/boxes/valentine-port80-encode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine-port80-encode-php.png" | relative_url }})
 
 Результат кодирования:
 ```
@@ -169,7 +169,7 @@ aGFja3RoZWJveA==
 ### /encode
 Base64-декодировщик:
 
-![valentine-port80-decode-php.png]({{ "/img/htb/boxes/valentine-port80-decode-php.png" | relative_url }})
+[![valentine-port80-decode-php.png]({{ "/img/htb/boxes/valentine-port80-decode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine-port80-decode-php.png" | relative_url }})
 
 Результат декодирования:
 ```
@@ -187,7 +187,7 @@ hackthebox
 # TLS/SSL — Порт 443. Heartbleed
 [Heartbleed](https://ru.wikipedia.org/wiki/Heartbleed "Heartbleed — Википедия") ([CVE-2014-0160](https://nvd.nist.gov/vuln/detail/CVE-2014-0160 "NVD - CVE-2014-0160")) — нашумевший *buffer-over-read*-баг в криптографическом программном обеспечении OpenSSL, позволяющий несанкционированно читать память на сервере или на клиенте. Где только не писали про эту ошибку, материала про нее достаточно, я же в рамках этого поста ограничюсь информативным xkcd-комиксом:
 
-![heartbleed_explanation.png](https://imgs.xkcd.com/comics/heartbleed_explanation.png "xkcd: Heartbleed Explanation")
+[![heartbleed_explanation.png](https://imgs.xkcd.com/comics/heartbleed_explanation.png)](https://imgs.xkcd.com/comics/heartbleed_explanation.png "xkcd: Heartbleed Explanation")
 
 С помощью скриптового движка `nmap` подтвердим свое предположение относительно уязвимости сервера к Heartbleed:
 ```
