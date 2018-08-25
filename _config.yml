@@ -19,7 +19,7 @@ email: "scr.im/emsnovvcrash"
 timezone: "Europe/Moscow"
 locale: "ru-RU"
 description: >- # this means to ignore newlines until "author:"
-  "Заметки этичного хакера"
+  Заметки этичного хакера
 author: "snovvcrash"
 github_username: "snovvcrash"
 rss: "rss"
