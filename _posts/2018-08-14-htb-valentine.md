@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "HTB: Valentine Write-Up"
-date: 2018-08-14 01:00:00 +0300
+date: 2018-08-14 00:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, Valentine, heartbleed, tmux, dirtycow]
@@ -13,6 +13,8 @@ comments: true
 **Valentine** входит в тройку первых решенных мною машин на Hack The Box. Вскрытие будет включать в себя эксплуатацию *Heartbleed* — уязвимости протокола *OpenSSL*, наделавшей много шума в свое время —, а также использование менеджера терминальных сессий *tmux*. Как и у большинства машин, у Valentine существует не единственный способ повышения привилегий до суперпользователя, второй, к слову, достаточно *грязный*, но мы разберем и его :wink:
 
 <!--cut-->
+
+<h4>Valentine: 10.10.10.79</h4>
 
 * TOC
 {:toc}
@@ -74,7 +76,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Tue Aug 14 09:21:21 2018 -- 1 IP address (1 host up) scanned in 20.44 seconds
 ```
 
-Есть SSH, Web и TLS/SSL. Давайте по порядку.
+Есть SSH, Web (HTTP) и TLS/SSL. Давайте по порядку.
 
 # Web — Порт 80
 ## Браузер
@@ -440,3 +442,5 @@ hype@Valentine:~$ rm dirty.c dirty
 ```
 
 и так же идем радоваться жизни.
+
+На этом все, спасибо за внимание :innocent:
