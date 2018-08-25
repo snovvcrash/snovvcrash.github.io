@@ -14,7 +14,7 @@ permalink: /about
 
 See ya!
 
-# Аккаунты
+# Профили
 
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
