@@ -8,7 +8,7 @@ tags: [ctf, write-ups, boxes, hackthebox, Celestial, node-js, rce, deserializati
 comments: true
 ---
 
-![celestial.png]({{ "/img/htb/boxes/celestial.png" | relative_url }})
+[![celestial.png]({{ "/img/htb/boxes/celestial.png" | relative_url }})]({{ page.url }})
 
 **Celestial** — образцовый представитель типичной CTF-машины. Уязвимый web-сервис дает возможность удаленного выполнения кода (RCE), открывая путь к получению reverse-shell'а, откуда до повышения привилегий до суперпользователя (LPE) в силу небрежно выставленных настроек прав доступа рукой подать. Let's dive into it!
 
@@ -220,39 +220,6 @@ sun@sun:~$ cat .bash_history
 
 ```
 
-Можно даже посмотреть на `server.js`, отвечающий за все безобразие, которое происходило на web'е, просто так, для общего развития:
-```
-sun@sun:~$ cat server.js
-
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var escape = require('escape-html');
-var serialize = require('node-serialize');
-var app = express();
-app.use(cookieParser())
-
-app.get('/', function(req, res) {
-  if (req.cookies.profile) {
-    var str = new Buffer(req.cookies.profile, 'base64').toString();
-    var obj = serialize.unserialize(str);
-    if (obj.username) { 
-      var sum = eval(obj.num + obj.num);
-      res.send("Hey " + obj.username + " " + obj.num + " + " + obj.num + " is " + sum);
-    }else{
-      res.send("An error occurred...invalid username type"); 
-    }
-  }else {
-    res.cookie('profile', "eyJ1c2VybmFtZSI6IkR1bW15IiwiY291bnRyeSI6IklkayBQcm9iYWJseSBTb21ld2hlcmUgRHVtYiIsImNpdHkiOiJMYW1ldG93biIsIm51bSI6IjIifQ==", {
-      maxAge: 900000,
-      httpOnly: true
-    });
-  }
-  res.send("<h1>404</h1>");
-});
-
-app.listen(3000);
-```
-
 Сразу в глаза бросается файл `output.txt` неизвестной природы. Владелец — root, читать могут все. Почитаем, раз разрешают:
 ```
 sun@sun:~$ cat output.txt
@@ -323,10 +290,9 @@ root@sun:~# cat /root/root.txt
 ba1d0019????????????????????????
 ```
 
-И в качестве бонуса посмотреть задание crontab'а:
+И в качестве бонуса посмотреть суперпользовательский `crontab` (разберем его подробнее в [конце]({{ page.url }}#cron) райтапа):
 ```
 root@sun:~# crontab -l
-
 # Edit this file to introduce tasks to be run by cron.
 # 
 # Each task to run has to be defined through a single line
@@ -383,7 +349,52 @@ sun@sun:~$ cat output.txt
 f4ckU!
 ```
 
-На этом все, спасибо за внимание :innocent:
+# Разное
+## server.js
+Для общего развития можно посмотреть на `/home/sun/server.js`, отвечающий за все безобразие, которое происходило на web'е:
+```
+sun@sun:~$ cat server.js
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var escape = require('escape-html');
+var serialize = require('node-serialize');
+var app = express();
+app.use(cookieParser())
+
+app.get('/', function(req, res) {
+  if (req.cookies.profile) {
+    var str = new Buffer(req.cookies.profile, 'base64').toString();
+    var obj = serialize.unserialize(str);
+    if (obj.username) { 
+      var sum = eval(obj.num + obj.num);
+      res.send("Hey " + obj.username + " " + obj.num + " + " + obj.num + " is " + sum);
+    }else{
+      res.send("An error occurred...invalid username type"); 
+    }
+  }else {
+    res.cookie('profile', "eyJ1c2VybmFtZSI6IkR1bW15IiwiY291bnRyeSI6IklkayBQcm9iYWJseSBTb21ld2hlcmUgRHVtYiIsImNpdHkiOiJMYW1ldG93biIsIm51bSI6IjIifQ==", {
+      maxAge: 900000,
+      httpOnly: true
+    });
+  }
+  res.send("<h1>404</h1>");
+});
+
+app.listen(3000);
+```
+
+Из листинга видно, что при отсутствии cookies'ов сервер выплюнет сообщение **400**.
+
+## cron
+Будучи root'ом, изучим задание cron'а:
+```
+root@sun:~# crontab -l | grep -vF '#'
+*/5 * * * * python /home/sun/Documents/script.py > /home/sun/output.txt; cp /root/script.py /home/sun/Documents/script.py; chown sun:sun /home/sun/Documents/script.py; chattr -i /home/sun/Documents/script.py; touch -d "$(date -R -r /home/sun/Documents/user.txt)" /home/sun/Documents/script.py
+```
+
+Помимо выполнения скрипта, перезаписи его оригинальным содержимым (что обсуждалось ранее), смены владельца и снятия атрибута immutable планировщик также подменяет дату модификации скрипта, чтобы его частое (ежепятиминутное) изменение нелья было определить по временной метке файла. Это делается с помощью утилиты `touch`, которой в качестве аргумента передается значение timestamp'а файла `user.txt` в формате RFC 5322.
+
+Все, что хотел, сказал, спасибо за внимание :innocent:
 
 # Вместо заключения
 Вот и вырисовывается типичная схема уязвимой машины ("игрушечной", разумеется):
