@@ -6,7 +6,7 @@ permalink: /projects
 
 [![Built with Love](https://img.shields.io/badge/built%20with-%F0%9F%92%97%F0%9F%92%97%F0%9F%92%97-lightgrey.svg)](http://project.cyberpunk.ru/lib/burning_chrome/)
 
-Некоторые мои работы.
+Некоторые мои работы:
 
 # GitHub
 - Дампер *Twitter*-аккаунтов с возможностью смены авторизаций «на лету».
