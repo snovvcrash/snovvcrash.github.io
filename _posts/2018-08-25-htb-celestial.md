@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "HTB: Celestial Write-Up"
 date: 2018-08-25 20:00:00 +0300
