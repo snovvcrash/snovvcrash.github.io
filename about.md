@@ -16,9 +16,9 @@ See ya!
 
 # Профили
 
-* [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
-* [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [Хабр](https://habr.com/users/snovvcrash "Профиль snovvcrash / Хабр")
+* [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
+* [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
 
 # Контакты
