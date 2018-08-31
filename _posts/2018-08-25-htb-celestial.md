@@ -22,7 +22,7 @@ comments: true
 # nmap
 Начинаем со сканирования, разведка — наше все. По традиции сначала быстрое stealth-сканирование для получения общей картины:
 ```
-root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial -g53 10.10.10.85
+root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.85
 Nmap scan report for 10.10.10.85
 Host is up, received user-set (0.066s latency).
 Scanned at 2018-08-24 16:11:57 EDT for 1s

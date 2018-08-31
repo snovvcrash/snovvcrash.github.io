@@ -22,7 +22,7 @@ comments: true
 # nmap
 Начнем со сканирования хоста. Сперва пробежим быстрое SYN-сканирования 1000 самых распространенных портов:
 ```
-root@kali:~# nmap -n -v -sS -Pn -oN nmap/initial.nmap -g53 10.10.10.79
+root@kali:~# nmap -n -v -sS -Pn -oN nmap/initial.nmap 10.10.10.79
 Nmap scan report for 10.10.10.79
 Host is up (0.099s latency).
 Not shown: 997 closed ports
