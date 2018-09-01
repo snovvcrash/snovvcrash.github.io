@@ -20,6 +20,7 @@ See ya!
 * [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
+* [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
 
 # Контакты
 
