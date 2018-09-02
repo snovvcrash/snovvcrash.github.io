@@ -371,7 +371,7 @@ f4ckU!
 # Разное
 ## server.js
 Для общего развития можно посмотреть на `/home/sun/server.js`, отвечающий за все безобразие, которое происходило на web'е:
-```
+```javascript
 // server.js
 
 var express = require('express');
