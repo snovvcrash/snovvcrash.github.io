@@ -24,7 +24,7 @@ See ya!
 |-------------------+------------------|
 | Текущий результат | Лучший результат |
 |:-----------------:|:----------------:|
-| [![HTB](https://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/profile/51037) | 123 |
+| [![htb-current-badge.png](https://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/profile/51037) | ![htb-best-badge.png]({{ "/img/htb/htb-best-badge.png" | relative_url }}) |
 
 # Контакты
 [//]: # (<a href="mailto:{{ 'snovvcrash@protonmail.ch' | encode_email }}" title="E-Mail">E-Mail</a>)
