@@ -217,9 +217,9 @@ hackthebox
 Пока неясно предназначение обоих инструментов, но тот факт, что использовать их небезопасно (по словам автора заметки), может в дальнейшем сыграть нам на руку.
 
 # TLS/SSL — Порт 443. Heartbleed
-[Heartbleed](https://ru.wikipedia.org/wiki/Heartbleed "Heartbleed — Википедия") ([CVE-2014-0160](https://nvd.nist.gov/vuln/detail/CVE-2014-0160 "NVD - CVE-2014-0160")) — нашумевший *buffer-over-read*-баг в криптографическом программном обеспечении OpenSSL, позволяющий несанкционированно читать память на сервере или на клиенте. Где только не писали про эту ошибку, материала про нее достаточно, я же в рамках этого поста ограничюсь информативным xkcd-комиксом:
+[Heartbleed](https://ru.wikipedia.org/wiki/Heartbleed "Heartbleed — Википедия") ([CVE-2014-0160](https://nvd.nist.gov/vuln/detail/CVE-2014-0160 "NVD - CVE-2014-0160")) — нашумевший *buffer-over-read*-баг в криптографическом программном обеспечении OpenSSL, позволяющий несанкционированно читать память на сервере или на клиенте. Где только не писали про эту ошибку, материала про нее достаточно, я же в рамках этого поста ограничюсь информативным [xkcd-комиксом](https://xkcd.com/1354 "xkcd: Heartbleed Explanation"):
 
-[![heartbleed_explanation.png](https://imgs.xkcd.com/comics/heartbleed_explanation.png)](https://imgs.xkcd.com/comics/heartbleed_explanation.png "xkcd: Heartbleed Explanation")
+[![heartbleed_explanation.png](https://imgs.xkcd.com/comics/heartbleed_explanation.png)](https://imgs.xkcd.com/comics/heartbleed_explanation.png)
 
 С помощью скриптового движка `nmap` подтвердим свое предположение относительно уязвимости сервера к Heartbleed:
 ```
@@ -323,7 +323,7 @@ e6710a54????????????????????????
 
 и еще пошаримся по системе.
 
-## Путь до root'а. Способ 1
+## PrivEsc: hype ⟶ root. Способ 1
 Проверим домашний каталог:
 ```
 hype@Valentine:~$ ls -la
@@ -401,7 +401,7 @@ root@Valentine:/# cat /root/root.txt
 f1bb6d75????????????????????????
 ```
 
-## Путь до root'а. Способ 2
+## PrivEsc: hype ⟶ root. Способ 2
 Настало время для *грязных* (никогда не надоест :joy:) забав. Повысим привилегии до суперпользователя, вызвав состояние гонки в механизме копирования при записи, или просто проэксплуатируем уязвимость [Dirty COW](https://ru.wikipedia.org/wiki/%D0%A3%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C_Dirty_COW "Уязвимость Dirty COW — Википедия") ([CVE-2016-5195](https://nvd.nist.gov/vuln/detail/CVE-2016-5195 "NVD - CVE-2016-5195")). Из [большого количества](https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs "PoCs · dirtycow/dirtycow.github.io Wiki") PoC-ов для демонстрации я обычно выбираю вот [этот](https://github.com/FireFart/dirtycow/blob/master/dirty.c "dirtycow/dirty.c at master · FireFart/dirtycow") (основанный на подмене root-записи в `/etc/password`) как наиболее стабильный и полностью обратимый.
 
 Скачав исходник на машину-жертву, соберем и запустим:
