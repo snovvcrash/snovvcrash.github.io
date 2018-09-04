@@ -4,8 +4,6 @@ title: Обо мне
 permalink: /about
 ---
 
-[![HTB](https://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/profile/51037)
-
 Приветствую!
 
 Меня зовут `snovvcrash`, я специалист по компьютерной и информационной безопасности, и это мой блог. Здесь я публикую райтапы с CTF-мероприятий, оставляю заметки, касающиеся тематики *cybersec*'а и *infosec*'а, разработки, а также просто делюсь своими мыслями и наблюдениями из сферы IT в целом.
@@ -15,15 +13,20 @@ permalink: /about
 See ya!
 
 # Профили
-
 * [Хабр](https://habr.com/users/snovvcrash "Профиль snovvcrash / Хабр")
-* [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
+* [HackTheBox](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
 * [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
 
-# Контакты
+# HackTheBox
 
+|-------------------+------------------|
+| Текущий результат | Лучший результат |
+|:-----------------:|:----------------:|
+| [![HTB](https://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/profile/51037) | 123 |
+
+# Контакты
 [//]: # (<a href="mailto:{{ 'snovvcrash@protonmail.ch' | encode_email }}" title="E-Mail">E-Mail</a>)
 [//]: # (<a href="&#109;ail&#116;o&#58;sno&#118;&#37;76%6&#51;rash&#64;p%72ot&#37;&#54;F&#110;%6Dail&#46;%63h" title="E-Mail">E-Mail</a>)
 * Email: [{{ site.email }}](http://{{ site.email }})
