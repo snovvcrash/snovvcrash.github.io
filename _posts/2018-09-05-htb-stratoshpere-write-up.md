@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "HTB: Stratosphere Write-Up"
 date: 2018-09-05 01:00:00 +0300
