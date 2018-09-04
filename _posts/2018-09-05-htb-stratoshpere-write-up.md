@@ -4,7 +4,7 @@ title: "HTB: Stratosphere Write-Up"
 date: 2018-09-05 01:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, apache-struts, rce, forward-shell, python, eval, library-hijacking, jtr, hashes]
+tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, apache-struts, rce, forward-shell, python, eval, library-hijacking, john, hashes]
 comments: true
 ---
 
@@ -779,7 +779,7 @@ Fhero6610
 ...
 ```
 
-Скормим их `test.py`:
+Скормим их `/home/richard/test.py`:
 ```
 richard@stratosphere:~$ sudo /usr/bin/python ~/test.py
 [sudo] password for richard: 9tc*rhKuG5TyXvUJOrE^5CK7k
