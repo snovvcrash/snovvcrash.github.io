@@ -41,14 +41,6 @@ permalink: /projects
 | *июн, 2017* | [**libcoders**](https://github.com/snovvcrash/libcoders "snovvcrash/libcoders: File compression library (includes 6 algorithms).") | <a class="github-button" href="https://github.com/snovvcrash/libcoders/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/libcoders on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/libcoders" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/libcoders on GitHub">Star</a> |
 |------+----------+---------|
 
-- Учебная *assembly*-реализация «fork-exec-wait» концепта в GNU/Linux.
-
-|------+----------+---------|
-| Дата | Название | Кнопки  |
-|:----:|:--------:|:-------:|
-| *мар, 2016* | [**mini-shell**](https://github.com/snovvcrash/mini-shell "snovvcrash/mini-shell: Simplified assembly implementation of linux shell based on 'fork-exec-wait' concept.") | <a class="github-button" href="https://github.com/snovvcrash/mini-shell/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/mini-shell on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/mini-shell" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/mini-shell on GitHub">Star</a> |
-|------+----------+---------|
-
 # Хабр
 - *мар, 2018*{: style="color: grey"} • [ссылка](https://habr.com/post/352254 "Linux-форензика в лице трекинга истории подключений USB-устройств / Хабр") • "Linux-форензика в лице трекинга истории подключений USB-устройств"
 - *мар, 2018*{: style="color: grey"} • [ссылка](https://habr.com/post/351360 "Искусство эксплойта минных полей: Разбираем CTF-таск про игру в Сапёра из «Мистера Робота» / Хабр") • "Искусство эксплойта минных полей: Разбираем CTF-таск про игру в Сапёра из «Мистера Робота»"
