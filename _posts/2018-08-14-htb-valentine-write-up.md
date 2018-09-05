@@ -323,7 +323,7 @@ e6710a54????????????????????????
 
 и еще пошаримся по системе.
 
-## PrivEsc: hype ⟶ root. Способ 1
+## PrivEsc: hype ➔ root. Способ 1
 Проверим домашний каталог:
 ```
 hype@Valentine:~$ ls -la
@@ -401,7 +401,7 @@ root@Valentine:/# cat /root/root.txt
 f1bb6d75????????????????????????
 ```
 
-## PrivEsc: hype ⟶ root. Способ 2
+## PrivEsc: hype ➔ root. Способ 2
 Настало время для *грязных* (никогда не надоест :joy:) забав. Повысим привилегии до суперпользователя, вызвав состояние гонки в механизме копирования при записи, или просто проэксплуатируем уязвимость [Dirty COW](https://ru.wikipedia.org/wiki/%D0%A3%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C_Dirty_COW "Уязвимость Dirty COW — Википедия") ([CVE-2016-5195](https://nvd.nist.gov/vuln/detail/CVE-2016-5195 "NVD - CVE-2016-5195")). Из [большого количества](https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs "PoCs · dirtycow/dirtycow.github.io Wiki") PoC-ов для демонстрации я обычно выбираю вот [этот](https://github.com/FireFart/dirtycow/blob/master/dirty.c "dirtycow/dirty.c at master · FireFart/dirtycow") (основанный на подмене root-записи в `/etc/password`) как наиболее стабильный и полностью обратимый.
 
 Скачав исходник на машину-жертву, соберем и запустим:
