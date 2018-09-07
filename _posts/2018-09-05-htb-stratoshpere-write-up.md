@@ -416,7 +416,7 @@ class Stratosphere:
 		self.runRawCmd(createNamedPipes, timeout=0.5)
 
 		# Setting up read thread
-		print("[*] Setting up read thread")
+		print('[*] Setting up read thread')
 		self.interval = interval
 		thread = threading.Thread(target=self.readThread, args=())
 		thread.daemon = True
