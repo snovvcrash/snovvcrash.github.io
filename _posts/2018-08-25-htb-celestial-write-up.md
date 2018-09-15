@@ -4,7 +4,7 @@ title: "HTB: Celestial Write-Up"
 date: 2018-08-25 20:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Celestial, node-js, rce, deserialization, python, cron]
+tags: [ctf, write-ups, boxes, hackthebox, Celestial, express, node-js, rce, deserialization, python, cron]
 comments: true
 ---
 
@@ -14,7 +14,7 @@ comments: true
 
 <!--cut-->
 
-<h4>Celestial: 10.10.10.85</h4>
+<h4>Celestial:  10.10.10.85</h4>
 
 * TOC
 {:toc}
