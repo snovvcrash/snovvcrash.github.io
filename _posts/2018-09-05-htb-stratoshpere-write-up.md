@@ -14,7 +14,7 @@ comments: true
 
 <!--cut-->
 
-<h4>Stratosphere:  10.10.10.64</h4>
+<h4>Stratosphere: 10.10.10.64</h4>
 
 * TOC
 {:toc}

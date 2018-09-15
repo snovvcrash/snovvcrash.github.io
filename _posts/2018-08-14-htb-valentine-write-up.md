@@ -14,7 +14,7 @@ comments: true
 
 <!--cut-->
 
-<h4>Valentine:  10.10.10.79</h4>
+<h4>Valentine: 10.10.10.79</h4>
 
 * TOC
 {:toc}
