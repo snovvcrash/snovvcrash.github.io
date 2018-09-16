@@ -69,7 +69,7 @@ SSH на 22-м и web-сервис на 80-м портах. Начнем с ве
 
 # Web — Порт 80
 ## Браузер
-Перейдя по `http://10.10.10.84` видим:
+Перейдя по `http://10.10.10.84`, видим:
 
 [![poison-port80-browser-1.png]({{ "/img/htb/boxes/poison-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/poison-port80-browser-1.png" | relative_url }})
 
