@@ -9,6 +9,14 @@ permalink: /projects
 Некоторые мои работы:
 
 # GitHub
+- Exploitation-фреймворк для генерации *forward-shell*'ов.
+
+|------+----------+---------|
+| Дата | Название | Кнопки  |
+|:----:|:--------:|:-------:|
+| *сен, 2018* | [**FwdSh3ll**](https://github.com/snovvcrash/FwdSh3ll "snovvcrash/FwdSh3ll: Forward shell generation framework.") | <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/FwdSh3ll on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/FwdSh3ll on GitHub">Star</a> |
+|------+----------+---------|
+
 - Дампер *Twitter*-аккаунтов с возможностью смены авторизаций «на лету».
 
 |------+----------+---------|
@@ -47,6 +55,9 @@ permalink: /projects
 - *фев, 2018*{: style="color: grey"} • [ссылка](https://habr.com/post/347580 "На волнах эффекта Ли: Питонизируем генерацию DAF / Хабр") • "На волнах эффекта Ли: Питонизируем генерацию DAF"
 - *янв, 2018*{: style="color: grey"} • [ссылка](https://habr.com/post/346572 "Сказ о тотальном переборе, или Томительное ожидание декрипта / Хабр") • "Сказ о тотальном переборе, или Томительное ожидание декрипта"
 - *окт, 2017*{: style="color: grey"} • [ссылка](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр") • "Ломаем модифицированный AES-256"
+
+# Codeby
+- *сен, 2018*{: style="color: grey"} • [ссылка](https://codeby.net/forum/threads/fwdsh3ll-kogda-reverse-i-bind-ne-smogli-forward-shell-speshit-na-pomosch.65029 "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь | Codeby.net - Информационная Безопасность") • "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь"
 
 # Упоминания
 - *авг, 2018*{: style="color: grey"} • [ссылка](https://codeby.net/forum/threads/tweetlrd-ehlegantnyj-damper-stranichek-tvittera-zhonglirujuschij-avtorizacijami.64292 "tweetl👑rd: Элегантный дампер страничек Твиттера, жонглирующий авторизациями / Codeby.net - Информационная Безопасность") • "tweetl👑rd: Элегантный дампер страничек Твиттера, жонглирующий авторизациями"
