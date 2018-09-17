@@ -4,7 +4,7 @@ title: "HTB: Stratosphere Write-Up"
 date: 2018-09-05 01:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, apache, apache-struts, rce, forward-shell, python, eval, library-hijacking, john, hashes]
+tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, linux apache, apache-struts, rce, forward-shell, python, eval, library-hijacking, john, hashes]
 comments: true
 ---
 
