@@ -57,7 +57,7 @@ permalink: /projects
 - *окт, 2017*{: style="color: grey"} • [ссылка](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр") • "Ломаем модифицированный AES-256"
 
 # Codeby
-- *сен, 2018*{: style="color: grey"} • [ссылка](https://codeby.net/forum/threads/fwdsh3ll-kogda-reverse-i-bind-ne-smogli-forward-shell-speshit-na-pomosch.65029 "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь | Codeby.net - Информационная Безопасность") • "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь"
+- *сен, 2018*{: style="color: grey"} • [ссылка](https://codeby.net/forum/threads/fwdsh3ll-kogda-reverse-i-bind-ne-smogli-forward-shell-speshit-na-pomosch.65029 "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь / Codeby.net - Информационная Безопасность") • "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь"
 
 # Упоминания
 - *авг, 2018*{: style="color: grey"} • [ссылка](https://codeby.net/forum/threads/tweetlrd-ehlegantnyj-damper-stranichek-tvittera-zhonglirujuschij-avtorizacijami.64292 "tweetl👑rd: Элегантный дампер страничек Твиттера, жонглирующий авторизациями / Codeby.net - Информационная Безопасность") • "tweetl👑rd: Элегантный дампер страничек Твиттера, жонглирующий авторизациями"
