@@ -25,7 +25,7 @@ permalink: /projects
 | *июл, 2018* | [**tweetl:crown:rd**](https://github.com/snovvcrash/tweetlord "snovvcrash/tweetlord: Twitter profile dumper (downloader) with authorization swapping.") | <a class="github-button" href="https://github.com/snovvcrash/tweetlord/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/tweetlord on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/tweetlord" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/tweetlord on GitHub">Star</a> |
 |------+----------+---------|
 
-- Небольшая консольная утилита для трекинга истории USB-подключений в GNU/Linux.
+- Консольная утилита для трекинга истории USB-подключений в GNU/Linux.
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
