@@ -14,8 +14,8 @@ comments: true
 
 <!--cut-->
 
-<h4>Poison: 10.10.10.84</h4>
-<h4>Attacker: 10.10.14.116</h4>
+<h4 style="color:red;margin-bottom:0;">Poison: 10.10.10.84</h4>
+<h4 style="color:red;">Attacker: 10.10.14.116</h4>
 
 * TOC
 {:toc}

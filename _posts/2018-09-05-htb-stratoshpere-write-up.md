@@ -14,7 +14,7 @@ comments: true
 
 <!--cut-->
 
-<h4>Stratosphere: 10.10.10.64</h4>
+<h4 style="color:red;">Stratosphere: 10.10.10.64</h4>
 
 * TOC
 {:toc}
@@ -487,7 +487,8 @@ while True:
 
 Подробнее об этом способе можно узнать из [этого](https://www.youtube.com/watch?v=k6ri-LFWEj4 "VulnHub - Sokar - YouTube") туториала (0:15:36-0:39:10) прохождения машины с VulnHub'а. От себя добавлю, что в нашем случае представляется невозможным использование библиотеки `requests` для Python в силу особенностей используемой уязвимости: `requests` не умеет по-человечески работать с возвращаемым уязвимым сервером **IncompleteRead**, возбуждая исключение `requests.exceptions.ChunkedEncodingError`; если же использовать встроенные средства языка, то этот же ответ с IncompleteRead без проблем перехватывается исключением `http.client.IncompleteRead` и далее успешно обрабатывается как `e.partial`. Подробнее об этой проблеме [здесь](https://github.com/mazen160/struts-pwn/issues/8 "Issue with requests partial read · Issue #8 · mazen160/struts-pwn").
 
-**UPD: [FwdSh3ll](https://github.com/snovvcrash/FwdSh3ll "snovvcrash/FwdSh3ll: Forward shell generation framework.")**
+### FwdSh3ll
+**UPD.** В исследовательских целях был написан крошечный exploitation-фреймворк для генерации forward-shell'ов под различные уязвимости, ознакомиться можно [здесь](https://github.com/snovvcrash/FwdSh3ll "snovvcrash/FwdSh3ll: Forward shell generation framework.").
 
 Итак, время полевых испытаний:
 ```text
