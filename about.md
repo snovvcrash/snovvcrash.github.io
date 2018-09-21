@@ -4,7 +4,7 @@ title: Обо мне
 permalink: /about
 ---
 
-![johnny-mnemonic.png]({{ "/img/johnny-mnemonic.png" | relative_url }}){:style="float:right;margin-right:10px;"}
+![avatar.png]({{ "/img/avatar.png" | relative_url }}){:style="float:right;margin-right:8px;"}
 
 Приветствую!
 
