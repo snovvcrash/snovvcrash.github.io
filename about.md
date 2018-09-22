@@ -4,7 +4,7 @@ title: Обо мне
 permalink: /about
 ---
 
-![avatar.png]({{ "/img/avatar.png" | relative_url }}){:style="float:right;margin-right:8px;"}
+![avatar.png]({{ "/img/avatar.png" | relative_url }}){:style="float:right;margin-left:10px;"}
 
 Приветствую!
 
