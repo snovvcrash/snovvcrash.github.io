@@ -39,7 +39,7 @@ Read data files from: /usr/bin/../share/nmap
 
 Version ([красивый отчет]({{ "/nmap/htb-poison-nmap-version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl 10.10.10.84
+root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p22,80 10.10.10.84
 Nmap scan report for 10.10.10.84
 Host is up, received echo-reply ttl 63 (0.055s latency).
 Scanned at 2018-09-15 14:41:29 EDT for 9s
