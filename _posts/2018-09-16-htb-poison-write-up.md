@@ -296,7 +296,7 @@ Ukd4RVdub3dPVU5uUFQwSwo=
 
 [![poison-lfi-phpinfo.png]({{ "/img/htb/boxes/poison-lfi-phpinfo.png" | relative_url }})]({{ "/img/htb/boxes/poison-lfi-phpinfo.png" | relative_url }})
 
-Но этот файл удаляется сервером сразу же после окончания загрузки странички с PHPInfo(). Этот [скрипт](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion%20-%20Path%20Traversal/phpinfolfi.py "PayloadsAllTheThings/phpinfolfi.py at master · swisskyrepo/PayloadsAllTheThings"), описанный в публикации выше, провоцирует состояние гонки для того, чтобы успеть загрузить вредоносную нагрузку во временный файл (реверс-шелл, например) и выполнить ее прежде, чем сервер удалит этот файл.
+Но этот файл удаляется сервером сразу же после окончания загрузки странички с PHPInfo(). Этот [скрипт](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion%20-%20Path%20Traversal/phpinfolfi.py "PayloadsAllTheThings/phpinfolfi.py at master · swisskyrepo/PayloadsAllTheThings"), описанный в публикации выше, провоцирует состояние гонки для того, чтобы успеть загрузить вредоносную нагрузку во временный файл (реверс-шелл, например) и выполнить его прежде, чем сервер удалит этот файл.
 
 Скомканно, но, думаю, идея ясна.
 
