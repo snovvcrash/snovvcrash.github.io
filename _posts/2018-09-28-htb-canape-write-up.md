@@ -345,7 +345,7 @@ def check():
 Что здесь происходит:
   1. Открытие сервером файла с сохраненной цитатой по id (id это md5-хеш из предыдущего параграфа).
   2. Проверка наличия маркера `p1`, характерного для упакованных (сериализованных) данных.
-  3. В случае успешно пройденной проверки начинается самое плохое (ествественно не для нас :smiling_imp:), а именно десериализация непроверенных данных с помощью `cPickle.loads()`. Почему это очень плохо, и делать так ни разу нельзя, можно почитать в сети, статей великое множество. Также, если заинтересовался темой, можешь полистать мою статью с Хабра, описывающий таск из «Мистера Робота», в которой центральное место занимает **python-untrusted-deserialization** уязвимость.
+  3. В случае успешно пройденной проверки начинается самое плохое (ествественно не для нас :smiling_imp:), а именно десериализация непроверенных данных с помощью `cPickle.loads()`. Почему это очень плохо, и делать так ни разу нельзя, можно почитать в сети, статей великое множество. Также, если заинтересовался темой, можешь полистать мою [статью с Хабра](https://habr.com/post/351360 "Искусство эксплойта минных полей: Разбираем CTF-таск про игру в Сапёра из «Мистера Робота» / Хабр"), описывающую таск из «Мистера Робота», в которой центральное место занимает **python-untrusted-deserialization** уязвимость.
 
 Простыми словами эта -->  `cPickle.loads(data)`  <-- строчка кода отправляет ОС на выполнение все, что было упаковано в переменную `data`, т. е. все то, что мы сами указали ранее в качестве "цитаты".
 
@@ -591,7 +591,7 @@ CouchDB написан на Erlang'е, а Erlang использует серве
 >CouchDB in cluster mode uses the port 5984 just as standalone, but it also uses 5986 for node-local APIs.
 >Erlang uses TCP port 4369 (EPMD) to find other nodes, so all servers must be able to speak to each other on this port. In an Erlang Cluster, all nodes are connected to all other nodes. A mesh.
 
-В документации СУБД красуется вывеска с надписью :warning: Warning:
+В [документации](http://docs.couchdb.org/en/stable/cluster/setup.html#cluster-setup "11.1. Set Up — Apache CouchDB 2.2 Documentation") СУБД красуется вывеска с надписью :warning: **Warning**:
 
 [![canape-couchdb-warning.png]({{ "/img/htb/boxes/canape/canape-couchdb-warning.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-couchdb-warning.png" | relative_url }})
 
