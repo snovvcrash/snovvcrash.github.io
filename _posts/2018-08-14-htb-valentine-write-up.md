@@ -8,7 +8,7 @@ tags: [ctf, write-ups, boxes, hackthebox, Valentine, linux, heartbleed, tmux, di
 comments: true
 ---
 
-[![valentine.png]({{ "/img/htb/boxes/valentine.png" | relative_url }})]({{ page.url }})
+[![valentine.png]({{ "/img/htb/boxes/valentine/valentine.png" | relative_url }})]({{ page.url }})
 
 **Valentine** входит в тройку первых решенных мною машин на HackTheBox. Вскрытие будет включать в себя эксплуатацию *Heartbleed* — уязвимости протокола *OpenSSL*, наделавшей много шума в свое время —, а также использование менеджера терминальных сессий *tmux*. Как и у большинства машин, у Valentine существует не единственный способ повышения привилегий до суперпользователя, второй, к слову, достаточно *грязный*, но мы разберем и его :wink:
 
@@ -80,7 +80,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 Первым делом глянем, что творится на веб-страничке, предоставленной сервером Apache на 80-м порту. Запустим браузер и перейдем по `10.10.10.79`:
 
-[![valentine-port80-index-php.png]({{ "/img/htb/boxes/valentine-port80-index-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine-port80-index-php.png" | relative_url }})
+[![valentine-port80-index-php.png]({{ "/img/htb/boxes/valentine/valentine-port80-index-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-index-php.png" | relative_url }})
 
 Хмм, картинка... В исходниках ничего интересного, да и не за чем смотреть было на самом деле — изображение, как впрочем и само название машины, уже кричит в лицо о направлении, которого следует придерживаться. Скоро мы вернемся к Heartbleed'у, а пока еще немного помучаем веб-сайт.
 
@@ -118,7 +118,7 @@ DOWNLOADED: 4612 - FOUND: 6
 ### /dev
 Нашли директорию с кокетливым названием **dev**, внутри 2 файла:
 
-[![valentine-port80-dev.png]({{ "/img/htb/boxes/valentine-port80-dev.png" | relative_url }})]({{ "/img/htb/boxes/valentine-port80-dev.png" | relative_url }})
+[![valentine-port80-dev.png]({{ "/img/htb/boxes/valentine/valentine-port80-dev.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-dev.png" | relative_url }})
 
 **hype_key**
 
@@ -188,7 +188,7 @@ To do:
 ### /encode
 Base64-кодировщик:
 
-[![valentine-port80-encode-php.png]({{ "/img/htb/boxes/valentine-port80-encode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine-port80-encode-php.png" | relative_url }})
+[![valentine-port80-encode-php.png]({{ "/img/htb/boxes/valentine/valentine-port80-encode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-encode-php.png" | relative_url }})
 
 Результат кодирования:
 ```text
@@ -201,7 +201,7 @@ aGFja3RoZWJveA==
 ### /encode
 Base64-декодировщик:
 
-[![valentine-port80-decode-php.png]({{ "/img/htb/boxes/valentine-port80-decode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine-port80-decode-php.png" | relative_url }})
+[![valentine-port80-decode-php.png]({{ "/img/htb/boxes/valentine/valentine-port80-decode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-decode-php.png" | relative_url }})
 
 Результат декодирования:
 ```text

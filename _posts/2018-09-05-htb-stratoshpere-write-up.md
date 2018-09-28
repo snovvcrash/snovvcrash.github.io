@@ -8,9 +8,9 @@ tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, linux apache, apache-str
 comments: true
 ---
 
-[![stratosphere.png]({{ "/img/htb/boxes/stratosphere.png" | relative_url }})]({{ page.url }})
+[![stratosphere.png]({{ "/img/htb/boxes/stratosphere/stratosphere.png" | relative_url }})]({{ page.url }})
 
-Мне нравится **Stratosphere**! Эта уютная Linux-машина встретит нас RCE-уязвимостью фреймворка *Apache Struts*, после чего посредством взаимодействия с СУБД *MySQL* предложит взглянуть на нарушение политики локального хранения паролей, подразнит реверсом дайджестов различных алгоритмов хеширования, а под зановес угостит практикой абьюзинга функции *eval()* из-под Python'а или же угоном Python-модулей (aka *Python Library Hijacking*) на выбор (мы угостимся и тем, и другим though :wink:). Несмотря на то, что этот бокс идеально вписывается в описанную ранее [концепцию]({{ "/2018/08/25/htb-celestial-write-up.html" | relative_url }}#вместо-заключения) "типичной CTF-машины", найти к ней подход было действительно весело. Прошу под кат!
+Мне нравится **Stratosphere**! Эта уютная Linux-машина встретит нас RCE-уязвимостью фреймворка *Apache Struts*, помучает невозможностью получения стандартного reverse-shell'а, заставив прибегнуть к концепции *forward-shell*'а, после чего посредством взаимодействия с СУБД *MySQL* предложит взглянуть на нарушение политики локального хранения паролей, подразнит реверсом дайджестов различных алгоритмов хеширования, а под зановес угостит практикой абьюзинга функции *eval()* из-под Python'а или же угоном Python-модулей (aka *Python Library Hijacking*) на выбор (мы угостимся и тем, и другим though :wink:). Несмотря на то, что этот бокс идеально вписывается в описанную ранее [концепцию]({{ "/2018/08/25/htb-celestial-write-up.html" | relative_url }}#вместо-заключения) "типичной CTF-машины", найти к ней подход было действительно весело. Прошу под кат!
 
 <!--cut-->
 
@@ -275,7 +275,7 @@ SSH, web-сервис на 80-м, прокся на 8080-м и два отпеч
 ## Браузер
 На `http://10.10.10.64` нас встречает цветастый градиет сайта Stratoshere:
 
-[![stratosphere-port80-browser-1.png]({{ "/img/htb/boxes/stratosphere-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere-port80-browser-1.png" | relative_url }})
+[![stratosphere-port80-browser-1.png]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-1.png" | relative_url }})
 
 При переходе по "GET STARTED NOW" сервер выплюнет страницу, с таким наполнением:
 ```html
@@ -321,21 +321,21 @@ http://10.10.10.64/Monitoring (Status: 302)
 
 Что имеем: стандартный сервер-менеджер для Apache Tomcat (к которому у нас конечно же нет доступа):
 
-[![stratosphere-port80-browser-2.png]({{ "/img/htb/boxes/stratosphere-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere-port80-browser-2.png" | relative_url }})
+[![stratosphere-port80-browser-2.png]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-2.png" | relative_url }})
 
 И кое-что way more insteresting:
 
-[![stratosphere-port80-browser-3.png]({{ "/img/htb/boxes/stratosphere-port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere-port80-browser-3.png" | relative_url }})
+[![stratosphere-port80-browser-3.png]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-3.png" | relative_url }})
 
 Есть еще две кнопки — "SIGN ON" и "REGISTER" — но от них толку мало.
 
 "SIGN ON":
 
-[![stratosphere-port80-browser-4.png]({{ "/img/htb/boxes/stratosphere-port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere-port80-browser-4.png" | relative_url }})
+[![stratosphere-port80-browser-4.png]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-4.png" | relative_url }})
 
 "REGISTER":
 
-[![stratosphere-port80-browser-5.png]({{ "/img/htb/boxes/stratosphere-port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere-port80-browser-5.png" | relative_url }})
+[![stratosphere-port80-browser-5.png]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/stratosphere-port80-browser-5.png" | relative_url }})
 
 При попытки ввода чего-либо в поля формы логина сервер отреагирует таким же сообщением, которое он возвращает при запросе формы регистрации.
 
