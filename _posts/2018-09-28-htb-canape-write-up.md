@@ -14,7 +14,7 @@ comments: true
 
 <!--cut-->
 
-<h4 style="color:red;margin-bottom:0;">Poison: 10.10.10.70</h4>
+<h4 style="color:red;margin-bottom:0;">Canape: 10.10.10.70</h4>
 <h4 style="color:red;">Attacker: 10.10.14.230</h4>
 
 * TOC
