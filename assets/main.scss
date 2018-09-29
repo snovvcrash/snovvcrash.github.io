@@ -12,6 +12,11 @@ $grey-color-light:  #595959;  /* for the border-top separators, table titles fil
 $grey-color-dark:   #a6a6a6;  /* such as the site title in the header */
 $content-width:       850px;
 
+.highlighter-rouge {
+    color:            #e6e6e6;
+    background-color: #505050;
+}
+
 code {
     color: #080808;
 }

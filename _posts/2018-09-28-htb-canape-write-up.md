@@ -588,8 +588,8 @@ bce91869????????????????????????
 Второй способ заключается в выполнении команд через *Erlang эмулятор*.
 
 CouchDB написан на Erlang'е, а Erlang использует сервер EPMD (и TCP `4369` порт) для того, чтобы иметь возможность находить другие ноды базы данных. В контексте кластеризации CouchDB слушает `5984` порт для standalone-доступа и `5986` порт для локальных нодов:
->CouchDB in cluster mode uses the port 5984 just as standalone, but it also uses 5986 for node-local APIs.
->Erlang uses TCP port 4369 (EPMD) to find other nodes, so all servers must be able to speak to each other on this port. In an Erlang Cluster, all nodes are connected to all other nodes. A mesh.
+> CouchDB in cluster mode uses the port 5984 just as standalone, but it also uses 5986 for node-local APIs.
+> Erlang uses TCP port 4369 (EPMD) to find other nodes, so all servers must be able to speak to each other on this port. In an Erlang Cluster, all nodes are connected to all other nodes. A mesh.
 
 В [документации](http://docs.couchdb.org/en/stable/cluster/setup.html#cluster-setup "11.1. Set Up — Apache CouchDB 2.2 Documentation") же к СУБД красуется вывеска с надписью :warning: **Warning**:
 

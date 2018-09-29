@@ -17,26 +17,26 @@
 # JEKYLL_ENV=production bundle exec jekyll serve
 
 
-title:    snovvcrash's Security Blog
-email:    scr.im/emsnovvcrash
-timezone: Europe/Moscow
-locale:   ru-RU
+title:     snovvcrash's Security Blog
+email:     scr.im/emsnovvcrash
+timezone:  Europe/Moscow
+locale:    ru-RU
 
 
 description: >
   Заметки этичного хакера
 
 
-author:          snovvcrash
-github_username: snovvcrash
-rss:             rss
+author:           snovvcrash
+github_username:  snovvcrash
+rss:              rss
 
 
-baseurl:           ""
-url:               https://snovvcrash.github.io
-permalink:         /:year/:month/:day/:title:output_ext
-excerpt_separator: <!--cut-->
-show_excerpts:     true
+baseurl:            ""
+url:                https://snovvcrash.github.io
+permalink:          /:year/:month/:day/:title:output_ext
+excerpt_separator:  <!--cut-->
+show_excerpts:      true
 
 
 header_pages:
@@ -46,8 +46,8 @@ header_pages:
 
 
 # Build settings
-markdown: kramdown
-theme:    minima
+markdown:  kramdown
+theme:     minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
@@ -57,16 +57,16 @@ plugins:
 
 
 # Google Analytics
-google_analytics: UA-123831726-1
+google_analytics:  UA-123831726-1
 
 
 # Disqus comments
 disqus:
-  shortname: snovvcrash-github-io
+  shortname:  snovvcrash-github-io
 
 
 # Page locations
-tag_page: /tags.html
+tag_page:  /tags.html
 
 
 # Exclude from processing.
