@@ -18,6 +18,7 @@ See ya!
 * [Хабр](https://habr.com/users/snovvcrash "Профиль snovvcrash / Хабр")
 * [Codeby](https://codeby.net/forum/members/snovvcrash.103302 "snovvcrash / Codeby.net - Информационная Безопасность")
 * [HackTheBox](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
+* [Keybase.io](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) | Keybase")
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
 * [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
