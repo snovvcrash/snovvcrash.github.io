@@ -4,15 +4,15 @@ title: "HTB: Celestial Write-Up"
 date: 2018-08-25 20:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Celestial, linux, express, node-js, rce, deserialization, python, cron]
+tags: [ctf, write-ups, boxes, hackthebox, Celestial, linux, express, node-js, deserialization, python, cron]
 comments: true
 ---
-
-[![celestial.png]({{ "/img/htb/boxes/celestial/celestial.png" | relative_url }})]({{ page.url }})
 
 **Celestial** — образцовый представитель типичной CTF-машины. Уязвимый web-сервис дает возможность удаленного выполнения кода (RCE), открывая путь к получению reverse-shell'а, откуда до повышения привилегий до суперпользователя (LPE) в силу небрежно выставленных настроек прав доступа рукой подать. Let's dive into it!
 
 <!--cut-->
+
+[![celestial-banner.png]({{ "/img/htb/boxes/celestial/celestial-banner.png" | relative_url }})]({{ page.url }})
 
 <h4 style="color:red;">Celestial: 10.10.10.85</h4>
 
@@ -423,3 +423,5 @@ Web RCE ⟶ Reverse shell ⟶ LPE до user'а ⟶ LPE до root'а
 ```
 
 Здесь даже пропущено одно звено, т. к. первичный уязвимый сервис — фреймворк web-приложений, запущенный с привилегиями пользователя. Не то, что бы такие машины были плохими, вовсе нет. Просто будь готов, что достаточно скоро боксы, выстроенные по такой схеме, станут тебе скучны :unamused:
+
+[![celestial-owned.png]({{ "/img/htb/boxes/celestial/celestial-owned.png" | relative_url }})]({{ page.url }})

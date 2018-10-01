@@ -8,11 +8,11 @@ tags: [ctf, write-ups, boxes, hackthebox, Valentine, linux, heartbleed, tmux, di
 comments: true
 ---
 
-[![valentine.png]({{ "/img/htb/boxes/valentine/valentine.png" | relative_url }})]({{ page.url }})
-
 **Valentine** входит в тройку первых решенных мною машин на HackTheBox. Вскрытие будет включать в себя эксплуатацию *Heartbleed* — уязвимости протокола *OpenSSL*, наделавшей много шума в свое время —, а также использование менеджера терминальных сессий *tmux*. Как и у большинства машин, у Valentine существует не единственный способ повышения привилегий до суперпользователя, второй, к слову, достаточно *грязный*, но мы разберем и его.
 
 <!--cut-->
+
+[![valentine-banner.png]({{ "/img/htb/boxes/valentine/valentine-banner.png" | relative_url }})]({{ page.url }})
 
 <h4 style="color:red;">Valentine: 10.10.10.79</h4>
 
@@ -463,3 +463,5 @@ hype@Valentine:~$ rm dirty.c dirty
 и так же идем радоваться жизни.
 
 На этом все, спасибо за внимание :innocent:
+
+[![valentine-owned.png]({{ "/img/htb/boxes/valentine/valentine-owned.png" | relative_url }})]({{ page.url }})
