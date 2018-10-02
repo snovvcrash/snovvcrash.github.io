@@ -27,9 +27,10 @@ description: >
   Заметки этичного хакера
 
 
-author:           snovvcrash
-github_username:  snovvcrash
-rss:              rss
+author:            snovvcrash
+github_username:   snovvcrash
+keybase_username:  snovvcrash
+rss:               rss
 
 
 baseurl:            ""
