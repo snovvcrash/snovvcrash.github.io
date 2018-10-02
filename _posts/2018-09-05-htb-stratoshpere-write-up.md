@@ -12,7 +12,7 @@ comments: true
 
 <!--cut-->
 
-[![stratosphere-banner.png]({{ "/img/htb/boxes/stratosphere/stratosphere-banner.png" | relative_url }})]({{ page.url }})
+![stratosphere-banner.png]({{ "/img/htb/boxes/stratosphere/stratosphere-banner.png" | relative_url }})
 
 <h4 style="color:red;">Stratosphere: 10.10.10.64</h4>
 
@@ -808,6 +808,6 @@ sh: 1: /root/success.py: not found
 
 Мораль — не верь на слово подлым Python-тестам :angry:
 
-За сим все, спасибо за внимание :innocent:
+Пройдя стратосферу, до звезд совсем недалеко, спасибо за внимание :innocent:
 
-[![stratosphere-owned.png]({{ "/img/htb/boxes/stratosphere/stratosphere-owned.png" | relative_url }})]({{ page.url }})
+![stratosphere-owned.png]({{ "/img/htb/boxes/stratosphere/stratosphere-owned.png" | relative_url }})

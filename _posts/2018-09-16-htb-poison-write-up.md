@@ -12,7 +12,7 @@ comments: true
 
 <!--cut-->
 
-[![poison-banner.png]({{ "/img/htb/boxes/poison/poison-banner.png" | relative_url }})]({{ page.url }})
+![poison-banner.png]({{ "/img/htb/boxes/poison/poison-banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">Poison: 10.10.10.84</h4>
 <h4 style="color:red;">Attacker: 10.10.14.116</h4>
@@ -461,6 +461,6 @@ Password: VNCP@$$!
 
 [![poison-port5901-vnc-2.png]({{ "/img/htb/boxes/poison/poison-port5901-vnc-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port5901-vnc-2.png" | relative_url }})
 
-Пожалуй, за этим все, спасибо за внимание :innocent:
+Держите при себе противоядия, спасибо за внимание :innocent:
 
-[![poison-owned.png]({{ "/img/htb/boxes/poison/poison-owned.png" | relative_url }})]({{ page.url }})
+![poison-owned.png]({{ "/img/htb/boxes/poison/poison-owned.png" | relative_url }})

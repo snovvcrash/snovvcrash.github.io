@@ -12,7 +12,7 @@ comments: true
 
 <!--cut-->
 
-[![valentine-banner.png]({{ "/img/htb/boxes/valentine/valentine-banner.png" | relative_url }})]({{ page.url }})
+![valentine-banner.png]({{ "/img/htb/boxes/valentine/valentine-banner.png" | relative_url }})
 
 <h4 style="color:red;">Valentine: 10.10.10.79</h4>
 
@@ -462,6 +462,6 @@ hype@Valentine:~$ rm dirty.c dirty
 
 и так же идем радоваться жизни.
 
-На этом все, спасибо за внимание :innocent:
+Берегите свое(и) сердце(а), спасибо за внимание :innocent:
 
-[![valentine-owned.png]({{ "/img/htb/boxes/valentine/valentine-owned.png" | relative_url }})]({{ page.url }})
+![valentine-owned.png]({{ "/img/htb/boxes/valentine/valentine-owned.png" | relative_url }})

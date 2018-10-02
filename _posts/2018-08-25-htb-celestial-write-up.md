@@ -12,7 +12,7 @@ comments: true
 
 <!--cut-->
 
-[![celestial-banner.png]({{ "/img/htb/boxes/celestial/celestial-banner.png" | relative_url }})]({{ page.url }})
+![celestial-banner.png]({{ "/img/htb/boxes/celestial/celestial-banner.png" | relative_url }})
 
 <h4 style="color:red;">Celestial: 10.10.10.85</h4>
 
@@ -106,19 +106,19 @@ eyJ1c2VybmFtZSI6ICIzdjNsX2g0Y2szciIsICJjb3VudHJ5IjogIlNoYW5ncmktTGEiLCAiY2l0eSI6
 
 Поставим tcpdump слушать нужный интерфейс на ICMP-пакеты и выстрелим запросом из Burp:
 ```text
-root@kali:~# tcpdump -vv -i tun0 icmp
+root@kali:~# tcpdump -vv -i tun0 'icmp[icmptype]==8'
 tcpdump: listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 07:47:06.901111 IP (tos 0x0, ttl 63, id 51198, offset 0, flags [DF], proto ICMP (1), length 84)
     10.10.10.85 > kali: ICMP echo request, id 5880, seq 1, length 64
-07:47:06.901131 IP (tos 0x0, ttl 64, id 36086, offset 0, flags [none], proto ICMP (1), length 84)
-    kali > 10.10.10.85: ICMP echo reply, id 5880, seq 1, length 64
+07:47:07.891131 IP (tos 0x0, ttl 63, id 36086, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.10.10.85 > kali: ICMP echo request, id 5880, seq 2, length 64
 ^C
 2 packets captured
 2 packets received by filter
 0 packets dropped by kernel
 ```
 
-Получили 2 пинга, значит все по плану. Переходим к боевым действиям.
+Получили 2 пинга (`icmptype 8` это ICMP-запрос, наши ответы игнорируем), значит все по плану. Переходим к боевым действиям.
 
 ## Reverse-Shell
 Я использовал [этот](https://github.com/hoainam1989/training-application-security/blob/master/shell/node_shell.py "training-application-security/node_shell.py at master · hoainam1989/training-application-security") скрипт для генерации reverse-shell'а. Он кодирует строку пейлоада в ASCII-коды, чтобы избежать путаниц с bad-символами (кавычки, слэши и т. д.), а при выполнении на сервере будет использована функция *String.fromCharCode*, которая выполнит обратное преобразование.
@@ -414,7 +414,7 @@ root@sun:~# crontab -l | grep -vF '#'
 
 Помимо выполнения скрипта, перезаписи его оригинальным содержимым (что обсуждалось ранее), смены владельца и снятия атрибута immutable планировщик также подменяет дату модификации скрипта, чтобы его частое (ежепятиминутное) изменение нелья было определить по временной метке файла. Это делается с помощью утилиты `touch`, которой в качестве аргумента передается значение timestamp'а файла `user.txt` в формате RFC 5322.
 
-Все, что хотел, сказал, спасибо за внимание :innocent:
+Держите руку на пульсе, спасибо за внимание :innocent:
 
 # Вместо заключения
 Вот и вырисовывается типичная схема уязвимой машины ("игрушечной", разумеется):
@@ -424,4 +424,4 @@ Web RCE ⟶ Reverse shell ⟶ LPE до user'а ⟶ LPE до root'а
 
 Здесь даже пропущено одно звено, т. к. первичный уязвимый сервис — фреймворк web-приложений, запущенный с привилегиями пользователя. Не то, что бы такие машины были плохими, вовсе нет. Просто будь готов, что достаточно скоро боксы, выстроенные по такой схеме, станут тебе скучны :unamused:
 
-[![celestial-owned.png]({{ "/img/htb/boxes/celestial/celestial-owned.png" | relative_url }})]({{ page.url }})
+![celestial-owned.png]({{ "/img/htb/boxes/celestial/celestial-owned.png" | relative_url }})

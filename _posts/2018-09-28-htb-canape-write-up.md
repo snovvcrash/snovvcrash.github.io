@@ -12,7 +12,7 @@ comments: true
 
 <!--cut-->
 
-[![canape-banner.png]({{ "/img/htb/boxes/canape/canape-banner.png" | relative_url }})]({{ page.url }})
+![canape-banner.png]({{ "/img/htb/boxes/canape/canape-banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">Canape: 10.10.10.70</h4>
 <h4 style="color:red;">Attacker: 10.10.14.230</h4>
@@ -841,6 +841,6 @@ from simpsons import app as application
 application.secret_key = "sjhdajkh292hdq29dhashdkjsad"
 ```
 
-На этом сказке конец, спасибо за внимание :innocent:
+Теперь можно прилечь на диванчик, спасибо за внимание :innocent:
 
-[![canape-owned.png]({{ "/img/htb/boxes/canape/canape-owned.png" | relative_url }})]({{ page.url }})
+![canape-owned.png]({{ "/img/htb/boxes/canape/canape-owned.png" | relative_url }})
