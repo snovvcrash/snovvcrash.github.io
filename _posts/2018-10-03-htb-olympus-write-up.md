@@ -4,7 +4,7 @@ title: "HTB: Olympus Write-Up"
 date: 2018-10-03 20:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Olympus, solaris, xdebug, reverse-shell, aircrack-ng, airgeddon, dns-zone-transfer, dns-axfr, port-knocking, docker, metasploit]
+tags: [ctf, write-ups, boxes, hackthebox, Olympus, linux, xdebug, reverse-shell, aircrack-ng, airgeddon, dns-zone-transfer, dns-axfr, port-knocking, docker, metasploit]
 comments: true
 ---
 
@@ -330,6 +330,9 @@ drwxr-xr-x 1 zeus zeus   4096 Apr  8 10:56 ..
 
 $ cat papyrus.txt
 Captured while flying. I'll banish him to Olympia - Zeus
+
+$ file captured.cap
+captured.cap: tcpdump capture file (little-endian) - version 2.4 (802.11, capture length 65535)
 ```
 
 `airgeddon` — это такой bash-скрипт (от создателя бокса, кстати), который автоматизирует аудит беспроводных сетей (в основном позволяет легче управляться с `aircrack-ng`), поэтому нетрудно догадаться, что предстоит делать дальше.
