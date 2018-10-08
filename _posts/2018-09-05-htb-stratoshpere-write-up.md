@@ -485,7 +485,7 @@ while True:
 		S.writeCmd(cmd)
 ```
 
-Подробнее об этом способе можно узнать из [этого](https://www.youtube.com/watch?v=k6ri-LFWEj4 "VulnHub - Sokar - YouTube") туториала (0:15:36-0:39:10) прохождения машины с VulnHub'а. От себя добавлю, что в нашем случае представляется невозможным использование библиотеки `requests` для Python в силу особенностей используемой уязвимости: `requests` не умеет по-человечески работать с возвращаемым уязвимым сервером **IncompleteRead**, возбуждая исключение `requests.exceptions.ChunkedEncodingError`; если же использовать встроенные средства языка, то этот же ответ с IncompleteRead без проблем перехватывается исключением `http.client.IncompleteRead` и далее успешно обрабатывается как `e.partial`. Подробнее об этой проблеме [здесь](https://github.com/mazen160/struts-pwn/issues/8 "Issue with requests partial read · Issue #8 · mazen160/struts-pwn").
+Подробнее об этом способе можно узнать из [туториала](https://youtu.be/k6ri-LFWEj4?t=15m35s "VulnHub - Sokar - YouTube") прохождения машины с VulnHub'а от IppSec'а. От себя добавлю, что в нашем случае представляется невозможным использование библиотеки `requests` для Python в силу особенностей используемой уязвимости: `requests` не умеет по-человечески работать с возвращаемым уязвимым сервером **IncompleteRead**, возбуждая исключение `requests.exceptions.ChunkedEncodingError`; если же использовать встроенные средства языка, то этот же ответ с IncompleteRead без проблем перехватывается исключением `http.client.IncompleteRead` и далее успешно обрабатывается как `e.partial`. Подробнее об этой проблеме [здесь](https://github.com/mazen160/struts-pwn/issues/8 "Issue with requests partial read · Issue #8 · mazen160/struts-pwn").
 
 Итак, время полевых испытаний:
 ```text
@@ -598,7 +598,7 @@ select * from accounts;
 # SSH — Порт 22 (внутри машины)
 Подключимся к машине по SSH (для удобства передаем пароль как аргумент командной строки и пропускаем проверку сертификату — учебная же все же машина):
 ```
-root@kali:~# sshpass -p '9tc*rhKuG5TyXvUJOrE^5CK7k' ssh -o StrictHostKeyChecking=no richard@10.10.10.64
+root@kali:~# sshpass -p '9tc*rhKuG5TyXvUJOrE^5CK7k' ssh -oStrictHostKeyChecking=no richard@10.10.10.64
 richard@stratosphere:~$ whoami
 richard
 

