@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script><script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script><script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><style>
+          .target:before {
+            content: "";
+            display: block;
+            height: 50px;
+            margin: -20px 0 0;
+          }
+          @media only screen and (min-width:1900px) {
+            .container {
+              width: 1800px;
+              }
+          }
+          .footer {
+            margin-top:60px;
+            padding-top:60px;
+            width: 100%;
+            height: 180px;
+            background-color: #f5f5f5;
+          }
+        </style>
+<title>Scan Report Nmap 7.70</title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+</div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><ul class="nav navbar-nav">
+<li><a href="#scannedhosts">Scanned Hosts</a></li>
+<li><a href="#onlinehosts">Online Hosts</a></li>
+<li><a href="#openservices">Open Services</a></li>
+</ul></div>
+</div></nav><div class="container">
+<div class="jumbotron">
+<h1>Scan Report<br><small>Nmap 7.70</small>
+</h1>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p79,111,22022,47581,48935 10.10.10.76</pre>
+<p class="lead">Sat Oct  6 14:48:06 2018 – Sat Oct  6 14:49:25 2018<br>1 hosts scanned.
+              1 hosts up.
+              0 hosts down.
+            </p>
+<div class="progress">
+<div class="progress-bar progress-bar-success" style="width:100%;">1<span class="sr-only"></span>
+</div>
+<div class="progress-bar progress-bar-danger" style="width:0%;">0<span class="sr-only"></span>
+</div>
+</div>
+</div>
+<h2 id="scannedhosts" class="target">Scanned Hosts</h2>
+<div class="table-responsive"><table id="table-overview" class="table table-striped dataTable" role="grid">
+<thead><tr>
+<th>State</th>
+<th>Address</th>
+<th>Hostname</th>
+<th>TCP (open)</th>
+<th>UDP (open)</th>
+</tr></thead>
+<tbody><tr>
+<td><span class="label label-success">up</span></td>
+<td>10.10.10.76</td>
+<td></td>
+<td>5</td>
+<td>0</td>
+</tr></tbody>
+</table></div>
+<script>
+            $(document).ready(function() {
+              $('#table-overview').DataTable();
+            });
+          </script><h2 id="onlinehosts" class="target">Online Hosts</h2>
+<div class="panel panel-default">
+<div class="panel-heading"><h3 class="panel-title">10.10.10.76</h3></div>
+<div class="panel-body">
+<h4>Ports</h4>
+<div class="table-responsive"><table class="table table-bordered">
+<thead><tr>
+<th>Port</th>
+<th>Protocol</th>
+<th>State<br>Reason</th>
+<th>Service</th>
+<th>Product</th>
+<th>Version</th>
+<th>Extra Info</th>
+</tr></thead>
+<tbody>
+<tr class="success">
+<td title="Port">79</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">finger</td>
+<td title="Product">Sun Solaris fingerd</td>
+<td title="Version"></td>
+<td title="Extra Info"></td>
+</tr>
+<tr><td colspan="7">
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/o:sun:sunos">cpe:/o:sun:sunos</a><h5>finger</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Login       Name               TTY         Idle    When    Where\x0D
+sunny    sunny                 pts/2         34 Sat 17:38  10.10.13.96         \x0D
+sunny    sunny                 pts/4       1:23 Sat 14:51  10.10.13.96         \x0D
+</pre>
+</td></tr>
+<tr class="success">
+<td title="Port">111</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">rpcbind</td>
+<td title="Product"></td>
+<td title="Version">2-4</td>
+<td title="Extra Info">RPC #100000</td>
+</tr>
+<tr><td colspan="7"><a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version="></a></td></tr>
+<tr class="success">
+<td title="Port">22022</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">ssh</td>
+<td title="Product">SunSSH</td>
+<td title="Version">1.3</td>
+<td title="Extra Info">protocol 2.0</td>
+</tr>
+<tr><td colspan="7">
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:sun:sunssh:1.3">cpe:/a:sun:sunssh:1.3</a><h5>ssh-hostkey</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  1024 d2:e5:cb:bd:33:c7:01:31:0b:3c:63:d9:82:d9:f1:4e (DSA)
+ssh-dss AAAAB3NzaC1kc3MAAACBAKQhj2N5gfwsseuHbx/yCXwOkphQCTzDyXaBw5SHg/vRBW9aYPsWUUV0XGZPlVtbhxFylTZGNZTWJyndzQL3aRcQNouwVH8NnQsT63s4uLKsAP3jx4afAwB7049PvisAxtDVMbqg94vxaJkh88VY/EMpASYNrLFtr1mZngrbAzOvAAAAFQCiLK6Oh21fvEjgZ0Yl0IRtONW/wwAAAIAxz1u+bPH+VE7upID2HEvYksXOItmohsDFt0oHmGMHf9TKwZvqQLZRix0eXYu8zLnTIdg7rVYSjGyRhuWeIkl1+0aIJL4/dzB+JthInTGFIngc83MtonLP4Sj3YL20wL9etVh8/M0ZOedntWrQcUW+8cUWZRlgW8q620HZKE8VqAAAAIB0s8wn1ufviVEKXct60uz2ZoduUgg07dfPfzvhpbw232KYUJ6lchTj2p2AV8cD0fk2lok2Qc6Kn/OKSjO9C0PlvG8WWkVVvlISUY4BEhtqtL3aof7PYp5nCrLK+2v+grCLxOvyYpT1OfDMQbahOWGZ9OCwQtQXKP1wYEQMqMsSRg==
+  1024 e4:2c:80:62:cf:15:17:79:ff:72:9d:df:8b:a6:c9:ac (RSA)
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAxAwq7HNZXHr7XEeYeKsbnaruPQyUK5IkSE/FxHesBaKQ37AsLjw8iacqUvcs8IuhPfiTtwuwU42zUHu1e1rmLpRlMyLQnjgJH1++fP5E0Qnxj4DrFr7aeRv1FqPkrnK/xCX46AdgUhs4+4YA04yfi8pOlaSEVucYaqWNhuqJkt8=</pre>
+</td></tr>
+<tr class="success">
+<td title="Port">47581</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">smserverd</td>
+<td title="Product"></td>
+<td title="Version">1</td>
+<td title="Extra Info">RPC #100155</td>
+</tr>
+<tr><td colspan="7"><a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version="></a></td></tr>
+<tr class="success">
+<td title="Port">48935</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service"></td>
+<td title="Product"></td>
+<td title="Version"></td>
+<td title="Extra Info"></td>
+</tr>
+<tr><td colspan="7"><a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version="></a></td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<h2 id="openservices" class="target">Open Services</h2>
+<div class="table-responsive"><table id="table-services" class="table table-striped dataTable" role="grid">
+<thead><tr>
+<th>Address</th>
+<th>Port</th>
+<th>Protocol</th>
+<th>Service</th>
+<th>Product</th>
+<th>Version</th>
+<th>CPE</th>
+<th>Extra info</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>10.10.10.76</td>
+<td>79</td>
+<td>tcp</td>
+<td>finger</td>
+<td>Sun Solaris fingerd</td>
+<td></td>
+<td>cpe:/o:sun:sunos</td>
+<td></td>
+</tr>
+<tr>
+<td>10.10.10.76</td>
+<td>111</td>
+<td>tcp</td>
+<td>rpcbind</td>
+<td></td>
+<td>2-4</td>
+<td></td>
+<td>RPC #100000</td>
+</tr>
+<tr>
+<td>10.10.10.76</td>
+<td>22022</td>
+<td>tcp</td>
+<td>ssh</td>
+<td>SunSSH</td>
+<td>1.3</td>
+<td>cpe:/a:sun:sunssh:1.3</td>
+<td>protocol 2.0</td>
+</tr>
+<tr>
+<td>10.10.10.76</td>
+<td>47581</td>
+<td>tcp</td>
+<td>smserverd</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>RPC #100155</td>
+</tr>
+<tr>
+<td>10.10.10.76</td>
+<td>48935</td>
+<td>tcp</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<script>
+            $(document).ready(function() {
+              $('#table-services').DataTable();
+            });
+          </script>
+</div>
+<footer class="footer"><div class="container"><p class="text-muted">
+              This report was generated with <a href="https://github.com/honze-net/nmap-bootstrap-xsl">Nmap Bootstrap XSL</a>.<br>
+              Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a>.<br>
+              Designed and built by Andreas Hontzia (<a href="https://www.twitter.com/honze_net">@honze_net</a>).<br></p></div></footer>
+</body>
+</html>
