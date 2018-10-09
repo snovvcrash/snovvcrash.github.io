@@ -817,7 +817,7 @@ while true; do
 done
 
 root@sunday:~# ps auxw | grep overwrite
-root       499  0.1  0.2 6204 2420 ?        S 01:41:01  0:09 /usr/bin/bash /root/overwrite
+root      6025  0.1  0.1 4212 1148 pts/3    S 17:57:45  0:00 grep overwrite
 ```
 
 Встречайте: `overwrite` — скрипт, перезаписывающий `/root/troll`, оригинальным содержимым раз в 5 секунд. Поэтому ранее говорилось о том, что с первого раза диверсия по подмене troll'а могла не получиться.
