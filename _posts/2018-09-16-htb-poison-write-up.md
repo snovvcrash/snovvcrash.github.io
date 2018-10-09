@@ -265,7 +265,9 @@ drwxr-xr-x  6 root  wheel   512 Jan 24  2018 ..
 -rw-r--r--  1 root  wheel    90 Jan 24  2018 listfiles.php
 -rw-r--r--  1 root  wheel    20 Jan 24  2018 phpinfo.php
 -rw-r--r--  1 root  wheel  1267 Mar 19 16:27 pwdbackup.txt
+```
 
+```text
 cat pwdbackup.txt
 This password is secure, it's encoded atleast 13 times.. what could go wrong really..
 
@@ -368,7 +370,9 @@ root@kali:~# unzip secret.zip
 Archive:  secret.zip
 [secret.zip] secret password: Charix!2#4%6&8(0
  extracting: secret
+```
 
+```text
 root@kali:~# cat secret
 [|Ֆz!
 

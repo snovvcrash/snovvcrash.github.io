@@ -441,7 +441,6 @@ firefart@Valentine:/home/hype# id
 uid=0(firefart) gid=0(root) groups=0(root)
 ```
 
-### root.txt
 Теперь заберем флаг:
 ```text
 firefart@Valentine:/home/hype# cat /root/root.txt

