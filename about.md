@@ -33,7 +33,7 @@ See ya!
 # Контакты
 [//]: # (<a href="mailto:{{ 'snovvcrash@protonmail.ch' | encode_email }}" title="E-Mail">E-Mail</a>)
 [//]: # (<a href="&#109;ail&#116;o&#58;sno&#118;&#37;76%6&#51;rash&#64;p%72ot&#37;&#54;F&#110;%6Dail&#46;%63h" title="E-Mail">E-Mail</a>)
-* Email: [{{ site.email }}](http://{{ site.email }})
+* Email: [scr.im/emsnovvcrash](http://scr.im/emsnovvcrash)
 
 Сказать спасибо за то, что я тут натворил, можно, угостив меня кофе по ссылке ниже :coffee:
 
