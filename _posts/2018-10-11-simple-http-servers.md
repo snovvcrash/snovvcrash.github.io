@@ -157,6 +157,8 @@ remote@server:~$ cat message
 Hi there!
 ```
 
+Доступные методы: `GET`, `POST`, `PUT`.
+
 # PHP
 Неудивительно, что двухстрочный скрипт на *PHP* может решить все наши проблемы — "препроцессор гипертекста" как-никак :sunglasses:
 
@@ -178,6 +180,8 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
   3. Запускаем сервер и тестируем.
   4. **???????**
   5. PROFIT
+
+Доступные методы: `GET`, `POST`, `PUT`.
 
 # Nginx
 Ну и куда же без *the High-Performance Web Server and Reverse Proxy*? Благо, на большинстве Linux-дистрибутивах *Nginx* предустановлен, поэтому настроить и развернуть его можно в считанные минуты.
@@ -212,3 +216,5 @@ server {
 ```text
 root@kali:~# systemctl stop nginx
 ```
+
+Доступные методы: `GET`, `PUT`.
