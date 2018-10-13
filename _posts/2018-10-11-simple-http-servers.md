@@ -170,7 +170,7 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
 ?>
 ```
 
-На скриншоте ниже (кликабельно) можно видеть все шаги настройки сервера: предварительная настройка на панели слева, тесты — справа.
+На скриншоте ниже (кликабельно) можно видеть всю процедуру запуска сервера: предварительная настройка на панели слева, тесты — справа.
 
 [![simple-http-servers-php.png]({{ "/img/simple-http-servers-php.png" | relative_url }})]({{ "/img/simple-http-servers-php.png" | relative_url }})
 
@@ -186,7 +186,7 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
 # Nginx
 Ну и куда же без *the High-Performance Web Server and Reverse Proxy*? Благо, на большинстве Linux-дистрибутивах *Nginx* предустановлен, поэтому настроить и развернуть его можно в считанные минуты.
 
-На скриншоте ниже (кликабельно) можно видеть все шаги настройки сервера: предварительная настройка на панели сверху, тесты — снизу.
+Опять же на скриншоте ниже можно видеть всю процедуру запуска: предварительная настройка на панели сверху, тесты — снизу.
 
 [![simple-http-servers-nginx.png]({{ "/img/simple-http-servers-nginx.png" | relative_url }})]({{ "/img/simple-http-servers-nginx.png" | relative_url }})
 
