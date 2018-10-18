@@ -361,7 +361,7 @@ User sammy may run the following commands on this host:
     (root) NOPASSWD: /usr/bin/wget
 ```
 
-Иии... [wget](https://www.opennet.ru/man.shtml?topic=wget&category=1&russian=2 "Проект OpenNet: MAN wget (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)") можно выполнять от рута: это знание сулит нам 6 различных способов PrivEsc'а! Разберем их все, расположив по возрастанию трудозатратности.
+Иии... [wget](https://www.opennet.ru/man.shtml?topic=wget&category=1&russian=2 "Проект OpenNet: MAN wget (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)") можно выполнять от рута: это знание сулит нам целых 7 различных способов PrivEsc'а! Разберем их все, расположив по возрастанию трудозатратности.
 
 ### 1. wget --input-file
 Самым очевидным для меня способом прочтения root-флага (а также самым быстрым) стало использование флага `--input-file`, или просто `-i`.
