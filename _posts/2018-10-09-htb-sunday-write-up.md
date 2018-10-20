@@ -412,7 +412,7 @@ NCAT DEBUG: Closing fd 5.
 
 2\. Дописать на коленке обработку POST-запросов (отображение содержимого) для Python-сервера, это тоже нетрудно:
 ```python
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Usage: python3 SimpleHTTPServer+.py [-h] [--bind ADDRESS] [port]

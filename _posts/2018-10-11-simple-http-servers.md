@@ -37,7 +37,7 @@ local@server:~$ python3 -m http.server [-h] [--cgi] [--bind ADDRESS] [port]
 
 Простой скрипт:
 ```python
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Usage: python3 SimpleHTTPServer+.py [-h] [--bind ADDRESS] [port]
