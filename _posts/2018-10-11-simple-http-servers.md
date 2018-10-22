@@ -6,6 +6,7 @@ author: snovvcrash
 categories: ctf-tools cheatsheets
 tags: [ctf-tools, cheatsheets, linux, file-transfer, http-server, python-server, php-server, nginx]
 comments: true
+published: true
 ---
 
 Последнее время часто сталкивался с необходимостью обмена файлами между двумя Linux-машинами. В этом посте опишу 3 удобных способа, как можно быстро и легко развернуть тривиальный http-сервер для трансфера файлов.

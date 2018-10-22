@@ -6,6 +6,7 @@ author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, Valentine, linux, heartbleed, tmux, dirtycow]
 comments: true
+published: true
 ---
 
 **Valentine** входит в тройку первых решенных мною машин на HackTheBox. Вскрытие будет включать в себя эксплуатацию *Heartbleed* — уязвимости протокола *OpenSSL*, наделавшей много шума в свое время —, а также использование менеджера терминальных сессий *tmux*. Как и у большинства машин, у Valentine существует не единственный способ повышения привилегий до суперпользователя, второй, к слову, достаточно *грязный*, но мы разберем и его. **Сложность: 4.2/10**{:style="color:grey;"}

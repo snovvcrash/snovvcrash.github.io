@@ -6,6 +6,7 @@ author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, Poison, freebsd, apache, apache-tomcat, php, log-poisoning, web-shell, reverse-shell, lfi, phpinfo, vnc, ssh-tunneling]
 comments: true
+published: true
 ---
 
 Итак, **Poison**. Одна из самых простых машин с HackTheBox'а на мой взгляд (если идти самым простым путем, хех), и, по совместительству, моя первая машина на этой платформе. *FreeBSD* внутри, эта виртуалка предоставляет целых 3 способа прохождения первого этапа: можно забрать авторизационные данные пользователя прямо с веба, если хорошо поискать (самый простой вариант); отравить логи веб-сервера и получить reverse-shell; или же получить RCE с помощью связки *LFI + PHPInfo()* (самый трудный способ, возможно, не задуманный создателем машины). Далее для повышения привилегий придется пробросить *VNC*-соединение через *SSH*-туннель. **Сложность: 3.9/10**{:style="color:grey;"}

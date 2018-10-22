@@ -6,6 +6,7 @@ author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, linux apache, apache-struts, forward-shell, python, eval, library-hijacking, john, hashes]
 comments: true
+published: true
 ---
 
 Мне нравится **Stratosphere**! Эта уютная Linux-машина встретит нас RCE-уязвимостью фреймворка *Apache Struts*, помучает невозможностью получения стандартного reverse-shell'а, заставив прибегнуть к концепции *forward-shell*'а, после чего посредством взаимодействия с СУБД *MySQL* предложит взглянуть на нарушение политики локального хранения паролей, подразнит реверсом дайджестов различных алгоритмов хеширования, а под зановес угостит практикой абьюзинга функции *eval()* из-под Python'а или же угоном Python-модулей (aka *Python Library Hijacking*) на выбор (мы угостимся и тем, и другим though). Несмотря на то, что этот бокс идеально вписывается в описанную ранее [концепцию]({{ "/2018/08/25/htb-celestial-write-up.html" | relative_url }}#вместо-заключения) "типичной CTF-машины", найти к ней подход было действительно весело. Прошу под кат! **Сложность: 5.2/10**{:style="color:grey;"}
