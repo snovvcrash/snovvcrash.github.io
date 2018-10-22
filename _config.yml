@@ -16,22 +16,18 @@
 
 # JEKYLL_ENV=production bundle exec jekyll serve
 
-
 title:     snovvcrash's Security Blog
 email:     snovvcrash@protonmail[.]ch
 timezone:  Europe/Moscow
 locale:    ru-RU
 
-
 description: >
   Заметки циничного хакера
-
 
 author:            snovvcrash
 github_username:   snovvcrash
 keybase_username:  snovvcrash
 rss:               rss
-
 
 baseurl:            ""
 url:                https://snovvcrash.github.io
@@ -40,12 +36,10 @@ excerpt_separator:  <!--cut-->
 show_excerpts:      true
 future:             true
 
-
 header_pages:
   - about.md
   - projects.md
   - tags.html
-
 
 # Build settings
 markdown:  kramdown
@@ -57,19 +51,15 @@ plugins:
   - jekyll-email-protect
   - jemoji
 
-
 # Google Analytics
 google_analytics:  UA-123831726-1
-
 
 # Disqus comments
 disqus:
   shortname:  snovvcrash-github-io
 
-
 # Page locations
 tag_page:  /tags.html
-
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
