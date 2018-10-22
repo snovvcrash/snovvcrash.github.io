@@ -89,7 +89,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Sun Sep 30 14:08:27 2018 -- 1 IP address (1 host up) scanned in 25.08 seconds
 ```
 
-Необычная картина: SSH на 2222-м и 22-м портах (причем 22-й фильтруется), DNS на 53-м TCP (подчеркиваю, **TCP**, что может означать, что DNS-сервер поддерживает запросы на трансфер зоны) и веб-сервер на 80-м порту. Для начала попробуем вытащить что-нибудь внятное из DNS'а.
+Необычная картина: SSH на 2222-м и 22-м портах (причем 22-й фильтруется), DNS на 53-м TCP (подчеркиваю, **TCP**, что может означать, что DNS-сервер поддерживает запросы на трансфер зоны), и веб-сервер на 80-м порту. Для начала попробуем вытащить что-нибудь внятное из DNS'а.
 
 # DNS — Порт 53 (TCP). Попытка № 1
 Первым пойдет AXFR-запрос (Full Zone Transfer), как кандидат на получение зоны DNS:
@@ -260,7 +260,7 @@ root@kali:~# base64 -d <<< 'cm91bmQtdHJpcCBtaW4vYXZnL21heC9zdGRkZXYgPSA2OC4wMDEv
 round-trip min/avg/max/stddev = 68.001/68.346/68.690/0.345 ms
 ```
 
-В красках все выглядело так:
+В красках все выглядело так (красные числа — порядок активности панелей):
 
 [![olympus-xdebug-exploit-poc.png]({{ "/img/htb/boxes/olympus/olympus-xdebug-exploit-poc.png" | relative_url }})]({{ "/img/htb/boxes/olympus/olympus-xdebug-exploit-poc.png" | relative_url }})
 

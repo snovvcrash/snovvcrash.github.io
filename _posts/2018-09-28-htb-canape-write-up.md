@@ -73,7 +73,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Wed Sep 26 17:53:01 2018 -- 1 IP address (1 host up) scanned in 11.81 seconds
 ```
 
-С чего начинать — выбора немного. Web-сервер на 80-м порту и SSH на нестандартном 65535-м. Поехали.
+С чего начинать — выбора немного. Web-сервер на 80-м порту, и SSH на нестандартном 65535-м. Поехали.
 
 # Web — Порт 80
 ## Браузер
