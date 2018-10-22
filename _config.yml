@@ -38,6 +38,7 @@ url:                https://snovvcrash.github.io
 permalink:          /:year/:month/:day/:title:output_ext
 excerpt_separator:  <!--cut-->
 show_excerpts:      true
+future:             true
 
 
 header_pages:
