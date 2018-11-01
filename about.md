@@ -15,8 +15,8 @@ permalink: /about
 See ya!
 
 # Профили
-* [Хабр](https://habr.com/users/snovvcrash "Профиль snovvcrash / Хабр")
-* [Codeby](https://codeby.net/forum/members/snovvcrash.103302 "snovvcrash / Codeby.net - Информационная Безопасность")
+* [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
+* [Codeby](https://codeby.net/forum/members/snovvcrash.103302/#recent-content "snovvcrash / Codeby.net - Информационная Безопасность")
 * [HackTheBox](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
