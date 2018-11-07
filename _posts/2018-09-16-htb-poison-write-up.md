@@ -16,7 +16,7 @@ published: true
 ![poison-banner.png]({{ "/img/htb/boxes/poison/poison-banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">Poison: 10.10.10.84</h4>
-<h4 style="color:red;">Attacker: 10.10.14.14</h4>
+<h4 style="color:red;">Kali: 10.10.14.14</h4>
 
 * TOC
 {:toc}

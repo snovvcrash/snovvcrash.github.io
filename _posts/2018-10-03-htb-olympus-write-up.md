@@ -16,7 +16,7 @@ published: true
 ![olympus-banner.png]({{ "/img/htb/boxes/olympus/olympus-banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">Olympus: 10.10.10.83</h4>
-<h4 style="color:red;">Attacker: 10.10.14.14</h4>
+<h4 style="color:red;">Kali: 10.10.14.14</h4>
 
 * TOC
 {:toc}

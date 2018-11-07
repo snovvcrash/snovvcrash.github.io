@@ -199,7 +199,7 @@ Your encoded input:
 aGFja3RoZWJveA==
 ```
 
-### /encode
+### /decode
 Base64-декодировщик:
 
 [![valentine-port80-decode-php.png]({{ "/img/htb/boxes/valentine/valentine-port80-decode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-decode-php.png" | relative_url }})
@@ -218,7 +218,7 @@ hackthebox
 Пока неясно предназначение обоих инструментов, но тот факт, что использовать их небезопасно (по словам автора заметки), может в дальнейшем сыграть нам на руку.
 
 # TLS/SSL — Порт 443. Heartbleed
-[Heartbleed](https://ru.wikipedia.org/wiki/Heartbleed "Heartbleed — Википедия") ([CVE-2014-0160](https://nvd.nist.gov/vuln/detail/CVE-2014-0160 "NVD - CVE-2014-0160")) — нашумевший *buffer-over-read*-баг в криптографическом программном обеспечении OpenSSL, позволяющий несанкционированно читать память на сервере или на клиенте. Где только не писали про эту ошибку, материала про нее достаточно, я же в рамках этого поста ограничюсь информативным [xkcd-комиксом](https://xkcd.com/1354 "xkcd: Heartbleed Explanation"):
+[Heartbleed](https://ru.wikipedia.org/wiki/Heartbleed "Heartbleed — Википедия") ([CVE-2014-0160](https://nvd.nist.gov/vuln/detail/CVE-2014-0160 "NVD - CVE-2014-0160")) — нашумевшая двусторонняя с уровнем опасности в 11/10 *buffer-over-read*-уязвимость в программном криптообеспечении OpenSSL, позволяющая несанкционированно читать оперативую память кусками до 64 Кб. Где только не писали про эту ошибку, материала про нее достаточно, я же в рамках этого поста ограничюсь информативным [xkcd-комиксом](https://xkcd.com/1354 "xkcd: Heartbleed Explanation"):
 
 [![heartbleed_explanation.png](https://imgs.xkcd.com/comics/heartbleed_explanation.png)](https://imgs.xkcd.com/comics/heartbleed_explanation.png)
 
