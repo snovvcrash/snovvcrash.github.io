@@ -4,7 +4,7 @@ title: "HTB: TartarSauce Write-Up"
 date: 2018-11-02 00:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, TartarSauce, cms, monstra, wordpress, wpscan, rfi, tar, code-analysis, bash]
+tags: [ctf, write-ups, boxes, hackthebox, TartarSauce, linux, cms, monstra, wordpress, wpscan, rfi, tar, code-analysis, bash]
 comments: true
 published: true
 ---

