@@ -9,6 +9,8 @@ permalink: /projects
 Некоторые мои работы:
 
 # GitHub
+- [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — модуль для exploitation-инструмента *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed".
+
 - Exploitation-фреймворк для генерации *forward-shell*'ов.
 
 |------+----------+---------|
@@ -17,7 +19,7 @@ permalink: /projects
 | *сен, 2018* | [**FwdSh3ll**](https://github.com/snovvcrash/FwdSh3ll "snovvcrash/FwdSh3ll: Forward shell generation framework.") | <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/FwdSh3ll on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/FwdSh3ll on GitHub">Star</a> |
 |------+----------+---------|
 
-- Дампер *Twitter*-аккаунтов с возможностью смены авторизаций «на лету».
+- Дампер *Twitter*-аккаунтов с возможностью смены авторизаций "на лету".
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |

@@ -4,7 +4,7 @@ title: "HTB: Hawk Write-Up"
 date: 2018-12-09 02:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Hawk, linux, ftp, openssl, drupal, php, php-filter, password-reuse, h2]
+tags: [ctf, write-ups, boxes, hackthebox, Hawk, linux, ftp, openssl, drupal, php, php-filter, password-reuse, ssh-tunneling, h2]
 comments: true
 published: true
 ---
