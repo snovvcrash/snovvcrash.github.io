@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![canape-banner.png]({{ "/img/htb/boxes/canape/canape-banner.png" | relative_url }})
+[![canape-banner.png]({{ "/img/htb/boxes/canape/canape-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
 
 <h4 style="color:red;margin-bottom:0;">Canape: 10.10.10.70</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>

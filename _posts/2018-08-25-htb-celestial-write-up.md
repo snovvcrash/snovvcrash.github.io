@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![celestial-banner.png]({{ "/img/htb/boxes/celestial/celestial-banner.png" | relative_url }})
+[![celestial-banner.png]({{ "/img/htb/boxes/celestial/celestial-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
 
 <h4 style="color:red;">Celestial: 10.10.10.85</h4>
 

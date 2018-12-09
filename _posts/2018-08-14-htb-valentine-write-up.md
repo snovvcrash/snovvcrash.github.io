@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![valentine-banner.png]({{ "/img/htb/boxes/valentine/valentine-banner.png" | relative_url }})
+[![valentine-banner.png]({{ "/img/htb/boxes/valentine/valentine-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/127 "Hack The Box :: Valentine")
 
 <h4 style="color:red;">Valentine: 10.10.10.79</h4>
 

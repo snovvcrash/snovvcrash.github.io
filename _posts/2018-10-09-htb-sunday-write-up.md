@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![sunday-banner.png]({{ "/img/htb/boxes/sunday/sunday-banner.png" | relative_url }})
+[![sunday-banner.png]({{ "/img/htb/boxes/sunday/sunday-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
 
 <h4 style="color:red;margin-bottom:0;">Sunday: 10.10.10.76</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>

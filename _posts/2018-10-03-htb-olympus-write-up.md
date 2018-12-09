@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![olympus-banner.png]({{ "/img/htb/boxes/olympus/olympus-banner.png" | relative_url }})
+[![olympus-banner.png]({{ "/img/htb/boxes/olympus/olympus-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
 
 <h4 style="color:red;margin-bottom:0;">Olympus: 10.10.10.83</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>

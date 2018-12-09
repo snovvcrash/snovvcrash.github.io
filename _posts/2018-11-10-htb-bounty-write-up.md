@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![bounty-banner.png]({{ "/img/htb/boxes/bounty/bounty-banner.png" | relative_url }})
+[![bounty-banner.png]({{ "/img/htb/boxes/bounty/bounty-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
 
 <h4 style="color:red;margin-bottom:0;">Bounty: 10.10.10.93</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
@@ -37,7 +37,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Fri Nov  9 16:04:50 2018 -- 1 IP address (1 host up) scanned in 0.99 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb-tartarsauce-nmap-version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/nmap/htb-bounty-nmap-version.html" | relative_url }})):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.93
 Nmap scan report for 10.10.10.93

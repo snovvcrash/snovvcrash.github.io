@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![devoops-banner.png]({{ "/img/htb/boxes/devoops/devoops-banner.png" | relative_url }})
+[![devoops-banner.png]({{ "/img/htb/boxes/devoops/devoops-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
 
 <h4 style="color:red;margin-bottom:0;">DevOops: 10.10.10.91</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>

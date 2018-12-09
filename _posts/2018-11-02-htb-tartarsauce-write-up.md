@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![tartarsauce-banner.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-banner.png" | relative_url }})
+[![tartarsauce-banner.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
 
 <h4 style="color:red;margin-bottom:0;">TartarSauce: 10.10.10.88</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
