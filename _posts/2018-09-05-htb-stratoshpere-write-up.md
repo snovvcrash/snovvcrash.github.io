@@ -20,7 +20,7 @@ published: true
 * TOC
 {:toc}
 
-# nmap
+# Nmap
 Fire up NMAP! Для начала аккуратно:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn -oA nmap/initial 10.10.10.64

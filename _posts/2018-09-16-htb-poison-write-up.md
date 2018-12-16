@@ -21,7 +21,7 @@ published: true
 * TOC
 {:toc}
 
-# nmap
+# Nmap
 По традиции запустим Nmap в 2 этапа. Initial:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.84

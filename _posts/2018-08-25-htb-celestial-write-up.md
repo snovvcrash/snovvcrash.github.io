@@ -20,7 +20,7 @@ published: true
 * TOC
 {:toc}
 
-# nmap
+# Nmap
 Начинаем со сканирования, разведка — наше все. По традиции сначала быстрое stealth-сканирование для получения общей картины:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.85

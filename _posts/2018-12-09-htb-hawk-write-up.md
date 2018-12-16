@@ -21,7 +21,7 @@ published: true
 * TOC
 {:toc}
 
-# nmap
+# Nmap
 Initial:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.102
@@ -500,7 +500,6 @@ daniel@hawk:~$ whoami
 daniel
 daniel@hawk:~$ id
 uid=1002(daniel) gid=1005(daniel) groups=1005(daniel)
-daniel@hawk:~$
 ```
 
 В поисках следующего PrivEsc'а посмотрим на запущенные процессы:
