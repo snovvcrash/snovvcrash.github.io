@@ -766,6 +766,8 @@ richard@stratosphere:~$ rm hashlib.py
 richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 ```
 
+:triumph:
+
 # Разное
 ## Хеши
 Шутки ради попрошу своего друга Джона решить предлагаемые тестом хеши:

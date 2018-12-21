@@ -368,6 +368,8 @@ sun@sun:~$ cat output.txt
 f4ckU!
 ```
 
+I guess, we're done here :triumph:
+
 # Разное
 ## server.js
 Для общего развития можно посмотреть на `/home/sun/server.js`, отвечающий за все безобразие, которое происходило на web'е:

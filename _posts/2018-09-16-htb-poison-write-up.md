@@ -444,7 +444,7 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 
 [![poison-port5901-vnc-1.png]({{ "/img/htb/boxes/poison/poison-port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port5901-vnc-1.png" | relative_url }})
 
-И в принципе все, осталась только пара комментариев в [Разном]({{ page.url }}#разное).
+И в принципе все, осталась только пара комментариев в [Разном]({{ page.url }}#разное) :triumph:
 
 # Разное
 ## Раскрытие секрета VNC
