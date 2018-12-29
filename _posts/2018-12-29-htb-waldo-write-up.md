@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "HTB: Waldo Write-Up"
-date: 2018-12-29 00:00:00 +0300
+date: 2018-12-29 17:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, Waldo, linux, path-traversal, lfi, jq, docker, restricted-shell, rbash, capabilities]
