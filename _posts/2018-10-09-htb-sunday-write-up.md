@@ -25,10 +25,12 @@ published: true
 Initial:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial -p- 10.10.10.76
-Increasing send delay for 10.10.10.76 from 0 to 5 due to 34 out of 111 dropped probes since last increase.
-Increasing send delay for 10.10.10.76 from 5 to 10 due to 11 out of 21 dropped probes since last increase.
-Increasing send delay for 10.10.10.76 from 10 to 20 due to 13 out of 42 dropped probes since last increase.
-Increasing send delay for 10.10.10.76 from 20 to 40 due to 13 out of 41 dropped probes since last increase.
+...
+```
+
+```text
+root@kali:~# cat nmap/initial.nmap
+# Nmap 7.70 scan initiated Sat Oct  6 14:38:14 2018 as: nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial -p- 10.10.10.76
 Warning: 10.10.10.76 giving up on port because retransmission cap hit (10).
 Nmap scan report for 10.10.10.76
 Host is up, received user-set (0.048s latency).
@@ -49,6 +51,12 @@ Read data files from: /usr/bin/../share/nmap
 Version ([красивый отчет]({{ "/nmap/htb-sunday-nmap-version.html" | relative_url }})):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p79,111,22022,47581,48935 10.10.10.76
+...
+```
+
+```text
+root@kali:~# cat nmap/version.nmap
+# Nmap 7.70 scan initiated Sat Oct  6 14:48:06 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p79,111,22022,47581,48935 10.10.10.76
 Nmap scan report for 10.10.10.76
 Host is up, received echo-reply ttl 254 (0.052s latency).
 Scanned at 2018-10-06 14:48:07 EDT for 78s

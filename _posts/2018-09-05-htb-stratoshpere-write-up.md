@@ -24,6 +24,12 @@ published: true
 Fire up NMAP! Для начала аккуратно:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn -oA nmap/initial 10.10.10.64
+...
+```
+
+```text
+root@kali:~# cat nmap/initial.nmap
+# Nmap 7.70 scan initiated Sun Sep  2 09:08:59 2018 as: nmap -n -vvv -sS -Pn -oA nmap/initial 10.10.10.64
 Nmap scan report for 10.10.10.64
 Host is up, received user-set (0.061s latency).
 Scanned at 2018-09-02 09:08:59 EDT for 9s
@@ -41,6 +47,12 @@ Read data files from: /usr/bin/../share/nmap
 Не долго думая, более требовательно:
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version -p22,80,8080 10.10.10.64
+...
+```
+
+```text
+root@kali:~# cat nmap/.nmap
+# Nmap 7.70 scan initiated Sun Sep  2 09:09:21 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version -p22,80,8080 10.10.10.64
 Nmap scan report for 10.10.10.64
 Host is up, received echo-reply ttl 63 (0.061s latency).
 Scanned at 2018-09-02 09:09:21 EDT for 20s

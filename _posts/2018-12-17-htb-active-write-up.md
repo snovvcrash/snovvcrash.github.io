@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-**Active** — максимально простая, однако, в то же время, одна из самых полезных для прохождения Windows-машин в своей "ценовой категории" на HTB. Почему? Так это же *контроллер домена AD*! Тезисный обзор предлагаемых развлечений: энумерация *SMB-шар* (используем tуеву hучу крутых утилит а-ля *smbclient*, *smbmap*, *enum4linux*, *nullinux*); разграбление SMB с анонимным доступом для захвата файла групповых политик *Groups.xml*; декрипт GPP-пароля из той самой xml'ки; получение доступа к внутридоменному аккаунту с последующей инициализацией атаки типа *Kerberoasting* (против протокола аутентификации *Kerberos*) для извлечения тикета администратора с помощью коллекции Python-скриптов *impacket*; наконец, офлайн-восстановление пароля суперпользователя из хеша (с помощью *Hashcat*) для окончательного pwn'а контроллера. *"... лежа в пещере своей, в три глотки лаял огромный Цербер, и лай громовой оглашал молчаливое царство..."* **Сложность: 4.6/10**{:style="color:grey;"}
+**Active** — максимально простая, однако, в то же время, одна из самых полезных для прохождения Windows-машин в своей "ценовой категории" на HTB. Почему? Так это же *контроллер домена AD*! Тезисный обзор предлагаемых развлечений: энумерация *SMB-шар* (используем tуеву hучу крутых утилит а-ля *smbclient*, *smbmap*, *enum4linux*, *nullinux*); разграбление SMB с анонимным доступом для захвата файла групповых политик *Groups.xml*; декрипт GPP-пароля из той самой xml'ки; получение доступа к внутридоменному аккаунту с последующей инициализацией атаки типа *Kerberoasting* (против протокола аутентификации *Kerberos*) для извлечения тикета администратора с помощью коллекции Python-скриптов *impacket*; наконец, офлайн-восстановление пароля суперпользователя из хеша (с помощью *Hashcat*) для окончательного pwn'а контроллера. *"...Лежа в пещере своей, в три глотки лаял огромный Цербер, и лай громовой оглашал молчаливое царство..."* **Сложность: 4.6/10**{:style="color:grey;"}
 
 <!--cut-->
 
@@ -25,6 +25,12 @@ published: true
 Initial:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.100
+...
+```
+
+```text
+root@kali:~# cat nmap/initial.nmap
+# Nmap 7.70 scan initiated Sat Dec 15 23:26:06 2018 as: nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.100
 Nmap scan report for 10.10.10.100
 Host is up, received user-set (0.14s latency).
 Scanned at 2018-12-15 23:26:06 MSK for 1s
@@ -56,6 +62,12 @@ Read data files from: /usr/bin/../share/nmap
 Version ([красивый отчет]({{ "/nmap/htb-active-nmap-version.html" | relative_url }})):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl 10.10.10.100
+...
+```
+
+```text
+root@kali:~# cat nmap/version.nmap
+# Nmap 7.70 scan initiated Sat Dec 15 23:26:38 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl 10.10.10.100
 Nmap scan report for 10.10.10.100
 Host is up, received echo-reply ttl 127 (0.14s latency).
 Scanned at 2018-12-15 23:26:38 MSK for 200s
@@ -108,13 +120,13 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 Начнем с очевидного — посмотрим, что скрывает SMB.
 
-# Энумерация SMB
-Заголовок параграфа тянет на название долгой статьи. Вкраце рассмотрим некоторые полезные тулзы для срыва покровов с SMB-шар.
+# Энумерация SMB — Порт 445
+Заголовок параграфа тянет на название обширной статьи. Вкратце рассмотрим некоторые полезные тулзы для срыва покровов с SMB-шар.
 
 ## NSE (Nmap Scripting Engine)
 У всемогущего Nmap'а есть целый калейдоскоп скриптов на все случаи жизни. Вытягивание информации об SMB — не исключение.
 
-Посмотрим, что есть в ассоритменте из категорий "default" / "version" / "safe":
+Посмотрим, что есть в ассортименте из категорий "default" / "version" / "safe":
 ```text
 root@kali:~# locate -r '\.nse$' | xargs grep categories | grep 'default\|version\|safe' | grep smb
 /usr/share/nmap/scripts/smb-double-pulsar-backdoor.nse:categories = {"vuln", "safe", "malware"}
@@ -134,6 +146,12 @@ root@kali:~# locate -r '\.nse$' | xargs grep categories | grep 'default\|version
 И натравим безопасные (safe) творения скриптового движка на 445-й порт:
 ```text
 root@kali:~# nmap -n --script safe -oA nmap/nse-smb-enum -p445 10.10.10.100
+...
+```
+
+```text
+root@kali:~# cat nmap/nse-smb-enum.nmap
+# Nmap 7.70 scan initiated Sun Dec 16 00:03:51 2018 as: nmap -n --script safe -oA nmap/nse-smb-enum -p445 10.10.10.100
 Pre-scan script results:
 | broadcast-dhcp-discover: 
 |   Response 1 of 1: 
@@ -388,7 +406,7 @@ root@kali:~# locate Groups.xml
 ```
 
 ## enum4linux
-Классика жанра, хотя немного устарешная [софтина](https://github.com/portcullislabs/enum4linux "portcullislabs/enum4linux: enum4Linux is a Linux alternative to enum.exe for enumerating data from Windows and Samba hosts.") на Перле для сбора информации о Windows- (Samba-) хостах.
+Классика жанра, хотя немного устаревшая [софтина](https://github.com/portcullislabs/enum4linux "portcullislabs/enum4linux: enum4Linux is a Linux alternative to enum.exe for enumerating data from Windows and Samba hosts.") на Перле для сбора информации о Windows- (Samba-) хостах.
 
 Мне не очень нравится, т. к. выводит гору лишней информации, но попробуем ради искусства:
 ```text
@@ -664,7 +682,7 @@ root@kali:~# cat /usr/share/smbmap/10.10.10.100-Users_SVC_TGS_Desktop_user.txt
 86d67d8b????????????????????????
 ```
 
-# Kerberoasting
+# Kerberoasting — Порт 88
 ## Получение пользователей AD (GetADUsers.py)
 Итак, у нас есть аккаунт внутри домена. С помощью пакета [impacket](https://github.com/SecureAuthCorp/impacket "SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols.") посмотрим, о каких еще юзерах известно контроллеру:
 ```text

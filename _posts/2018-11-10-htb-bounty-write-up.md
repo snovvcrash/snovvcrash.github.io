@@ -25,6 +25,12 @@ published: true
 Initial:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.93
+...
+```
+
+```text
+root@kali:~# cat nmap/initial.nmap
+# Nmap 7.70 scan initiated Fri Nov  9 16:04:49 2018 as: nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.93
 Nmap scan report for 10.10.10.93
 Host is up, received user-set (0.072s latency).
 Scanned at 2018-11-09 16:04:49 EST for 1s
@@ -40,6 +46,12 @@ Read data files from: /usr/bin/../share/nmap
 Version ([красивый отчет]({{ "/nmap/htb-bounty-nmap-version.html" | relative_url }})):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.93
+...
+```
+
+```text
+root@kali:~# cat nmap/version.nmap
+# Nmap 7.70 scan initiated Fri Nov  9 16:03:39 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.93
 Nmap scan report for 10.10.10.93
 Host is up, received echo-reply ttl 127 (0.067s latency).
 Scanned at 2018-11-09 16:03:40 EST for 8s

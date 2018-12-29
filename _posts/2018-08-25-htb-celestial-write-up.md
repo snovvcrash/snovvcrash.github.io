@@ -24,6 +24,12 @@ published: true
 Начинаем со сканирования, разведка — наше все. По традиции сначала быстрое stealth-сканирование для получения общей картины:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.85
+...
+```
+
+```text
+root@kali:~# cat nmap/initial.nmap
+# Nmap 7.70 scan initiated Fri Aug 24 16:11:57 2018 as: nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.85
 Nmap scan report for 10.10.10.85
 Host is up, received user-set (0.066s latency).
 Scanned at 2018-08-24 16:11:57 EDT for 1s
@@ -45,6 +51,12 @@ Read data files from: /usr/bin/../share/nmap
 Потом собираем больше информации о приложениях на открытых портах:
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version -p3000 10.10.10.85
+...
+```
+
+```text
+root@kali:~# cat nmap/version.nmap
+# Nmap 7.70 scan initiated Fri Aug 24 16:12:48 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version -p3000 10.10.10.85
 Nmap scan report for 10.10.10.85
 Host is up, received echo-reply ttl 63 (0.055s latency).
 Scanned at 2018-08-24 16:12:49 EDT for 14s

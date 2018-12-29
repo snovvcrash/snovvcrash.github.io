@@ -24,6 +24,12 @@ published: true
 Начнем со сканирования хоста. Сперва пробежим быстрое SYN-сканирования 1000 самых распространенных портов:
 ```text
 root@kali:~# nmap -n -v -sS -Pn -oN nmap/initial.nmap 10.10.10.79
+...
+```
+
+```text
+root@kali:~# cat nmap/initial.nmap
+# Nmap 7.70 scan initiated Tue Jul 17 15:30:26 2018 as: nmap -n -v -sS -Pn -oN nmap/initial.nmap 10.10.10.79
 Nmap scan report for 10.10.10.79
 Host is up (0.099s latency).
 Not shown: 997 closed ports
@@ -39,6 +45,12 @@ Read data files from: /usr/bin/../share/nmap
 После чего посмотрим более подробно на сервисы, крутящиеся на открытых портах:
 ```text
 root@kali:~# nmap -n -v -sV -sC -oN nmap/version.nmap -p22,80,443 10.10.10.79
+...
+```
+
+```text
+root@kali:~# cat nmap/version.nmap
+# Nmap 7.70 scan initiated Tue Aug 14 09:21:01 2018 as: nmap -n -v -sV -sC -oN nmap/version.nmap -p22,80,443 10.10.10.79
 Nmap scan report for 10.10.10.79
 Host is up (0.089s latency).
 

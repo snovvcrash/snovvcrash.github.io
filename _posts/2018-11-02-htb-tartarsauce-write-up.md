@@ -25,7 +25,12 @@ published: true
 Initial:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.88
-Increasing send delay for 10.10.10.88 from 0 to 5 due to 180 out of 599 dropped probes since last increase.
+...
+```
+
+```text
+root@kali:~# cat nmap/initial.nmap
+# Nmap 7.70 scan initiated Mon Oct 29 09:44:01 2018 as: nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.88
 Nmap scan report for 10.10.10.88
 Host is up, received user-set (0.064s latency).
 Scanned at 2018-10-29 09:44:01 EDT for 1s
@@ -41,6 +46,12 @@ Read data files from: /usr/bin/../share/nmap
 Version ([красивый отчет]({{ "/nmap/htb-tartarsauce-nmap-version.html" | relative_url }})):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.88
+...
+```
+
+```text
+root@kali:~# cat nmap/version.nmap
+# Nmap 7.70 scan initiated Mon Oct 29 09:44:27 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.88
 Nmap scan report for 10.10.10.88
 Host is up, received echo-reply ttl 63 (0.062s latency).
 Scanned at 2018-10-29 09:44:27 EDT for 8s
