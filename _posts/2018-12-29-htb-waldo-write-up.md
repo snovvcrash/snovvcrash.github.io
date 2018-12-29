@@ -697,7 +697,7 @@ app-dev/v0.1/logMonitor-0.1 = cap_dac_read_search+ei
   - **e**ffective — используется ядром для проверки права доступа;
   - **i**nheritable — сохраняет право доступа при вызове *fork* и *execve*.
 
-Интересный вводный материал про capabilities [здесь](https://www.incibe-cert.es/en/blog/linux-capabilities-en "Linux Capabilities and how to avoid being root | INCIBE-CERT").
+Интересный вводный материал про capabilities [здесь](https://www.incibe-cert.es/en/blog/linux-capabilities-en "Linux Capabilities and how to avoid being root / INCIBE-CERT").
 
 А что если на машине есть еще исполняемые файлы, для которых установлены мандаты capabilities?
 
