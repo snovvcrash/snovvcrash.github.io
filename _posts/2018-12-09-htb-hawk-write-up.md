@@ -17,9 +17,6 @@ published: true
 
 ![hawk-info.png]({{ "/img/htb/boxes/hawk/hawk-info.png" | relative_url }})
 
-<h4 style="color:red;margin-bottom:0;">Hawk: 10.10.10.102</h4>
-<h4 style="color:red;">Kali: 10.10.14.14</h4>
-
 * TOC
 {:toc}
 

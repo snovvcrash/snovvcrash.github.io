@@ -17,8 +17,6 @@ published: true
 
 ![valentine-info.png]({{ "/img/htb/boxes/valentine/valentine-info.png" | relative_url }})
 
-<h4 style="color:red;">Valentine: 10.10.10.79</h4>
-
 * TOC
 {:toc}
 

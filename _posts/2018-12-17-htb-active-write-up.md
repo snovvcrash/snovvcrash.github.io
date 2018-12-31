@@ -17,9 +17,6 @@ published: true
 
 ![active-info.png]({{ "/img/htb/boxes/active/active-info.png" | relative_url }})
 
-<h4 style="color:red;margin-bottom:0;">Active: 10.10.10.100</h4>
-<h4 style="color:red;">Kali: 10.10.14.14</h4>
-
 * TOC
 {:toc}
 

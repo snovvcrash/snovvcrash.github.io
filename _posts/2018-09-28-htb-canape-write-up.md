@@ -17,9 +17,6 @@ published: true
 
 ![canape-info.png]({{ "/img/htb/boxes/canape/canape-info.png" | relative_url }})
 
-<h4 style="color:red;margin-bottom:0;">Canape: 10.10.10.70</h4>
-<h4 style="color:red;">Kali: 10.10.14.14</h4>
-
 * TOC
 {:toc}
 

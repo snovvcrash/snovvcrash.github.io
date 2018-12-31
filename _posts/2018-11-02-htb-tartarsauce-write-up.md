@@ -17,9 +17,6 @@ published: true
 
 ![tartarsauce-info.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-info.png" | relative_url }})
 
-<h4 style="color:red;margin-bottom:0;">TartarSauce: 10.10.10.88</h4>
-<h4 style="color:red;">Kali: 10.10.14.14</h4>
-
 * TOC
 {:toc}
 

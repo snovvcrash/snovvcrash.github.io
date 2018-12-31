@@ -17,8 +17,6 @@ published: true
 
 ![stratosphere-info.png]({{ "/img/htb/boxes/stratosphere/stratosphere-info.png" | relative_url }})
 
-<h4 style="color:red;">Stratosphere: 10.10.10.64</h4>
-
 * TOC
 {:toc}
 

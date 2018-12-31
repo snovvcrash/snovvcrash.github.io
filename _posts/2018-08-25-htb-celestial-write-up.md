@@ -17,8 +17,6 @@ published: true
 
 ![celestial-info.png]({{ "/img/htb/boxes/celestial/celestial-info.png" | relative_url }})
 
-<h4 style="color:red;">Celestial: 10.10.10.85</h4>
-
 * TOC
 {:toc}
 
