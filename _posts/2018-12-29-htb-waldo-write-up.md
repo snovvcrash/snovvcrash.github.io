@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![waldo-banner.png]({{ "/img/htb/boxes/waldo/waldo-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/149 "Hack The Box :: Waldo")
 
+{: .center-image}
 ![waldo-info.png]({{ "/img/htb/boxes/waldo/waldo-info.png" | relative_url }})
 
 * TOC
@@ -911,6 +913,8 @@ tac: failed to open '/root/.ssh/authorized_keys' for reading: No such file or di
 
 Мы нашли спрятавшийся root, спасибо за внимание :innocent:
 
+{: .center-image}
 ![waldo-owned.png]({{ "/img/htb/boxes/waldo/waldo-owned.png" | relative_url }})
 
+{: .center-image}
 ![waldo-trophy.png]({{ "/img/htb/boxes/waldo/waldo-trophy.png" | relative_url }})

@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![canape-banner.png]({{ "/img/htb/boxes/canape/canape-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
 
+{: .center-image}
 ![canape-info.png]({{ "/img/htb/boxes/canape/canape-info.png" | relative_url }})
 
 * TOC
@@ -868,6 +870,8 @@ application.secret_key = "sjhdajkh292hdq29dhashdkjsad"
 
 Теперь можно прилечь на диванчик, спасибо за внимание :innocent:
 
+{: .center-image}
 ![canape-owned.png]({{ "/img/htb/boxes/canape/canape-owned.png" | relative_url }})
 
+{: .center-image}
 ![canape-trophy.png]({{ "/img/htb/boxes/canape/canape-trophy.png" | relative_url }})

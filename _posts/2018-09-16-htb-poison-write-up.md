@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![poison-banner.png]({{ "/img/htb/boxes/poison/poison-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/132 "Hack The Box :: Poison")
 
+{: .center-image}
 ![poison-info.png]({{ "/img/htb/boxes/poison/poison-info.png" | relative_url }})
 
 * TOC
@@ -479,6 +481,8 @@ Password: VNCP@$$!
 
 Держите при себе противоядия, спасибо за внимание :innocent:
 
+{: .center-image}
 ![poison-owned.png]({{ "/img/htb/boxes/poison/poison-owned.png" | relative_url }})
 
+{: .center-image}
 ![poison-trophy.png]({{ "/img/htb/boxes/poison/poison-trophy.png" | relative_url }})

@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![active-banner.png]({{ "/img/htb/boxes/active/active-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
 
+{: .center-image}
 ![active-info.png]({{ "/img/htb/boxes/active/active-info.png" | relative_url }})
 
 * TOC
@@ -817,6 +819,8 @@ root@kali:~# umount /mnt/smb
 
 Укрощайте трехголовых стражей царства мертвых, спасибо за внимание :innocent:
 
+{: .center-image}
 ![active-owned.png]({{ "/img/htb/boxes/active/active-owned.png" | relative_url }})
 
+{: .center-image}
 ![active-trophy.png]({{ "/img/htb/boxes/active/active-trophy.png" | relative_url }})

@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![sunday-banner.png]({{ "/img/htb/boxes/sunday/sunday-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
 
+{: .center-image}
 ![sunday-info.png]({{ "/img/htb/boxes/sunday/sunday-info.png" | relative_url }})
 
 * TOC
@@ -936,6 +938,8 @@ sunny@sunday:/backup$ ./agent22.backup
 
 Хорошего воскресенья, спасибо за внимание :innocent:
 
+{: .center-image}
 ![sunday-owned.png]({{ "/img/htb/boxes/sunday/sunday-owned.png" | relative_url }})
 
+{: .center-image}
 ![sunday-trophy.png]({{ "/img/htb/boxes/sunday/sunday-trophy.png" | relative_url }})

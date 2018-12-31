@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![valentine-banner.png]({{ "/img/htb/boxes/valentine/valentine-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/127 "Hack The Box :: Valentine")
 
+{: .center-image}
 ![valentine-info.png]({{ "/img/htb/boxes/valentine/valentine-info.png" | relative_url }})
 
 * TOC
@@ -476,6 +478,8 @@ hype@Valentine:~$ rm dirty.c dirty
 
 Берегите свое(и) сердце(а), спасибо за внимание :innocent:
 
+{: .center-image}
 ![valentine-owned.png]({{ "/img/htb/boxes/valentine/valentine-owned.png" | relative_url }})
 
+{: .center-image}
 ![valentine-trophy.png]({{ "/img/htb/boxes/valentine/valentine-trophy.png" | relative_url }})

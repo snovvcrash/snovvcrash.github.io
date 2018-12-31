@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![hawk-banner.png]({{ "/img/htb/boxes/hawk/hawk-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/146 "Hack The Box :: Hawk")
 
+{: .center-image}
 ![hawk-info.png]({{ "/img/htb/boxes/hawk/hawk-info.png" | relative_url }})
 
 * TOC
@@ -597,6 +599,8 @@ uid=0(root) gid=0(root) groups=0(root)
 
 Приручайте ястребов, спасибо за внимание :innocent:
 
+{: .center-image}
 ![hawk-owned.png]({{ "/img/htb/boxes/hawk/hawk-owned.png" | relative_url }})
 
+{: .center-image}
 ![hawk-trophy.png]({{ "/img/htb/boxes/hawk/hawk-trophy.png" | relative_url }})

@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![devoops-banner.png]({{ "/img/htb/boxes/devoops/devoops-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
 
+{: .center-image}
 ![devoops-info.png]({{ "/img/htb/boxes/devoops/devoops-info.png" | relative_url }})
 
 * TOC
@@ -862,6 +864,8 @@ C `< >` в роли "плохих" символов.
 
 Удачной разработки, спасибо за внимание :innocent:
 
+{: .center-image}
 ![devoops-owned.png]({{ "/img/htb/boxes/devoops/devoops-owned.png" | relative_url }})
 
+{: .center-image}
 ![devoops-trophy.png]({{ "/img/htb/boxes/devoops/devoops-trophy.png" | relative_url }})

@@ -13,8 +13,10 @@ published: true
 
 <!--cut-->
 
+{: .center-image}
 [![bounty-banner.png]({{ "/img/htb/boxes/bounty/bounty-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
 
+{: .center-image}
 ![bounty-info.png]({{ "/img/htb/boxes/bounty/bounty-info.png" | relative_url }})
 
 * TOC
@@ -656,6 +658,8 @@ Hip, hip, hurray! :relieved:
 
 Награда ждет, спасибо за внимание :innocent:
 
+{: .center-image}
 ![bounty-owned.png]({{ "/img/htb/boxes/bounty/bounty-owned.png" | relative_url }})
 
+{: .center-image}
 ![bounty-trophy.png]({{ "/img/htb/boxes/bounty/bounty-trophy.png" | relative_url }})
