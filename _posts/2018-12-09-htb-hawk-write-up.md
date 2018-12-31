@@ -15,6 +15,8 @@ published: true
 
 [![hawk-banner.png]({{ "/img/htb/boxes/hawk/hawk-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/146 "Hack The Box :: Hawk")
 
+![hawk-info.png]({{ "/img/htb/boxes/hawk/hawk-info.png" | relative_url }})
+
 <h4 style="color:red;margin-bottom:0;">Hawk: 10.10.10.102</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
 
@@ -599,3 +601,5 @@ uid=0(root) gid=0(root) groups=0(root)
 Приручайте ястребов, спасибо за внимание :innocent:
 
 ![hawk-owned.png]({{ "/img/htb/boxes/hawk/hawk-owned.png" | relative_url }})
+
+![hawk-trophy.png]({{ "/img/htb/boxes/hawk/hawk-trophy.png" | relative_url }})

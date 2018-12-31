@@ -15,6 +15,8 @@ published: true
 
 [![poison-banner.png]({{ "/img/htb/boxes/poison/poison-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/132 "Hack The Box :: Poison")
 
+![poison-info.png]({{ "/img/htb/boxes/poison/poison-info.png" | relative_url }})
+
 <h4 style="color:red;margin-bottom:0;">Poison: 10.10.10.84</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
 
@@ -481,3 +483,5 @@ Password: VNCP@$$!
 Держите при себе противоядия, спасибо за внимание :innocent:
 
 ![poison-owned.png]({{ "/img/htb/boxes/poison/poison-owned.png" | relative_url }})
+
+![poison-trophy.png]({{ "/img/htb/boxes/poison/poison-trophy.png" | relative_url }})

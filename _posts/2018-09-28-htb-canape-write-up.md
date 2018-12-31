@@ -15,6 +15,8 @@ published: true
 
 [![canape-banner.png]({{ "/img/htb/boxes/canape/canape-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
 
+![canape-info.png]({{ "/img/htb/boxes/canape/canape-info.png" | relative_url }})
+
 <h4 style="color:red;margin-bottom:0;">Canape: 10.10.10.70</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
 
@@ -870,3 +872,5 @@ application.secret_key = "sjhdajkh292hdq29dhashdkjsad"
 Теперь можно прилечь на диванчик, спасибо за внимание :innocent:
 
 ![canape-owned.png]({{ "/img/htb/boxes/canape/canape-owned.png" | relative_url }})
+
+![canape-trophy.png]({{ "/img/htb/boxes/canape/canape-trophy.png" | relative_url }})

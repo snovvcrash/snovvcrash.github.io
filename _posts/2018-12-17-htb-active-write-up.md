@@ -15,6 +15,8 @@ published: true
 
 [![active-banner.png]({{ "/img/htb/boxes/active/active-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
 
+![active-info.png]({{ "/img/htb/boxes/active/active-info.png" | relative_url }})
+
 <h4 style="color:red;margin-bottom:0;">Active: 10.10.10.100</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
 
@@ -819,3 +821,5 @@ root@kali:~# umount /mnt/smb
 Укрощайте трехголовых стражей царства мертвых, спасибо за внимание :innocent:
 
 ![active-owned.png]({{ "/img/htb/boxes/active/active-owned.png" | relative_url }})
+
+![active-trophy.png]({{ "/img/htb/boxes/active/active-trophy.png" | relative_url }})

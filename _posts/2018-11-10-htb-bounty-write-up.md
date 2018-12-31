@@ -15,6 +15,8 @@ published: true
 
 [![bounty-banner.png]({{ "/img/htb/boxes/bounty/bounty-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
 
+![bounty-info.png]({{ "/img/htb/boxes/bounty/bounty-info.png" | relative_url }})
+
 <h4 style="color:red;margin-bottom:0;">Bounty: 10.10.10.93</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
 
@@ -658,3 +660,5 @@ Hip, hip, hurray! :relieved:
 Награда ждет, спасибо за внимание :innocent:
 
 ![bounty-owned.png]({{ "/img/htb/boxes/bounty/bounty-owned.png" | relative_url }})
+
+![bounty-trophy.png]({{ "/img/htb/boxes/bounty/bounty-trophy.png" | relative_url }})

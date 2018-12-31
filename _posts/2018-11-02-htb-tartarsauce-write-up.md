@@ -15,6 +15,8 @@ published: true
 
 [![tartarsauce-banner.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
 
+![tartarsauce-info.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-info.png" | relative_url }})
+
 <h4 style="color:red;margin-bottom:0;">TartarSauce: 10.10.10.88</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
 
@@ -910,3 +912,5 @@ drwxr-xr-x 5 root root 4096 Apr  5  2016 /var/www/html/webservices/monstra-3.0.4
 Приятного аппетита с соусом Тартар, спасибо за внимание :innocent:
 
 ![tartarsauce-owned.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-owned.png" | relative_url }})
+
+![tartarsauce-trophy.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-trophy.png" | relative_url }})

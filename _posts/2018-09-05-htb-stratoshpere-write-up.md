@@ -15,6 +15,8 @@ published: true
 
 [![stratosphere-banner.png]({{ "/img/htb/boxes/stratosphere/stratosphere-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/129 "Hack The Box :: Stratosphere")
 
+![stratosphere-info.png]({{ "/img/htb/boxes/stratosphere/stratosphere-info.png" | relative_url }})
+
 <h4 style="color:red;">Stratosphere: 10.10.10.64</h4>
 
 * TOC
@@ -832,3 +834,5 @@ sh: 1: /root/success.py: not found
 Пройдя стратосферу, до звезд совсем недалеко, спасибо за внимание :innocent:
 
 ![stratosphere-owned.png]({{ "/img/htb/boxes/stratosphere/stratosphere-owned.png" | relative_url }})
+
+![stratosphere-trophy.png]({{ "/img/htb/boxes/stratosphere/stratosphere-trophy.png" | relative_url }})

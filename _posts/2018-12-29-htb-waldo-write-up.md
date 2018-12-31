@@ -15,6 +15,8 @@ published: true
 
 [![waldo-banner.png]({{ "/img/htb/boxes/waldo/waldo-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/149 "Hack The Box :: Waldo")
 
+![waldo-info.png]({{ "/img/htb/boxes/waldo/waldo-info.png" | relative_url }})
+
 <h4 style="color:red;margin-bottom:0;">Waldo: 10.10.10.87</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
 
@@ -913,3 +915,5 @@ tac: failed to open '/root/.ssh/authorized_keys' for reading: No such file or di
 Мы нашли спрятавшийся root, спасибо за внимание :innocent:
 
 ![waldo-owned.png]({{ "/img/htb/boxes/waldo/waldo-owned.png" | relative_url }})
+
+![waldo-trophy.png]({{ "/img/htb/boxes/waldo/waldo-trophy.png" | relative_url }})

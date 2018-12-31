@@ -15,6 +15,8 @@ published: true
 
 [![olympus-banner.png]({{ "/img/htb/boxes/olympus/olympus-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
 
+![olympus-info.png]({{ "/img/htb/boxes/olympus/olympus-info.png" | relative_url }})
+
 <h4 style="color:red;margin-bottom:0;">Olympus: 10.10.10.83</h4>
 <h4 style="color:red;">Kali: 10.10.14.14</h4>
 
@@ -784,3 +786,5 @@ aba48699????????????????????????
 Слава богам, спасибо за внимание :innocent:
 
 ![olympus-owned.png]({{ "/img/htb/boxes/olympus/olympus-owned.png" | relative_url }})
+
+![olympus-trophy.png]({{ "/img/htb/boxes/olympus/olympus-trophy.png" | relative_url }})

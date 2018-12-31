@@ -15,6 +15,8 @@ published: true
 
 [![celestial-banner.png]({{ "/img/htb/boxes/celestial/celestial-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
 
+![celestial-info.png]({{ "/img/htb/boxes/celestial/celestial-info.png" | relative_url }})
+
 <h4 style="color:red;">Celestial: 10.10.10.85</h4>
 
 * TOC
@@ -439,3 +441,5 @@ Web RCE ⟶ Reverse shell ⟶ LPE до user'а ⟶ LPE до root'а
 Здесь даже пропущено одно звено, т. к. первичный уязвимый сервис — фреймворк web-приложений, запущенный с привилегиями пользователя. Не то, что бы такие машины были плохими, вовсе нет. Просто будь готов, что достаточно скоро боксы, выстроенные по такой схеме, станут тебе скучны :unamused:
 
 ![celestial-owned.png]({{ "/img/htb/boxes/celestial/celestial-owned.png" | relative_url }})
+
+![celestial-trophy.png]({{ "/img/htb/boxes/celestial/celestial-trophy.png" | relative_url }})
