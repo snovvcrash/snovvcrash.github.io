@@ -482,7 +482,10 @@ Password: VNCP@$$!
 Держите при себе противоядия, спасибо за внимание :innocent:
 
 {: .center-image}
-![poison-owned.png]({{ "/img/htb/boxes/poison/poison-owned.png" | relative_url }})
+![poison-owned-user.png]({{ "/img/htb/boxes/poison/poison-owned-user.png" | relative_url }})
+
+{: .center-image}
+![poison-owned-root.png]({{ "/img/htb/boxes/poison/poison-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![poison-trophy.png]({{ "/img/htb/boxes/poison/poison-trophy.png" | relative_url }})

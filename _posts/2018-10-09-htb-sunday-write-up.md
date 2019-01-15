@@ -939,7 +939,10 @@ sunny@sunday:/backup$ ./agent22.backup
 Хорошего воскресенья, спасибо за внимание :innocent:
 
 {: .center-image}
-![sunday-owned.png]({{ "/img/htb/boxes/sunday/sunday-owned.png" | relative_url }})
+![sunday-owned-user.png]({{ "/img/htb/boxes/sunday/sunday-owned-user.png" | relative_url }})
+
+{: .center-image}
+![sunday-owned-root.png]({{ "/img/htb/boxes/sunday/sunday-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![sunday-trophy.png]({{ "/img/htb/boxes/sunday/sunday-trophy.png" | relative_url }})

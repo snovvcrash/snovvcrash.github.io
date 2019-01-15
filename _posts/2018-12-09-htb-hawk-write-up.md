@@ -600,7 +600,10 @@ uid=0(root) gid=0(root) groups=0(root)
 Приручайте ястребов, спасибо за внимание :innocent:
 
 {: .center-image}
-![hawk-owned.png]({{ "/img/htb/boxes/hawk/hawk-owned.png" | relative_url }})
+![hawk-owned-user.png]({{ "/img/htb/boxes/hawk/hawk-owned-user.png" | relative_url }})
+
+{: .center-image}
+![hawk-owned-root.png]({{ "/img/htb/boxes/hawk/hawk-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![hawk-trophy.png]({{ "/img/htb/boxes/hawk/hawk-trophy.png" | relative_url }})

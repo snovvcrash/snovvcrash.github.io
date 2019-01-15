@@ -441,7 +441,10 @@ Web RCE ⟶ Reverse shell ⟶ LPE до user'а ⟶ LPE до root'а
 Здесь даже пропущено одно звено, т. к. первичный уязвимый сервис — фреймворк web-приложений, запущенный с привилегиями пользователя. Не то, что бы такие машины были плохими, вовсе нет. Просто будь готов, что достаточно скоро боксы, выстроенные по такой схеме, станут тебе скучны :unamused:
 
 {: .center-image}
-![celestial-owned.png]({{ "/img/htb/boxes/celestial/celestial-owned.png" | relative_url }})
+![celestial-owned-user.png]({{ "/img/htb/boxes/celestial/celestial-owned-user.png" | relative_url }})
+
+{: .center-image}
+![celestial-owned-root.png]({{ "/img/htb/boxes/celestial/celestial-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![celestial-trophy.png]({{ "/img/htb/boxes/celestial/celestial-trophy.png" | relative_url }})

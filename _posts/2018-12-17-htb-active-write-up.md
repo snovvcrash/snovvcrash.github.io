@@ -820,7 +820,10 @@ root@kali:~# umount /mnt/smb
 Укрощайте трехголовых стражей царства мертвых, спасибо за внимание :innocent:
 
 {: .center-image}
-![active-owned.png]({{ "/img/htb/boxes/active/active-owned.png" | relative_url }})
+![active-owned-user.png]({{ "/img/htb/boxes/active/active-owned-user.png" | relative_url }})
+
+{: .center-image}
+![active-owned-root.png]({{ "/img/htb/boxes/active/active-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![active-trophy.png]({{ "/img/htb/boxes/active/active-trophy.png" | relative_url }})

@@ -479,7 +479,10 @@ hype@Valentine:~$ rm dirty.c dirty
 Берегите свое(и) сердце(а), спасибо за внимание :innocent:
 
 {: .center-image}
-![valentine-owned.png]({{ "/img/htb/boxes/valentine/valentine-owned.png" | relative_url }})
+![valentine-owned-user.png]({{ "/img/htb/boxes/valentine/valentine-owned-user.png" | relative_url }})
+
+{: .center-image}
+![valentine-owned-root.png]({{ "/img/htb/boxes/valentine/valentine-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![valentine-trophy.png]({{ "/img/htb/boxes/valentine/valentine-trophy.png" | relative_url }})

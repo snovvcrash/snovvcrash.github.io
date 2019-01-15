@@ -909,7 +909,10 @@ drwxr-xr-x 5 root root 4096 Apr  5  2016 /var/www/html/webservices/monstra-3.0.4
 Приятного аппетита с соусом Тартар, спасибо за внимание :innocent:
 
 {: .center-image}
-![tartarsauce-owned.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-owned.png" | relative_url }})
+![tartarsauce-owned-user.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-owned-user.png" | relative_url }})
+
+{: .center-image}
+![tartarsauce-owned-root.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![tartarsauce-trophy.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-trophy.png" | relative_url }})

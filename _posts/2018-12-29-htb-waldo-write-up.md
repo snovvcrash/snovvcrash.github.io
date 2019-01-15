@@ -661,7 +661,7 @@ monitor:x:1001:
 
 Это и есть "monitor" — как мы и хотели.
 
-Поэтому следующим нехитрым способом совершаем дерзский побег из ограниченного шелла:
+Поэтому следующим нехитрым способом совершаем дерзкий побег из ограниченного шелла:
 ```text
 monitor@waldo:~$ red /bin/bash
 1099016
@@ -784,7 +784,7 @@ AllowUsers nobody
 ## Про Restricted-Shell и SSH-туннели
 Покажу еще один способ обойти rbash и оказаться в привычном шелле.
 
-Для этого настроим SSH-туннель, чтобы не мучаться с "двойным SSH":
+Для этого настроим SSH-туннель, чтобы не мучиться с "двойным SSH":
 ```text
 root@kali:~# ssh -oStrictHostKeyChecking=no -L 8022:127.0.0.1:22 -i nobody.key nobody@10.10.10.87
 ...
@@ -914,7 +914,10 @@ tac: failed to open '/root/.ssh/authorized_keys' for reading: No such file or di
 Мы нашли спрятавшийся root, спасибо за внимание :innocent:
 
 {: .center-image}
-![waldo-owned.png]({{ "/img/htb/boxes/waldo/waldo-owned.png" | relative_url }})
+![waldo-owned-user.png]({{ "/img/htb/boxes/waldo/waldo-owned-user.png" | relative_url }})
+
+{: .center-image}
+![waldo-owned-root.png]({{ "/img/htb/boxes/waldo/waldo-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![waldo-trophy.png]({{ "/img/htb/boxes/waldo/waldo-trophy.png" | relative_url }})

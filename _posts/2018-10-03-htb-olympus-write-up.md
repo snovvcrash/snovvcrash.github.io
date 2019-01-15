@@ -785,7 +785,10 @@ aba48699????????????????????????
 Слава богам, спасибо за внимание :innocent:
 
 {: .center-image}
-![olympus-owned.png]({{ "/img/htb/boxes/olympus/olympus-owned.png" | relative_url }})
+![olympus-owned-user.png]({{ "/img/htb/boxes/olympus/olympus-owned-user.png" | relative_url }})
+
+{: .center-image}
+![olympus-owned-root.png]({{ "/img/htb/boxes/olympus/olympus-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![olympus-trophy.png]({{ "/img/htb/boxes/olympus/olympus-trophy.png" | relative_url }})

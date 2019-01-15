@@ -659,7 +659,10 @@ Hip, hip, hurray! :relieved:
 Награда ждет, спасибо за внимание :innocent:
 
 {: .center-image}
-![bounty-owned.png]({{ "/img/htb/boxes/bounty/bounty-owned.png" | relative_url }})
+![bounty-owned-user.png]({{ "/img/htb/boxes/bounty/bounty-owned-user.png" | relative_url }})
+
+{: .center-image}
+![bounty-owned-root.png]({{ "/img/htb/boxes/bounty/bounty-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![bounty-trophy.png]({{ "/img/htb/boxes/bounty/bounty-trophy.png" | relative_url }})

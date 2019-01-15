@@ -834,7 +834,10 @@ sh: 1: /root/success.py: not found
 Пройдя стратосферу, до звезд совсем недалеко, спасибо за внимание :innocent:
 
 {: .center-image}
-![stratosphere-owned.png]({{ "/img/htb/boxes/stratosphere/stratosphere-owned.png" | relative_url }})
+![stratosphere-owned-user.png]({{ "/img/htb/boxes/stratosphere/stratosphere-owned-user.png" | relative_url }})
+
+{: .center-image}
+![stratosphere-owned-root.png]({{ "/img/htb/boxes/stratosphere/stratosphere-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![stratosphere-trophy.png]({{ "/img/htb/boxes/stratosphere/stratosphere-trophy.png" | relative_url }})

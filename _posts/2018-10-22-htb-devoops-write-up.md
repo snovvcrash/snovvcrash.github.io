@@ -865,7 +865,10 @@ C `< >` в роли "плохих" символов.
 Удачной разработки, спасибо за внимание :innocent:
 
 {: .center-image}
-![devoops-owned.png]({{ "/img/htb/boxes/devoops/devoops-owned.png" | relative_url }})
+![devoops-owned-user.png]({{ "/img/htb/boxes/devoops/devoops-owned-user.png" | relative_url }})
+
+{: .center-image}
+![devoops-owned-root.png]({{ "/img/htb/boxes/devoops/devoops-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![devoops-trophy.png]({{ "/img/htb/boxes/devoops/devoops-trophy.png" | relative_url }})

@@ -871,7 +871,10 @@ application.secret_key = "sjhdajkh292hdq29dhashdkjsad"
 Теперь можно прилечь на диванчик, спасибо за внимание :innocent:
 
 {: .center-image}
-![canape-owned.png]({{ "/img/htb/boxes/canape/canape-owned.png" | relative_url }})
+![canape-owned-user.png]({{ "/img/htb/boxes/canape/canape-owned-user.png" | relative_url }})
+
+{: .center-image}
+![canape-owned-root.png]({{ "/img/htb/boxes/canape/canape-owned-root.png" | relative_url }})
 
 {: .center-image}
 ![canape-trophy.png]({{ "/img/htb/boxes/canape/canape-trophy.png" | relative_url }})
