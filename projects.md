@@ -9,15 +9,7 @@ permalink: /projects
 Некоторые мои работы:
 
 # GitHub
-- Многопоточный веб-краулер, позволяющий автоматизировать процесс поиска и сбора актуальных уязвимостей из базы данных [CVE](https://cve.mitre.org/ "CVE - Common Vulnerabilities and Exposures (CVE)") / Генератор шаблонов "паспортов уязвимостей" для [БДУ ФСТЭК России](https://bdu.fstec.ru/vul "БДУ - Уязвимости").
-
-|------+----------+---------|
-| Дата | Название | Кнопки  |
-|:----:|:--------:|:-------:|
-| *янв, 2019* | [**cve-monitor**](https://github.com/snovvcrash/cve-monitor "snovvcrash/cve-monitor: Multithreaded web-crawler for monitoring CVEs of current interest / Генератор шаблонов \"паспортов уязвимостей\" для БДУ ФСТЭК России.") | <a class="github-button" href="https://github.com/snovvcrash/cve-monitor/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/cve-monitor on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/cve-monitor" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/cve-monitor on GitHub">Star</a> |
-|------+----------+---------|
-
-- [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — модуль для exploitation-инструмента *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed".
+- *дек, 2018*{:style="color:grey;"} • [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — модуль для exploitation-инструмента *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed".
 
 - Exploitation-фреймворк для генерации *forward-shell*'ов.
 
@@ -58,6 +50,9 @@ permalink: /projects
 |:----:|:--------:|:-------:|
 | *июн, 2017* | [**libcoders**](https://github.com/snovvcrash/libcoders "snovvcrash/libcoders: File compression library (includes 6 algorithms).") | <a class="github-button" href="https://github.com/snovvcrash/libcoders/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/libcoders on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/libcoders" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/libcoders on GitHub">Star</a> |
 |------+----------+---------|
+
+# Telegram
+- *янв, 2019*{:style="color:grey;"} • [**DebSecAnnounce**](https://t.me/DebSecAnnounceBot "Telegram: Contact @DebSecAnnounceBot") — Telegram-бот для отслеживания обновлений ресурса новостной рассылки актуальных уязвимостей [Debian Security Announce](https://lists.debian.org/debian-security-announce/ "Debian Mailing Lists -- Index for debian-security-announce").
 
 # Хабр
 - *мар, 2018*{:style="color:grey;"} • [ссылка](https://habr.com/post/352254 "Linux-форензика в лице трекинга истории подключений USB-устройств / Хабр") • "Linux-форензика в лице трекинга истории подключений USB-устройств"
