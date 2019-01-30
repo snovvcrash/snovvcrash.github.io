@@ -9,7 +9,7 @@ permalink: /projects
 Некоторые мои работы:
 
 # GitHub
-- *дек, 2018*{:style="color:grey;"} • [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — модуль для open source exploitation-инструмента *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed".
+- *дек, 2018*{:style="color:grey;"} • [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — модуль для open source exploitation-инструмента *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed" (CVE-2014-0160).
 
 - Exploitation-фреймворк для генерации *forward-shell*'ов.
 
