@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: TartarSauce Write-Up"
+title: "HTB{ TartarSauce }"
 date: 2018-11-02 00:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

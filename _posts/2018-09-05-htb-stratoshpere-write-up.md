@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: Stratosphere Write-Up"
+title: "HTB{ Stratosphere }"
 date: 2018-09-05 01:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

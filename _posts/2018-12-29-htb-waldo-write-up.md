@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: Waldo Write-Up"
+title: "HTB{ Waldo }"
 date: 2018-12-29 17:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

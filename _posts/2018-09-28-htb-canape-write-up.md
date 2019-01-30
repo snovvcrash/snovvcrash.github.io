@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: Canape Write-Up"
+title: "HTB{ Canape }"
 date: 2018-09-28 22:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

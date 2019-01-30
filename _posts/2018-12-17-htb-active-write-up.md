@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: Active Write-Up"
+title: "HTB{ Active }"
 date: 2018-12-17 00:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

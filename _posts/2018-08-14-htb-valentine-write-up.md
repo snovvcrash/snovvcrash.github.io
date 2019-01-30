@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: Valentine Write-Up"
+title: "HTB{ Valentine }"
 date: 2018-08-14 00:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

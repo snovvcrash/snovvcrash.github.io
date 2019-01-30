@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: DevOops Write-Up"
+title: "HTB{ DevOops }"
 date: 2018-10-22 22:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

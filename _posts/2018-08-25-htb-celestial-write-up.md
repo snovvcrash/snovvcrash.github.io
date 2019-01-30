@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: Celestial Write-Up"
+title: "HTB{ Celestial }"
 date: 2018-08-25 20:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

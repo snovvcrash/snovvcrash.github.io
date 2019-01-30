@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: Sunday Write-Up"
+title: "HTB{ Sunday }"
 date: 2018-10-09 22:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox

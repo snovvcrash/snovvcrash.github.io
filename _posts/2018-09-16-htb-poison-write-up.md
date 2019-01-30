@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HTB: Poison Write-Up"
+title: "HTB{ Poison }"
 date: 2018-09-16 20:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
