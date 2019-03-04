@@ -9,9 +9,9 @@ permalink: /projects
 Некоторые мои работы:
 
 # GitHub
-- *дек, 2018*{:style="color:grey;"} • [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — модуль для open source exploitation-инструмента *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed" (CVE-2014-0160).
+- *дек, 2018*{:style="color:grey;"} • [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — модуль для open source exploitation-инструмента *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed" (CVE-2014-0160)
 
-- Exploitation-фреймворк для генерации *forward-shell*'ов.
+- Exploitation-фреймворк для генерации *forward-shell*'ов
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -19,7 +19,7 @@ permalink: /projects
 | *сен, 2018* | [**FwdSh3ll**](https://github.com/snovvcrash/FwdSh3ll "snovvcrash/FwdSh3ll: Forward shell generation framework.") | <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/FwdSh3ll on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/FwdSh3ll on GitHub">Star</a> |
 |------+----------+---------|
 
-- Дампер *Twitter*-аккаунтов с возможностью смены авторизаций «на лету».
+- Дампер *Twitter*-аккаунтов с возможностью смены авторизаций «на лету»
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -27,7 +27,7 @@ permalink: /projects
 | *июл, 2018* | [**tweetl:crown:rd**](https://github.com/snovvcrash/tweetlord "snovvcrash/tweetlord: Twitter profile dumper (downloader) with authorization swapping.") | <a class="github-button" href="https://github.com/snovvcrash/tweetlord/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/tweetlord on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/tweetlord" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/tweetlord on GitHub">Star</a> |
 |------+----------+---------|
 
-- Консольная утилита для трекинга истории USB-подключений в GNU/Linux.
+- Консольная утилита для трекинга истории USB-подключений в GNU/Linux
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -35,7 +35,7 @@ permalink: /projects
 | *июн, 2018* | [**usbrip**](https://github.com/snovvcrash/usbrip "snovvcrash/usbrip: Simple command line forensics tool for tracking USB device artifacts (history of USB events) on GNU/Linux.") | <a class="github-button" href="https://github.com/snovvcrash/usbrip/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/usbrip on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/usbrip" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/usbrip on GitHub">Star</a> |
 |------+----------+---------|
 
-- Proof-of-Concept взлома квази-*AES-256*, подробности [здесь](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр").
+- Proof-of-Concept взлома квази-*AES-256*, подробности [здесь](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр")
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -43,7 +43,7 @@ permalink: /projects
 | *авг, 2017* | [**aes256m-cracker**](https://github.com/snovvcrash/aes256m-cracker "snovvcrash/aes256m-cracker: Demo of cracking the training version of AES-256 (AES-256-M).") | <a class="github-button" href="https://github.com/snovvcrash/aes256m-cracker/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/aes256m-cracker on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/aes256m-cracker" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/aes256m-cracker on GitHub">Star</a> |
 |------+----------+---------|
 
-- *C++* библиотека для сжатия файлов, включающая 6 алгоритмов: алгоритм Шеннона, алгоритм Фано, алгоритм Хаффмана, алгоритм Хаффмана на биграммах, адаптивный алгоритм Хаффмана.
+- *C++* библиотека для сжатия файлов, включающая 6 алгоритмов: алгоритм Шеннона, алгоритм Фано, алгоритм Хаффмана, алгоритм Хаффмана на биграммах, адаптивный алгоритм Хаффмана
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -52,7 +52,7 @@ permalink: /projects
 |------+----------+---------|
 
 # Telegram
-- *янв, 2019*{:style="color:grey;"} • [**DebSecAnnounce**](https://t.me/DebSecAnnounceBot "Telegram: Contact @DebSecAnnounceBot") — Telegram-бот для отслеживания обновлений ресурса новостной рассылки актуальных уязвимостей [Debian Security Announce](https://lists.debian.org/debian-security-announce/ "Debian Mailing Lists -- Index for debian-security-announce") в рамках работы над системой автоматизацией системы составления «паспортов уязвимостей» по формату [БДУ ФСТЭК России](https://bdu.fstec.ru/vul "БДУ - Уязвимости").
+- *янв, 2019*{:style="color:grey;"} • [**DebSecAnnounce**](https://t.me/DebSecAnnounceBot "Telegram: Contact @DebSecAnnounceBot") — Telegram-бот для отслеживания обновлений ресурса новостной рассылки актуальных уязвимостей [Debian Security Announce](https://lists.debian.org/debian-security-announce/ "Debian Mailing Lists -- Index for debian-security-announce") в рамках работы над системой автоматизацией системы составления «паспортов уязвимостей» по формату [БДУ ФСТЭК России](https://bdu.fstec.ru/vul "БДУ - Уязвимости")
 
 # Хабр
 - *мар, 2018*{:style="color:grey;"} • [ссылка](https://habr.com/post/352254 "Linux-форензика в лице трекинга истории подключений USB-устройств / Хабр") • «Linux-форензика в лице трекинга истории подключений USB-устройств»
@@ -69,4 +69,4 @@ permalink: /projects
 - *июн, 2018*{:style="color:grey;"} • [ссылка](https://codeby.net/forum/threads/usbrip-usb-forenzika-dlja-linuksov-ili-kak-alisa-stala-evoj.63644 "usbrip: USB-форензика для Линуксов, или Как Алиса стала Евой / Codeby.net - Информационная Безопасность") • «usbrip: USB-форензика для Линуксов, или Как Алиса стала Евой»
 
 # Разное
-- *сен, 2016*{:style="color:grey;"} • [ссылка](https://snovvcrash.kinja.com/freedom-desktop-1787162891 "Freedom Desktop") • "Freedom Desktop" — старый пост для Kinja в раздел *desktop-showcase*.
+- *сен, 2016*{:style="color:grey;"} • [ссылка](https://snovvcrash.kinja.com/freedom-desktop-1787162891 "Freedom Desktop") • "Freedom Desktop" — старый пост для Kinja в раздел *desktop-showcase*
