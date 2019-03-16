@@ -27,7 +27,7 @@ See ya!
 * [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
 * [Keybase](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) / Keybase")
 
-# HackTheBox
+# Hack The Box
 
 |-------------------+------------------|
 | Текущий результат | Лучший результат |
