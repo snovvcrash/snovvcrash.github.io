@@ -22,7 +22,8 @@ published: true
 * TOC
 {:toc}
 
-# Nmap
+# Разведка
+## Nmap
 Initial:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial -p- 10.10.10.91
@@ -286,7 +287,7 @@ def getFileContents(filename):
 
 def interactive():
 	while True:
-		filename = input('DevOops> ').strip()
+		filename = input('devoops> ').strip()
 		try:
 			fileContents = getFileContents(filename)
 		except Exception as e:
@@ -321,16 +322,16 @@ if __name__ == '__main__':
 Теперь можно делать примерно следующее:
 ```text
 root@kali:~# python3 devoops_xxe.py
-DevOops> /proc/version
+devoops> /proc/version
 Linux version 4.13.0-37-generic (buildd@lcy01-amd64-019) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)) #42~16.04.1-Ubuntu SMP Wed Mar 7 16:02:25 UTC 2018
 
-DevOops> /etc/lsb-release
+devoops> /etc/lsb-release
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=16.04
 DISTRIB_CODENAME=xenial
 DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
 
-DevOops> /etc/os-release
+devoops> /etc/os-release
 NAME="Ubuntu"
 VERSION="16.04.4 LTS (Xenial Xerus)"
 ID=ubuntu

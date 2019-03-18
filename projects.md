@@ -62,7 +62,7 @@ permalink: /projects
 - *окт, 2017*{:style="color:grey;"} • [ссылка](https://habr.com/post/339910/ "Ломаем модифицированный AES-256 / Хабр") • «Ломаем модифицированный AES-256»
 
 # Codeby
-- *мар, 2019*{:style="color:grey;"} • [ссылка](https://codeby.net/threads/registriruem-polzovatelskuju-aktivnost-pod-windows-ili-napishi-mne-kejlogger.67060/ "Регистрируем пользовательскую активность под Windows или «Напиши мне кейлоггер»") • «Регистрируем пользовательскую активность под Windows или „Напиши мне кейлоггер“»
+- *мар, 2019*{:style="color:grey;"} • [ссылка](https://codeby.net/threads/registriruem-polzovatelskuju-aktivnost-pod-windows-ili-napishi-mne-kejlogger.67060/ "Регистрируем пользовательскую активность под Windows или «Напиши мне кейлоггер»") • «KiLLogger: Регистрируем пользовательскую активность под Windows или „Напиши мне кейлоггер“»
 - *сен, 2018*{:style="color:grey;"} • [ссылка](https://codeby.net/forum/threads/fwdsh3ll-kogda-reverse-i-bind-ne-smogli-forward-shell-speshit-na-pomosch.65029/ "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь / Codeby.net - Информационная Безопасность") • «FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь»
 
 # Упоминания

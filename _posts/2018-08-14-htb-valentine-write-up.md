@@ -22,7 +22,8 @@ published: true
 * TOC
 {:toc}
 
-# Nmap
+# Разведка
+## Nmap
 Начнем со сканирования хоста. Сперва пробежим быстрое SYN-сканирования 1000 самых распространенных портов:
 ```text
 root@kali:~# nmap -n -v -sS -Pn -oN nmap/initial.nmap 10.10.10.79

@@ -20,7 +20,8 @@ published: true
 * TOC
 {:toc}
 
-# Nmap
+# Разведка
+## Nmap
 Initial:
 ```text
 root@kali:~# nmap -n -vvv -sS -Pn --min-rate 5000 -oA nmap/initial 10.10.10.88
