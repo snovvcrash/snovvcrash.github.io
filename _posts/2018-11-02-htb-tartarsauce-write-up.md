@@ -13,9 +13,9 @@ published: true
 
 <!--cut-->
 
-[![tartarsauce-banner.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
+[![banner.png]({{ "/img/htb/boxes/tartarsauce/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
 
-![tartarsauce-info.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/tartarsauce/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -78,7 +78,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 На `http://10.10.10.88:80` нас поджидает немного ASCII-арта:
 
-[![tartarsauce-port80-browser-1.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/img/htb/boxes/tartarsauce/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/port80-browser-1.png" | relative_url }})
 
 В исходниках ничего интересного кроме последней строчки после кучи whitespace'ов:
 ```html
@@ -98,13 +98,13 @@ Disallow: /webservices/phpmyadmin/
 
 Все ссылки возвращают **404** кроме `http://10.10.10.88/webservices/monstra-3.0.4/`, за которой скрывается:
 
-[![tartarsauce-port80-browser-2.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/img/htb/boxes/tartarsauce/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/port80-browser-2.png" | relative_url }})
 
 Monstra CMS. Нам даже разрешают залогиниться со стандартными кредами `admin:admin` и прогуляться по админке:
 
-[![tartarsauce-port80-browser-3.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png]({{ "/img/htb/boxes/tartarsauce/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/port80-browser-3.png" | relative_url }})
 
-[![tartarsauce-port80-browser-4.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png]({{ "/img/htb/boxes/tartarsauce/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/port80-browser-4.png" | relative_url }})
 
 Чтобы не разводить много лирики, сразу скажу, что это одна большая "кроличья нора": из админки нельзя сделать ровным счетом ни-че-го, редактирование кода / загрузка сущностей не проходит — очень похоже, что вся CMS находится в "[read-only режиме]({{ page.url }}#доступ-к-monstra-cms)".
 
@@ -132,19 +132,19 @@ http://10.10.10.88/webservices/wp (Status: 301)
 
 Итак, у нас есть WordPress:
 
-[![tartarsauce-port80-browser-5.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-5.png" | relative_url }})
+[![port80-browser-5.png]({{ "/img/htb/boxes/tartarsauce/port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/port80-browser-5.png" | relative_url }})
 
 Если в CTF-виртуалке развернут WordPress, то в большинстве случаев "из коробки" он будет сломан, т. к. использует доменные имена в ссылках. Чинится это добавлением соответствующих записей в `/etc/hosts`, но это не наш случай.
 
 Если взглянуть на сорцы, то можно увидеть ссылки вида `http:/10.10.10.88...` (один слеш). Пофиксим это в Burp'е:
 
-[![tartarsauce-burp-settings-1.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-burp-settings-1.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-burp-settings-1.png" | relative_url }})
+[![burp-settings-1.png]({{ "/img/htb/boxes/tartarsauce/burp-settings-1.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/burp-settings-1.png" | relative_url }})
 
-[![tartarsauce-burp-settings-2.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-burp-settings-2.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-burp-settings-2.png" | relative_url }})
+[![burp-settings-2.png]({{ "/img/htb/boxes/tartarsauce/burp-settings-2.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/burp-settings-2.png" | relative_url }})
 
 Теперь все как нужно:
 
-[![tartarsauce-port80-browser-6.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-port80-browser-6.png" | relative_url }})
+[![port80-browser-6.png]({{ "/img/htb/boxes/tartarsauce/port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/port80-browser-6.png" | relative_url }})
 
 Но это так, к слову, потому что больше на этой страничке ничего интересного не живет.
 
@@ -298,7 +298,7 @@ Linux TartarSauce 4.15.0-041500-generic #201802011154 SMP Thu Feb 1 12:05:23 UTC
 
 В красках все выглядело ни много ни мало следующим образом (красным — порядок активности панелей):
 
-[![tartarsauce-www-data-shell.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-www-data-shell.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/tartarsauce-www-data-shell.png" | relative_url }})
+[![www-data-shell.png]({{ "/img/htb/boxes/tartarsauce/www-data-shell.png" | relative_url }})]({{ "/img/htb/boxes/tartarsauce/www-data-shell.png" | relative_url }})
 
 # PrivEsc: www-data → onuma
 Оказавшись внутри машины, я дернул [LinEnum.sh](https://github.com/rebootuser/LinEnum "rebootuser/LinEnum: Scripted Local Linux Enumeration & Privilege Escalation Checks"), чтобы немного облегчить себе жизнь с процедурой энумерации машины. В числе прочего, вот, что он сказал:
@@ -910,10 +910,10 @@ drwxr-xr-x 5 root root 4096 Apr  5  2016 /var/www/html/webservices/monstra-3.0.4
 Приятного аппетита с соусом Тартар, спасибо за внимание :innocent:
 
 {: .center-image}
-![tartarsauce-owned-user.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/tartarsauce/owned-user.png" | relative_url }})
 
 {: .center-image}
-![tartarsauce-owned-root.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/tartarsauce/owned-root.png" | relative_url }})
 
 {: .center-image}
-![tartarsauce-trophy.png]({{ "/img/htb/boxes/tartarsauce/tartarsauce-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/tartarsauce/trophy.png" | relative_url }})

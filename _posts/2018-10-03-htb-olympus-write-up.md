@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![olympus-banner.png]({{ "/img/htb/boxes/olympus/olympus-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
+[![banner.png]({{ "/img/htb/boxes/olympus/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
 
 {: .center-image}
-![olympus-info.png]({{ "/img/htb/boxes/olympus/olympus-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/olympus/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -144,7 +144,7 @@ root@kali:~# dig @10.10.10.83 olympus.htb
 # Web — Порт 80 [остров Крит]
 Добро пожаловать на остров Крит:
 
-[![olympus-port80-browser-1.png]({{ "/img/htb/boxes/olympus/olympus-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/olympus/olympus-port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/img/htb/boxes/olympus/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/olympus/port80-browser-1.png" | relative_url }})
 
 В исходниках пусто:
 ```html
@@ -181,7 +181,7 @@ root@kali:~# nikto -h http://10.10.10.83:80 -o nikto/olympus.txt
 
 То же самое можно увидеть, просмотрев заголовки HTTP-ответа:
 
-[![olympus-port80-browser-2.png]({{ "/img/htb/boxes/olympus/olympus-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/olympus/olympus-port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/img/htb/boxes/olympus/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/olympus/port80-browser-2.png" | relative_url }})
 
 На задворках сознания начали всплывать китайские иероглифы, ибо как-то раз я наткнулся на китайскую публикация, описывающую элегантную атаку, основанную на этой фиче для веб-девелоперов.
 
@@ -277,7 +277,7 @@ round-trip min/avg/max/stddev = 68.001/68.346/68.690/0.345 ms
 
 В красках все выглядело так (красные числа — порядок активности панелей):
 
-[![olympus-xdebug-exploit-poc.png]({{ "/img/htb/boxes/olympus/olympus-xdebug-exploit-poc.png" | relative_url }})]({{ "/img/htb/boxes/olympus/olympus-xdebug-exploit-poc.png" | relative_url }})
+[![xdebug-exploit-poc.png]({{ "/img/htb/boxes/olympus/xdebug-exploit-poc.png" | relative_url }})]({{ "/img/htb/boxes/olympus/xdebug-exploit-poc.png" | relative_url }})
 
 На этом считаю тест успешно завершенным, можно переходить к боевым действиям.
 
@@ -786,10 +786,10 @@ aba48699????????????????????????
 Слава богам, спасибо за внимание :innocent:
 
 {: .center-image}
-![olympus-owned-user.png]({{ "/img/htb/boxes/olympus/olympus-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/olympus/owned-user.png" | relative_url }})
 
 {: .center-image}
-![olympus-owned-root.png]({{ "/img/htb/boxes/olympus/olympus-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/olympus/owned-root.png" | relative_url }})
 
 {: .center-image}
-![olympus-trophy.png]({{ "/img/htb/boxes/olympus/olympus-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/olympus/trophy.png" | relative_url }})

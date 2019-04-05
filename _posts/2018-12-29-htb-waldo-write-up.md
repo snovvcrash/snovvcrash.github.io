@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![waldo-banner.png]({{ "/img/htb/boxes/waldo/waldo-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/149 "Hack The Box :: Waldo")
+[![banner.png]({{ "/img/htb/boxes/waldo/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/149 "Hack The Box :: Waldo")
 
 {: .center-image}
-![waldo-info.png]({{ "/img/htb/boxes/waldo/waldo-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/waldo/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -89,9 +89,9 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 # Web — Порт 80
 ## Браузер
-На `http://10.10.10.87:80` нас встречает веб-сайт, окрашенный в тему [Where's Waldo ? In Hollywood (Book 4 - Scene 3)](https://www.deviantart.com/where-is-waldo-wally/art/Where-s-Waldo-In-Hollywood-Book-4-Scene-3-462460774 "Where's Waldo ? In Hollywood (Book 4 - Scene 3) by Where-is-Waldo-Wally on DeviantArt"), который представляет из себя "менеджер списков":
+На `http://10.10.10.87:80` нас встречает веб-сайт, окрашенный в тему [Where's Waldo ? In Hollywood (Book 4 - Scene 3)](https://www.deviantart.com/where-is-wally/art/Where-s-Waldo-In-Hollywood-Book-4-Scene-3-462460774 "Where's Waldo ? In Hollywood (Book 4 - Scene 3) by Where-is-Waldo-Wally on DeviantArt"), который представляет из себя "менеджер списков":
 
-[![waldo-port80-browser-1.png]({{ "/img/htb/boxes/waldo/waldo-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/waldo/waldo-port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/img/htb/boxes/waldo/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/waldo/port80-browser-1.png" | relative_url }})
 
 ## Burp Suite
 Пропустив трафик через локальную проксю Burp'а и осмотревшись на сайте, я составил следующий маппинг "действие → скрипт.php", где *действие* — функция, предоставленная приложением (менеджером списков), *скрипт.php* — PHP-скрипт, отвечающий за выполнение соответствующей функции:
@@ -100,7 +100,7 @@ Service detection performed. Please report any incorrect results at https://nmap
   - открытие списка → `fileRead.php`;
   - модификация списка → `fileWrite.php`.
 
-[![waldo-port80-burp.png]({{ "/img/htb/boxes/waldo/waldo-port80-burp.png" | relative_url }})]({{ "/img/htb/boxes/waldo/waldo-port80-burp.png" | relative_url }})
+[![port80-burp.png]({{ "/img/htb/boxes/waldo/port80-burp.png" | relative_url }})]({{ "/img/htb/boxes/waldo/port80-burp.png" | relative_url }})
 
 На скриншоте выше приведена история Burp'а после выполнения такой последовательности действий после загрузки главной страницы:
 
@@ -203,7 +203,7 @@ Connection: close
 listnum=2&data={"1":"One","2":"Two","3":"Three"}
 ```
 
-[![waldo-port80-browser-2.png]({{ "/img/htb/boxes/waldo/waldo-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/waldo/waldo-port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/img/htb/boxes/waldo/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/waldo/port80-browser-2.png" | relative_url }})
 
 4\. возврат на главную страницу и автоматическое обновление листинга списков (`dirRead.php`):
 ```http
@@ -915,10 +915,10 @@ tac: failed to open '/root/.ssh/authorized_keys' for reading: No such file or di
 Мы нашли спрятавшийся root, спасибо за внимание :innocent:
 
 {: .center-image}
-![waldo-owned-user.png]({{ "/img/htb/boxes/waldo/waldo-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/waldo/owned-user.png" | relative_url }})
 
 {: .center-image}
-![waldo-owned-root.png]({{ "/img/htb/boxes/waldo/waldo-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/waldo/owned-root.png" | relative_url }})
 
 {: .center-image}
-![waldo-trophy.png]({{ "/img/htb/boxes/waldo/waldo-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/waldo/trophy.png" | relative_url }})

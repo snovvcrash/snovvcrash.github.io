@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![devoops-banner.png]({{ "/img/htb/boxes/devoops/devoops-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
+[![banner.png]({{ "/img/htb/boxes/devoops/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
 
 {: .center-image}
-![devoops-info.png]({{ "/img/htb/boxes/devoops/devoops-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/devoops/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -86,7 +86,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 На `http://10.10.10.91:5000` нас ждет заглушка для будущего блога:
 
-[![devoops-port5000-browser-1.png]({{ "/img/htb/boxes/devoops/devoops-port5000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/devoops/devoops-port5000-browser-1.png" | relative_url }})
+[![port5000-browser-1.png]({{ "/img/htb/boxes/devoops/port5000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-1.png" | relative_url }})
 
 На главной видим скриншот, демонстрирующий, как должен выглядеть фид после завершения работы над сайтом, и видим упоминание `feed.py` (его мы встретим чуть позже), "который станет [MVP](https://ru.wikipedia.org/wiki/Минимально_жизнеспособный_продукт "Минимально жизнеспособный продукт — Википедия") (***M**inimum **V**iable **P**roduct*) для местного блога".
 
@@ -119,11 +119,11 @@ http://10.10.10.91:5000/upload (Status: 200)
 
 `/feed` — такой же скриншот как выше, только теперь на всю страницу:
 
-[![devoops-port5000-browser-2.png]({{ "/img/htb/boxes/devoops/devoops-port5000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/devoops/devoops-port5000-browser-2.png" | relative_url }})
+[![port5000-browser-2.png]({{ "/img/htb/boxes/devoops/port5000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-2.png" | relative_url }})
 
 `/upload` — загрузчик фид-ленты в виде XML-документов:
 
-[![devoops-port5000-browser-3.png]({{ "/img/htb/boxes/devoops/devoops-port5000-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/devoops/devoops-port5000-browser-3.png" | relative_url }})
+[![port5000-browser-3.png]({{ "/img/htb/boxes/devoops/port5000-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-3.png" | relative_url }})
 
 Последняя страница с интерфейсом загрузки представляет наибольший интерес, т. к. именно она дарует нам возможность проведения XXE-атаки, речь о которой пойдет ниже.
 
@@ -866,10 +866,10 @@ C `< >` в роли "плохих" символов.
 Удачной разработки, спасибо за внимание :innocent:
 
 {: .center-image}
-![devoops-owned-user.png]({{ "/img/htb/boxes/devoops/devoops-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/devoops/owned-user.png" | relative_url }})
 
 {: .center-image}
-![devoops-owned-root.png]({{ "/img/htb/boxes/devoops/devoops-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/devoops/owned-root.png" | relative_url }})
 
 {: .center-image}
-![devoops-trophy.png]({{ "/img/htb/boxes/devoops/devoops-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/devoops/trophy.png" | relative_url }})

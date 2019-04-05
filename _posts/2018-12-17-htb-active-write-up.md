@@ -4,7 +4,7 @@ title: "HTB{ Active }"
 date: 2018-12-17 00:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Active, windows, active-directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
+tags: [ctf, write-ups, boxes, hackthebox, Active, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
 comments: true
 published: true
 ---
@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![active-banner.png]({{ "/img/htb/boxes/active/active-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
+[![banner.png]({{ "/img/htb/boxes/active/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
 
 {: .center-image}
-![active-info.png]({{ "/img/htb/boxes/active/active-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/active/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -660,7 +660,7 @@ function getpwd([string]$Cpassword) {
 }
 ```
 
-[![active-powershell-gpp-decrypt.png]({{ "/img/htb/boxes/active/active-powershell-gpp-decrypt.png" | relative_url }})]({{ "/img/htb/boxes/active/active-powershell-gpp-decrypt.png" | relative_url }})
+[![powershell-gpp-decrypt.png]({{ "/img/htb/boxes/active/powershell-gpp-decrypt.png" | relative_url }})]({{ "/img/htb/boxes/active/powershell-gpp-decrypt.png" | relative_url }})
 
 В любом случае мы получили авторизационные данные: `SVC_TGS:GPPstillStandingStrong2k18`.
 
@@ -799,7 +799,7 @@ drwxr-xr-x 2 root root 4096 Jul 14  2009  Public
 drwxr-xr-x 2 root root 4096 Jul 21 18:16  SVC_TGS
 ```
 
-[![active-nautilus-smb.png]({{ "/img/htb/boxes/active/active-nautilus-smb.png" | relative_url }})]({{ "/img/htb/boxes/active/active-nautilus-smb.png" | relative_url }})
+[![nautilus-smb.png]({{ "/img/htb/boxes/active/nautilus-smb.png" | relative_url }})]({{ "/img/htb/boxes/active/nautilus-smb.png" | relative_url }})
 
 Проверить состояние так:
 ```text
@@ -821,10 +821,10 @@ root@kali:~# umount /mnt/smb
 Укрощайте трехголовых стражей царства мертвых, спасибо за внимание :innocent:
 
 {: .center-image}
-![active-owned-user.png]({{ "/img/htb/boxes/active/active-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/active/owned-user.png" | relative_url }})
 
 {: .center-image}
-![active-owned-root.png]({{ "/img/htb/boxes/active/active-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/active/owned-root.png" | relative_url }})
 
 {: .center-image}
-![active-trophy.png]({{ "/img/htb/boxes/active/active-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/active/trophy.png" | relative_url }})

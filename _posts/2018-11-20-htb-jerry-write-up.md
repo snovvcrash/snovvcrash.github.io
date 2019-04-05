@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![jerry-banner.png]({{ "/img/htb/boxes/jerry/jerry-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/144 "Hack The Box :: Jerry")
+[![banner.png]({{ "/img/htb/boxes/jerry/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/144 "Hack The Box :: Jerry")
 
 {: .center-image}
-![jerry-info.png]({{ "/img/htb/boxes/jerry/jerry-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/jerry/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -102,16 +102,16 @@ root@kali:~# cat nikto/jerry.txt
 ## Браузер
 На `http://10.10.10.95:8080`, как и ожидалось, мы видим стандартную домашнюю страница Tomcat'а:
 
-[![jerry-port80-browser-1.png]({{ "/img/htb/boxes/jerry/jerry-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/jerry/jerry-port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/img/htb/boxes/jerry/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/jerry/port80-browser-1.png" | relative_url }})
 
 Попытка залогиниться в менеджере приложений (aka *Tomcat Web Application Manager*) с авторизационными данными по умолчанию `tomcat:s3cret` проходит успешно и мы оказываемся в админке:
 
-[![jerry-port80-browser-2.png]({{ "/img/htb/boxes/jerry/jerry-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/jerry/jerry-port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/img/htb/boxes/jerry/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/jerry/port80-browser-2.png" | relative_url }})
 
 # Эксплуатируем Tomcat
 Для того, чтобы получить reverse-shell, будем использовать функционал развертывания war-файлов "WAR file to deploy":
 
-[![jerry-port80-browser-3.png]({{ "/img/htb/boxes/jerry/jerry-port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/jerry/jerry-port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png]({{ "/img/htb/boxes/jerry/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/jerry/port80-browser-3.png" | relative_url }})
 
 ## Web Application Resource
 **W**eb **A**pplication **R**esource (WAR) файлы — это такие файлы-контейнеры (архивы, по сути), которые содержат в себе все необходимое для Java-приложения. Это могут быть Java-архивы (.jar), страницы Java Server Pages (.jsp), Java-сервлеты, Java-классы, веб-страницы, стили CSS и т. п.
@@ -464,10 +464,10 @@ listening on any, link-type LINUX_SLL (Linux cooked), capture size 262144 bytes
 "Том и Джерри" уже не торт, спасибо за внимание :innocent:
 
 {: .center-image}
-![jerry-owned-user.png]({{ "/img/htb/boxes/jerry/jerry-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/jerry/owned-user.png" | relative_url }})
 
 {: .center-image}
-![jerry-owned-root.png]({{ "/img/htb/boxes/jerry/jerry-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/jerry/owned-root.png" | relative_url }})
 
 {: .center-image}
-![jerry-trophy.png]({{ "/img/htb/boxes/jerry/jerry-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/jerry/trophy.png" | relative_url }})

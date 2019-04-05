@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![simple-http-servers-banner.png]({{ "/img/simple-http-servers-banner.png" | relative_url }})
+![banner.png]({{ "/img/simple-http-servers/banner.png" | relative_url }})
 
 <h4 style="color:red;margin-bottom:0;">Local: 10.10.10.1</h4>
 <h4 style="color:red;">Remote: 10.10.10.2</h4>
@@ -173,7 +173,7 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
 
 На скриншоте ниже (кликабельно) можно видеть всю процедуру запуска сервера: предварительная настройка на панели слева, тесты — справа.
 
-[![simple-http-servers-php.png]({{ "/img/simple-http-servers-php.png" | relative_url }})]({{ "/img/simple-http-servers-php.png" | relative_url }})
+[![php.png]({{ "/img/simple-http-servers/php.png" | relative_url }})]({{ "/img/simple-http-servers/php.png" | relative_url }})
 
 Несколько слов о том, что здесь происходит:
   1. Создаем необходимые директории и скрипт с содержимым выше.
@@ -189,7 +189,7 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
 
 Опять же на скриншоте ниже можно видеть всю процедуру запуска: предварительная настройка на панели сверху, тесты — снизу.
 
-[![simple-http-servers-nginx.png]({{ "/img/simple-http-servers-nginx.png" | relative_url }})]({{ "/img/simple-http-servers-nginx.png" | relative_url }})
+[![nginx.png]({{ "/img/simple-http-servers/nginx.png" | relative_url }})]({{ "/img/simple-http-servers/nginx.png" | relative_url }})
 
 Что происходит здесь:
   1. Создаем необходимые директории и конфигурацию сервера по образцу из `default`'а (содержимое конфига есть ниже).

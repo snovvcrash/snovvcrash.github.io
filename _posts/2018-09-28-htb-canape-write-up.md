@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![canape-banner.png]({{ "/img/htb/boxes/canape/canape-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
+[![banner.png]({{ "/img/htb/boxes/canape/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
 
 {: .center-image}
-![canape-info.png]({{ "/img/htb/boxes/canape/canape-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/canape/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -96,23 +96,23 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 Home:
 
-[![canape-port80-browser-1.png]({{ "/img/htb/boxes/canape/canape-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/img/htb/boxes/canape/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-1.png" | relative_url }})
 
 Character Quotes:
 
-[![canape-port80-browser-2.png]({{ "/img/htb/boxes/canape/canape-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/img/htb/boxes/canape/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-2.png" | relative_url }})
 
 Submit Quote (распространенным инъекциям не поддается):
 
-[![canape-port80-browser-3.png]({{ "/img/htb/boxes/canape/canape-port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png]({{ "/img/htb/boxes/canape/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-3.png" | relative_url }})
 
 Забегая вперед скажу, что ни одна из этих вкладок не будет представлять для нас интереса. Разве что на последней вкладке мы уже сейчас можем видеть, что при попытке ввода имени персонажа, которое отсутствует в предполагаемом "белом списке", на нас накричат красной ошибкой:
 
-[![canape-port80-browser-4.png]({{ "/img/htb/boxes/canape/canape-port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png]({{ "/img/htb/boxes/canape/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-4.png" | relative_url }})
 
 А, если имя присутствует в "белом списке", нам разрешат отправить цитату и покажут зеленое сообщение об успехе:
 
-[![canape-port80-browser-5.png]({{ "/img/htb/boxes/canape/canape-port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-port80-browser-5.png" | relative_url }})
+[![port80-browser-5.png]({{ "/img/htb/boxes/canape/port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-5.png" | relative_url }})
 
 При этом сама цитата на вкладке "Character Quotes" не появится. На этом заканчивается все полезное, что мы можем извлечь из видимой части сайта.
 
@@ -153,7 +153,7 @@ Requests/sec.: 135.8114
 Что ж, ныряем в `.git/HEAD`.
 
 # .git
-[![canape-port80-browser-6.png]({{ "/img/htb/boxes/canape/canape-port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-port80-browser-6.png" | relative_url }})
+[![port80-browser-6.png]({{ "/img/htb/boxes/canape/port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-6.png" | relative_url }})
 
 Клонировать гит-репозиторий в нашем случае можно двумя способами.
 
@@ -610,7 +610,7 @@ CouchDB написан на Erlang'е, а Erlang использует серве
 
 В [документации](http://docs.couchdb.org/en/stable/cluster/setup.html#cluster-setup "11.1. Set Up — Apache CouchDB 2.2 Documentation") же к СУБД красуется вывеска с надписью :warning: **Warning**:
 
-[![canape-couchdb-warning.png]({{ "/img/htb/boxes/canape/canape-couchdb-warning.png" | relative_url }})]({{ "/img/htb/boxes/canape/canape-couchdb-warning.png" | relative_url }})
+[![couchdb-warning.png]({{ "/img/htb/boxes/canape/couchdb-warning.png" | relative_url }})]({{ "/img/htb/boxes/canape/couchdb-warning.png" | relative_url }})
 
 Что означает, что если порт `4369` "смотрит наружу интернета", то к нему можно будет подключиться любому желающему при наличии нужного cookie (cookie — единственный способ аутентификации, задействованный в этой схеме). Дефолтные куки для подключения к EPMD — "monster".
 
@@ -872,10 +872,10 @@ application.secret_key = "sjhdajkh292hdq29dhashdkjsad"
 Теперь можно прилечь на диванчик, спасибо за внимание :innocent:
 
 {: .center-image}
-![canape-owned-user.png]({{ "/img/htb/boxes/canape/canape-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/canape/owned-user.png" | relative_url }})
 
 {: .center-image}
-![canape-owned-root.png]({{ "/img/htb/boxes/canape/canape-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/canape/owned-root.png" | relative_url }})
 
 {: .center-image}
-![canape-trophy.png]({{ "/img/htb/boxes/canape/canape-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/canape/trophy.png" | relative_url }})

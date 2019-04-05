@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![mischief-banner.png]({{ "/img/htb/boxes/mischief/mischief-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/145 "Hack The Box :: Mischief")
+[![banner.png]({{ "/img/htb/boxes/mischief/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/145 "Hack The Box :: Mischief")
 
 {: .center-image}
-![mischief-info.png]({{ "/img/htb/boxes/mischief/mischief-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/mischief/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -345,11 +345,11 @@ root@kali:/opt/Enyx# python enyx.py 2c public 10.10.10.92
 ## Браузер
 Вернемся к нашим ~~баранам~~ открытым портам и отправимся смотреть на простой Python-HTTP-сервер:
 
-[![mischief-port3366-browser-1.png]({{ "/img/htb/boxes/mischief/mischief-port3366-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-port3366-browser-1.png" | relative_url }})
+[![port3366-browser-1.png]({{ "/img/htb/boxes/mischief/port3366-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port3366-browser-1.png" | relative_url }})
 
 Мы уже выбили креды `loki:godofmischiefisloki`, поэтому без зазрения совести авторизируемся и попадаем сюда:
 
-[![mischief-port3366-browser-2.png]({{ "/img/htb/boxes/mischief/mischief-port3366-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-port3366-browser-2.png" | relative_url }})
+[![port3366-browser-2.png]({{ "/img/htb/boxes/mischief/port3366-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port3366-browser-2.png" | relative_url }})
 
 Имеем изображение Локи (на стеганографию проверять здесь не буду, поэтому поверьте на слово — там ничего нет :unamused:) и еще одну пару логин:пароль `loki:trickeryanddeceit`.
 
@@ -417,20 +417,20 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 На `http://[dead:beef::250:56ff:feb9:7caa]:80/` нас поджидает очередное предложение залогиниться:
 
-[![mischief-port80-ipv6-browser-1.png]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-1.png" | relative_url }})
+[![port80-ipv6-browser-1.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-1.png" | relative_url }})
 
-[![mischief-port80-ipv6-browser-2.png]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-2.png" | relative_url }})
+[![port80-ipv6-browser-2.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-2.png" | relative_url }})
 
 Это таск из серии "Угадай юзернейм". [В конце райтапа]({{ page.url }}#hydra) сбрутим эту форму Гидрой (хотя даже этого можно не делать, ибо [авторизация байпасится]({{ page.url }}#rce-без-авторизации)), а пока сделаем вид, что креды мы угадали (хотя со мной именно так изначально и было), благо имя пользователя дефолтное — `administrator:trickeryanddeceit`.
 
 ## Command Execution Panel
 После авторизации получаем окошко с RCE, где нам сразу же предлагают пингануть localhost:
 
-[![mischief-port80-ipv6-browser-3.png]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-3.png" | relative_url }})
+[![port80-ipv6-browser-3.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-3.png" | relative_url }})
 
 Что ж, если предлагают, то почему нет? Только вот 127.0.0.1 я, пожалуй, заменю на айпишник своей машины, чтобы убедиться в успешности выполнения команды:
 
-[![mischief-port80-ipv6-browser-4.png]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-4.png" | relative_url }})
+[![port80-ipv6-browser-4.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-4.png" | relative_url }})
 
 ```text
 root@kali:~# tcpdump -n -i tun0 icmp
@@ -451,7 +451,7 @@ listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 ### Фильтрация команд
 Если захочешь внаглую вызвать `nc` для инициализации реверс-подключения, ты разочаруешься:
 
-[![mischief-port80-ipv6-browser-5.png]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-5.png" | relative_url }})
+[![port80-ipv6-browser-5.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-5.png" | relative_url }})
 
 Скорее всего, на машине активен WAF-like механизм, блокирующий выполнение команд, которые содержат слова из черного списка. Разминки ради можно, вооружившись Burp'ом и вытащив кукисы сайта, проверить, какие команды разрешены, а какие нет.
 
@@ -517,7 +517,7 @@ done
 
 В качестве результата имеем:
 
-[![mischief-test-waf-blacklist-1.png]({{ "/img/htb/boxes/mischief/mischief-test-waf-blacklist-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-test-waf-blacklist-1.png" | relative_url }})
+[![test-waf-blacklist-1.png]({{ "/img/htb/boxes/mischief/test-waf-blacklist-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/test-waf-blacklist-1.png" | relative_url }})
 
 [Здесь]({{ page.url }}#waf) мы обсуждаем, как именно устроен процесс фильтрации.
 
@@ -527,14 +527,14 @@ done
 
 Поэтому я не сильно удивился, когда увидел результат выполнения двух stacked-команд `whoami; echo`:
 
-[![mischief-port80-ipv6-browser-6.png]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-port80-ipv6-browser-6.png" | relative_url }})
+[![port80-ipv6-browser-6.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-6.png" | relative_url }})
 
 То есть мы преспокойно можем видеть вывод выполненной команды. И хотя это совсем не тот путь, [который задумывался автором машины]({{ page.url }}#icmp-shell), в первом способе угона аккаунта Локи мы будем абьюзить именно эту ошибку конфигурации.
 
 ### 1-й способ: /home/loki/credentials
 На веб-морде панели выполнения команд есть подсказка о местоположении авторизационных данных пользователя. Но... нельзя так просто взять и написать `cat /home/loki/credentials;`, чтобы получить креды Локи, ведь слово `credentials` в блэклисте:
 
-[![mischief-test-waf-blacklist-2.png]({{ "/img/htb/boxes/mischief/mischief-test-waf-blacklist-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-test-waf-blacklist-2.png" | relative_url }})
+[![test-waf-blacklist-2.png]({{ "/img/htb/boxes/mischief/test-waf-blacklist-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/test-waf-blacklist-2.png" | relative_url }})
 
 Зато, как видно из этого же скриншота, мы можем обратиться к `credentials` через `credential?` или `cred*`.
 
@@ -779,7 +779,7 @@ uid=0(root) gid=0(root) groups=0(root)
 
 Исправлено 2018-07-16:
 
-[![mischief-lxc-patch.png]({{ "/img/htb/boxes/mischief/mischief-lxc-patch.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-lxc-patch.png" | relative_url }})
+[![lxc-patch.png]({{ "/img/htb/boxes/mischief/lxc-patch.png" | relative_url }})]({{ "/img/htb/boxes/mischief/lxc-patch.png" | relative_url }})
 
 К сожалению, я начал возиться с машиной уже после фикса, поэтому этот способ PrivEsc'а прошел мимо меня :disappointed_relieved:
 
@@ -893,7 +893,7 @@ require 'database.php';
 
 if( isset($_SESSION['user_id']) ){
     ...
-?>
+}
 
 ...
 
@@ -1126,7 +1126,7 @@ if __name__ == '__main__':
 
 Результат работы можно наблюдать ниже (на панели справа активен `tcpdump`, также как и шелл парсящий входящие ICMP-пакеты):
 
-[![mischief-icmp-shell.gif]({{ "/img/htb/boxes/mischief/mischief-icmp-shell.gif" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-icmp-shell.gif" | relative_url }})
+[![icmp-shell.gif]({{ "/img/htb/boxes/mischief/icmp-shell.gif" | relative_url }})]({{ "/img/htb/boxes/mischief/icmp-shell.gif" | relative_url }})
 
 ## iptables
 Раз уж мы захватили root, в качестве вишинки на торте посмотрим на правила iptables:
@@ -1174,10 +1174,10 @@ target     prot opt source               destination
 *«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»* :innocent:
 
 {: .center-image}
-![mischief-owned-user.png]({{ "/img/htb/boxes/mischief/mischief-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/mischief/owned-user.png" | relative_url }})
 
 {: .center-image}
-![mischief-owned-root.png]({{ "/img/htb/boxes/mischief/mischief-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/mischief/owned-root.png" | relative_url }})
 
 {: .center-image}
-![mischief-trophy.png]({{ "/img/htb/boxes/mischief/mischief-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/mischief/trophy.png" | relative_url }})

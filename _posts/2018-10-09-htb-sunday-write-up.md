@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![sunday-banner.png]({{ "/img/htb/boxes/sunday/sunday-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
+[![banner.png]({{ "/img/htb/boxes/sunday/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
 
 {: .center-image}
-![sunday-info.png]({{ "/img/htb/boxes/sunday/sunday-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/sunday/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -700,7 +700,7 @@ fb40fab6????????????????????????
 
 Вот так все выглядело вживую (красным указан порядок активности панелей):
 
-[![sunday-root-troll.png]({{ "/img/htb/boxes/sunday/sunday-root-troll.png" | relative_url }})]({{ "/img/htb/boxes/sunday/sunday-root-troll.png" | relative_url }})
+[![root-troll.png]({{ "/img/htb/boxes/sunday/root-troll.png" | relative_url }})]({{ "/img/htb/boxes/sunday/root-troll.png" | relative_url }})
 
 ### 6. Исполняемый файл с SUID
 Еще один способ, если не хочется попадать в тайминги troll'а, — это перезапись любого исполняемого файла с выставленным SUID'ом и владельцем root.
@@ -940,10 +940,10 @@ sunny@sunday:/backup$ ./agent22.backup
 Хорошего воскресенья, спасибо за внимание :innocent:
 
 {: .center-image}
-![sunday-owned-user.png]({{ "/img/htb/boxes/sunday/sunday-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/sunday/owned-user.png" | relative_url }})
 
 {: .center-image}
-![sunday-owned-root.png]({{ "/img/htb/boxes/sunday/sunday-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/sunday/owned-root.png" | relative_url }})
 
 {: .center-image}
-![sunday-trophy.png]({{ "/img/htb/boxes/sunday/sunday-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/sunday/trophy.png" | relative_url }})

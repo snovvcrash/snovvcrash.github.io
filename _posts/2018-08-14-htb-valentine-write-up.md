@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![valentine-banner.png]({{ "/img/htb/boxes/valentine/valentine-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/127 "Hack The Box :: Valentine")
+[![banner.png]({{ "/img/htb/boxes/valentine/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/127 "Hack The Box :: Valentine")
 
 {: .center-image}
-![valentine-info.png]({{ "/img/htb/boxes/valentine/valentine-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/valentine/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -96,7 +96,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 Первым делом глянем, что творится на веб-страничке, предоставленной сервером Apache на 80-м порту. Запустим браузер и перейдем по `10.10.10.79`:
 
-[![valentine-port80-index-php.png]({{ "/img/htb/boxes/valentine/valentine-port80-index-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-index-php.png" | relative_url }})
+[![port80-index-php.png]({{ "/img/htb/boxes/valentine/port80-index-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/port80-index-php.png" | relative_url }})
 
 Хмм, картинка... В исходниках ничего интересного, да и не за чем смотреть было на самом деле — изображение, как впрочем и само название машины, уже кричит в лицо о направлении, которого следует придерживаться. Скоро мы вернемся к Heartbleed'у, а пока еще немного помучаем веб-сайт.
 
@@ -134,7 +134,7 @@ DOWNLOADED: 4612 - FOUND: 6
 ### /dev
 Нашли директорию с кокетливым названием **dev**, внутри 2 файла:
 
-[![valentine-port80-dev.png]({{ "/img/htb/boxes/valentine/valentine-port80-dev.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-dev.png" | relative_url }})
+[![port80-dev.png]({{ "/img/htb/boxes/valentine/port80-dev.png" | relative_url }})]({{ "/img/htb/boxes/valentine/port80-dev.png" | relative_url }})
 
 **hype_key**
 
@@ -204,7 +204,7 @@ To do:
 ### /encode
 Base64-кодировщик:
 
-[![valentine-port80-encode-php.png]({{ "/img/htb/boxes/valentine/valentine-port80-encode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-encode-php.png" | relative_url }})
+[![port80-encode-php.png]({{ "/img/htb/boxes/valentine/port80-encode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/port80-encode-php.png" | relative_url }})
 
 Результат кодирования:
 ```text
@@ -217,7 +217,7 @@ aGFja3RoZWJveA==
 ### /decode
 Base64-декодировщик:
 
-[![valentine-port80-decode-php.png]({{ "/img/htb/boxes/valentine/valentine-port80-decode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/valentine-port80-decode-php.png" | relative_url }})
+[![port80-decode-php.png]({{ "/img/htb/boxes/valentine/port80-decode-php.png" | relative_url }})]({{ "/img/htb/boxes/valentine/port80-decode-php.png" | relative_url }})
 
 Результат декодирования:
 ```text
@@ -480,10 +480,10 @@ hype@Valentine:~$ rm dirty.c dirty
 Берегите свое(и) сердце(а), спасибо за внимание :innocent:
 
 {: .center-image}
-![valentine-owned-user.png]({{ "/img/htb/boxes/valentine/valentine-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/valentine/owned-user.png" | relative_url }})
 
 {: .center-image}
-![valentine-owned-root.png]({{ "/img/htb/boxes/valentine/valentine-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/valentine/owned-root.png" | relative_url }})
 
 {: .center-image}
-![valentine-trophy.png]({{ "/img/htb/boxes/valentine/valentine-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/valentine/trophy.png" | relative_url }})

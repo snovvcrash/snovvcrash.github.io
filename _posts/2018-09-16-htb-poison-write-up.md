@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![poison-banner.png]({{ "/img/htb/boxes/poison/poison-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/132 "Hack The Box :: Poison")
+[![banner.png]({{ "/img/htb/boxes/poison/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/132 "Hack The Box :: Poison")
 
 {: .center-image}
-![poison-info.png]({{ "/img/htb/boxes/poison/poison-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/poison/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -86,7 +86,7 @@ SSH на 22-м, и web-сервис на 80-м портах. Начнем с в�
 ## Браузер
 Перейдя по `http://10.10.10.84`, видим:
 
-[![poison-port80-browser-1.png]({{ "/img/htb/boxes/poison/poison-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/img/htb/boxes/poison/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/port80-browser-1.png" | relative_url }})
 
 Страничка с тестом php-скриптов. Не долго думая, откроем `listfiles.php`:
 
@@ -247,7 +247,7 @@ root@kali:~# curl -A "<?php system(\$_GET['cmd']); ?>" -X GET "http://10.10.10.8
 
 И можем творить, что угодно на сервере, например дадим `ls`:
 
-[![poison-port80-browser-2.png]({{ "/img/htb/boxes/poison/poison-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/img/htb/boxes/poison/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/port80-browser-2.png" | relative_url }})
 
 ### RCE → Reverse-Shell
 
@@ -311,7 +311,7 @@ Ukd4RVdub3dPVU5uUFQwSwo=
 
 Идея вкратце: PHPInfo() позволяет загружать произвольные значения в раздел PHP Variables, которые сохраняются во временный файл:
 
-[![poison-lfi-phpinfo.png]({{ "/img/htb/boxes/poison/poison-lfi-phpinfo.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-lfi-phpinfo.png" | relative_url }})
+[![lfi-phpinfo.png]({{ "/img/htb/boxes/poison/lfi-phpinfo.png" | relative_url }})]({{ "/img/htb/boxes/poison/lfi-phpinfo.png" | relative_url }})
 
 Но этот файл удаляется сервером сразу же после окончания загрузки странички с PHPInfo(). Этот [скрипт](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion%20-%20Path%20Traversal/phpinfolfi.py "PayloadsAllTheThings/phpinfolfi.py at master · swisskyrepo/PayloadsAllTheThings"), описанный в публикации выше, провоцирует состояние гонки для того, чтобы успеть загрузить вредоносную нагрузку во временный файл (реверс-шелл, например) и выполнить его прежде, чем сервер удалит этот файл.
 
@@ -456,7 +456,7 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 ### root.txt
 Забираем флаг:
 
-[![poison-port5901-vnc-1.png]({{ "/img/htb/boxes/poison/poison-port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port5901-vnc-1.png" | relative_url }})
+[![port5901-vnc-1.png]({{ "/img/htb/boxes/poison/port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/port5901-vnc-1.png" | relative_url }})
 
 И в принципе все, осталась только пара комментариев в [Эпилоге]({{ page.url }}#разное) :triumph:
 
@@ -478,15 +478,15 @@ Password: VNCP@$$!
 ## /root/.vnc/passwd
 А в этой директории лежит, файл с паролем, о чудо, идентичный распакованному `/home/charix/secret.zip`.
 
-[![poison-port5901-vnc-2.png]({{ "/img/htb/boxes/poison/poison-port5901-vnc-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port5901-vnc-2.png" | relative_url }})
+[![port5901-vnc-2.png]({{ "/img/htb/boxes/poison/port5901-vnc-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/port5901-vnc-2.png" | relative_url }})
 
 Держите при себе противоядия, спасибо за внимание :innocent:
 
 {: .center-image}
-![poison-owned-user.png]({{ "/img/htb/boxes/poison/poison-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/poison/owned-user.png" | relative_url }})
 
 {: .center-image}
-![poison-owned-root.png]({{ "/img/htb/boxes/poison/poison-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/poison/owned-root.png" | relative_url }})
 
 {: .center-image}
-![poison-trophy.png]({{ "/img/htb/boxes/poison/poison-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/poison/trophy.png" | relative_url }})

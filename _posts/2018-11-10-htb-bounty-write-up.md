@@ -14,10 +14,10 @@ published: true
 <!--cut-->
 
 {: .center-image}
-[![bounty-banner.png]({{ "/img/htb/boxes/bounty/bounty-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
+[![banner.png]({{ "/img/htb/boxes/bounty/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
 
 {: .center-image}
-![bounty-info.png]({{ "/img/htb/boxes/bounty/bounty-info.png" | relative_url }})
+![info.png]({{ "/img/htb/boxes/bounty/info.png" | relative_url }})
 
 * TOC
 {:toc}
@@ -78,7 +78,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 Пикча волшебника (Мерлин, ты ли это?) во всю страницу по адресу `http://10.10.10.93:80`:
 
-[![bounty-port80-browser-1.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/img/htb/boxes/bounty/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-1.png" | relative_url }})
 
 В исходниках кроме подтверждения нашей догадки о личности волшебника (и вправду Мерлин) ничего полезного не имеется:
 ```html
@@ -160,18 +160,18 @@ http://10.10.10.93/uploadedfiles (Status: 301)
 
 `/transfer.aspx` — загрузчик файлов:
 
-[![bounty-port80-browser-2.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/img/htb/boxes/bounty/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-2.png" | relative_url }})
 
 `/uploadedfiles` — предположительно путь, по которому загруженные способом выше файлы можно отыскать.
 
 # /transfer.aspx
 Экспериментальным образом устанавливаем, что среди прочих, `/transfer.aspx` позволяет импортировать расширения типа `.config`, выдавая позитивную надпись зеленым цветом:
 
-[![bounty-port80-browser-3.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png]({{ "/img/htb/boxes/bounty/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-3.png" | relative_url }})
 
 Если же расширение находится в черном списке (как, к примеру, тот же `.aspx`), то нас огорчат краснобуквенной ошибкой:
 
-[![bounty-port80-browser-4.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png]({{ "/img/htb/boxes/bounty/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-4.png" | relative_url }})
 
 ## web.config
 Итак, что же такое [web.config](https://ru.wikipedia.org/wiki/Web.config "Web.config — Википедия")? Грубо говоря, это просто XML-документ, содержащий набор настроек для `ASP.NET` веб-сервиса (чем-то напоминает `.htaccess` для Apache).
@@ -221,7 +221,7 @@ Response.write("<!-"&"-")
 
 Загрузим web.config на сервер и инициируем выполнение кода, перейдя по `http://10.10.10.93/uploadedfiles/web.config`:
 
-[![bounty-port80-browser-5.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-5.png" | relative_url }})
+[![port80-browser-5.png]({{ "/img/htb/boxes/bounty/port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-5.png" | relative_url }})
 
 Есть контакт, переходим к следующей фазе.
 
@@ -353,30 +353,30 @@ Response.Write(thisDir)
 
 Который в жизни будет выглядеть таким образом:
 
-[![bounty-port80-browser-6.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-6.png" | relative_url }})
+[![port80-browser-6.png]({{ "/img/htb/boxes/bounty/port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-6.png" | relative_url }})
 
 И соберем информацию о машине.
 
 1\. `whoami`. Спрашиваем имя пользователя, который крутит веб-сервер:
 
-[![bounty-port80-browser-7.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-7.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-7.png" | relative_url }})
+[![port80-browser-7.png]({{ "/img/htb/boxes/bounty/port80-browser-7.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-7.png" | relative_url }})
 
 2\. ``(dir 2>&1 *`|echo CMD);&<# rem #>echo PowerShell``. Спрашиваем, что используется по дефолту: CMD или PowerShell:
 
-[![bounty-port80-browser-8.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-8.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-8.png" | relative_url }})
+[![port80-browser-8.png]({{ "/img/htb/boxes/bounty/port80-browser-8.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-8.png" | relative_url }})
 
 3\. `echo %cd%`. Узнаем текущую директорию:
 
-[![bounty-port80-browser-9.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-9.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-9.png" | relative_url }})
+[![port80-browser-9.png]({{ "/img/htb/boxes/bounty/port80-browser-9.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-9.png" | relative_url }})
 
 4\. `wmic OS get OSArchitecture`. Узнаем архитектуру системы:
 
-[![bounty-port80-browser-10.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-10.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-10.png" | relative_url }})
+[![port80-browser-10.png]({{ "/img/htb/boxes/bounty/port80-browser-10.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-10.png" | relative_url }})
 
 #### user.txt
 5\. `type C:\Users\merlin\Desktop\user.txt`. И даже забираем флаг пользователя:
 
-[![bounty-port80-browser-11.png]({{ "/img/htb/boxes/bounty/bounty-port80-browser-11.png" | relative_url }})]({{ "/img/htb/boxes/bounty/bounty-port80-browser-11.png" | relative_url }})
+[![port80-browser-11.png]({{ "/img/htb/boxes/bounty/port80-browser-11.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-11.png" | relative_url }})
 
 У нас есть все необходимое, чтобы получить полноценную сессию.
 
@@ -660,10 +660,10 @@ Hip, hip, hurray! :relieved:
 Награда ждет, спасибо за внимание :innocent:
 
 {: .center-image}
-![bounty-owned-user.png]({{ "/img/htb/boxes/bounty/bounty-owned-user.png" | relative_url }})
+![owned-user.png]({{ "/img/htb/boxes/bounty/owned-user.png" | relative_url }})
 
 {: .center-image}
-![bounty-owned-root.png]({{ "/img/htb/boxes/bounty/bounty-owned-root.png" | relative_url }})
+![owned-root.png]({{ "/img/htb/boxes/bounty/owned-root.png" | relative_url }})
 
 {: .center-image}
-![bounty-trophy.png]({{ "/img/htb/boxes/bounty/bounty-trophy.png" | relative_url }})
+![trophy.png]({{ "/img/htb/boxes/bounty/trophy.png" | relative_url }})
