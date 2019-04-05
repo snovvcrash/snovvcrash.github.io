@@ -458,9 +458,9 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 
 [![poison-port5901-vnc-1.png]({{ "/img/htb/boxes/poison/poison-port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/poison-port5901-vnc-1.png" | relative_url }})
 
-И в принципе все, осталась только пара комментариев в [Разном]({{ page.url }}#разное) :triumph:
+И в принципе все, осталась только пара комментариев в [Эпилоге]({{ page.url }}#разное) :triumph:
 
-# Разное
+# Эпилог
 ## Раскрытие секрета VNC
 Посмотрим, что скрывалось в файле `secret`. Зачем? Потому что можем:
 ```text

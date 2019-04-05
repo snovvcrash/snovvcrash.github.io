@@ -327,7 +327,7 @@ root@sun:~# cat /root/root.txt
 ba1d0019????????????????????????
 ```
 
-И в качестве бонуса посмотреть суперпользовательский `crontab` (разберем его подробнее в [конце]({{ page.url }}#cron) райтапа):
+И в качестве бонуса посмотреть суперпользовательский `crontab` (разберем его подробнее в [Эпилоге]({{ page.url }}#cron)):
 ```
 root@sun:~# crontab -l
 # Edit this file to introduce tasks to be run by cron.
@@ -385,7 +385,7 @@ f4ckU!
 
 I guess, we're done here :triumph:
 
-# Разное
+# Эпилог
 ## server.js
 Для общего развития можно посмотреть на `/home/sun/server.js`, отвечающий за все безобразие, которое происходило на web'е:
 ```javascript

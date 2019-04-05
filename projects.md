@@ -19,7 +19,7 @@ permalink: /projects
 | *сен, 2018* | [**FwdSh3ll**](https://github.com/snovvcrash/FwdSh3ll "snovvcrash/FwdSh3ll: Forward shell generation framework.") | <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/FwdSh3ll on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/FwdSh3ll on GitHub">Star</a> |
 |------+----------+---------|
 
-- Дампер *Twitter*-аккаунтов с возможностью смены авторизаций «на лету»
+- Дампер Twitter-аккаунтов с возможностью смены авторизаций «на лету»
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -35,7 +35,7 @@ permalink: /projects
 | *июн, 2018* | [**usbrip**](https://github.com/snovvcrash/usbrip "snovvcrash/usbrip: Simple command line forensics tool for tracking USB device artifacts (history of USB events) on GNU/Linux.") | <a class="github-button" href="https://github.com/snovvcrash/usbrip/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/usbrip on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/usbrip" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/usbrip on GitHub">Star</a> |
 |------+----------+---------|
 
-- Proof-of-Concept взлома квази-*AES-256*, подробности [здесь](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр")
+- Proof-of-Concept взлома квази-AES-256, подробности [здесь](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр")
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -43,7 +43,7 @@ permalink: /projects
 | *авг, 2017* | [**aes256m-cracker**](https://github.com/snovvcrash/aes256m-cracker "snovvcrash/aes256m-cracker: Demo of cracking the training version of AES-256 (AES-256-M).") | <a class="github-button" href="https://github.com/snovvcrash/aes256m-cracker/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/aes256m-cracker on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/aes256m-cracker" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/aes256m-cracker on GitHub">Star</a> |
 |------+----------+---------|
 
-- *C++* библиотека для сжатия файлов, включающая 6 алгоритмов: алгоритм Шеннона, алгоритм Фано, алгоритм Хаффмана, алгоритм Хаффмана на биграммах, адаптивный алгоритм Хаффмана
+- C++ библиотека для сжатия файлов, включающая 6 алгоритмов: алгоритм Шеннона, алгоритм Фано, алгоритм Хаффмана, алгоритм Хаффмана на биграммах, адаптивный алгоритм Хаффмана
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |

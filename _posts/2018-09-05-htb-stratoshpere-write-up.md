@@ -745,7 +745,7 @@ root@stratosphere:/home/richard# ls /root/success.py
 ls: cannot access '/root/success.py': No such file or directory
 ```
 
-Но в [конце]({{ page.url }}#хеши) райтапа мы все же сломаем пару хешей. Так, разминки ради.
+Но в [Эпилоге]({{ page.url }}#хеши) мы все же сломаем пару хешей. Так, разминки ради.
 
 ## PrivEsc: richard → root. Способ 2
 В начале исходника нельзя не заметить импорт библиотеки `hashlib` для вычисления хеш-значений вводимых строк. Угоним же эту библиотеку?
@@ -783,7 +783,7 @@ richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 
 :triumph:
 
-# Разное
+# Эпилог
 ## Хеши
 Шутки ради попрошу своего друга Джона решить предлагаемые тестом хеши:
 ```text
