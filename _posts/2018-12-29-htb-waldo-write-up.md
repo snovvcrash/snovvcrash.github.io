@@ -47,15 +47,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Dec 22 22:43:35 2018 -- 1 IP address (1 host up) scanned in 0.78 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb-waldo-nmap-version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/nmap/htb/waldo/version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p22,80,8888 10.10.10.87
+root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p22,80,8888 10.10.10.87
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/version.nmap
-# Nmap 7.70 scan initiated Sat Dec 22 22:45:04 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p22,80,8888 10.10.10.87
+# Nmap 7.70 scan initiated Sat Dec 22 22:45:04 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p22,80,8888 10.10.10.87
 Nmap scan report for 10.10.10.87
 Host is up, received echo-reply ttl 63 (0.14s latency).
 Scanned at 2018-12-22 22:45:05 MSK for 12s

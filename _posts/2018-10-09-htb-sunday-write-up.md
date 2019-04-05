@@ -50,15 +50,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Oct  6 14:40:33 2018 -- 1 IP address (1 host up) scanned in 139.31 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb-sunday-nmap-version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/nmap/htb/sunday/version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p79,111,22022,47581,48935 10.10.10.76
+root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p79,111,22022,47581,48935 10.10.10.76
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/version.nmap
-# Nmap 7.70 scan initiated Sat Oct  6 14:48:06 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p79,111,22022,47581,48935 10.10.10.76
+# Nmap 7.70 scan initiated Sat Oct  6 14:48:06 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p79,111,22022,47581,48935 10.10.10.76
 Nmap scan report for 10.10.10.76
 Host is up, received echo-reply ttl 254 (0.052s latency).
 Scanned at 2018-10-06 14:48:07 EDT for 78s

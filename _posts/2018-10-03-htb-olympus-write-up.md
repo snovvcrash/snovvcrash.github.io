@@ -49,15 +49,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sun Sep 30 14:07:55 2018 -- 1 IP address (1 host up) scanned in 0.55 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb-olympus-nmap-version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/nmap/htb/olympus/version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p53,80,2222 10.10.10.83
+root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p53,80,2222 10.10.10.83
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/version.nmap
-# Nmap 7.70 scan initiated Sun Sep 30 14:08:02 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p53,80,2222 10.10.10.83
+# Nmap 7.70 scan initiated Sun Sep 30 14:08:02 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p53,80,2222 10.10.10.83
 Nmap scan report for 10.10.10.83
 Host is up, received reset ttl 63 (0.049s latency).
 Scanned at 2018-09-30 14:08:03 EDT for 24s

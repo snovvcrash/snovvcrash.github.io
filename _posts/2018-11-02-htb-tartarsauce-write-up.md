@@ -43,15 +43,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Mon Oct 29 09:44:02 2018 -- 1 IP address (1 host up) scanned in 0.52 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb-tartarsauce-nmap-version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/nmap/htb/tartarsauce/version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.88
+root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p80 10.10.10.88
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/version.nmap
-# Nmap 7.70 scan initiated Mon Oct 29 09:44:27 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.88
+# Nmap 7.70 scan initiated Mon Oct 29 09:44:27 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p80 10.10.10.88
 Nmap scan report for 10.10.10.88
 Host is up, received echo-reply ttl 63 (0.062s latency).
 Scanned at 2018-10-29 09:44:27 EDT for 8s
