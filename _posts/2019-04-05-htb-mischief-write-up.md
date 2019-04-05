@@ -781,7 +781,7 @@ uid=0(root) gid=0(root) groups=0(root)
 
 [![mischief-lxc-patch.png]({{ "/img/htb/boxes/mischief/mischief-lxc-patch.png" | relative_url }})]({{ "/img/htb/boxes/mischief/mischief-lxc-patch.png" | relative_url }})
 
-К сожалению, я начал возиться с машиной уже после фикса, поэтому этот способ PrivEsc'а прошел мимо меня :sob:
+К сожалению, я начал возиться с машиной уже после фикса, поэтому этот способ PrivEsc'а прошел мимо меня :disappointed_relieved:
 
 ## Ищем root.txt
 Получив root-сессию любым из способов выше и заглянув в `/root/root.txt`, видим следующее:
