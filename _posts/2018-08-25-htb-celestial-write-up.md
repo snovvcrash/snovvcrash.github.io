@@ -9,9 +9,11 @@ comments: true
 published: true
 ---
 
-**Celestial** — образцовый представитель типичной CTF-машины. Уязвимый web-сервис дает возможность удаленного выполнения кода (RCE), открывая путь к получению reverse-shell'а, откуда до повышения привилегий до суперпользователя (LPE) в силу небрежно выставленных настроек прав доступа рукой подать. Let's dive into it! **Сложность: 3.9/10**{:style="color:orange;"}
+**Celestial** — образцовый представитель типичной CTF-машины. Уязвимый web-сервис дает возможность удаленного выполнения кода (RCE), открывая путь к получению reverse-shell'а, откуда до повышения привилегий до суперпользователя (LPE) в силу небрежно выставленных настроек прав доступа рукой подать. Let's dive into it!
 
 <!--cut-->
+
+**Сложность: 3.9/10**{:style="color:orange;"}
 
 {: .center-image}
 [![banner.png]({{ "/img/htb/boxes/celestial/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
