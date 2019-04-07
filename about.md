@@ -4,7 +4,8 @@ title: О блоге
 permalink: /about
 ---
 
-![avatar.png]({{ "/img/avatar.png" | relative_url }}){:style="float:right;margin-left:10px;"}
+![avatar.png]({{ "/img/avatar.png" | relative_url }})
+{: style="float: right; margin-left: 10px;"}
 
 Приветствую!
 

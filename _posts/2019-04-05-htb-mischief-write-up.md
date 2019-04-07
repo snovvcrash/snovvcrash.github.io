@@ -13,15 +13,17 @@ published: true
 
 <!--cut-->
 
-*«— Не ходи туда, там тебя ждут неприятности. — Ну как же туда не ходить? Они же ждут!»*{:style="color:#a8a8a8;"}
+*«— Не ходи туда, там тебя ждут неприятности. — Ну как же туда не ходить? Они же ждут!»*
+{: style="color: #a8a8a8;"}
 
-**Сложность: 6.3/10**{:style="color:red;"}
+**Сложность: 6.3/10**
+{: style="color: red; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/mischief/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/145 "Hack The Box :: Mischief")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/mischief/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -169,7 +171,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Дефолтная утилита для SNMP-разведки.
 
 #### Настройка
-Если запустить snmpwalk при дефолтных настройках, ничего кроме непонятных для человеческого взгяда идентификаторов OID мы не получим. Здесь на помощь приходит пакет `snmp-mibs-downloader`, загружающий и инсталлирующий базу MIB.
+Если запустить snmpwalk при дефолтных настройках, ничего кроме непонятных для человеческого взгляда идентификаторов OID мы не получим. Здесь на помощь приходит пакет `snmp-mibs-downloader`, загружающий и инсталлирующий базу MIB.
 
 Установим его:
 ```text
@@ -215,7 +217,7 @@ HOST-RESOURCES-MIB::hrSWRunName.22 = STRING: "khugepaged"
 ```
 
 #### Список запущенных процессов
-Вспомним, что мы видели простой Python-HTTP-сервер на 3366-м TCP порту, запрашивающий авторизацию. Креды от такого сервака подаются питону в качестве аргументов командной строки в виде `SimpleHTTPAuthServer [-h] [--dir DIR] [--https] port key`, поэтому мы можем попробывать отыскать их в нашем дампе.
+Вспомним, что мы видели простой Python-HTTP-сервер на 3366-м TCP порту, запрашивающий авторизацию. Креды от такого сервака подаются питону в качестве аргументов командной строки в виде `SimpleHTTPAuthServer [-h] [--dir DIR] [--https] port key`, поэтому мы можем попробовать отыскать их в нашем дампе.
 
 Для этого среди записей типа `hrSWRunName` найдем процесс Python'а:
 ```text
@@ -814,10 +816,10 @@ ae155fad????????????????????????
 Tricked :triumph:
 
 # Эпилог
-## IPv6-адрес с помошью EUI-64
+## IPv6-адрес с помощью EUI-64
 Рассмотрим, как работает [механизм](http://ciscotips.ru/eui-64 "Получение IPv6 адреса с помошью EUI-64 | CiscoTips") автоматической генерации link-local IPv6-адреса с помощью [EUI-64](https://ru.wikipedia.org/wiki/Уникальный_идентификатор_организации#64-битный_расширенный_уникальный_идентификатор_EUI-64 "Уникальный идентификатор организации — Википедия") из MAC-адреса на примере Mischief.
 
-Для этого нам нужно находиться на одном канальном уровне (aka *OSI layer 2*) с тем хостом, адрес которого мы хотим узнать. Пусть, это будет [Hawk](https://snovvcrash.github.io/2018/12/09/htb-hawk-write-up.html "HTB{ Hawk } / snovvcrash’s Security Blog").
+Для этого нам нужно находиться на одном канальном уровне (aka *OSI layer 2*) с тем хостом, адрес которого мы хотим узнать. Пусть [Hawk](https://snovvcrash.github.io/2018/12/09/htb-hawk-write-up.html "HTB{ Hawk } / snovvcrash’s Security Blog") станет нашим связующим звеном (aka *Pivot Point*).
 
 Дадим пинг от Hawk до Mischief и запросим ARP-таблицу для того, чтобы вытащить MAC Mischief:
 ```text
@@ -857,7 +859,7 @@ PING fe80::0250:56ff:feb9:7caa%ens33(fe80::250:56ff:feb9:7caa%ens33) 56 data byt
 rtt min/avg/max/mdev = 0.236/34.259/136.290/58.907 ms
 ```
 
-It's magic! Теоретически, можно было бы продолжать прохождение через проксирование этой машины, если бы была такая необходимость, но, к счастью, у нас были другие пути.
+It's magic! Теоретически, можно было бы продолжать прохождение через проксирование этой машины, реализуя схему Proxy Pivoting'а, если бы была такая необходимость, но, к счастью, у нас были другие пути.
 
 ## Hydra
 Не смотря на то, что, оказывается, авторизацию можно [просто обойти]({{ page.url }}#rce-без-авторизации), сбрутить ее тоже дело не сложное:
@@ -1133,7 +1135,7 @@ if __name__ == '__main__':
 [![icmp-shell.gif]({{ "/img/htb/boxes/mischief/icmp-shell.gif" | relative_url }})]({{ "/img/htb/boxes/mischief/icmp-shell.gif" | relative_url }})
 
 ## iptables
-Раз уж мы захватили root, в качестве вишинки на торте посмотрим на правила iptables:
+Раз уж мы захватили root, в качестве вишенки на торте посмотрим на правила iptables:
 ```text
 root@Mischief:~# iptables -L
 Chain INPUT (policy ACCEPT)
@@ -1175,13 +1177,14 @@ target     prot opt source               destination
 
 Тадааа, все разрешено. Это объясняет, почему мы смогли получить IPv6 реверс-шелл и обломались с IPv4.
 
-*«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»*{:style="color:#a8a8a8;"} :innocent:
+*«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»*
+{: style="color: #a8a8a8;"}
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/mischief/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/mischief/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/mischief/trophy.png" | relative_url }})
+{: .center-image}

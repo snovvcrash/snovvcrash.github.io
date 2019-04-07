@@ -13,15 +13,17 @@ published: true
 
 <!--cut-->
 
-*«...Лежа в пещере своей, в три глотки лаял огромный Цербер, и лай громовой оглашал молчаливое царство...»*{:style="color:#a8a8a8;"}
+*«...Лежа в пещере своей, в три глотки лаял огромный Цербер, и лай громовой оглашал молчаливое царство...»*
+{: style="color: #a8a8a8;"}
 
-**Сложность: 4.6/10**{:style="color:orange;"}
+**Сложность: 4.6/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/active/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/active/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -824,11 +826,11 @@ root@kali:~# umount /mnt/smb
 
 Укрощайте трехголовых стражей царства мертвых, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/active/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/active/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/active/trophy.png" | relative_url }})
+{: .center-image}

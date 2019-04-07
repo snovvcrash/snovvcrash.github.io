@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 5.2/10**{:style="color:orange;"}
+**Сложность: 5.2/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/stratosphere/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/129 "Hack The Box :: Stratosphere")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/stratosphere/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -838,11 +839,11 @@ sh: 1: /root/success.py: not found
 
 Пройдя стратосферу, до звезд совсем недалеко, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/stratosphere/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/stratosphere/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/stratosphere/trophy.png" | relative_url }})
+{: .center-image}

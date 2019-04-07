@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 5/10**{:style="color:orange;"}
+**Сложность: 5/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/canape/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/canape/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -873,11 +874,11 @@ application.secret_key = "sjhdajkh292hdq29dhashdkjsad"
 
 Теперь можно прилечь на диванчик, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/canape/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/canape/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/canape/trophy.png" | relative_url }})
+{: .center-image}

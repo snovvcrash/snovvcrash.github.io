@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 5/10**{:style="color:orange;"}
+**Сложность: 5/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/waldo/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/149 "Hack The Box :: Waldo")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/waldo/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -916,11 +917,11 @@ tac: failed to open '/root/.ssh/authorized_keys' for reading: No such file or di
 
 Мы нашли спрятавшийся root, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/waldo/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/waldo/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/waldo/trophy.png" | relative_url }})
+{: .center-image}

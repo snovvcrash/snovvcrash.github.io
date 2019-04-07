@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 5/10**{:style="color:orange;"}
+**Сложность: 5/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/secnotes/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/151 "Hack The Box :: SecNotes")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/secnotes/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -140,7 +141,7 @@ Connection: Keep-Alive
 Мы поймаем отклик (от лица `WindowsPowerShell`, это важно). В общем смысле это означает ничто иное, как то, что ссылки из сообщений админу автоматически "обкликиваются"; для нарушителя в лице нас это же означает ничто иное, как возможность проведения [XSRF-атаки](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet "Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet - OWASP").
 
 ### XSRF — это...
-XSRF (aka *Сross Site Request Forgery*, *CSRF*) — это старая как мир веб-атака, заключающаяся в выполнении непредмаренных действий от лица пользователя веб-ресурса, уязвимого к оной атаке, через создание вредоносной URL-ссылки. Когда ничего не подозревающий посетитель сайта кликает на такую ссылку, он, сам того не желая, может стать своим же палачом, выполнив ряд угодных атакующему действий в фоновом режиме.
+XSRF (aka *Сross Site Request Forgery*, *CSRF*) — это старая как мир веб-атака, заключающаяся в выполнении непреднамеренных действий от лица пользователя веб-ресурса, уязвимого к оной атаке, через создание вредоносной URL-ссылки. Когда ничего не подозревающий посетитель сайта кликает на такую ссылку, он, сам того не желая, может стать своим же палачом, выполнив ряд угодных атакующему действий в фоновом режиме.
 
 Защита от подобного рода атак тривиальна: вводятся дополнительные сущности (CSRF-токены), выступающие в роли уникального для каждой сессии секретного значения, которое определяет легитимность запроса.
 
@@ -263,7 +264,7 @@ secnotes\tyler
 Отлично! Теперь есть возможность выполнения кода.
 
 ## Reverse-Shell
-Когда речь идет о Windows-хосте, есть несколько способов агрейда веб-шелла до полноценного интерактивного шелла. Один из наиболее элегантных, на мой взгляд, это использование пауэршеловского Invoke-Expression `powershell IEX()` с аргументом `webclient.downloadstring()`, нацеленным, в свою очередь, на загрузку чего-то наподобие [Invoke-PowerShellTcp.ps1](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1 "nishang/Invoke-PowerShellTcp.ps1 at master · samratashok/nishang") от Nishang. Однако в случае, когда у нас есть полноценный доступ на запись, можно [вместе с бэкдором (веб-шеллом)]({{ page.url }}#secnotes_reverse_tcpsh) кинуть на жертву [nc.exe](https://eternallybored.org/misc/netcat/ "netcat 1.11 for Win32/Win64"), чтобы не усложнять себе жизнь:
+Когда речь идет о Windows-хосте, есть несколько способов апгрейда веб-шелла до полноценного интерактивного шелла. Один из наиболее элегантных, на мой взгляд, это использование пауэршеловского Invoke-Expression `powershell IEX()` с аргументом `webclient.downloadstring()`, нацеленным, в свою очередь, на загрузку чего-то наподобие [Invoke-PowerShellTcp.ps1](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1 "nishang/Invoke-PowerShellTcp.ps1 at master · samratashok/nishang") от Nishang. Однако в случае, когда у нас есть полноценный доступ на запись, можно [вместе с бэкдором (веб-шеллом)]({{ page.url }}#secnotes_reverse_tcpsh) кинуть на жертву [nc.exe](https://eternallybored.org/misc/netcat/ "netcat 1.11 for Win32/Win64"), чтобы не усложнять себе жизнь:
 ```text
 root@kali:~# locate nc.exe
 /usr/share/seclists/Web-Shells/FuzzDB/nc.exe
@@ -767,11 +768,11 @@ if (mysqli_num_rows($res) > 0) {
 
 Keep your notes **truly** secure :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/secnotes/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/secnotes/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/secnotes/trophy.png" | relative_url }})
+{: .center-image}

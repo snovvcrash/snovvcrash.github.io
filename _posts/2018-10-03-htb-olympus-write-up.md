@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 5.3/10**{:style="color:orange;"}
+**Сложность: 5.3/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/olympus/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/olympus/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -787,11 +788,11 @@ aba48699????????????????????????
 
 Слава богам, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/olympus/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/olympus/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/olympus/trophy.png" | relative_url }})
+{: .center-image}

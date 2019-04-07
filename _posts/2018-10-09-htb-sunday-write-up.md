@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 4.1/10**{:style="color:orange;"}
+**Сложность: 4.1/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/sunday/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/sunday/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -941,11 +942,11 @@ sunny@sunday:/backup$ ./agent22.backup
 
 Хорошего воскресенья, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/sunday/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/sunday/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/sunday/trophy.png" | relative_url }})
+{: .center-image}

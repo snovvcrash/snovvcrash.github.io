@@ -13,11 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 6.2/10**{:style="color:red;"}
+**Сложность: 6.2/10**
+{: style="color: red; text-align: right; font-size: 120%;"}
 
 [![banner.png]({{ "/img/htb/boxes/tartarsauce/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
+{: .center-image}
 
 ![info.png]({{ "/img/htb/boxes/tartarsauce/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -911,11 +914,11 @@ drwxr-xr-x 5 root root 4096 Apr  5  2016 /var/www/html/webservices/monstra-3.0.4
 
 Приятного аппетита с соусом Тартар, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/tartarsauce/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/tartarsauce/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/tartarsauce/trophy.png" | relative_url }})
+{: .center-image}

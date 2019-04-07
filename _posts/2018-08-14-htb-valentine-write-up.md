@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 4.2/10**{:style="color:orange;"}
+**Сложность: 4.2/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/valentine/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/127 "Hack The Box :: Valentine")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/valentine/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -481,11 +482,11 @@ hype@Valentine:~$ rm dirty.c dirty
 
 Берегите свое(и) сердце(а), спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/valentine/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/valentine/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/valentine/trophy.png" | relative_url }})
+{: .center-image}

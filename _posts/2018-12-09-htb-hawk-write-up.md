@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 4.8/10**{:style="color:orange;"}
+**Сложность: 4.8/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/hawk/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/146 "Hack The Box :: Hawk")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/hawk/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -602,11 +603,11 @@ uid=0(root) gid=0(root) groups=0(root)
 
 Приручайте ястребов, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/hawk/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/hawk/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/hawk/trophy.png" | relative_url }})
+{: .center-image}

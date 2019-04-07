@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 2.9/10**{:style="color:green;"}
+**Сложность: 2.9/10**
+{: style="color: green; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/jerry/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/144 "Hack The Box :: Jerry")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/jerry/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -465,11 +466,11 @@ listening on any, link-type LINUX_SLL (Linux cooked), capture size 262144 bytes
 
 "Том и Джерри" уже не торт, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/jerry/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/jerry/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/jerry/trophy.png" | relative_url }})
+{: .center-image}

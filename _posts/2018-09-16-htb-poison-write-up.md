@@ -13,13 +13,14 @@ published: true
 
 <!--cut-->
 
-**Сложность: 3.9/10**{:style="color:orange;"}
+**Сложность: 3.9/10**
+{: style="color: orange; text-align: right; font-size: 120%;"}
 
-{: .center-image}
 [![banner.png]({{ "/img/htb/boxes/poison/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/132 "Hack The Box :: Poison")
-
 {: .center-image}
+
 ![info.png]({{ "/img/htb/boxes/poison/info.png" | relative_url }})
+{: .center-image}
 
 * TOC
 {:toc}
@@ -484,11 +485,11 @@ Password: VNCP@$$!
 
 Держите при себе противоядия, спасибо за внимание :innocent:
 
-{: .center-image}
 ![owned-user.png]({{ "/img/htb/boxes/poison/owned-user.png" | relative_url }})
-
 {: .center-image}
+
 ![owned-root.png]({{ "/img/htb/boxes/poison/owned-root.png" | relative_url }})
-
 {: .center-image}
+
 ![trophy.png]({{ "/img/htb/boxes/poison/trophy.png" | relative_url }})
+{: .center-image}
