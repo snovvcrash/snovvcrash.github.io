@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-**Сложность: 4.1/10**
+**4.1/10**
 {: style="color: orange; text-align: right; font-size: 120%;"}
 
 [![banner.png]({{ "/img/htb/boxes/sunday/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")

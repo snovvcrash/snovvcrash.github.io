@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-**Сложность: 6.2/10**
+**6.2/10**
 {: style="color: red; text-align: right; font-size: 120%;"}
 
 [![banner.png]({{ "/img/htb/boxes/tartarsauce/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")

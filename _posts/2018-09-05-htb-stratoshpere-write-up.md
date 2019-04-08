@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-**Сложность: 5.2/10**
+**5.2/10**
 {: style="color: orange; text-align: right; font-size: 120%;"}
 
 [![banner.png]({{ "/img/htb/boxes/stratosphere/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/129 "Hack The Box :: Stratosphere")

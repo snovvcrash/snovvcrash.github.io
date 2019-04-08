@@ -16,7 +16,7 @@ published: true
 *«...Лежа в пещере своей, в три глотки лаял огромный Цербер, и лай громовой оглашал молчаливое царство...»*
 {: style="color: #a8a8a8;"}
 
-**Сложность: 4.6/10**
+**4.6/10**
 {: style="color: orange; text-align: right; font-size: 120%;"}
 
 [![banner.png]({{ "/img/htb/boxes/active/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")

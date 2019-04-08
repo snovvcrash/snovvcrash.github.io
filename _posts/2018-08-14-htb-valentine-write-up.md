@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-**Сложность: 4.2/10**
+**4.2/10**
 {: style="color: orange; text-align: right; font-size: 120%;"}
 
 [![banner.png]({{ "/img/htb/boxes/valentine/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/127 "Hack The Box :: Valentine")

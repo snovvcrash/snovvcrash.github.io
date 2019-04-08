@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-**Сложность: 5/10**
+**5/10**
 {: style="color: orange; text-align: right; font-size: 120%;"}
 
 [![banner.png]({{ "/img/htb/boxes/canape/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")

@@ -4,7 +4,7 @@ title: "HTB{ Mischief }"
 date: 2019-04-05 16:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Mischief, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
+tags: [ctf, write-ups, boxes, hackthebox, Mischief, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
 comments: true
 published: true
 ---
@@ -16,7 +16,7 @@ published: true
 *«— Не ходи туда, там тебя ждут неприятности. — Ну как же туда не ходить? Они же ждут!»*
 {: style="color: #a8a8a8;"}
 
-**Сложность: 6.3/10**
+**6.3/10**
 {: style="color: red; text-align: right; font-size: 120%;"}
 
 [![banner.png]({{ "/img/htb/boxes/mischief/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/145 "Hack The Box :: Mischief")
@@ -277,7 +277,7 @@ PING dead:beef::0250:56ff:feb9:7caa(dead:beef::250:56ff:feb9:7caa) 56 data bytes
 rtt min/avg/max/mdev = 42.922/43.214/43.507/0.358 ms
 ```
 
-Видим маршрутизируемый IPv6-адрес `de:ad:be:ef::02:50:56:ff:fe:b9:7c:aa` и link-local IPv6-адрес `fe:80::02:50:56:ff:fe:b9:7c:aa` (которые, к слову, будут меняться при каждом ресете коробки). О втором способе получения link-local адреса на основе идентификатора EUI-64 говорим [здесь]({{ page.url }}#ipv6-адрес-с-помошью-eui-64).
+Видим маршрутизируемый IPv6-адрес `de:ad:be:ef::02:50:56:ff:fe:b9:7c:aa` и link-local IPv6-адрес `fe:80::02:50:56:ff:fe:b9:7c:aa` (которые, к слову, будут меняться при каждом ресете коробки). О втором способе получения link-local адреса на основе идентификатора EUI-64 говорим [здесь]({{ page.url }}#ipv6-адрес-с-помощью-eui-64).
 
 ### snmp-check
 Тоже стандартная Kali'вская тулза, которая из коробки дает читабельный результат (но не самый подробный). Юзать так:
@@ -1019,7 +1019,7 @@ whoami 2>&1 | xxd -p | tr -d '\n'  # выведет "726f6f740a"
 
 Мы получим такой результат `726f6f740a`, в котором всего 10 символов, что однозначно меньше, чем 32. В таком случае инструкция `fold -w 32` будет бесполезна, т. к. мы не добили вывод до нужной длины, и поэтому циклу `while` просто будет нечего читать, т. к. он не увидит символ перевода на новую строку (и поэтому будет считать, что вывод пустой).
 
-Поэтому я добавляю "маркер останова" длиной в 16 байт (32 символа), ролью которого является добивание результата вывода команды с гарантированным переходом на новую строку, чтобы `while` прочитал и отправил даже самый короткий вывод.
+Поэтому я добавляю "маркер останова" длиной в 16 ASCII-символов (16 байт, 32 hex-символа), ролью которого является добивание output'а команды с гарантированным переходом на новую строку, чтобы `while` прочитал и отправил даже самый короткий вывод.
 
 ### ICMPShell.py
 Для автоматизации процесса выше напишем Python-скрипт с использованием модуля `scapy` для реализации сниффера ICMP-пакетов (в качестве альтернативы можно использовать модуль `impacket` как, например, [здесь](https://github.com/inquisb/icmpsh/blob/master/icmpsh_m.py "icmpsh/icmpsh_m.py at master · inquisb/icmpsh"), но мне scapy больше по душе):
@@ -1177,7 +1177,7 @@ target     prot opt source               destination
 
 Тадааа, все разрешено. Это объясняет, почему мы смогли получить IPv6 реверс-шелл и обломались с IPv4.
 
-*«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»*
+*«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»*.
 {: style="color: #a8a8a8;"}
 
 ![owned-user.png]({{ "/img/htb/boxes/mischief/owned-user.png" | relative_url }})
