@@ -17,7 +17,7 @@ published: true
 {: style="color: #a8a8a8;"}
 
 **6.3/10**
-{: style="color: red; text-align: right; font-size: 120%;"}
+{: style="color: red; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/mischief/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/145 "Hack The Box :: Mischief")
 {: .center-image}
@@ -217,7 +217,7 @@ HOST-RESOURCES-MIB::hrSWRunName.22 = STRING: "khugepaged"
 ```
 
 #### Список запущенных процессов
-Вспомним, что мы видели простой Python-HTTP-сервер на 3366-м TCP порту, запрашивающий авторизацию. Креды от такого сервака подаются питону в качестве аргументов командной строки в виде `SimpleHTTPAuthServer [-h] [--dir DIR] [--https] port key`, поэтому мы можем попробовать отыскать их в нашем дампе.
+Вспомним, что мы видели простой Python-HTTP-сервер на 3366-м TCP порту, запрашивающий авторизацию. Креды для такого сервака подаются питону в качестве аргументов командной строки в виде `SimpleHTTPAuthServer [-h] [--dir DIR] [--https] port key`, поэтому мы можем попробовать отыскать их в нашем дампе.
 
 Для этого среди записей типа `hrSWRunName` найдем процесс Python'а:
 ```text
@@ -427,7 +427,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 [![port80-ipv6-browser-2.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-2.png" | relative_url }})
 
-Это таск из серии "Угадай юзернейм". [В конце райтапа]({{ page.url }}#hydra) сбрутим эту форму Гидрой (хотя даже этого можно не делать, ибо [авторизация байпасится]({{ page.url }}#rce-без-авторизации)), а пока сделаем вид, что креды мы угадали (хотя со мной именно так изначально и было), благо имя пользователя дефолтное — `administrator:trickeryanddeceit`.
+Это таск из серии "Угадай юзернейм". В [эпилоге]({{ page.url }}#hydra) сбрутим эту форму Гидрой (хотя даже этого можно не делать, ибо [авторизация байпасится]({{ page.url }}#rce-без-авторизации)), а пока сделаем вид, что креды мы угадали (хотя со мной именно так изначально и было), благо имя пользователя дефолтное — `administrator:trickeryanddeceit`.
 
 ## Command Execution Panel
 После авторизации получаем окошко с RCE, где нам сразу же предлагают пингануть localhost:

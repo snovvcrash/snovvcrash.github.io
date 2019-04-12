@@ -17,7 +17,7 @@ published: true
 {: style="color: #a8a8a8;"}
 
 **4.6/10**
-{: style="color: orange; text-align: right; font-size: 120%;"}
+{: style="color: orange; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/active/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
 {: .center-image}

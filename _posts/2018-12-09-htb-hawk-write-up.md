@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **4.8/10**
-{: style="color: orange; text-align: right; font-size: 120%;"}
+{: style="color: orange; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/hawk/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/146 "Hack The Box :: Hawk")
 {: .center-image}

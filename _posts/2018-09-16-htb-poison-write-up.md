@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **3.9/10**
-{: style="color: orange; text-align: right; font-size: 120%;"}
+{: style="color: orange; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/poison/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/132 "Hack The Box :: Poison")
 {: .center-image}

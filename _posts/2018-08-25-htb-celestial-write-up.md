@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **3.9/10**
-{: style="color: orange; text-align: right; font-size: 120%;"}
+{: style="color: orange; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/celestial/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
 {: .center-image}
@@ -330,7 +330,7 @@ root@sun:~# cat /root/root.txt
 ba1d0019????????????????????????
 ```
 
-И в качестве бонуса посмотреть суперпользовательский `crontab` (разберем его подробнее в [Эпилоге]({{ page.url }}#cron)):
+И в качестве бонуса посмотреть суперпользовательский `crontab` (разберем его подробнее в [эпилоге]({{ page.url }}#cron)):
 ```
 root@sun:~# crontab -l
 # Edit this file to introduce tasks to be run by cron.

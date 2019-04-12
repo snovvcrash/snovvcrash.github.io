@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **4.1/10**
-{: style="color: orange; text-align: right; font-size: 120%;"}
+{: style="color: orange; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/sunday/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
 {: .center-image}
@@ -699,7 +699,7 @@ cat /root/root.txt
 fb40fab6????????????????????????
 ```
 
-Если получилось с первого раза, значит очень повезло: как будет видно в конце райтапа (см. [Эпилог]({{ page.url }}#overwrite)), `/root/troll` перезаписывается каждые 5 секунд :joy:
+Если получилось с первого раза, значит очень повезло: как будет видно в конце райтапа (см. [эпилог]({{ page.url }}#overwrite)), `/root/troll` перезаписывается каждые 5 секунд :joy:
 
 Вот так все выглядело вживую (красным указан порядок активности панелей):
 

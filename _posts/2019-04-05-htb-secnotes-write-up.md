@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **5/10**
-{: style="color: orange; text-align: right; font-size: 120%;"}
+{: style="color: orange; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/secnotes/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/151 "Hack The Box :: SecNotes")
 {: .center-image}

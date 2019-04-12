@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **5.3/10**
-{: style="color: orange; text-align: right; font-size: 120%;"}
+{: style="color: orange; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/olympus/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
 {: .center-image}

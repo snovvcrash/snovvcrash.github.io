@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **5.2/10**
-{: style="color: orange; text-align: right; font-size: 120%;"}
+{: style="color: orange; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/stratosphere/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/129 "Hack The Box :: Stratosphere")
 {: .center-image}
@@ -750,7 +750,7 @@ root@stratosphere:/home/richard# ls /root/success.py
 ls: cannot access '/root/success.py': No such file or directory
 ```
 
-Но в [Эпилоге]({{ page.url }}#хеши) мы все же сломаем пару хешей. Так, разминки ради.
+Но в [эпилоге]({{ page.url }}#хеши) мы все же сломаем пару хешей. Так, разминки ради.
 
 ## PrivEsc: richard → root. Способ 2
 В начале исходника нельзя не заметить импорт библиотеки `hashlib` для вычисления хеш-значений вводимых строк. Угоним же эту библиотеку?

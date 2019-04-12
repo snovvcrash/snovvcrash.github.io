@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **2.9/10**
-{: style="color: green; text-align: right; font-size: 120%;"}
+{: style="color: green; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/jerry/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/144 "Hack The Box :: Jerry")
 {: .center-image}
