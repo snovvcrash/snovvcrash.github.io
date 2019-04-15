@@ -1,1 +1,1 @@
-[**snovvcrash's InfoSec Blog**](https://snovvcrash.github.io "snovvcrash's InfoSec Blog")
+[**snovvcrash's Security Blog**](https://snovvcrash.github.io "snovvcrash's Security Blog")
