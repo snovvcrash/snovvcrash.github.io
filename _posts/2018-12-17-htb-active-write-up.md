@@ -574,8 +574,8 @@ error: NT_STATUS_ACCESS_DENIED
 enum4linux complete on Sun Dec 16 14:50:32 2018
 ```
 
-### nullinux.py
-Этакая [обновленная альтернатива](https://github.com/m8r0wn/nullinux/blob/master/setup.sh "m8r0wn/nullinux: Internal penetration testing tool for Linux that can be used to enumerate OS information, domain information, shares, directories, and users through SMB.") [enum4linux]({{ page.url }}#enum4linux).
+### nullinux
+Этакая [обновленная альтернатива](https://github.com/m8r0wn/nullinux "m8r0wn/nullinux: Internal penetration testing tool for Linux that can be used to enumerate OS information, domain information, shares, directories, and users through SMB.") [enum4linux]({{ page.url }}#enum4linux).
 
 Может то же самое, только красивее и без кучи сообщений об ошибках:
 ```text
@@ -746,7 +746,7 @@ $krb5tgs$23$*Administrator$ACTIVE.HTB$active/CIFS~445*$55c71f4c1c309f9760aeb823e
 Успех. Авторизационные данные для привилегированного доступа — `Administrator:Ticketmaster1968`.
 
 ## PrivEsc: SVC_TGS → Administrator
-Можем забрать `root.txt` из админской шары с помощью smbmap точно так же, как я показывал это [здесь](), а можем с помощью *impacket/psexec.py* (или *impacket/wmiexec.py* — синтаксис одинаковый) инициировать рут-сессию:
+Можем забрать `root.txt` из админской шары с помощью smbmap точно так же, как я показывал это [здесь]({{ page.url }}#smbmap), а можем с помощью *impacket/psexec.py* (или *impacket/wmiexec.py* — синтаксис одинаковый) инициировать рут-сессию:
 
 ```text
 root@kali:~# psexec.py active.htb/Administrator:Ticketmaster1968@10.10.10.100
