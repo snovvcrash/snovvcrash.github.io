@@ -6,7 +6,7 @@ author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, Active, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
 comments: true
-published: true
+published: false
 ---
 
 **Active** — максимально простая, однако, в то же время, одна из самых полезных для прохождения Windows-машин в своей "ценовой категории" на HTB. Почему? Так это же *контроллер домена AD*! Тезисный обзор предлагаемых развлечений: энумерация *SMB-шар* (используем tуеву hучу крутых утилит а-ля *smbclient*, *smbmap*, *enum4linux*, *nullinux*); разграбление SMB с анонимным доступом для захвата файла групповых политик *Groups.xml*; декрипт GPP-пароля из той самой xml'ки; получение доступа к внутридоменному аккаунту с последующей инициализацией атаки типа *Kerberoasting* (против протокола аутентификации *Kerberos*) для извлечения тикета администратора с помощью коллекции Python-скриптов *impacket* для работы с сетевыми протоколами; наконец, офлайн-восстановление пароля администратора из хеша (с помощью *Hashcat*) для окончательного pwn'а контроллера.
