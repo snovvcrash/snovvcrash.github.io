@@ -160,7 +160,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Уже интереснее — есть SNMP (161 UDP) и даже его вывод *by скриптовый движок Nmap'а* (опущен, т. к. он длинный и не очень информативный). От этого можно начинать танцевать.
 
 ## Энумерация SNMP — Порт 161 UDP
-Как сообщает Вики:
+Как сообщает [Вики](https://ru.wikipedia.org/wiki/SNMP "SNMP — Википедия"):
 > SNMP (англ. Simple Network Management Protocol — простой протокол сетевого управления) — стандартный интернет-протокол для управления устройствами в IP-сетях на основе архитектур TCP/UDP. К поддерживающим SNMP устройствам относятся маршрутизаторы, коммутаторы, серверы, рабочие станции, принтеры, модемные стойки и другие. Протокол обычно используется в системах сетевого управления для контроля подключённых к сети устройств на предмет условий, которые требуют внимания администратора.
 >
 > SNMP возглавляет составленный SANS Institute список «Common Default Configuration Issues» с вопросом изначальной установки строк сообщества на значения «public» и «private» и занимал десятую позицию в SANS Top 10 Самых критических угроз Интернет-безопасности за 2000 год.
@@ -695,7 +695,7 @@ loki@Mischief:~$ su -
 
 Запускать бинарник могут все:
 ```text
-ls -l /bin/su
+loki@Mischief:~$ ls -l /bin/su
 -rwsr-xr-x+ 1 root root 44664 Jan 25  2018 /bin/su
 ```
 
@@ -736,7 +736,7 @@ loki@Mischief:~$ getfacl -R -s -p / 2>/dev/null | sed -n 's/^# file: //p'
 //bin/su
 ```
 
-Поэтому нам нужен другой способ ввести креди суперпользователя.
+Поэтому нам нужен другой способ ввести креды суперпользователя.
 
 ## 1-й способ: su от имени www-data
 Здесь все просто — возвращаемся к самопальному `command_execution_panel.sh`, снова триггерим шелл и оттуда эскалируемся до рута:
@@ -878,11 +878,8 @@ Hydra v8.8 (c) 2019 by van Hauser/THC - Please do not use in military or secret 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2019-04-04 23:33:58
 [DATA] max 4 tasks per 1 server, overall 4 tasks, 34 login tries (l:17/p:2), ~9 tries per task
 [DATA] attacking http-post-form://[dead:beef:0000:0000:0250:56ff:feb9:7caa]:80/login.php:user=^USER^&password=^PASS^:Sorry, those credentials do not match
-[ATTEMPT] target dead:beef:0000:0000:0250:56ff:feb9:7caa - login "root" - pass "godofmischiefisloki" - 1 of 34 [child 0] (0/0)
-[ATTEMPT] target dead:beef:0000:0000:0250:56ff:feb9:7caa - login "root" - pass "trickeryanddeceit" - 2 of 34 [child 1] (0/0)
-[ATTEMPT] target dead:beef:0000:0000:0250:56ff:feb9:7caa - login "admin" - pass "godofmischiefisloki" - 3 of 34 [child 2] (0/0)
-[ATTEMPT] target dead:beef:0000:0000:0250:56ff:feb9:7caa - login "admin" - pass "trickeryanddeceit" - 4 of 34 [child 3] (0/0)
-[80][http-post-form] host: dead:beef:0000:0000:0250:56ff:feb9:7caa   login: root   password: godofmischiefisloki
+...
+[80][http-post-form] host: dead:beef:0000:0000:0250:56ff:feb9:7caa   login: administrator   password: trickeryanddeceit
 [STATUS] attack finished for dead:beef:0000:0000:0250:56ff:feb9:7caa (valid pair found)
 1 of 1 target successfully completed, 1 valid password found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2019-04-04 23:34:00
@@ -987,7 +984,7 @@ ftp
 telnet
 ```
 
-В этом же сегменте исходника, кстати, становится очевидно, откуда растут ноги у бага с отображением вывода stacked-команд: при сцеплении оных с помощью `;` в /dev/null отправляется результат выполнения только *последний* команды.
+В этом же сегменте исходника, кстати, становится очевидно, откуда растут ноги у бага с отображением вывода stacked-команд: при сцеплении оных с помощью `;` в /dev/null отправляется результат выполнения только *последней* команды.
 
 ## ICMP-Shell
 Подобрались к самой творческой части прохождения. Представим ситуацию, в которой мы бы не обнаружили возможность просмотра результата выполнения команд прямо в браузере. Такой исход и подразумевал автор, и в этом случае нам бы пришлось мастерить **ICMP-шелл**.

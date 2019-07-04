@@ -36,7 +36,7 @@ permalink: /projects
 | *июн, 2018* | [**usbrip**](https://github.com/snovvcrash/usbrip "snovvcrash/usbrip: Simple command line forensics tool for tracking USB device artifacts (history of USB events) on GNU/Linux.") | <a class="github-button" href="https://github.com/snovvcrash/usbrip/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download snovvcrash/usbrip on GitHub">Download</a> <a class="github-button" href="https://github.com/snovvcrash/usbrip" data-icon="octicon-star" data-show-count="true" aria-label="Star snovvcrash/usbrip on GitHub">Star</a> |
 |------+----------+---------|
 
-- Proof-of-Concept взлома квази-AES-256, подробности [здесь](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр")
+- Proof-of-Concept взлома [квази-AES-256](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр")
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -54,7 +54,7 @@ permalink: /projects
 
 ## Gists
 
-- *июн, 2019*{: style="color: grey;"} • [**s0c14lch3ck.py**](https://gist.github.com/snovvcrash/86bcbf65cbc89bf496fd19afcf19f6f5 "Username checker") — чекер зарегистрированных юзернеймов для аккаунтов сошиал медии
+- *июн, 2019*{: style="color: grey;"} • [**s0c14lch3ck.py**](https://gist.github.com/snovvcrash/86bcbf65cbc89bf496fd19afcf19f6f5 "Username checker") — чекер зарегистрированных юзернеймов для аккаунтов сошиал медии и адресов электронной почты
 
 - *июн, 2019*{: style="color: grey;"} • [**binasciicoder.py**](https://gist.github.com/snovvcrash/e8e129527ea77f2664a97b54cdeb9f55 "ASCII text string to binary string and vise versa (Python2/3 compatible)") — кодировщик ASCII-текста в бинарную строку и наоборот для Python2/3 (ибо надоело каждый раз, когда возникает необходимость, изобретать его заново)
 
