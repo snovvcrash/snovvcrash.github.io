@@ -66,6 +66,7 @@ permalink: /projects
 
 # Telegram
 
+- *июл, 2019*{: style="color: grey;"} • [**HTBWriteUps**](https://t.me/HTBWriteUpsBot "Telegram: Contact @HTBWriteUpsBot") — Telegram-бот для упрощения поиска тактик для пентеста, основанный на блогах [@ippsec](https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA "IppSec - YouTube")'а и [@0xdf](https://0xdf.gitlab.io/ "0xdf hacks stuff")'а, содержащих райтапы к прохождениям уязвимых виртуальных машин с [HackTheBox](https://www.hackthebox.eu/ "Hack The Box :: Penetration Testing Labs"). Markdown-дампы прохождений с таймкодами, удобные для поиска ключевых слов по <kbd>Ctrl</kbd>+<kbd>F</kbd>, живут в [репозитории](https://github.com/snovvcrash/htb-write-ups-bot/tree/master/write-ups-md "htb-write-ups-bot/write-ups-md at master · snovvcrash/htb-write-ups-bot") бота
 - *янв, 2019*{: style="color: grey;"} • [**DebSecAnnounce**](https://t.me/DebSecAnnounceBot "Telegram: Contact @DebSecAnnounceBot") — Telegram-бот для отслеживания обновлений ресурса новостной рассылки актуальных уязвимостей [Debian Security Announce](https://lists.debian.org/debian-security-announce/ "Debian Mailing Lists -- Index for debian-security-announce") в рамках работы над системой автоматизацией системы составления «паспортов уязвимостей» для [БДУ ФСТЭК России](https://bdu.fstec.ru/vul "БДУ - Уязвимости")
 
 # Хабр
