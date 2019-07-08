@@ -28,7 +28,7 @@ See ya!
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
 * [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
-* [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) | Твиттер")
+* [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")
 * [Keybase](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) / Keybase")
 
 # Hack The Box
