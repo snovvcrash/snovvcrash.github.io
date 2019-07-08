@@ -58,7 +58,7 @@ permalink: /projects
 
 - *июн, 2019*{: style="color: grey;"} • [**binasciicoder.py**](https://gist.github.com/snovvcrash/e8e129527ea77f2664a97b54cdeb9f55 "ASCII text string to binary string and vise versa (Python2/3 compatible)") — кодировщик ASCII-текста в бинарную строку и наоборот для Python2/3 (ибо надоело каждый раз, когда возникает необходимость, изобретать его заново)
 
-- *ноя, 2018*{: style="color: grey;"} • [**rbtmap.cxx**](https://gist.github.com/snovvcrash/e8bbdf8fa6e750ce503be219c243887e "Implementation of map (associative container) based on the red-black tree structure") — учебная реализации C++ контейнера map (ассоциативный массив), основанного на красно-чёрном дереве
+- *ноя, 2018*{: style="color: grey;"} • [**rbtmap.cxx**](https://gist.github.com/snovvcrash/e8bbdf8fa6e750ce503be219c243887e "Implementation of map (associative container) based on the red-black tree structure") — тренировочная реализации C++ контейнера map (ассоциативный массив), основанного на красно-чёрном дереве
 
 ## Contribution
 
@@ -84,12 +84,12 @@ permalink: /projects
 # Codeby
 
 - *мар, 2019*{: style="color: grey;"} • [ссылка](https://codeby.net/threads/registriruem-polzovatelskuju-aktivnost-pod-windows-ili-napishi-mne-kejlogger.67060/ "Регистрируем пользовательскую активность под Windows или «Напиши мне кейлоггер»") • «KiLLogger: Регистрируем пользовательскую активность под Windows или „Напиши мне кейлоггер“»
-- *сен, 2018*{: style="color: grey;"} • [ссылка](https://codeby.net/forum/threads/fwdsh3ll-kogda-reverse-i-bind-ne-smogli-forward-shell-speshit-na-pomosch.65029/ "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь / Codeby.net - Информационная Безопасность") • «FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь»
+- *сен, 2018*{: style="color: grey;"} • [ссылка](https://codeby.net/forum/threads/fwdsh3ll-kogda-reverse-i-bind-ne-smogli-forward-shell-speshit-na-pomosch.65029/ "FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь") • «FwdSh3ll: Когда Reverse и Bind не смогли, Forward-Shell спешит на помощь»
 
 # Упоминания
 
-- *авг, 2018*{: style="color: grey;"} • [ссылка](https://codeby.net/forum/threads/tweetlrd-ehlegantnyj-damper-stranichek-tvittera-zhonglirujuschij-avtorizacijami.64292/ "tweetl👑rd: Элегантный дампер страничек Твиттера, жонглирующий авторизациями / Codeby.net - Информационная Безопасность") • «tweetl👑rd: Элегантный дампер страничек Твиттера, жонглирующий авторизациями»
-- *июн, 2018*{: style="color: grey;"} • [ссылка](https://codeby.net/forum/threads/usbrip-usb-forenzika-dlja-linuksov-ili-kak-alisa-stala-evoj.63644/ "usbrip: USB-форензика для Линуксов, или Как Алиса стала Евой / Codeby.net - Информационная Безопасность") • «usbrip: USB-форензика для Линуксов, или Как Алиса стала Евой»
+- *авг, 2018*{: style="color: grey;"} • [ссылка](https://codeby.net/forum/threads/tweetlrd-ehlegantnyj-damper-stranichek-tvittera-zhonglirujuschij-avtorizacijami.64292/ "tweetl👑rd: Элегантный дампер страничек Твиттера, жонглирующий авторизациями") • «tweetl👑rd: Элегантный дампер страничек Твиттера, жонглирующий авторизациями»
+- *июн, 2018*{: style="color: grey;"} • [ссылка](https://codeby.net/forum/threads/usbrip-usb-forenzika-dlja-linuksov-ili-kak-alisa-stala-evoj.63644/ "usbrip: USB-форензика для Линуксов, или Как Алиса стала Евой") • «usbrip: USB-форензика для Линуксов, или Как Алиса стала Евой»
 
 # Разное
 
