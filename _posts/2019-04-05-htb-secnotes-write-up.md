@@ -214,7 +214,7 @@ XSRF в первозданном виде!
 
 Очень похоже на расшаренный SMB-ресурс.
 
-С помощью smbmap (о котором я рассказывал в [райтапе про Active](https://snovvcrash.github.io/2018/12/17/htb-active-write-up.html#smbmap "HTB{ Active } / snovvcrash’s Security Blog")) посмотрим, к чему у нас есть доступ:
+С помощью smbmap (о котором я рассказывал в [райтапе](https://snovvcrash.github.io/2018/12/17/htb-active-write-up.html#smbmap "HTB{ Active } / snovvcrash’s Security Blog") на Active) посмотрим, к чему у нас есть доступ:
 ```text
 root@kali:~# smbmap -H 10.10.10.97 -u 'tyler' -p '92g!mA8BGjOirkL%OG*&'
 [+] Finding open SMB ports....

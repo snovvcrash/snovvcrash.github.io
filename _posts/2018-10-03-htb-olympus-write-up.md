@@ -489,7 +489,7 @@ ctfolympus.htb.         86400   IN      SOA     ns1.ctfolympus.htb. ns2.ctfolymp
 Тут окей, более-менее понятно: `prometheus:St34l_th3_F1re!` — авторизационные данные для какого-то сервиса, но вот, что за магические числа `3456 8234 62431`? Ответ тривиален, если знать два ключевых слова: "Port Knocking".
 
 # Port Knocking
-Если верить Вики, то
+Если верить [Вики](https://en.wikipedia.org/wiki/Port_knocking "Port knocking - Wikipedia"), то
 
 > In computer networking, **port knocking** is a method of externally opening ports on a firewall by generating a connection attempt on a set of prespecified closed ports. Once a correct sequence of connection attempts is received, the firewall rules are dynamically modified to allow the host which sent the connection attempts to connect over specific port(s).
 

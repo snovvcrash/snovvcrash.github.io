@@ -20,12 +20,16 @@ See ya!
 > Автор блога не несет отвественности за неправомерное использование информации, размещенной на страницах данного блога.
 
 # Профили
+
 * [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
-* [Codeby](https://codeby.net/forum/members/snovvcrash.103302/#recent-content "snovvcrash / Codeby.net - Информационная Безопасность")
+* [\]\[акер](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
+* [Codeby](https://codeby.net/forum/members/snovvcrash.103302/#recent-content "snovvcrash / Форум информационной безопасности и защиты информации")
+* [GeekBrains](https://is.gd/G33KBR41N5 "Профиль / GeekBrains - образовательный портал")
 * [HackTheBox](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
 * [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
+* [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")
 * [Keybase](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) / Keybase")
 
 # Hack The Box
@@ -36,6 +40,7 @@ See ya!
 | [![htb-current-badge.png](https://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/profile/51037) | ![htb-best-badge.png]({{ "/img/htb/htb-best-badge.png" | relative_url }}) |
 
 # Контакты
+
 [//]: # (<a href="mailto:{{ 'snovvcrash@protonmail.ch' | encode_email }}" title="E-Mail">E-Mail</a>)
 [//]: # (<a href="&#109;ail&#116;o&#58;sno&#118;&#37;76%6&#51;rash&#64;p%72ot&#37;&#54;F&#110;%6Dail&#46;%63h" title="E-Mail">E-Mail</a>)
 * Email: [scr.im/emsnovvcrash](http://scr.im/emsnovvcrash)

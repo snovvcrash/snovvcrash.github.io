@@ -17,6 +17,7 @@
 # JEKYLL_ENV=production bundle exec jekyll serve
 
 title:     snovvcrash's Security Blog
+author:    Sam Freeside
 email:     snovvcrash@protonmail[.]ch
 timezone:  Europe/Moscow
 locale:    ru-RU
@@ -24,9 +25,9 @@ locale:    ru-RU
 description: >
   Заметки циничного хакера
 
-author:            "Sam Freeside"
 github_username:   snovvcrash
 keybase_username:  snovvcrash
+twitter_username:  snovvcrash
 rss:               rss
 
 baseurl:            ""
