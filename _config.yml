@@ -49,7 +49,6 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-email-protect
   - jemoji
 
 # Google Analytics

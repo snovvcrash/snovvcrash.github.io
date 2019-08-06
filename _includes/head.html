@@ -5,8 +5,8 @@
 
   {%- seo -%}
 
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
-  <link rel="stylesheet" href="{{ "/assets/custom.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/custom.css' | relative_url }}">
 
   {%- feed_meta -%}
 
@@ -14,14 +14,10 @@
     {%- include gtag.html -%}
   {%- endif -%}
 
-  {%- if site.disqus.short_name -%}
-    {%- include disqus_comment_count.html -%}
-  {%- endif -%}
-
   {%- if site.github_username -%}
     {%- include github_buttons.html -%}
   {%- endif -%}
 
-  <link rel="icon" type="image/png" href="{{ "/favicon-32x32.png" | relative_url }}" sizes="32x32" />
-  <link rel="icon" type="image/png" href="{{ "/favicon-16x16.png" | relative_url }}" sizes="16x16" />
+  <link rel="icon" type="image/png" href="{{ '/favicon-32x32.png' | relative_url }}" sizes="32x32" />
+  <link rel="icon" type="image/png" href="{{ '/favicon-16x16.png' | relative_url }}" sizes="16x16" />
 </head>
