@@ -1,11 +1,11 @@
 ---
 layout: page
-title: О блоге
+title: Кто я
 permalink: /about
 ---
 
 ![avatar.png]({{ "/img/avatar.png" | relative_url }})
-{: style="float: right; margin-left: 10px;"}
+{: style="float: right; margin-left: 5px;"}
 
 Приветствую!
 
@@ -14,6 +14,10 @@ permalink: /about
 Добавляй в закладки, будет весело!
 
 See ya!
+
+<div class="follow-button">
+	<a class="github-button" href="https://github.com/snovvcrash" data-size="large" aria-label="Follow @snovvcrash on GitHub">Follow the White Hat</a>
+</div>>
 
 > Вся информация, содержащаяся на данном сайте, представлена исключительно в образовательных целях. Любое использование описываемых техник для осуществления атак на реальные информационные системы **незаконно**. Все серверы, фигурирующие в публикациях, **созданы уязвимыми** для практики профессиональных навыков тестирования на проникновение и аудита безопасности информационных систем.
 >

@@ -24,3 +24,8 @@
 .center-image {
 	text-align: center;
 }
+
+.follow-button {
+	text-align: right;
+	margin-right: 37px;
+}
