@@ -1,13 +1,15 @@
 ---
 layout: post
 title: "HTB{ Active }"
-date: 2018-12-17 00:00:00 +0300
+date: 2019-08-01 00:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, xakep.ru, Active, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
 comments: true
 published: true
 ---
+
+[//]: # (2018-12-17)
 
 [![xakep.svg](https://img.shields.io/badge/Для%20журнала-%5d%5bакер-red.svg?style=for-the-badge)](https://xakep.ru/2019/06/27/htb-kerberos/ "Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с HackTheBox - «Хакер»")
 
