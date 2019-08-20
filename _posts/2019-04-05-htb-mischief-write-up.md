@@ -1,15 +1,15 @@
 ---
 layout: post
 title: "HTB{ Mischief }"
-date: 2019-08-20 16:00:00 +0300
+date: 2019-04-05 16:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, xakep.ru, Mischief, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
 comments: true
-published: false
+published: true
 ---
 
-[//]: # (2019-04-05)
+[//]: # (2019-08-20)
 
 [![xakep.svg](https://img.shields.io/badge/Для%20журнала-%5d%5bакер-red.svg?style=for-the-badge)](https://xakep.ru/2019/07/16/mischief/ "Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box - «Хакер»")
 
