@@ -66,7 +66,7 @@ permalink: /projects
 
 # Telegram
 
-- *июл, 2019*{: style="color: grey;"} • [**HTBWriteUps**](https://t.me/HTBWriteUpsBot "Telegram: Contact @HTBWriteUpsBot") — Telegram-бот для упрощения поиска тактик для пентеста, основанный на блогах [@ippsec](https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA "IppSec - YouTube")'а и [@0xdf](https://0xdf.gitlab.io/ "0xdf hacks stuff")'а, содержащих райтапы к прохождениям уязвимых виртуальных машин с Hack The Box. В репозитории бота можно найти Markdown-[дамп](https://github.com/snovvcrash/htb-write-ups-bot/blob/master/md/latest.md "htb-write-ups-bot/latest.md at master · snovvcrash/htb-write-ups-bot · GitHub") прохождений с таймкодами, удобный для поиска ключевых слов по <kbd>Ctrl</kbd>+<kbd>F</kbd>
+- *июл, 2019*{: style="color: grey;"} • [**HTBWriteUps**](https://t.me/HTBWriteUpsBot "Telegram: Contact @HTBWriteUpsBot") — Telegram-бот для упрощения поиска тактик пентеста, основанный на блогах, содержащих райтапы к прохождениям уязвимых виртуальных машин с Hack The Box. В репозитории бота можно найти Markdown-[дамп](https://github.com/snovvcrash/htb-write-ups-bot/blob/master/md/latest.md "htb-write-ups-bot/latest.md at master · snovvcrash/htb-write-ups-bot · GitHub") прохождений с таймкодами, удобный для поиска ключевых слов по <kbd>Ctrl</kbd>+<kbd>F</kbd>
 - *янв, 2019*{: style="color: grey;"} • [**DebSecAnnounce**](https://t.me/DebSecAnnounceBot "Telegram: Contact @DebSecAnnounceBot") — Telegram-бот для отслеживания обновлений ресурса новостной рассылки актуальных уязвимостей [Debian Security Announce](https://lists.debian.org/debian-security-announce/ "Debian Mailing Lists -- Index for debian-security-announce") в рамках работы над [системой](https://github.com/snovvcrash/rusbitech-astra/wiki/БДУ "БДУ · snovvcrash/rusbitech-astra Wiki") автоматизацией системы составления «паспортов уязвимостей» для [БДУ ФСТЭК России](https://bdu.fstec.ru/vul "БДУ - Уязвимости")
 
 # Хабр
@@ -79,6 +79,7 @@ permalink: /projects
 
 # ][акер
 
+- *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/20/compressed-token-format/) • «Неправильный CTF. Одноразовые пароли, буйство LDAP-инъекций и трюки c архиватором 7z»
 - *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/13/struts-forward-shell/) • «Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell»
 - *июл, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/07/16/mischief/) • «Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с HackTheBox»
 - *июн, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/06/27/htb-kerberos/) • «Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с HackTheBox»
