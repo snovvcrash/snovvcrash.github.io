@@ -56,7 +56,7 @@ permalink: /projects
 
 - *июн, 2019*{: style="color: grey;"} • [**s0c14lch3ck.py**](https://gist.github.com/snovvcrash/86bcbf65cbc89bf496fd19afcf19f6f5 "Username checker") — чекер зарегистрированных юзернеймов для аккаунтов сошиал медии и адресов электронной почты
 
-- *июн, 2019*{: style="color: grey;"} • [**binasciicoder.py**](https://gist.github.com/snovvcrash/e8e129527ea77f2664a97b54cdeb9f55 "ASCII text string to binary string and vise versa (Python2/3 compatible)") — кодировщик ASCII-текста в бинарную строку и наоборот для Python2/3: ибо надоело изобретать его заново каждый раз, когда возникает необходимость.
+- *июн, 2019*{: style="color: grey;"} • [**binasciicoder.py**](https://gist.github.com/snovvcrash/e8e129527ea77f2664a97b54cdeb9f55 "ASCII text string to binary string and vise versa (Python2/3 compatible)") — кодировщик ASCII-текста в бинарную строку и наоборот для Python2/3 (ибо надоело изобретать его заново каждый раз, когда возникает необходимость)
 
 - *ноя, 2018*{: style="color: grey;"} • [**rbtmap.cxx**](https://gist.github.com/snovvcrash/e8bbdf8fa6e750ce503be219c243887e "Implementation of map (associative container) based on the red-black tree structure") — тренировочная реализации C++ контейнера map (ассоциативный массив), основанного на красно-чёрном дереве
 
@@ -79,6 +79,7 @@ permalink: /projects
 
 # ][акер
 
+- *сен, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/09/09/pentest-trainings/) • «Где учиться пентесту. Обзор площадок для практики навыков этичного хакера»
 - *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/20/compressed-token-format/) • «Неправильный CTF. Одноразовые пароли, буйство LDAP-инъекций и трюки c архиватором 7z»
 - *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/13/struts-forward-shell/) • «Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell»
 - *июл, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/07/16/mischief/) • «Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box»

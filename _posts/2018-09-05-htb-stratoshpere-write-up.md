@@ -6,7 +6,7 @@ author: snovvcrash
 categories: ctf write-ups boxes hackthebox
 tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, linux apache, apache-struts, forward-shell, python, eval, library-hijacking, john, hashes]
 comments: true
-published: false
+published: true
 ---
 
 [//]: # (2019-09-17)

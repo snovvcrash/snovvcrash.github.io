@@ -4,7 +4,7 @@ title: "HTB{ Olympus }"
 date: 2018-10-03 20:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Olympus, linux, xdebug, reverse-shell, aircrack-ng, airgeddon, dns-zone-transfer, dns-axfr, port-knocking, docker, metasploit]
+tags: [ctf, write-ups, boxes, hackthebox, Olympus, linux, nikto, xdebug, reverse-shell, aircrack-ng, airgeddon, dns-zone-transfer, dns-axfr, port-knocking, docker, metasploit]
 comments: true
 published: true
 ---
