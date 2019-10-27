@@ -785,7 +785,16 @@ C:\Windows\system32>exit
 [*] Removing file hPUtqrwN.exe.....
 ```
 
-Пожалуй, на этом все :triumph:
+Ап! И тигры у ног моих сели :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/active/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/active/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/active/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## Монтирование SMB в Kali
@@ -827,14 +836,3 @@ Filesystem           1K-blocks     Used Available Use% Mounted on
 ```text
 root@kali:~# umount /mnt/smb
 ```
-
-Укрощайте трехголовых стражей царства мертвых, спасибо за внимание :innocent:
-
-![owned-user.png]({{ "/img/htb/boxes/active/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/active/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/active/trophy.png" | relative_url }})
-{: .center-image}

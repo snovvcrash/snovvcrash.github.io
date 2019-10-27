@@ -868,7 +868,16 @@ root@sunday:~# > /var/cron/log
 root@sunday:~# > /var/log/syslog
 ```
 
-Фух, пожалуй на этом все с рутом :triumph:
+Всем хорошего воскресенья :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/sunday/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/sunday/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/sunday/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## overwrite
@@ -939,14 +948,3 @@ sunny@sunday:/backup$ ./agent22.backup
   2. Этот файл — скрипт интерпретируемого языка (python, bash, perl и т. д.), и в этом случае сначала интерпретатор загружается в память от имени текущего пользователя, а уже после этого интерпретатор читает и выполняет файл.
 
 Наш случай второй. Так как это bash-скрипт, то выполнять (выполнять = **прочитать содержимое** + запустить) его будет, очевидно, bash-интерпретатор, который в свою очередь запущен от имени *sunny*, и у которого поэтому не достаточно прав для прочтения файла со скриптом. Тайна раскрыта!
-
-Хорошего воскресенья, спасибо за внимание :innocent:
-
-![owned-user.png]({{ "/img/htb/boxes/sunday/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/sunday/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/sunday/trophy.png" | relative_url }})
-{: .center-image}

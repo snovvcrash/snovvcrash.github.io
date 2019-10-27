@@ -12,6 +12,14 @@ permalink: /projects
 
 ## Repositories
 
+- Консольная утилита для трекинга истории USB-подключений в GNU/Linux
+
+|------+----------+---------|
+| Дата | Название | Кнопки  |
+|:----:|:--------:|:-------:|
+| *июн, 2018* | [**usbrip**](https://github.com/snovvcrash/usbrip "snovvcrash/usbrip: Simple command line forensics tool for tracking USB device artifacts (history of USB events) on GNU/Linux.") | <a class="github-button" href="https://github.com/snovvcrash/usbrip/archive/master.zip" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork snovvcrash/usbrip on GitHub">Fork</a> <a class="github-button" href="https://github.com/snovvcrash/usbrip" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star snovvcrash/usbrip on GitHub">Star</a> |
+|------+----------+---------|
+
 - Exploitation-фреймворк для генерации *forward-shell*'ов
 
 |------+----------+---------|
@@ -26,14 +34,6 @@ permalink: /projects
 | Дата | Название | Кнопки  |
 |:----:|:--------:|:-------:|
 | *июл, 2018* | [**tweetl:crown:rd**](https://github.com/snovvcrash/tweetlord "snovvcrash/tweetlord: Twitter profile dumper (downloader) with authorization swapping.") | <a class="github-button" href="https://github.com/snovvcrash/tweetlord/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork snovvcrash/tweetlord on GitHub">Fork</a> <a class="github-button" href="https://github.com/snovvcrash/tweetlord" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star snovvcrash/tweetlord on GitHub">Star</a> |
-|------+----------+---------|
-
-- Консольная утилита для трекинга истории USB-подключений в GNU/Linux
-
-|------+----------+---------|
-| Дата | Название | Кнопки  |
-|:----:|:--------:|:-------:|
-| *июн, 2018* | [**usbrip**](https://github.com/snovvcrash/usbrip "snovvcrash/usbrip: Simple command line forensics tool for tracking USB device artifacts (history of USB events) on GNU/Linux.") | <a class="github-button" href="https://github.com/snovvcrash/usbrip/archive/master.zip" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork snovvcrash/usbrip on GitHub">Fork</a> <a class="github-button" href="https://github.com/snovvcrash/usbrip" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star snovvcrash/usbrip on GitHub">Star</a> |
 |------+----------+---------|
 
 - Proof-of-Concept взлома [квази-AES-256](https://habr.com/post/339910 "Ломаем модифицированный AES-256 / Хабр")

@@ -23,7 +23,7 @@ published: true
 {: style="color: #a8a8a8;"}
 
 **6.3/10**
-{: style="color: red; text-align: right;"}
+{: style="color: white; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/mischief/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/145 "Hack The Box :: Mischief")
 {: .center-image}
@@ -787,7 +787,7 @@ uid=0(root) gid=0(root) groups=0(root)
 ## 3-й способ: lxc [ИСПРАВЛЕНО]
 Еще один способ, относящийся к "unintended solutions". На момент релиза Mischief пользователю было разрешено выполнять команду lxc. [LXC](https://ru.wikipedia.org/wiki/LXC "LXC — Википедия") (aka ***L**inux **C**ontainers*) — это такая docker-like система виртуализации на уровне ОС для запуска нескольких инстансов Linux на одном хосте.
 
-Подвержена той же уязвимости, что и docker-контейнеры, о чем мы уже говорили в [прохождении Olympus](https://snovvcrash.github.io/2018/10/03/htb-olympus-write-up.html#privesc-prometheus--root-способ-1 "HTB{ Olympus } / snovvcrash’s Security Blog").
+Подвержена той же уязвимости, что и docker-контейнеры, о чем мы уже говорили в [прохождении Olympus](https://snovvcrash.github.io/2018/10/03/htb-olympus.html#privesc-prometheus--root-способ-1 "HTB{ Olympus } / snovvcrash’s Security Blog").
 
 Исправлено 2018-07-16:
 
@@ -819,13 +819,23 @@ root@Mischief:~# cat /usr/lib/gcc/x86_64-linux-gnu/7/root.txt
 ae155fad????????????????????????
 ```
 
-Tricked :triumph:
+*«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»*.
+{: style="color: #a8a8a8;"} :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/mischief/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/mischief/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/mischief/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## IPv6-адрес с помощью EUI-64
 Рассмотрим, как работает [механизм](http://ciscotips.ru/eui-64 "Получение IPv6 адреса с помошью EUI-64 | CiscoTips") автоматической генерации link-local IPv6-адреса с помощью [EUI-64](https://ru.wikipedia.org/wiki/Уникальный_идентификатор_организации#64-битный_расширенный_уникальный_идентификатор_EUI-64 "Уникальный идентификатор организации — Википедия") из MAC-адреса на примере Mischief.
 
-Для этого нам нужно находиться на одном канальном уровне (aka *OSI layer 2*) с тем хостом, адрес которого мы хотим узнать. Пусть [Hawk](https://snovvcrash.github.io/2018/12/09/htb-hawk-write-up.html "HTB{ Hawk } / snovvcrash’s Security Blog") станет нашим связующим звеном (aka *Pivot Point*).
+Для этого нам нужно находиться на одном канальном уровне (aka *OSI layer 2*) с тем хостом, адрес которого мы хотим узнать. Пусть [Hawk](https://snovvcrash.github.io/2018/12/09/htb-hawk.html "HTB{ Hawk } / snovvcrash’s Security Blog") станет нашим связующим звеном (aka *Pivot Point*).
 
 Дадим пинг от Hawk до Mischief и запросим ARP-таблицу для того, чтобы вытащить MAC Mischief:
 ```text
@@ -1179,15 +1189,3 @@ target     prot opt source               destination
 ```
 
 Тадааа, все разрешено. Это объясняет, почему мы смогли получить IPv6 реверс-шелл и обломались с IPv4.
-
-*«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»*.
-{: style="color: #a8a8a8;"}
-
-![owned-user.png]({{ "/img/htb/boxes/mischief/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/mischief/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/mischief/trophy.png" | relative_url }})
-{: .center-image}

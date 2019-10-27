@@ -734,7 +734,16 @@ root@gitter:~# cat /root/root.txt
 d4fe1e7f????????????????????????
 ```
 
-Финита ля комедия :triumph:
+Удачи в DevOps'е :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/devoops/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/devoops/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/devoops/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## feed.py
@@ -865,14 +874,3 @@ if __name__ == "__main__":
 ```
 
 C `< >` в роли "плохих" символов.
-
-Удачной разработки, спасибо за внимание :innocent:
-
-![owned-user.png]({{ "/img/htb/boxes/devoops/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/devoops/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/devoops/trophy.png" | relative_url }})
-{: .center-image}

@@ -4,7 +4,7 @@ title: Кто я
 permalink: /about
 ---
 
-<a class="github-button" href="https://github.com/snovvcrash" data-size="large" aria-label="Follow @snovvcrash on GitHub">Follow the White Hat</a>
+<a class="github-button" href="https://github.com/snovvcrash" data-size="large" aria-label="Follow @snovvcrash on GitHub">Follow the Grey Hat!</a>
 
 ![avatar.png]({{ "/img/avatar.png" | relative_url }})
 {: style="float: right; margin-left: 10px;"}
@@ -19,7 +19,7 @@ See ya!
 
 > Вся информация, содержащаяся на данном сайте, представлена исключительно в образовательных целях. Любое использование описываемых техник для осуществления атак на реальные информационные системы **незаконно**. Все серверы, фигурирующие в публикациях, **созданы уязвимыми** для практики профессиональных навыков тестирования на проникновение и аудита безопасности информационных систем.
 >
-> Автор не несет отвественности за неправомерное использование информации, размещенной на страницах данного блога.
+> Автор блога не несет отвественности за неправомерное использование информации, размещенной на страницах данного блога.
 
 # Профили
 

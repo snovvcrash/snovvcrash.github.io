@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 **6.2/10**
-{: style="color: red; text-align: right;"}
+{: style="color: white; text-align: right;"}
 
 [![banner.png]({{ "/img/htb/boxes/tartarsauce/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
 {: .center-image}
@@ -878,7 +878,16 @@ bash-4.3# cat /root/root.txt
 e79abdab8b??????????????????????
 ```
 
-Триумф :triumph:
+В кулинарии главное — не переборщить с соусом Тартар, ну а здесь мы закончили :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/tartarsauce/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/tartarsauce/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/tartarsauce/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## wp-load.php
@@ -911,14 +920,3 @@ drwxr-xr-x 4 root     root      4096 Feb 21  2018 webservices
 onuma@TartarSauce:~$ ls -ld /var/www/html/webservices/monstra-3.0.4/public
 drwxr-xr-x 5 root root 4096 Apr  5  2016 /var/www/html/webservices/monstra-3.0.4/public
 ```
-
-Приятного аппетита с соусом Тартар, спасибо за внимание :innocent:
-
-![owned-user.png]({{ "/img/htb/boxes/tartarsauce/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/tartarsauce/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/tartarsauce/trophy.png" | relative_url }})
-{: .center-image}

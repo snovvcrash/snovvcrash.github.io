@@ -461,7 +461,16 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 
 [![port5901-vnc-1.png]({{ "/img/htb/boxes/poison/port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/port5901-vnc-1.png" | relative_url }})
 
-И в принципе все, осталась только пара комментариев в [Эпилоге]({{ page.url }}#разное) :triumph:
+Как итог — всегда дежите при себе противоядие :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/poison/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/poison/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/poison/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## Раскрытие секрета VNC
@@ -482,14 +491,3 @@ Password: VNCP@$$!
 А в этой директории лежит, файл с паролем, о чудо, идентичный распакованному `/home/charix/secret.zip`.
 
 [![port5901-vnc-2.png]({{ "/img/htb/boxes/poison/port5901-vnc-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/port5901-vnc-2.png" | relative_url }})
-
-Держите при себе противоядия, спасибо за внимание :innocent:
-
-![owned-user.png]({{ "/img/htb/boxes/poison/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/poison/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/poison/trophy.png" | relative_url }})
-{: .center-image}

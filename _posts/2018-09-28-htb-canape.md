@@ -803,7 +803,16 @@ Collecting 928c3df1???????????????????????? (from -r /root/root.txt (line 1))
 
 4\. И наконец, можно воспользоваться [готовым решением](https://github.com/0x00-0x00/FakePip "0x00-0x00/FakePip: Pip install exploit package"), если лень возиться самому (самый скучный вариант, имхо).
 
-And that's it :triumph:
+Теперь можно прилечь на диванчик :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/canape/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/canape/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/canape/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## netstat as root
@@ -871,14 +880,3 @@ sys.path.insert(0,"/var/www/html/")
 from simpsons import app as application
 application.secret_key = "sjhdajkh292hdq29dhashdkjsad"
 ```
-
-Теперь можно прилечь на диванчик, спасибо за внимание :innocent:
-
-![owned-user.png]({{ "/img/htb/boxes/canape/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/canape/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/canape/trophy.png" | relative_url }})
-{: .center-image}

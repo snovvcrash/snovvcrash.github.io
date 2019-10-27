@@ -4,7 +4,7 @@ title: "HTB{ Stratosphere }"
 date: 2018-09-05 01:00:00 +0300
 author: snovvcrash
 categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, linux apache, apache-struts, forward-shell, python, eval, library-hijacking, john, hashes]
+tags: [ctf, write-ups, boxes, hackthebox, Stratosphere, linux apache, apache-struts, forward-shell, FwdSh3ll, python, eval, library-hijacking, john, hashes]
 comments: true
 published: true
 ---
@@ -790,7 +790,16 @@ richard@stratosphere:~$ rm hashlib.py
 richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 ```
 
-:triumph:
+Пройдя стратосферу, до звезд совсем недалеко :triumph:
+
+![owned-user.png]({{ "/img/htb/boxes/stratosphere/owned-user.png" | relative_url }})
+{: .center-image}
+
+![owned-root.png]({{ "/img/htb/boxes/stratosphere/owned-root.png" | relative_url }})
+{: .center-image}
+
+![trophy.png]({{ "/img/htb/boxes/stratosphere/trophy.png" | relative_url }})
+{: .center-image}
 
 # Эпилог
 ## Хеши
@@ -840,14 +849,3 @@ sh: 1: /root/success.py: not found
 ```
 
 Мораль — не верь на слово подлым Python-тестам :angry:
-
-Пройдя стратосферу, до звезд совсем недалеко, спасибо за внимание :innocent:
-
-![owned-user.png]({{ "/img/htb/boxes/stratosphere/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/stratosphere/owned-root.png" | relative_url }})
-{: .center-image}
-
-![trophy.png]({{ "/img/htb/boxes/stratosphere/trophy.png" | relative_url }})
-{: .center-image}

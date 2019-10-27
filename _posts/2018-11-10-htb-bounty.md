@@ -651,16 +651,7 @@ meterpreter > cat C:/Users/Administrator/Desktop/root.txt
 c837f7b6????????????????????????
 ```
 
-Hip, hip, hurray! :relieved:
-
-# Эпилог
-## Утилиты
-Некоторые другие exploration/exploitation -инструменты (отличные от Metasploit), с помощью которых можно было получить информацию о доступных на машине уязвимостях и/или захватить суперпользователя:
-  * [Merlin](https://github.com/Ne0nd0g/merlin "Ne0nd0g/merlin: Merlin is a cross-platform post-exploitation HTTP/2 Command & Control server and agent written in golang.") (может, этот фреймворк был бы самым каноничным из-за КДПВ на главной сайта?);
-  * [Sherlock](https://github.com/rasta-mouse/Sherlock "rasta-mouse/Sherlock: PowerShell script to quickly find missing software patches for local privilege escalation vulnerabilities.") (старая версия Watson'а);
-  * [Watson](https://github.com/rasta-mouse/Watson "rasta-mouse/Watson") (новая версия Sherlock'а).
-
-Награда ждет, спасибо за внимание :innocent:
+Награда ждет :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/bounty/owned-user.png" | relative_url }})
 {: .center-image}
@@ -670,3 +661,10 @@ Hip, hip, hurray! :relieved:
 
 ![trophy.png]({{ "/img/htb/boxes/bounty/trophy.png" | relative_url }})
 {: .center-image}
+
+# Эпилог
+## Утилиты
+Некоторые другие exploration/exploitation -инструменты (отличные от Metasploit), с помощью которых можно было получить информацию о доступных на машине уязвимостях и/или захватить суперпользователя:
+  * [Merlin](https://github.com/Ne0nd0g/merlin "Ne0nd0g/merlin: Merlin is a cross-platform post-exploitation HTTP/2 Command & Control server and agent written in golang.") (может, этот фреймворк был бы самым каноничным из-за КДПВ на главной сайта?);
+  * [Sherlock](https://github.com/rasta-mouse/Sherlock "rasta-mouse/Sherlock: PowerShell script to quickly find missing software patches for local privilege escalation vulnerabilities.") (старая версия Watson'а);
+  * [Watson](https://github.com/rasta-mouse/Watson "rasta-mouse/Watson") (новая версия Sherlock'а).
