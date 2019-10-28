@@ -79,13 +79,22 @@ permalink: /projects
 
 # ][акер
 
-- *окт, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/10/23/ctf-bitterman/) • «В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman»
-- *окт, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/10/08/hackthebox-dep-aslr/) • «В королевстве PWN. Обходим DEP и брутфорсим ASLR на виртуалке с Hack the Box»
-- *сен, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/09/20/stack-overflow/) • «В королевстве PWN. Препарируем классику переполнения буфера в современных условиях»
-- *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/20/compressed-token-format/) • «Неправильный CTF. Одноразовые пароли, буйство LDAP-инъекций и трюки c архиватором 7z»
-- *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/13/struts-forward-shell/) • «Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell»
-- *июл, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/07/16/mischief/) • «Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box»
-- *июн, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/06/27/htb-kerberos/) • «Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с Hack The Box»
+* Цикл «В королевстве PWN» (4 части):
+
+  - *окт, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/10/23/ctf-bitterman/) • «В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman»
+  - *окт, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/10/08/hackthebox-dep-aslr/) • «В королевстве PWN. Обходим DEP и брутфорсим ASLR на виртуалке с Hack the Box»
+  - *сен, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/09/20/stack-overflow/) • «В королевстве PWN. Препарируем классику переполнения буфера в современных условиях»
+
+* Прохождения тачек с Hack the Box:
+
+  - *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/20/compressed-token-format/) • «Неправильный CTF. Одноразовые пароли, буйство LDAP-инъекций и трюки c архиватором 7z»
+  - *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/13/struts-forward-shell/) • «Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell»
+  - *июл, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/07/16/mischief/) • «Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box»
+  - *июн, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/06/27/htb-kerberos/) • «Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с Hack The Box»
+
+* Другое:
+
+  - *сен, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/09/09/pentest-trainings/) • «Где учиться пентесту. Обзор площадок для практики навыков этичного хакера»
 
 # Codeby
 
