@@ -90,6 +90,7 @@ SSH на 22-м, и web-сервис на 80-м портах. Начнем с в�
 Перейдя по `http://10.10.10.84`, видим:
 
 [![port80-browser-1.png]({{ "/img/htb/boxes/poison/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/port80-browser-1.png" | relative_url }})
+{: .center-image}
 
 Страничка с тестом php-скриптов. Не долго думая, откроем `listfiles.php`:
 
@@ -251,6 +252,7 @@ root@kali:~# curl -A "<?php system(\$_GET['cmd']); ?>" -X GET "http://10.10.10.8
 И можем творить, что угодно на сервере, например дадим `ls`:
 
 [![port80-browser-2.png]({{ "/img/htb/boxes/poison/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/port80-browser-2.png" | relative_url }})
+{: .center-image}
 
 ### RCE → Reverse-Shell
 
@@ -315,6 +317,7 @@ Ukd4RVdub3dPVU5uUFQwSwo=
 Идея вкратце: PHPInfo() позволяет загружать произвольные значения в раздел PHP Variables, которые сохраняются во временный файл:
 
 [![lfi-phpinfo.png]({{ "/img/htb/boxes/poison/lfi-phpinfo.png" | relative_url }})]({{ "/img/htb/boxes/poison/lfi-phpinfo.png" | relative_url }})
+{: .center-image}
 
 Но этот файл удаляется сервером сразу же после окончания загрузки странички с PHPInfo(). Этот [скрипт](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion%20-%20Path%20Traversal/phpinfolfi.py "PayloadsAllTheThings/phpinfolfi.py at master · swisskyrepo/PayloadsAllTheThings"), описанный в публикации выше, провоцирует состояние гонки для того, чтобы успеть загрузить вредоносную нагрузку во временный файл (реверс-шелл, например) и выполнить его прежде, чем сервер удалит этот файл.
 
@@ -460,6 +463,7 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 Забираем флаг:
 
 [![port5901-vnc-1.png]({{ "/img/htb/boxes/poison/port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/port5901-vnc-1.png" | relative_url }})
+{: .center-image}
 
 Как итог — всегда дежите при себе противоядие :triumph:
 
@@ -491,3 +495,4 @@ Password: VNCP@$$!
 А в этой директории лежит, файл с паролем, о чудо, идентичный распакованному `/home/charix/secret.zip`.
 
 [![port5901-vnc-2.png]({{ "/img/htb/boxes/poison/port5901-vnc-2.png" | relative_url }})]({{ "/img/htb/boxes/poison/port5901-vnc-2.png" | relative_url }})
+{: .center-image}

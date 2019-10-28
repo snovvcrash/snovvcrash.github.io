@@ -100,22 +100,27 @@ Service detection performed. Please report any incorrect results at https://nmap
 Home:
 
 [![port80-browser-1.png]({{ "/img/htb/boxes/canape/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-1.png" | relative_url }})
+{: .center-image}
 
 Character Quotes:
 
 [![port80-browser-2.png]({{ "/img/htb/boxes/canape/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-2.png" | relative_url }})
+{: .center-image}
 
 Submit Quote (распространенным инъекциям не поддается):
 
 [![port80-browser-3.png]({{ "/img/htb/boxes/canape/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-3.png" | relative_url }})
+{: .center-image}
 
 Забегая вперед скажу, что ни одна из этих вкладок не будет представлять для нас интереса. Разве что на последней вкладке мы уже сейчас можем видеть, что при попытке ввода имени персонажа, которое отсутствует в предполагаемом "белом списке", на нас накричат красной ошибкой:
 
 [![port80-browser-4.png]({{ "/img/htb/boxes/canape/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-4.png" | relative_url }})
+{: .center-image}
 
 А, если имя присутствует в "белом списке", нам разрешат отправить цитату и покажут зеленое сообщение об успехе:
 
 [![port80-browser-5.png]({{ "/img/htb/boxes/canape/port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-5.png" | relative_url }})
+{: .center-image}
 
 При этом сама цитата на вкладке "Character Quotes" не появится. На этом заканчивается все полезное, что мы можем извлечь из видимой части сайта.
 
@@ -157,6 +162,7 @@ Requests/sec.: 135.8114
 
 # .git
 [![port80-browser-6.png]({{ "/img/htb/boxes/canape/port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-6.png" | relative_url }})
+{: .center-image}
 
 Клонировать гит-репозиторий в нашем случае можно двумя способами.
 
@@ -614,6 +620,7 @@ CouchDB написан на Erlang'е, а Erlang использует серве
 В [документации](http://docs.couchdb.org/en/stable/cluster/setup.html#cluster-setup "11.1. Set Up — Apache CouchDB 2.2 Documentation") же к СУБД красуется вывеска с надписью :warning: **Warning**:
 
 [![couchdb-warning.png]({{ "/img/htb/boxes/canape/couchdb-warning.png" | relative_url }})]({{ "/img/htb/boxes/canape/couchdb-warning.png" | relative_url }})
+{: .center-image}
 
 Что означает, что если порт `4369` "смотрит наружу интернета", то к нему можно будет подключиться любому желающему при наличии нужного cookie (cookie — единственный способ аутентификации, задействованный в этой схеме). Дефолтные куки для подключения к EPMD — "monster".
 

@@ -148,6 +148,7 @@ root@kali:~# dig @10.10.10.83 olympus.htb
 Добро пожаловать на остров Крит:
 
 [![port80-browser-1.png]({{ "/img/htb/boxes/olympus/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/olympus/port80-browser-1.png" | relative_url }})
+{: .center-image}
 
 В исходниках пусто:
 ```html
@@ -185,6 +186,7 @@ root@kali:~# nikto -h http://10.10.10.83:80 -o nikto/olympus.txt
 То же самое можно увидеть, просмотрев заголовки HTTP-ответа:
 
 [![port80-browser-2.png]({{ "/img/htb/boxes/olympus/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/olympus/port80-browser-2.png" | relative_url }})
+{: .center-image}
 
 На задворках сознания начали всплывать китайские иероглифы, ибо как-то раз я наткнулся на китайскую публикация, описывающую элегантную атаку, основанную на этой фиче для веб-девелоперов.
 
@@ -281,6 +283,7 @@ round-trip min/avg/max/stddev = 68.001/68.346/68.690/0.345 ms
 В красках все выглядело так (красные числа — порядок активности панелей):
 
 [![xdebug-exploit-poc.png]({{ "/img/htb/boxes/olympus/xdebug-exploit-poc.png" | relative_url }})]({{ "/img/htb/boxes/olympus/xdebug-exploit-poc.png" | relative_url }})
+{: .center-image}
 
 На этом считаю тест успешно завершенным, можно переходить к боевым действиям.
 
@@ -786,7 +789,7 @@ meterpreter > cat /root/root.txt
 aba48699????????????????????????
 ```
 
-Слава богам, спасибо за внимание :innocent:
+Слава богам :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/olympus/owned-user.png" | relative_url }})
 {: .center-image}

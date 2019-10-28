@@ -11,7 +11,7 @@ published: true
 
 [//]: # (2019-08-20)
 
-[![xakep.svg](https://img.shields.io/badge/Для%20журнала-%5d%5bакер-red.svg?style=for-the-badge)](https://xakep.ru/2019/07/16/mischief/ "Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box - «Хакер»")
+[![xakep-badge.png]({{ "/img/xakep-badge.png" | relative_url }})](https://xakep.ru/2019/07/16/mischief/ "Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box - «Хакер»")
 
 **Mischief** — на момент прохождения моя любимая Linux-тачка на HTB. Балансируя на уровне сложности где-то между "Medium" и "Hard" (хотя изначальный рейтинг был определен как "Insane"), эта виртуалка дает простор для творчества. Полагаю, если бы не некоторые ошибки автора (которые мы, конечно же, обсудим ниже), эта машина и правда была бы "безумной". Итак, с чем предстоит повоевать: энумерация *SNMP* с последующим извлечением авторизационных данных из аргументов командной строки для простого Python-сервера (пробуем разные тулзы, в том числе *snmpwalk*, *snmp-check*, *onesixtyone*, *enyx.py*), получение IPv6-адреса машины из того же вывода SNMP (1-й способ), либо через *pivoting* другого хоста на HTB из MAC-адреса последнего (2-й способ, алгоритм *EUI-64*), обход фильтра для возможности инъекции команд (+ создание мини *ICMP-шелла* с помощью *scapy* на сладкое) и захват кредов пользователя; наконец, получение *IPv6 реверс-шелла* в обход *iptables* для запуска *su* от имени www-data (так как пользователя блокирует механизм распределения прав доступа *ACL*) и получения root-сессии с кредами из *.bash_history*.
 
@@ -358,10 +358,12 @@ root@kali:/opt/Enyx# python enyx.py 2c public 10.10.10.92
 Вернемся к нашим ~~баранам~~ открытым портам и отправимся смотреть на простой Python-HTTP-сервер:
 
 [![port3366-browser-1.png]({{ "/img/htb/boxes/mischief/port3366-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port3366-browser-1.png" | relative_url }})
+{: .center-image}
 
 Мы уже выбили креды `loki:godofmischiefisloki`, поэтому без зазрения совести авторизируемся и попадаем сюда:
 
 [![port3366-browser-2.png]({{ "/img/htb/boxes/mischief/port3366-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port3366-browser-2.png" | relative_url }})
+{: .center-image}
 
 Имеем изображение Локи (на стеганографию проверять здесь не буду, поэтому поверьте на слово — там ничего нет :unamused:) и еще одну пару логин:пароль `loki:trickeryanddeceit`.
 
@@ -430,8 +432,10 @@ Service detection performed. Please report any incorrect results at https://nmap
 На `http://[dead:beef::250:56ff:feb9:7caa]:80/` нас поджидает очередное предложение залогиниться:
 
 [![port80-ipv6-browser-1.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-1.png" | relative_url }})
+{: .center-image}
 
 [![port80-ipv6-browser-2.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-2.png" | relative_url }})
+{: .center-image}
 
 Это таск из серии "Угадай юзернейм". В [эпилоге]({{ page.url }}#hydra) сбрутим эту форму Гидрой (хотя даже этого можно не делать, ибо [авторизация байпасится]({{ page.url }}#rce-без-авторизации)), а пока сделаем вид, что креды мы угадали (хотя со мной именно так изначально и было), благо имя пользователя дефолтное — `administrator:trickeryanddeceit`.
 
@@ -439,10 +443,12 @@ Service detection performed. Please report any incorrect results at https://nmap
 После авторизации получаем окошко с RCE, где нам сразу же предлагают пингануть localhost:
 
 [![port80-ipv6-browser-3.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-3.png" | relative_url }})
+{: .center-image}
 
 Что ж, если предлагают, то почему нет? Только вот 127.0.0.1 я, пожалуй, заменю на айпишник своей машины, чтобы убедиться в успешности выполнения команды:
 
 [![port80-ipv6-browser-4.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-4.png" | relative_url }})
+{: .center-image}
 
 ```text
 root@kali:~# tcpdump -n -i tun0 icmp
@@ -464,6 +470,7 @@ listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 Если захочешь внаглую вызвать `nc` для инициализации реверс-подключения, ты разочаруешься:
 
 [![port80-ipv6-browser-5.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-5.png" | relative_url }})
+{: .center-image}
 
 Скорее всего, на машине активен WAF-like механизм, блокирующий выполнение команд, которые содержат слова из черного списка. Разминки ради можно, вооружившись Burp'ом и вытащив кукисы сайта, проверить, какие команды разрешены, а какие нет.
 
@@ -530,6 +537,7 @@ done
 В качестве результата имеем:
 
 [![test-waf-blacklist-1.png]({{ "/img/htb/boxes/mischief/test-waf-blacklist-1.png" | relative_url }})]({{ "/img/htb/boxes/mischief/test-waf-blacklist-1.png" | relative_url }})
+{: .center-image}
 
 [Здесь]({{ page.url }}#waf) мы обсуждаем, как именно устроен процесс фильтрации.
 
@@ -540,6 +548,7 @@ done
 Поэтому я не сильно удивился, когда увидел результат выполнения двух stacked-команд `whoami; echo`:
 
 [![port80-ipv6-browser-6.png]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/mischief/port80-ipv6-browser-6.png" | relative_url }})
+{: .center-image}
 
 То есть мы преспокойно можем видеть вывод выполненной команды. И хотя это совсем не тот путь, [который задумывался автором машины]({{ page.url }}#icmp-shell), в первом способе угона аккаунта Локи мы будем абьюзить именно эту ошибку конфигурации.
 
@@ -547,6 +556,7 @@ done
 На веб-морде панели выполнения команд есть подсказка о местоположении авторизационных данных пользователя. Но... нельзя так просто взять и написать `cat /home/loki/credentials;`, чтобы получить креды Локи, ведь слово `credentials` в блэклисте:
 
 [![test-waf-blacklist-2.png]({{ "/img/htb/boxes/mischief/test-waf-blacklist-2.png" | relative_url }})]({{ "/img/htb/boxes/mischief/test-waf-blacklist-2.png" | relative_url }})
+{: .center-image}
 
 Зато, как видно из этого же скриншота, мы можем обратиться к `credentials` через `credential?` или `cred*`.
 
@@ -792,6 +802,7 @@ uid=0(root) gid=0(root) groups=0(root)
 Исправлено 2018-07-16:
 
 [![lxc-patch.png]({{ "/img/htb/boxes/mischief/lxc-patch.png" | relative_url }})]({{ "/img/htb/boxes/mischief/lxc-patch.png" | relative_url }})
+{: .center-image}
 
 К сожалению, я начал возиться с машиной уже после фикса, поэтому этот способ PrivEsc'а прошел мимо меня.
 

@@ -11,7 +11,7 @@ published: true
 
 [//]: # (2019-08-01)
 
-[![xakep.svg](https://img.shields.io/badge/Для%20журнала-%5d%5bакер-red.svg?style=for-the-badge)](https://xakep.ru/2019/06/27/htb-kerberos/ "Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с HackTheBox - «Хакер»")
+[![xakep-badge.png]({{ "/img/xakep-badge.png" | relative_url }})](https://xakep.ru/2019/06/27/htb-kerberos/ "Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с HackTheBox - «Хакер»")
 
 **Active** — максимально простая, однако, в то же время, одна из самых полезных для прохождения Windows-машин в своей "ценовой категории" на HTB. Почему? Так это же *контроллер домена AD*! Тезисный обзор предлагаемых развлечений: энумерация *SMB-шар* (используем tуеву hучу крутых утилит а-ля *smbclient*, *smbmap*, *enum4linux*, *nullinux*); разграбление SMB с анонимным доступом для захвата файла групповых политик *Groups.xml*; декрипт GPP-пароля из той самой xml'ки; получение доступа к внутридоменному аккаунту с последующей инициализацией атаки типа *Kerberoasting* (против протокола аутентификации *Kerberos*) для извлечения тикета администратора с помощью коллекции Python-скриптов *impacket* для работы с сетевыми протоколами; наконец, офлайн-восстановление пароля администратора из хеша (с помощью *Hashcat*) для окончательного pwn'а контроллера.
 
@@ -671,6 +671,7 @@ function getpwd([string]$Cpassword) {
 ```
 
 [![powershell-gpp-decrypt.png]({{ "/img/htb/boxes/active/powershell-gpp-decrypt.png" | relative_url }})]({{ "/img/htb/boxes/active/powershell-gpp-decrypt.png" | relative_url }})
+{: .center-image}
 
 В любом случае мы получили авторизационные данные: `SVC_TGS:GPPstillStandingStrong2k18`.
 
@@ -819,6 +820,7 @@ drwxr-xr-x 2 root root 4096 Jul 21 18:16  SVC_TGS
 ```
 
 [![nautilus-smb.png]({{ "/img/htb/boxes/active/nautilus-smb.png" | relative_url }})]({{ "/img/htb/boxes/active/nautilus-smb.png" | relative_url }})
+{: .center-image}
 
 Проверить состояние так:
 ```text

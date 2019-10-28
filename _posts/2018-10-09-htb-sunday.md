@@ -704,6 +704,7 @@ fb40fab6????????????????????????
 Вот так все выглядело вживую (красным указан порядок активности панелей):
 
 [![root-troll.png]({{ "/img/htb/boxes/sunday/root-troll.png" | relative_url }})]({{ "/img/htb/boxes/sunday/root-troll.png" | relative_url }})
+{: .center-image}
 
 ### 6. Исполняемый файл с SUID
 Еще один способ, если не хочется попадать в тайминги troll'а, — это перезапись любого исполняемого файла с выставленным SUID'ом и владельцем root.

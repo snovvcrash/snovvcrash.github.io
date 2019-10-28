@@ -82,6 +82,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Пикча волшебника (Мерлин, ты ли это?) во всю страницу по адресу `http://10.10.10.93:80`:
 
 [![port80-browser-1.png]({{ "/img/htb/boxes/bounty/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-1.png" | relative_url }})
+{: .center-image}
 
 В исходниках кроме подтверждения нашей догадки о личности волшебника (и вправду Мерлин) ничего полезного не имеется:
 ```html
@@ -164,6 +165,7 @@ http://10.10.10.93/uploadedfiles (Status: 301)
 `/transfer.aspx` — загрузчик файлов:
 
 [![port80-browser-2.png]({{ "/img/htb/boxes/bounty/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-2.png" | relative_url }})
+{: .center-image}
 
 `/uploadedfiles` — предположительно путь, по которому загруженные способом выше файлы можно отыскать.
 
@@ -171,10 +173,12 @@ http://10.10.10.93/uploadedfiles (Status: 301)
 Экспериментальным образом устанавливаем, что среди прочих, `/transfer.aspx` позволяет импортировать расширения типа `.config`, выдавая позитивную надпись зеленым цветом:
 
 [![port80-browser-3.png]({{ "/img/htb/boxes/bounty/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-3.png" | relative_url }})
+{: .center-image}
 
 Если же расширение находится в черном списке (как, к примеру, тот же `.aspx`), то нас огорчат краснобуквенной ошибкой:
 
 [![port80-browser-4.png]({{ "/img/htb/boxes/bounty/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-4.png" | relative_url }})
+{: .center-image}
 
 ## web.config
 Итак, что же такое [web.config](https://ru.wikipedia.org/wiki/Web.config "Web.config — Википедия")? Грубо говоря, это просто XML-документ, содержащий набор настроек для `ASP.NET` веб-сервиса (чем-то напоминает `.htaccess` для Apache).
@@ -225,6 +229,7 @@ Response.write("<!-"&"-")
 Загрузим web.config на сервер и инициируем выполнение кода, перейдя по `http://10.10.10.93/uploadedfiles/web.config`:
 
 [![port80-browser-5.png]({{ "/img/htb/boxes/bounty/port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-5.png" | relative_url }})
+{: .center-image}
 
 Есть контакт, переходим к следующей фазе.
 
@@ -357,29 +362,35 @@ Response.Write(thisDir)
 Который в жизни будет выглядеть таким образом:
 
 [![port80-browser-6.png]({{ "/img/htb/boxes/bounty/port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-6.png" | relative_url }})
+{: .center-image}
 
 И соберем информацию о машине.
 
 1\. `whoami`. Спрашиваем имя пользователя, который крутит веб-сервер:
 
 [![port80-browser-7.png]({{ "/img/htb/boxes/bounty/port80-browser-7.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-7.png" | relative_url }})
+{: .center-image}
 
 2\. ``(dir 2>&1 *`|echo CMD);&<# rem #>echo PowerShell``. Спрашиваем, что используется по дефолту: CMD или PowerShell:
 
 [![port80-browser-8.png]({{ "/img/htb/boxes/bounty/port80-browser-8.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-8.png" | relative_url }})
+{: .center-image}
 
 3\. `echo %cd%`. Узнаем текущую директорию:
 
 [![port80-browser-9.png]({{ "/img/htb/boxes/bounty/port80-browser-9.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-9.png" | relative_url }})
+{: .center-image}
 
 4\. `wmic OS get OSArchitecture`. Узнаем архитектуру системы:
 
 [![port80-browser-10.png]({{ "/img/htb/boxes/bounty/port80-browser-10.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-10.png" | relative_url }})
+{: .center-image}
 
 #### user.txt
 5\. `type C:\Users\merlin\Desktop\user.txt`. И даже забираем флаг пользователя:
 
 [![port80-browser-11.png]({{ "/img/htb/boxes/bounty/port80-browser-11.png" | relative_url }})]({{ "/img/htb/boxes/bounty/port80-browser-11.png" | relative_url }})
+{: .center-image}
 
 У нас есть все необходимое, чтобы получить полноценную сессию.
 

@@ -11,7 +11,7 @@ published: true
 
 [//]: # (2019-09-17)
 
-[![xakep.svg](https://img.shields.io/badge/Для%20журнала-%5d%5bакер-red.svg?style=for-the-badge)](https://xakep.ru/2019/08/13/struts-forward-shell/ "Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell - «Хакер»")
+[![xakep-badge.png]({{ "/img/xakep-badge.png" | relative_url }})](https://xakep.ru/2019/08/13/struts-forward-shell/ "Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell - «Хакер»")
 
 **Stratosphere** — уютная Linux-машина, которая встретит нас RCE-уязвимостью фреймворка *Apache Struts*, помучает невозможностью получения стандартного reverse-shell'а, заставив прибегнуть к концепции *forward-shell*'а, после чего посредством взаимодействия с СУБД *MySQL* предложит взглянуть на нарушение политики локального хранения паролей, подразнит реверсом дайджестов различных алгоритмов хеширования, а под зановес угостит практикой абьюзинга функции *eval()* из-под Python'а или же угоном Python-модулей (aka *Python Library Hijacking*) на выбор (мы угостимся и тем, и другим though). Несмотря на то, что этот бокс идеально вписывается в описанную ранее концепцию "типичной CTF-машины", найти к ней подход было действительно весело.
 
@@ -299,6 +299,7 @@ SSH, web-сервис на 80-м, прокся на 8080-м, и два отпе�
 На `http://10.10.10.64` нас встречает цветастый градиент сайта Stratoshere:
 
 [![port80-browser-1.png]({{ "/img/htb/boxes/stratosphere/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/port80-browser-1.png" | relative_url }})
+{: .center-image}
 
 При переходе по "GET STARTED NOW" сервер выплюнет страницу, с таким наполнением:
 ```html
@@ -345,20 +346,24 @@ http://10.10.10.64/Monitoring (Status: 302)
 Что имеем: стандартный сервер-менеджер для Apache Tomcat (к которому у нас конечно же нет доступа):
 
 [![port80-browser-2.png]({{ "/img/htb/boxes/stratosphere/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/port80-browser-2.png" | relative_url }})
+{: .center-image}
 
 И кое-что way more insteresting:
 
 [![port80-browser-3.png]({{ "/img/htb/boxes/stratosphere/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/port80-browser-3.png" | relative_url }})
+{: .center-image}
 
 Есть еще две кнопки — "SIGN ON" и "REGISTER" — но от них толку мало.
 
 "SIGN ON":
 
 [![port80-browser-4.png]({{ "/img/htb/boxes/stratosphere/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/port80-browser-4.png" | relative_url }})
+{: .center-image}
 
 "REGISTER":
 
 [![port80-browser-5.png]({{ "/img/htb/boxes/stratosphere/port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/stratosphere/port80-browser-5.png" | relative_url }})
+{: .center-image}
 
 При попытки ввода чего-либо в поля формы логина сервер отреагирует таким же сообщением, которое он возвращает при запросе формы регистрации.
 
@@ -368,6 +373,7 @@ http://10.10.10.64/Monitoring (Status: 302)
 Позаимствовал [отсюда](https://netbeans.org/kb/docs/web/quickstart-webapps-struts.html "Introduction to the Struts Web Framework - NetBeans IDE Tutorial") картинку, демонстрирующую круговорот ~~веществ~~ трафика в природе Apache Struts:
 
 [![workflow.png](https://netbeans.org/images_www/articles/72/web/struts/workflow.png)](https://netbeans.org/images_www/articles/72/web/struts/workflow.png)
+{: .center-image}
 
 Фреймворк известен наличием обилия уязвимостей, в том числе, позволяющих удаленное выполнение кода. Посмотрим, что предложит `searchsploit` для подтвреждения возможности эксплуатации.
 

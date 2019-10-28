@@ -110,19 +110,23 @@ Service detection performed. Please report any incorrect results at https://nmap
 На `http://10.10.10.97:80` нас встречает логин-форма:
 
 [![port80-browser-1.png]({{ "/img/htb/boxes/secnotes/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-1.png" | relative_url }})
+{: .center-image}
 
 А на `http://10.10.10.97:80/register.php` можно регаться:
 
 [![port80-browser-2.png]({{ "/img/htb/boxes/secnotes/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-2.png" | relative_url }})
+{: .center-image}
 
 Сделаем же это, раз разрешают. Зарегистрировавшись с кредами `evilhacker:qwe123`, смотрим, что внутри:
 
 [![port80-browser-3.png]({{ "/img/htb/boxes/secnotes/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-3.png" | relative_url }})
+{: .center-image}
 
 ## Угон аккаунта Тайлера. Способ 1, XSRF
 В контексте первого способа получения авторизационных данных Тайлера (`tyler`, админ, узнаем это из баннера в верхней части экрана) наибольший интерес для нас представляет кнопка **Contact Us**:
 
 [![port80-browser-4.png]({{ "/img/htb/boxes/secnotes/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-4.png" | relative_url }})
+{: .center-image}
 
 Если, вооружившись netcat'ом, включить в тело сообщения для админа IP-адрес своей машины и дать *Send*, то:
 ```text
@@ -149,6 +153,7 @@ XSRF (aka *Сross Site Request Forgery*, *CSRF*) — это старая как 
 Когда, залогинившись, мы осматривались на главной сайте, мы видели опцию **Change Password**. Вот, что она из себя представляет:
 
 [![port80-browser-5.png]({{ "/img/htb/boxes/secnotes/port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-5.png" | relative_url }})
+{: .center-image}
 
 А вот что мы видим при изменении пароля на `newpass` и просмотре тела запроса в Burp'е (будет нужно чуть позже):
 ```http
@@ -173,6 +178,7 @@ password=newpass&confirm_password=newpass&submit=submit
 Учитывая тот факт, что гипотетический Тайлер кликает на все ссылки, которые содержатся в сообщении из "Contact Us", подсунем ему линк на смену своего же пароля (запрос ведь будет выполнен от его имени) и сигнализируем себе на машину об успехе операции:
 
 [![port80-browser-6.png]({{ "/img/htb/boxes/secnotes/port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-6.png" | relative_url }})
+{: .center-image}
 
 ```text
 root@kali:~# nc -lvnp 80
@@ -197,6 +203,7 @@ Connection: Keep-Alive
 Теперь можем с чистой совестью логиниться as `tyler:newpass`. Сделав это, увидим следующее:
 
 [![port80-browser-7.png]({{ "/img/htb/boxes/secnotes/port80-browser-7.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-7.png" | relative_url }})
+{: .center-image}
 
 XSRF в первозданном виде!
 
@@ -206,11 +213,13 @@ XSRF в первозданном виде!
 Зарегистрировав пользователя с юзернеймом `' or 1=1 -- -` и паролем на свой выбор, авторизовавшись, получим такую картину:
 
 [![port80-browser-8.png]({{ "/img/htb/boxes/secnotes/port80-browser-8.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-8.png" | relative_url }})
+{: .center-image}
 
 # SMB-шара Тайлера
 Заметка new-site содержит такую sensitive datУ:
 
 [![port80-browser-9.png]({{ "/img/htb/boxes/secnotes/port80-browser-9.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-9.png" | relative_url }})
+{: .center-image}
 
 Очень похоже на расшаренный SMB-ресурс.
 
@@ -246,6 +255,7 @@ smb: \> ls
 Непохоже, чтобы это счастье относилось к 80-у порту, но мы помним, что у нас есть еще один открытый неисследованный порт — 8808. И это и правда он:
 
 [![port80-browser-10.png]({{ "/img/htb/boxes/secnotes/port80-browser-10.png" | relative_url }})]({{ "/img/htb/boxes/secnotes/port80-browser-10.png" | relative_url }})
+{: .center-image}
 
 # Шелл от имена Тайлера
 ## Web-Shell

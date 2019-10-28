@@ -4,7 +4,7 @@ title: Кто я
 permalink: /about
 ---
 
-<a class="github-button" href="https://github.com/snovvcrash" data-size="large" aria-label="Follow @snovvcrash on GitHub">Follow the Grey Hat!</a>
+<a class="github-button" href="https://github.com/snovvcrash" data-size="large" aria-label="Follow @snovvcrash on GitHub">Follow the Grey Hat</a>
 
 ![avatar.png]({{ "/img/avatar.png" | relative_url }})
 {: style="float: right; margin-left: 10px;"}

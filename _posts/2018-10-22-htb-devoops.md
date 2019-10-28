@@ -90,6 +90,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 На `http://10.10.10.91:5000` нас ждет заглушка для будущего блога:
 
 [![port5000-browser-1.png]({{ "/img/htb/boxes/devoops/port5000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-1.png" | relative_url }})
+{: .center-image}
 
 На главной видим скриншот, демонстрирующий, как должен выглядеть фид после завершения работы над сайтом, и видим упоминание `feed.py` (его мы встретим чуть позже), "который станет [MVP](https://ru.wikipedia.org/wiki/Минимально_жизнеспособный_продукт "Минимально жизнеспособный продукт — Википедия") (***M**inimum **V**iable **P**roduct*) для местного блога".
 
@@ -123,10 +124,12 @@ http://10.10.10.91:5000/upload (Status: 200)
 `/feed` — такой же скриншот как выше, только теперь на всю страницу:
 
 [![port5000-browser-2.png]({{ "/img/htb/boxes/devoops/port5000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-2.png" | relative_url }})
+{: .center-image}
 
 `/upload` — загрузчик фид-ленты в виде XML-документов:
 
 [![port5000-browser-3.png]({{ "/img/htb/boxes/devoops/port5000-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-3.png" | relative_url }})
+{: .center-image}
 
 Последняя страница с интерфейсом загрузки представляет наибольший интерес, т. к. именно она дарует нам возможность проведения XXE-атаки, речь о которой пойдет ниже.
 
