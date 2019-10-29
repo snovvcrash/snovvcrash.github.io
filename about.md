@@ -21,7 +21,7 @@ See ya!
 >
 > Автор блога не несет отвественности за неправомерное использование информации, размещенной на страницах данного блога.
 
-# Профили
+## Профили
 
 * [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
 * [\]\[акер](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
@@ -34,14 +34,14 @@ See ya!
 * [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")
 * [Keybase](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) / Keybase")
 
-# Hack The Box
+## Hack The Box
 
 |-------------------+------------------|
 | Текущий результат | Лучший результат |
 |:-----------------:|:----------------:|
 | [![htb-current-badge.png](https://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/profile/51037) | ![htb-best-badge.png]({{ "/img/htb/htb-best-badge.png" | relative_url }}) |
 
-# Контакты
+## Контакты
 
 * Email: [scr.im/emsnovvcrash](http://scr.im/emsnovvcrash)
 

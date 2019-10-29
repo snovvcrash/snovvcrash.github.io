@@ -186,7 +186,7 @@ root@kali:~# wget --mirror -I .git http://10.10.10.70/.git/
 
 В любом случае у нас есть репозиторий:
 ```text
-root@kali:~/simsons <master># ls -la
+root@kali:~/simpsons <master># ls -la
 total 24
 drwxr-xr-x 5 root root 4096 Sep 25 09:58 .
 drwxr-xr-x 4 root root 4096 Sep 25 09:58 ..
@@ -198,15 +198,15 @@ drwxr-xr-x 2 root root 4096 Sep 25 09:58 templates
 
 Ветка одна, в коммитах ничего полезного (есть одно интересное сообщение к коммиту `c8a74a098a60aaea1af98945bd707a7eab0ff4b0`, но анализировать вывод `git diff` в письменном райтапе — совсем дикость, поэтому кому интересно, может посмотреть самостоятельно):
 ```text
-root@kali:~/simsons <master># git branch
+root@kali:~/simpsons <master># git branch
 * master
 ~
 ...
 
-root@kali:~/simsons <master># git checkout
+root@kali:~/simpsons <master># git checkout
 Your branch is up to date with 'origin/master'.
 
-root@kali:~/simsons <master># git log c8a7
+root@kali:~/simpsons <master># git log c8a7
 commit c8a74a098a60aaea1af98945bd707a7eab0ff4b0
 Author: Homer Simpson <homerj0121@outlook.com>
 Date:   Mon Jan 15 18:46:30 2018 -0800
