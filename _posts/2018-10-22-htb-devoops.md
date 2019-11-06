@@ -737,7 +737,7 @@ root@gitter:~# cat /root/root.txt
 d4fe1e7f????????????????????????
 ```
 
-Удачи в DevOps'е :triumph:
+DevOops пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/devoops/owned-user.png" | relative_url }})
 {: .center-image}

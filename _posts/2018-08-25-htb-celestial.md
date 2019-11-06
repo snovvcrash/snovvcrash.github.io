@@ -390,7 +390,7 @@ sun@sun:~$ cat output.txt
 f4ckU!
 ```
 
-I guess, we're done here :triumph:
+Celestial пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/celestial/owned-user.png" | relative_url }})
 {: .center-image}

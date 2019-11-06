@@ -810,7 +810,7 @@ Collecting 928c3df1???????????????????????? (from -r /root/root.txt (line 1))
 
 4\. И наконец, можно воспользоваться [готовым решением](https://github.com/0x00-0x00/FakePip "0x00-0x00/FakePip: Pip install exploit package"), если лень возиться самому (самый скучный вариант, имхо).
 
-Теперь можно прилечь на диванчик :triumph:
+Canape пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/canape/owned-user.png" | relative_url }})
 {: .center-image}

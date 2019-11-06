@@ -831,7 +831,9 @@ ae155fad????????????????????????
 ```
 
 *«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»*.
-{: style="color: #a8a8a8;"} :triumph:
+{: style="color: #a8a8a8;"}
+
+Mischief пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/mischief/owned-user.png" | relative_url }})
 {: .center-image}

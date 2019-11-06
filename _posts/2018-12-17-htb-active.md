@@ -786,7 +786,7 @@ C:\Windows\system32>exit
 [*] Removing file hPUtqrwN.exe.....
 ```
 
-Ап! И тигры у ног моих сели :triumph:
+Active пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/active/owned-user.png" | relative_url }})
 {: .center-image}

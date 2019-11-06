@@ -662,7 +662,7 @@ meterpreter > cat C:/Users/Administrator/Desktop/root.txt
 c837f7b6????????????????????????
 ```
 
-Награда ждет :triumph:
+Bounty пройдена :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/bounty/owned-user.png" | relative_url }})
 {: .center-image}

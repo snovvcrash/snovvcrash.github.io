@@ -4,7 +4,7 @@ title: Проекты
 permalink: /projects
 ---
 
-[![Built with Love](https://img.shields.io/badge/built%20with-%F0%9F%92%97%F0%9F%92%97%F0%9F%92%97-lightgrey.svg)](http://project.cyberpunk.ru/lib/burning_chrome/)
+[![built-with-love.svg](https://img.shields.io/badge/built%20with-%F0%9F%92%97%F0%9F%92%97%F0%9F%92%97-lightgrey.svg)](http://project.cyberpunk.ru/lib/burning_chrome/)
 
 Здесь представлены некоторые мои работы.
 
@@ -58,7 +58,7 @@ permalink: /projects
 
 - *июн, 2019*{: style="color: grey;"} • [**binasciicoder.py**](https://gist.github.com/snovvcrash/e8e129527ea77f2664a97b54cdeb9f55 "ASCII text string to binary string and vise versa (Python2/3 compatible)") — кодировщик ASCII-текста в бинарную строку и наоборот для Python2/3 (ибо надоело изобретать его заново каждый раз, когда возникает необходимость)
 
-- *ноя, 2018*{: style="color: grey;"} • [**rbtmap.cxx**](https://gist.github.com/snovvcrash/e8bbdf8fa6e750ce503be219c243887e "Implementation of map (associative container) based on the red-black tree structure") — тренировочная реализации C++ контейнера map (ассоциативный массив), основанного на красно-чёрном дереве
+- *мар, 2017*{: style="color: grey;"} • [**rbtmap.cxx**](https://gist.github.com/snovvcrash/e8bbdf8fa6e750ce503be219c243887e "Implementation of map (associative container) based on the red-black tree structure") — тренировочная реализации C++ контейнера map (ассоциативный массив), основанного на красно-чёрном дереве
 
 **Contribution**
 
@@ -80,15 +80,15 @@ permalink: /projects
 ## ][акер
 
 * Цикл «В королевстве PWN» (4 части):
-  - *окт, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/10/23/ctf-bitterman/) • «ROP-цепочки и атака Return-to-PLT в CTF Bitterman»
-  - *окт, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/10/08/hackthebox-dep-aslr/) • «Обходим DEP и брутфорсим ASLR на виртуалке с Hack The Box»
-  - *сен, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/09/20/stack-overflow/) • «Препарируем классику переполнения буфера в современных условиях»
+  - *окт, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/10/23/ctf-bitterman/) • «3. ROP-цепочки и атака Return-to-PLT в CTF Bitterman»
+  - *окт, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/10/08/hackthebox-dep-aslr/) • «2. Обходим DEP и брутфорсим ASLR на виртуалке с Hack The Box»
+  - *сен, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/09/20/stack-overflow/) • «1. Препарируем классику переполнения буфера в современных условиях»
 
+* *сен, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/09/09/pentest-trainings/) • «Где учиться пентесту. Обзор площадок для практики навыков этичного хакера»
 * *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/20/compressed-token-format/) • «Неправильный CTF. Одноразовые пароли, буйство LDAP-инъекций и трюки c архиватором 7z»
 * *авг, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/08/13/struts-forward-shell/) • «Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell»
 * *июл, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/07/16/mischief/) • «Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box»
 * *июн, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/06/27/htb-kerberos/) • «Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с Hack The Box»
-* *сен, 2019*{: style="color: grey;"} • [ссылка](https://xakep.ru/2019/09/09/pentest-trainings/) • «Где учиться пентесту. Обзор площадок для практики навыков этичного хакера»
 
 ## Codeby
 

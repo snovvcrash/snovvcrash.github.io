@@ -887,7 +887,7 @@ bash-4.3# cat /root/root.txt
 e79abdab8b??????????????????????
 ```
 
-В кулинарии главное — не переборщить с соусом Тартар, ну а здесь мы закончили :triumph:
+TartarSauce пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/tartarsauce/owned-user.png" | relative_url }})
 {: .center-image}

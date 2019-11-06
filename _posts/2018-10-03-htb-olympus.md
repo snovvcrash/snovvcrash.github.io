@@ -789,7 +789,7 @@ meterpreter > cat /root/root.txt
 aba48699????????????????????????
 ```
 
-Слава богам :triumph:
+Olympus пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/olympus/owned-user.png" | relative_url }})
 {: .center-image}

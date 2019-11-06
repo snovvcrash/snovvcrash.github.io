@@ -869,7 +869,7 @@ root@sunday:~# > /var/cron/log
 root@sunday:~# > /var/log/syslog
 ```
 
-Всем хорошего воскресенья :triumph:
+Sunday пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/sunday/owned-user.png" | relative_url }})
 {: .center-image}

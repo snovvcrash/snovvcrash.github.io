@@ -465,7 +465,7 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 [![port5901-vnc-1.png]({{ "/img/htb/boxes/poison/port5901-vnc-1.png" | relative_url }})]({{ "/img/htb/boxes/poison/port5901-vnc-1.png" | relative_url }})
 {: .center-image}
 
-Как итог — всегда дежите при себе противоядие :triumph:
+Poison пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/poison/owned-user.png" | relative_url }})
 {: .center-image}

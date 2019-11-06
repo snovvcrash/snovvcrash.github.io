@@ -796,7 +796,7 @@ richard@stratosphere:~$ rm hashlib.py
 richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 ```
 
-Пройдя стратосферу, до звезд совсем недалеко :triumph:
+Stratosphere пройдена :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/stratosphere/owned-user.png" | relative_url }})
 {: .center-image}

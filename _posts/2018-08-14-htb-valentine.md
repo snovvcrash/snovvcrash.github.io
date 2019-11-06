@@ -485,7 +485,7 @@ hype@Valentine:~$ rm dirty.c dirty
 
 и так же идем радоваться жизни.
 
-Берегите свое сердце :triumph:
+Valentine пройден :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/valentine/owned-user.png" | relative_url }})
 {: .center-image}

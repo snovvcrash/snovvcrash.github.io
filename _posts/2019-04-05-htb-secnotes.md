@@ -536,7 +536,7 @@ C:\WINDOWS\system32>type C:\Users\Administrator\Desktop\root.txt
 7250cde1????????????????????????
 ```
 
-Keep your notes **truly** secure :triumph:
+SecNotes пройдена :triumph:
 
 ![owned-user.png]({{ "/img/htb/boxes/secnotes/owned-user.png" | relative_url }})
 {: .center-image}
