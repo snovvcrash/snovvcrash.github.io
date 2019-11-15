@@ -16,17 +16,6 @@ published: true
 
 <!--cut-->
 
-> В королевстве PWN
-> 
-> В этом цикле статей мы изучаем различные аспекты атак типа «срыв стека»:
-> 
-> 1. => [Препарируем классику переполнения стека](https://snovvcrash.github.io/2019/10/20/classic-stack-overflow)
-> 2. [Обходим DEP и брутфорсим ASLR на HTB{ October }](https://snovvcrash.github.io/2019/10/20/htb-october)
-> 3. COMING SOON
-> 4. COMING SOON
->
-> [Приложения](https://github.com/snovvcrash/xakepru/tree/master/pwn-kingdom/1-classic-stack-overflow)
-
 О чем конкретно пойдет речь:
 
 * Обзор средств защиты, используемых компилятором gcc и операционными системами семейства Linux в целом.
@@ -38,6 +27,17 @@ published: true
 * Анализ нового пролога функции `main` и создание эксплоита, применимого для случая компиляции программы без флага `-mpreferred-stack-boundary=2`.
 
 Начнем, впереди долгое путешествие.
+
+> В королевстве PWN
+> 
+> В этом цикле статей **срыв стека** бескомпромиссно правит бал:
+> 
+> 1. **➤**{: style="color: green;"} [Препарируем классику переполнения стека](https://snovvcrash.github.io/2019/10/20/classic-stack-overflow.html)
+> 2. [Обходим DEP и брутфорсим ASLR в «Октябре»](https://snovvcrash.github.io/2019/11/08/htb-october.html)
+> 3. COMING SOON
+> 4. COMING SOON
+>
+> [Приложения](https://github.com/snovvcrash/xakepru/tree/master/pwn-kingdom/1-classic-stack-overflow)
 
 ![banner.png]({{ "/img/pwn-kingdom/classic-stack-overflow/banner.png" | relative_url }})
 {: .center-image}
