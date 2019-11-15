@@ -3,8 +3,7 @@ layout: post
 title: "HTB{ Valentine }"
 date: 2018-08-14 00:00:00 +0300
 author: snovvcrash
-categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Valentine, linux, heartbleed, tmux, dirtycow]
+tags: [ctf, write-up, box, hackthebox, Valentine, linux, heartbleed, tmux, dirtycow]
 comments: true
 published: true
 ---

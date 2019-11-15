@@ -3,8 +3,7 @@ layout: post
 title: "HTB{ Celestial }"
 date: 2018-08-25 20:00:00 +0300
 author: snovvcrash
-categories: ctf write-ups boxes hackthebox
-tags: [ctf, write-ups, boxes, hackthebox, Celestial, linux, express, node-js, deserialization, python, cron]
+tags: [ctf, write-up, box, hackthebox, Celestial, linux, express, node-js, deserialization, python, cron]
 comments: true
 published: true
 ---
