@@ -41,8 +41,8 @@
 <div class="jumbotron">
 <h1>Scan Report<br><small>Nmap 7.70</small>
 </h1>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.88</pre>
-<p class="lead">Mon Oct 29 09:44:27 2018 – Mon Oct 29 09:44:35 2018<br>1 hosts scanned.
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p8080 10.10.10.95</pre>
+<p class="lead">Sun Mar  3 18:39:16 2019 – Sun Mar  3 18:39:27 2019<br>1 hosts scanned.
               1 hosts up.
               0 hosts down.
             </p>
@@ -64,7 +64,7 @@
 </tr></thead>
 <tbody><tr>
 <td><span class="label label-success">up</span></td>
-<td>10.10.10.88</td>
+<td>10.10.10.95</td>
 <td></td>
 <td>1</td>
 <td>0</td>
@@ -76,7 +76,7 @@
             });
           </script><h2 id="onlinehosts" class="target">Online Hosts</h2>
 <div class="panel panel-default">
-<div class="panel-heading"><h3 class="panel-title">10.10.10.88</h3></div>
+<div class="panel-heading"><h3 class="panel-title">10.10.10.95</h3></div>
 <div class="panel-body">
 <h4>Ports</h4>
 <div class="table-responsive"><table class="table table-bordered">
@@ -91,27 +91,26 @@
 </tr></thead>
 <tbody>
 <tr class="success">
-<td title="Port">80</td>
+<td title="Port">8080</td>
 <td title="Protocol">tcp</td>
 <td title="State / Reason">open<br>syn-ack</td>
 <td title="Service">http</td>
-<td title="Product">Apache httpd</td>
-<td title="Version">2.4.18</td>
-<td title="Extra Info">(Ubuntu)</td>
+<td title="Product">Apache Tomcat/Coyote JSP engine</td>
+<td title="Version">1.1</td>
+<td title="Extra Info"></td>
 </tr>
 <tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:apache:http_server:2.4.18">cpe:/a:apache:http_server:2.4.18</a><h5>http-methods</h5>
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:apache:coyote_http_connector:1.1">cpe:/a:apache:coyote_http_connector:1.1</a><h5>http-favicon</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache Tomcat</pre>
+<h5>http-methods</h5>
 <pre style="white-space:pre-wrap; word-wrap:break-word;">
   Supported Methods: GET HEAD POST OPTIONS</pre>
-<h5>http-robots.txt</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">5 disallowed entries 
-/webservices/tar/tar/source/ 
-/webservices/monstra-3.0.4/ /webservices/easy-file-uploader/ 
-/webservices/developmental/ /webservices/phpmyadmin/</pre>
+<h5>http-open-proxy</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Proxy might be redirecting requests</pre>
 <h5>http-server-header</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache/2.4.18 (Ubuntu)</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache-Coyote/1.1</pre>
 <h5>http-title</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Landing Page</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache Tomcat/7.0.88</pre>
 </td></tr>
 </tbody>
 </table></div>
@@ -130,14 +129,14 @@
 <th>Extra info</th>
 </tr></thead>
 <tbody><tr>
-<td>10.10.10.88</td>
-<td>80</td>
+<td>10.10.10.95</td>
+<td>8080</td>
 <td>tcp</td>
 <td>http</td>
-<td>Apache httpd</td>
-<td>2.4.18</td>
-<td>cpe:/a:apache:http_server:2.4.18</td>
-<td>(Ubuntu)</td>
+<td>Apache Tomcat/Coyote JSP engine</td>
+<td>1.1</td>
+<td>cpe:/a:apache:coyote_http_connector:1.1</td>
+<td></td>
 </tr></tbody>
 </table></div>
 <script>

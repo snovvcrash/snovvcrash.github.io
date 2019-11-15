@@ -41,8 +41,8 @@
 <div class="jumbotron">
 <h1>Scan Report<br><small>Nmap 7.70</small>
 </h1>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p8080 10.10.10.95</pre>
-<p class="lead">Sun Mar  3 18:39:16 2019 – Sun Mar  3 18:39:27 2019<br>1 hosts scanned.
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -v -Pn -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,3366 10.10.10.92</pre>
+<p class="lead">Mon Apr  1 16:18:20 2019 – Mon Apr  1 16:18:44 2019<br>1 hosts scanned.
               1 hosts up.
               0 hosts down.
             </p>
@@ -64,9 +64,9 @@
 </tr></thead>
 <tbody><tr>
 <td><span class="label label-success">up</span></td>
-<td>10.10.10.95</td>
+<td>10.10.10.92</td>
 <td></td>
-<td>1</td>
+<td>2</td>
 <td>0</td>
 </tr></tbody>
 </table></div>
@@ -76,7 +76,7 @@
             });
           </script><h2 id="onlinehosts" class="target">Online Hosts</h2>
 <div class="panel panel-default">
-<div class="panel-heading"><h3 class="panel-title">10.10.10.95</h3></div>
+<div class="panel-heading"><h3 class="panel-title">10.10.10.92</h3></div>
 <div class="panel-body">
 <h4>Ports</h4>
 <div class="table-responsive"><table class="table table-bordered">
@@ -91,26 +91,43 @@
 </tr></thead>
 <tbody>
 <tr class="success">
-<td title="Port">8080</td>
+<td title="Port">22</td>
 <td title="Protocol">tcp</td>
 <td title="State / Reason">open<br>syn-ack</td>
-<td title="Service">http</td>
-<td title="Product">Apache Tomcat/Coyote JSP engine</td>
-<td title="Version">1.1</td>
-<td title="Extra Info"></td>
+<td title="Service">ssh</td>
+<td title="Product">OpenSSH</td>
+<td title="Version">7.6p1 Ubuntu 4</td>
+<td title="Extra Info">Ubuntu Linux; protocol 2.0</td>
 </tr>
 <tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:apache:coyote_http_connector:1.1">cpe:/a:apache:coyote_http_connector:1.1</a><h5>http-favicon</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache Tomcat</pre>
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:openbsd:openssh:7.6p1">cpe:/a:openbsd:openssh:7.6p1</a><h5>ssh-hostkey</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  2048 2a:90:a6:b1:e6:33:85:07:15:b2:ee:a7:b9:46:77:52 (RSA)
+  256 d0:d7:00:7c:3b:b0:a6:32:b2:29:17:8d:69:a6:84:3f (ECDSA)
+  256 3f:1c:77:93:5c:c0:6c:ea:26:f4:bb:6c:59:e9:7c:b0 (ED25519)</pre>
+</td></tr>
+<tr class="success">
+<td title="Port">3366</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">caldav</td>
+<td title="Product">Radicale calendar and contacts server</td>
+<td title="Version"></td>
+<td title="Extra Info">Python BaseHTTPServer</td>
+</tr>
+<tr><td colspan="7">
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:python:python">cpe:/a:python:python</a><h5>http-auth</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+HTTP/1.0 401 Unauthorized\x0D
+  Basic realm=Test
+</pre>
 <h5>http-methods</h5>
 <pre style="white-space:pre-wrap; word-wrap:break-word;">
-  Supported Methods: GET HEAD POST OPTIONS</pre>
-<h5>http-open-proxy</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Proxy might be redirecting requests</pre>
+  Supported Methods: GET HEAD</pre>
 <h5>http-server-header</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache-Coyote/1.1</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">SimpleHTTP/0.6 Python/2.7.15rc1</pre>
 <h5>http-title</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache Tomcat/7.0.88</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Site doesn't have a title (text/html).</pre>
 </td></tr>
 </tbody>
 </table></div>
@@ -128,16 +145,28 @@
 <th>CPE</th>
 <th>Extra info</th>
 </tr></thead>
-<tbody><tr>
-<td>10.10.10.95</td>
-<td>8080</td>
+<tbody>
+<tr>
+<td>10.10.10.92</td>
+<td>22</td>
 <td>tcp</td>
-<td>http</td>
-<td>Apache Tomcat/Coyote JSP engine</td>
-<td>1.1</td>
-<td>cpe:/a:apache:coyote_http_connector:1.1</td>
+<td>ssh</td>
+<td>OpenSSH</td>
+<td>7.6p1 Ubuntu 4</td>
+<td>cpe:/a:openbsd:openssh:7.6p1</td>
+<td>Ubuntu Linux; protocol 2.0</td>
+</tr>
+<tr>
+<td>10.10.10.92</td>
+<td>3366</td>
+<td>tcp</td>
+<td>caldav</td>
+<td>Radicale calendar and contacts server</td>
 <td></td>
-</tr></tbody>
+<td>cpe:/a:python:python</td>
+<td>Python BaseHTTPServer</td>
+</tr>
+</tbody>
 </table></div>
 <script>
             $(document).ready(function() {

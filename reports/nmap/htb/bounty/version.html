@@ -41,8 +41,8 @@
 <div class="jumbotron">
 <h1>Scan Report<br><small>Nmap 7.70</small>
 </h1>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p22,80 10.10.10.84</pre>
-<p class="lead">Sat Sep 15 14:41:28 2018 – Sat Sep 15 14:41:38 2018<br>1 hosts scanned.
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p80 10.10.10.93</pre>
+<p class="lead">Fri Nov  9 16:03:39 2018 – Fri Nov  9 16:03:48 2018<br>1 hosts scanned.
               1 hosts up.
               0 hosts down.
             </p>
@@ -64,9 +64,9 @@
 </tr></thead>
 <tbody><tr>
 <td><span class="label label-success">up</span></td>
-<td>10.10.10.84</td>
+<td>10.10.10.93</td>
 <td></td>
-<td>2</td>
+<td>1</td>
 <td>0</td>
 </tr></tbody>
 </table></div>
@@ -76,7 +76,7 @@
             });
           </script><h2 id="onlinehosts" class="target">Online Hosts</h2>
 <div class="panel panel-default">
-<div class="panel-heading"><h3 class="panel-title">10.10.10.84</h3></div>
+<div class="panel-heading"><h3 class="panel-title">10.10.10.93</h3></div>
 <div class="panel-body">
 <h4>Ports</h4>
 <div class="table-responsive"><table class="table table-bordered">
@@ -91,41 +91,23 @@
 </tr></thead>
 <tbody>
 <tr class="success">
-<td title="Port">22</td>
-<td title="Protocol">tcp</td>
-<td title="State / Reason">open<br>syn-ack</td>
-<td title="Service">ssh</td>
-<td title="Product">OpenSSH</td>
-<td title="Version">7.2</td>
-<td title="Extra Info">FreeBSD 20161230; protocol 2.0</td>
-</tr>
-<tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:openbsd:openssh:7.2">cpe:/a:openbsd:openssh:7.2</a><h5>ssh-hostkey</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">
-  2048 e3:3b:7d:3c:8f:4b:8c:f9:cd:7f:d2:3a:ce:2d:ff:bb (RSA)
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFLpOCLU3rRUdNNbb5u5WlP+JKUpoYw4znHe0n4mRlv5sQ5kkkZSDNMqXtfWUFzevPaLaJboNBOAXjPwd1OV1wL2YFcGsTL5MOXgTeW4ixpxNBsnBj67mPSmQSaWcudPUmhqnT5VhKYLbPk43FsWqGkNhDtbuBVo9/BmN+GjN1v7w54PPtn8wDd7Zap3yStvwRxeq8E0nBE4odsfBhPPC01302RZzkiXymV73WqmI8MeF9W94giTBQS5swH6NgUe4/QV1tOjTct/uzidFx+8bbcwcQ1eUgK5DyRLaEhou7PRlZX6Pg5YgcuQUlYbGjgk6ycMJDuwb2D5mJkAzN4dih
-  256 4c:e8:c6:02:bd:fc:83:ff:c9:80:01:54:7d:22:81:72 (ECDSA)
-ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKXh613KF4mJTcOxbIy/3mN/O/wAYht2Vt4m9PUoQBBSao16RI9B3VYod1HSbx3PYsPpKmqjcT7A/fHggPIzDYU=
-  256 0b:8f:d5:71:85:90:13:85:61:8b:eb:34:13:5f:94:3b (ED25519)
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJrg2EBbG5D2maVLhDME5mZwrvlhTXrK7jiEI+MiZ+Am</pre>
-</td></tr>
-<tr class="success">
 <td title="Port">80</td>
 <td title="Protocol">tcp</td>
 <td title="State / Reason">open<br>syn-ack</td>
 <td title="Service">http</td>
-<td title="Product">Apache httpd</td>
-<td title="Version">2.4.29</td>
-<td title="Extra Info">(FreeBSD) PHP/5.6.32</td>
+<td title="Product">Microsoft IIS httpd</td>
+<td title="Version">7.5</td>
+<td title="Extra Info"></td>
 </tr>
 <tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:apache:http_server:2.4.29">cpe:/a:apache:http_server:2.4.29</a><h5>http-methods</h5>
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:microsoft:iis:7.5">cpe:/a:microsoft:iis:7.5</a><h5>http-methods</h5>
 <pre style="white-space:pre-wrap; word-wrap:break-word;">
-  Supported Methods: GET HEAD POST OPTIONS</pre>
+  Supported Methods: OPTIONS TRACE GET HEAD POST
+  Potentially risky methods: TRACE</pre>
 <h5>http-server-header</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache/2.4.29 (FreeBSD) PHP/5.6.32</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Microsoft-IIS/7.5</pre>
 <h5>http-title</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Site doesn't have a title (text/html; charset=UTF-8).</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Bounty</pre>
 </td></tr>
 </tbody>
 </table></div>
@@ -143,28 +125,16 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJrg2EBbG5D2maVLhDME5mZwrvlhTXrK7jiEI+MiZ+Am
 <th>CPE</th>
 <th>Extra info</th>
 </tr></thead>
-<tbody>
-<tr>
-<td>10.10.10.84</td>
-<td>22</td>
-<td>tcp</td>
-<td>ssh</td>
-<td>OpenSSH</td>
-<td>7.2</td>
-<td>cpe:/a:openbsd:openssh:7.2</td>
-<td>FreeBSD 20161230; protocol 2.0</td>
-</tr>
-<tr>
-<td>10.10.10.84</td>
+<tbody><tr>
+<td>10.10.10.93</td>
 <td>80</td>
 <td>tcp</td>
 <td>http</td>
-<td>Apache httpd</td>
-<td>2.4.29</td>
-<td>cpe:/a:apache:http_server:2.4.29</td>
-<td>(FreeBSD) PHP/5.6.32</td>
-</tr>
-</tbody>
+<td>Microsoft IIS httpd</td>
+<td>7.5</td>
+<td>cpe:/a:microsoft:iis:7.5</td>
+<td></td>
+</tr></tbody>
 </table></div>
 <script>
             $(document).ready(function() {

@@ -41,8 +41,8 @@
 <div class="jumbotron">
 <h1>Scan Report<br><small>Nmap 7.70</small>
 </h1>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80 10.10.10.93</pre>
-<p class="lead">Fri Nov  9 16:03:39 2018 – Fri Nov  9 16:03:48 2018<br>1 hosts scanned.
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -6 -n -v -Pn -sV -sC -oA nmap/ipv6-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,80 dead:beef::0250:56ff:feb9:7caa</pre>
+<p class="lead">Tue Apr  2 23:58:05 2019 – Tue Apr  2 23:58:15 2019<br>1 hosts scanned.
               1 hosts up.
               0 hosts down.
             </p>
@@ -64,9 +64,9 @@
 </tr></thead>
 <tbody><tr>
 <td><span class="label label-success">up</span></td>
-<td>10.10.10.93</td>
+<td>dead:beef::250:56ff:feb9:7caa</td>
 <td></td>
-<td>1</td>
+<td>2</td>
 <td>0</td>
 </tr></tbody>
 </table></div>
@@ -76,7 +76,7 @@
             });
           </script><h2 id="onlinehosts" class="target">Online Hosts</h2>
 <div class="panel panel-default">
-<div class="panel-heading"><h3 class="panel-title">10.10.10.93</h3></div>
+<div class="panel-heading"><h3 class="panel-title">dead:beef::250:56ff:feb9:7caa</h3></div>
 <div class="panel-body">
 <h4>Ports</h4>
 <div class="table-responsive"><table class="table table-bordered">
@@ -91,26 +91,45 @@
 </tr></thead>
 <tbody>
 <tr class="success">
+<td title="Port">22</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">ssh</td>
+<td title="Product">OpenSSH</td>
+<td title="Version">7.6p1 Ubuntu 4</td>
+<td title="Extra Info">Ubuntu Linux; protocol 2.0</td>
+</tr>
+<tr><td colspan="7">
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:openbsd:openssh:7.6p1">cpe:/a:openbsd:openssh:7.6p1</a><h5>ssh-hostkey</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  2048 2a:90:a6:b1:e6:33:85:07:15:b2:ee:a7:b9:46:77:52 (RSA)
+  256 d0:d7:00:7c:3b:b0:a6:32:b2:29:17:8d:69:a6:84:3f (ECDSA)
+  256 3f:1c:77:93:5c:c0:6c:ea:26:f4:bb:6c:59:e9:7c:b0 (ED25519)</pre>
+</td></tr>
+<tr class="success">
 <td title="Port">80</td>
 <td title="Protocol">tcp</td>
 <td title="State / Reason">open<br>syn-ack</td>
 <td title="Service">http</td>
-<td title="Product">Microsoft IIS httpd</td>
-<td title="Version">7.5</td>
-<td title="Extra Info"></td>
+<td title="Product">Apache httpd</td>
+<td title="Version">2.4.29</td>
+<td title="Extra Info">(Ubuntu)</td>
 </tr>
 <tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:microsoft:iis:7.5">cpe:/a:microsoft:iis:7.5</a><h5>http-methods</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">
-  Supported Methods: OPTIONS TRACE GET HEAD POST
-  Potentially risky methods: TRACE</pre>
-<h5>http-server-header</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Microsoft-IIS/7.5</pre>
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:apache:http_server:2.4.29">cpe:/a:apache:http_server:2.4.29</a><h5>http-server-header</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache/2.4.29 (Ubuntu)</pre>
 <h5>http-title</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Bounty</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">400 Bad Request</pre>
 </td></tr>
 </tbody>
 </table></div>
+<h4>Host Script</h4>
+<h5>address-info</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  IPv6 EUI-64: 
+    MAC address: 
+      address: 00:50:56:b9:7c:aa
+      manuf: VMware</pre>
 </div>
 </div>
 <h2 id="openservices" class="target">Open Services</h2>
@@ -125,16 +144,28 @@
 <th>CPE</th>
 <th>Extra info</th>
 </tr></thead>
-<tbody><tr>
-<td>10.10.10.93</td>
+<tbody>
+<tr>
+<td>dead:beef::250:56ff:feb9:7caa</td>
+<td>22</td>
+<td>tcp</td>
+<td>ssh</td>
+<td>OpenSSH</td>
+<td>7.6p1 Ubuntu 4</td>
+<td>cpe:/a:openbsd:openssh:7.6p1</td>
+<td>Ubuntu Linux; protocol 2.0</td>
+</tr>
+<tr>
+<td>dead:beef::250:56ff:feb9:7caa</td>
 <td>80</td>
 <td>tcp</td>
 <td>http</td>
-<td>Microsoft IIS httpd</td>
-<td>7.5</td>
-<td>cpe:/a:microsoft:iis:7.5</td>
-<td></td>
-</tr></tbody>
+<td>Apache httpd</td>
+<td>2.4.29</td>
+<td>cpe:/a:apache:http_server:2.4.29</td>
+<td>(Ubuntu)</td>
+</tr>
+</tbody>
 </table></div>
 <script>
             $(document).ready(function() {

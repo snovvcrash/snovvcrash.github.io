@@ -41,8 +41,8 @@
 <div class="jumbotron">
 <h1>Scan Report<br><small>Nmap 7.70</small>
 </h1>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p22,5000 10.10.10.91</pre>
-<p class="lead">Sat Oct 20 17:05:31 2018 – Sat Oct 20 17:05:40 2018<br>1 hosts scanned.
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -v -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p80,445,8808 10.10.10.97</pre>
+<p class="lead">Wed Mar 20 21:10:42 2019 – Wed Mar 20 21:11:35 2019<br>1 hosts scanned.
               1 hosts up.
               0 hosts down.
             </p>
@@ -64,9 +64,9 @@
 </tr></thead>
 <tbody><tr>
 <td><span class="label label-success">up</span></td>
-<td>10.10.10.91</td>
+<td>10.10.10.97</td>
 <td></td>
-<td>2</td>
+<td>3</td>
 <td>0</td>
 </tr></tbody>
 </table></div>
@@ -76,7 +76,7 @@
             });
           </script><h2 id="onlinehosts" class="target">Online Hosts</h2>
 <div class="panel panel-default">
-<div class="panel-heading"><h3 class="panel-title">10.10.10.91</h3></div>
+<div class="panel-heading"><h3 class="panel-title">10.10.10.97</h3></div>
 <div class="panel-body">
 <h4>Ports</h4>
 <div class="table-responsive"><table class="table table-bordered">
@@ -91,44 +91,82 @@
 </tr></thead>
 <tbody>
 <tr class="success">
-<td title="Port">22</td>
-<td title="Protocol">tcp</td>
-<td title="State / Reason">open<br>syn-ack</td>
-<td title="Service">ssh</td>
-<td title="Product">OpenSSH</td>
-<td title="Version">7.2p2 Ubuntu 4ubuntu2.4</td>
-<td title="Extra Info">Ubuntu Linux; protocol 2.0</td>
-</tr>
-<tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:openbsd:openssh:7.2p2">cpe:/a:openbsd:openssh:7.2p2</a><h5>ssh-hostkey</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">
-  2048 42:90:e3:35:31:8d:8b:86:17:2a:fb:38:90:da:c4:95 (RSA)
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhnygpNZx4gdup8MisoZInL7I8UYHXjDzYzj8wISuATvYEQRGckobDZXz5xrdYuLX/X7RQrASXGODJBtOuViqdBQKKdTOwz2x+Sr/gZl3tauZsibsP0wx2DPcHJcY5WekLDcjes+WVpis+4YXb1TL5qKg5R88cGHH63lgkisidTUDp55lRuu9ocE0ZdS0fNrN4RJCATerQ9pCmKo4ZnFD83gAkEg0DNdlLAdxzB7BPE/k//ZJiRr06TfibO3S9Vsh/d+PenuWDKJPsA7CrCW3hfVUsJxsH8WDNrFTLko27jleSP1gmpPm/m/KeYmY17VGWrpCjN2WuStW+RV78h1xD
-  256 b7:b6:dc:c4:4c:87:9b:75:2a:00:89:83:ed:b2:80:31 (ECDSA)
-ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOEYP1w+H8Uuvfh0fzjA15tqYhqxIhiT8ODPLI4qTBvrM8pZIGErdFlMYGV3rhJAYqGJD05LsvJxC8zozRFmZuw=
-  256 d5:2f:19:53:b2:8e:3a:4b:b3:dd:3c:1f:c0:37:0d:00 (ED25519)
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKHzgVfUX3pUOQ+WBd7PUmFYowgwBWRHpz6EEAsWVEy</pre>
-</td></tr>
-<tr class="success">
-<td title="Port">5000</td>
+<td title="Port">80</td>
 <td title="Protocol">tcp</td>
 <td title="State / Reason">open<br>syn-ack</td>
 <td title="Service">http</td>
-<td title="Product">Gunicorn</td>
-<td title="Version">19.7.1</td>
+<td title="Product">Microsoft IIS httpd</td>
+<td title="Version">10.0</td>
 <td title="Extra Info"></td>
 </tr>
 <tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:gunicorn:gunicorn:19.7.1">cpe:/a:gunicorn:gunicorn:19.7.1</a><h5>http-methods</h5>
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:microsoft:iis:10.0">cpe:/a:microsoft:iis:10.0</a><h5>http-methods</h5>
 <pre style="white-space:pre-wrap; word-wrap:break-word;">
-  Supported Methods: HEAD OPTIONS GET</pre>
+  Supported Methods: OPTIONS TRACE GET HEAD POST
+  Potentially risky methods: TRACE</pre>
 <h5>http-server-header</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">gunicorn/19.7.1</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Microsoft-IIS/10.0</pre>
 <h5>http-title</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Site doesn't have a title (text/html; charset=utf-8).</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Secure Notes - Login
+Requested resource was login.php</pre>
+</td></tr>
+<tr class="success">
+<td title="Port">445</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">microsoft-ds</td>
+<td title="Product">Windows 10 Enterprise 17134 microsoft-ds</td>
+<td title="Version"></td>
+<td title="Extra Info">workgroup: HTB</td>
+</tr>
+<tr><td colspan="7"><a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/o:microsoft:windows">cpe:/o:microsoft:windows</a></td></tr>
+<tr class="success">
+<td title="Port">8808</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">http</td>
+<td title="Product">Microsoft IIS httpd</td>
+<td title="Version">10.0</td>
+<td title="Extra Info"></td>
+</tr>
+<tr><td colspan="7">
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:microsoft:iis:10.0">cpe:/a:microsoft:iis:10.0</a><h5>http-methods</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  Supported Methods: OPTIONS TRACE GET HEAD POST
+  Potentially risky methods: TRACE</pre>
+<h5>http-server-header</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Microsoft-IIS/10.0</pre>
+<h5>http-title</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">IIS Windows</pre>
 </td></tr>
 </tbody>
 </table></div>
+<h4>Host Script</h4>
+<h5>clock-skew</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">mean: 2h08m41s, deviation: 4h02m31s, median: -11m19s</pre>
+<h5>smb-os-discovery</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  OS: Windows 10 Enterprise 17134 (Windows 10 Enterprise 6.3)
+  OS CPE: cpe:/o:microsoft:windows_10::-
+  Computer name: SECNOTES
+  NetBIOS computer name: SECNOTES\x00
+  Workgroup: HTB\x00
+  System time: 2019-03-20T10:59:40-07:00
+</pre>
+<h5>smb-security-mode</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  account_used: guest
+  authentication_level: user
+  challenge_response: supported
+  message_signing: disabled (dangerous, but default)</pre>
+<h5>smb2-security-mode</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  2.02: 
+    Message signing enabled but not required</pre>
+<h5>smb2-time</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  date: 2019-03-20 20:59:39
+  start_date: N/A</pre>
 </div>
 </div>
 <h2 id="openservices" class="target">Open Services</h2>
@@ -145,23 +183,33 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKHzgVfUX3pUOQ+WBd7PUmFYowgwBWRHpz6EEAsWVEy
 </tr></thead>
 <tbody>
 <tr>
-<td>10.10.10.91</td>
-<td>22</td>
-<td>tcp</td>
-<td>ssh</td>
-<td>OpenSSH</td>
-<td>7.2p2 Ubuntu 4ubuntu2.4</td>
-<td>cpe:/a:openbsd:openssh:7.2p2</td>
-<td>Ubuntu Linux; protocol 2.0</td>
-</tr>
-<tr>
-<td>10.10.10.91</td>
-<td>5000</td>
+<td>10.10.10.97</td>
+<td>80</td>
 <td>tcp</td>
 <td>http</td>
-<td>Gunicorn</td>
-<td>19.7.1</td>
-<td>cpe:/a:gunicorn:gunicorn:19.7.1</td>
+<td>Microsoft IIS httpd</td>
+<td>10.0</td>
+<td>cpe:/a:microsoft:iis:10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>10.10.10.97</td>
+<td>445</td>
+<td>tcp</td>
+<td>microsoft-ds</td>
+<td>Windows 10 Enterprise 17134 microsoft-ds</td>
+<td></td>
+<td>cpe:/o:microsoft:windows</td>
+<td>workgroup: HTB</td>
+</tr>
+<tr>
+<td>10.10.10.97</td>
+<td>8808</td>
+<td>tcp</td>
+<td>http</td>
+<td>Microsoft IIS httpd</td>
+<td>10.0</td>
+<td>cpe:/a:microsoft:iis:10.0</td>
 <td></td>
 </tr>
 </tbody>

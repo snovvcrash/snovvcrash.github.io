@@ -47,15 +47,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Wed Mar 20 21:09:12 2019 -- 1 IP address (1 host up) scanned in 26.50 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb/secnotes/version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/reports/nmap/htb/secnotes/version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p80,445,8808 10.10.10.97
+root@kali:~# nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p80,445,8808 10.10.10.97
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/version.nmap
-# Nmap 7.70 scan initiated Wed Mar 20 21:10:42 2019 as: nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p80,445,8808 10.10.10.97
+# Nmap 7.70 scan initiated Wed Mar 20 21:10:42 2019 as: nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p80,445,8808 10.10.10.97
 Nmap scan report for 10.10.10.97
 Host is up (0.064s latency).
 

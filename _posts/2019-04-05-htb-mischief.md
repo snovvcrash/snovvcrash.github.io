@@ -56,15 +56,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Mon Apr  1 16:18:11 2019 -- 1 IP address (1 host up) scanned in 26.45 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb/mischief/version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/reports/nmap/htb/mischief/version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -v -Pn -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p22,3366 10.10.10.92
+root@kali:~# nmap -n -v -Pn -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,3366 10.10.10.92
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/version.nmap
-# Nmap 7.70 scan initiated Mon Apr  1 16:18:20 2019 as: nmap -n -v -Pn -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p22,3366 10.10.10.92
+# Nmap 7.70 scan initiated Mon Apr  1 16:18:20 2019 as: nmap -n -v -Pn -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,3366 10.10.10.92
 Nmap scan report for 10.10.10.92
 Host is up (0.042s latency).
 
@@ -111,15 +111,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Mon Apr  1 16:27:08 2019 -- 1 IP address (1 host up) scanned in 26.56 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb/mischief/udp-version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/reports/nmap/htb/mischief/udp-version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -v -Pn -sV -sC -oA nmap/udp-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -sU -p161 10.10.10.92
+root@kali:~# nmap -n -v -Pn -sV -sC -oA nmap/udp-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -sU -p161 10.10.10.92
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/udp-version.nmap
-# Nmap 7.70 scan initiated Mon Apr  1 16:27:39 2019 as: nmap -n -v -Pn -sV -sC -oA nmap/udp-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -sU -p161 10.10.10.92
+# Nmap 7.70 scan initiated Mon Apr  1 16:27:39 2019 as: nmap -n -v -Pn -sV -sC -oA nmap/udp-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -sU -p161 10.10.10.92
 Nmap scan report for 10.10.10.92
 Host is up (0.043s latency).
 
@@ -389,15 +389,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Tue Apr  2 23:57:23 2019 -- 1 IP address (1 host up) scanned in 13.65 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb/mischief/udp-version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/reports/nmap/htb/mischief/udp-version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -6 -n -v -Pn -sV -sC -oA nmap/ipv6-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p22,80 dead:beef::0250:56ff:feb9:7caa
+root@kali:~# nmap -6 -n -v -Pn -sV -sC -oA nmap/ipv6-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,80 dead:beef::0250:56ff:feb9:7caa
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/ipv6-version.nmap
-# Nmap 7.70 scan initiated Tue Apr  2 23:58:05 2019 as: nmap -6 -n -v -Pn -sV -sC -oA nmap/ipv6-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl -p22,80 dead:beef::0250:56ff:feb9:7caa
+# Nmap 7.70 scan initiated Tue Apr  2 23:58:05 2019 as: nmap -6 -n -v -Pn -sV -sC -oA nmap/ipv6-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,80 dead:beef::0250:56ff:feb9:7caa
 Nmap scan report for dead:beef::250:56ff:feb9:7caa
 Host is up (0.043s latency).
 

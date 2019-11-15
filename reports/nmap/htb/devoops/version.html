@@ -41,8 +41,8 @@
 <div class="jumbotron">
 <h1>Scan Report<br><small>Nmap 7.70</small>
 </h1>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p80,65535 10.10.10.70</pre>
-<p class="lead">Wed Sep 26 17:52:49 2018 – Wed Sep 26 17:53:01 2018<br>1 hosts scanned.
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,5000 10.10.10.91</pre>
+<p class="lead">Sat Oct 20 17:05:31 2018 – Sat Oct 20 17:05:40 2018<br>1 hosts scanned.
               1 hosts up.
               0 hosts down.
             </p>
@@ -64,7 +64,7 @@
 </tr></thead>
 <tbody><tr>
 <td><span class="label label-success">up</span></td>
-<td>10.10.10.70</td>
+<td>10.10.10.91</td>
 <td></td>
 <td>2</td>
 <td>0</td>
@@ -76,7 +76,7 @@
             });
           </script><h2 id="onlinehosts" class="target">Online Hosts</h2>
 <div class="panel panel-default">
-<div class="panel-heading"><h3 class="panel-title">10.10.10.70</h3></div>
+<div class="panel-heading"><h3 class="panel-title">10.10.10.91</h3></div>
 <div class="panel-body">
 <h4>Ports</h4>
 <div class="table-responsive"><table class="table table-bordered">
@@ -91,36 +91,7 @@
 </tr></thead>
 <tbody>
 <tr class="success">
-<td title="Port">80</td>
-<td title="Protocol">tcp</td>
-<td title="State / Reason">open<br>syn-ack</td>
-<td title="Service">http</td>
-<td title="Product">Apache httpd</td>
-<td title="Version">2.4.18</td>
-<td title="Extra Info">(Ubuntu)</td>
-</tr>
-<tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:apache:http_server:2.4.18">cpe:/a:apache:http_server:2.4.18</a><h5>http-git</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">
-  10.10.10.70:80/.git/
-    Git repository found!
-    Repository description: Unnamed repository; edit this file 'description' to name the...
-    Last commit message: final # Please enter the commit message for your changes. Li...
-    Remotes:
-      http://git.canape.htb/simpsons.git
-</pre>
-<h5>http-methods</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">
-  Supported Methods: HEAD OPTIONS GET</pre>
-<h5>http-server-header</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache/2.4.18 (Ubuntu)</pre>
-<h5>http-title</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Simpsons Fan Site</pre>
-<h5>http-trane-info</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Problem with XML parsing of /evox/about</pre>
-</td></tr>
-<tr class="success">
-<td title="Port">65535</td>
+<td title="Port">22</td>
 <td title="Protocol">tcp</td>
 <td title="State / Reason">open<br>syn-ack</td>
 <td title="Service">ssh</td>
@@ -131,12 +102,30 @@
 <tr><td colspan="7">
 <a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:openbsd:openssh:7.2p2">cpe:/a:openbsd:openssh:7.2p2</a><h5>ssh-hostkey</h5>
 <pre style="white-space:pre-wrap; word-wrap:break-word;">
-  2048 8d:82:0b:31:90:e4:c8:85:b2:53:8b:a1:7c:3b:65:e1 (RSA)
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDroCKFvZBROo3eo64hlNjhERjTLQmRgbCaDGhoWgs6qf9AfuTfS7LMX82ayuBjV0OHbk6Saf3SKwyLFfyLKj/mo8yGNpGjsZQ9uiN6hlpO39oQyjo9dy5DUfAabcoq82ugii982GWeHlTShQJAhAsG+7Uov2mUbO3YkKph/PBEv3uuAnNebhxlk9eg01yuHkk+8iyP6+Qp9ZzAVZsXpSuoH0raBA7VOIlYnm4Wti1AHy3VUtvmrB4KwZQT8Q3ZyMbufWFZlDB0N0/cEvyXF0kKwRIT1hNjp4HUNo0dwcDOWuwvrWVUpH3/q8VXkZRN3fL2gHsIsfuh+AyThM14hf/h
-  256 22:fc:6e:c3:55:00:85:0f:24:bf:f5:79:6c:92:8b:68 (ECDSA)
-ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLX3HkUlvdwKR+Ijy9ChJwvV7ILAPCEver9hmIr546JbveSJNyvOiq6y3YxfQu3IXomvonySAU10Fo8wVQ7kxWk=
-  256 0d:91:27:51:80:5e:2b:a3:81:0d:e9:d8:5c:9b:77:35 (ED25519)
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvWPxb1XOvko0SIhYrC5TYyQpU8tugg1qirZdtt3CXX</pre>
+  2048 42:90:e3:35:31:8d:8b:86:17:2a:fb:38:90:da:c4:95 (RSA)
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhnygpNZx4gdup8MisoZInL7I8UYHXjDzYzj8wISuATvYEQRGckobDZXz5xrdYuLX/X7RQrASXGODJBtOuViqdBQKKdTOwz2x+Sr/gZl3tauZsibsP0wx2DPcHJcY5WekLDcjes+WVpis+4YXb1TL5qKg5R88cGHH63lgkisidTUDp55lRuu9ocE0ZdS0fNrN4RJCATerQ9pCmKo4ZnFD83gAkEg0DNdlLAdxzB7BPE/k//ZJiRr06TfibO3S9Vsh/d+PenuWDKJPsA7CrCW3hfVUsJxsH8WDNrFTLko27jleSP1gmpPm/m/KeYmY17VGWrpCjN2WuStW+RV78h1xD
+  256 b7:b6:dc:c4:4c:87:9b:75:2a:00:89:83:ed:b2:80:31 (ECDSA)
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOEYP1w+H8Uuvfh0fzjA15tqYhqxIhiT8ODPLI4qTBvrM8pZIGErdFlMYGV3rhJAYqGJD05LsvJxC8zozRFmZuw=
+  256 d5:2f:19:53:b2:8e:3a:4b:b3:dd:3c:1f:c0:37:0d:00 (ED25519)
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKHzgVfUX3pUOQ+WBd7PUmFYowgwBWRHpz6EEAsWVEy</pre>
+</td></tr>
+<tr class="success">
+<td title="Port">5000</td>
+<td title="Protocol">tcp</td>
+<td title="State / Reason">open<br>syn-ack</td>
+<td title="Service">http</td>
+<td title="Product">Gunicorn</td>
+<td title="Version">19.7.1</td>
+<td title="Extra Info"></td>
+</tr>
+<tr><td colspan="7">
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:gunicorn:gunicorn:19.7.1">cpe:/a:gunicorn:gunicorn:19.7.1</a><h5>http-methods</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  Supported Methods: HEAD OPTIONS GET</pre>
+<h5>http-server-header</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">gunicorn/19.7.1</pre>
+<h5>http-title</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Site doesn't have a title (text/html; charset=utf-8).</pre>
 </td></tr>
 </tbody>
 </table></div>
@@ -156,24 +145,24 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvWPxb1XOvko0SIhYrC5TYyQpU8tugg1qirZdtt3CXX
 </tr></thead>
 <tbody>
 <tr>
-<td>10.10.10.70</td>
-<td>80</td>
-<td>tcp</td>
-<td>http</td>
-<td>Apache httpd</td>
-<td>2.4.18</td>
-<td>cpe:/a:apache:http_server:2.4.18</td>
-<td>(Ubuntu)</td>
-</tr>
-<tr>
-<td>10.10.10.70</td>
-<td>65535</td>
+<td>10.10.10.91</td>
+<td>22</td>
 <td>tcp</td>
 <td>ssh</td>
 <td>OpenSSH</td>
 <td>7.2p2 Ubuntu 4ubuntu2.4</td>
 <td>cpe:/a:openbsd:openssh:7.2p2</td>
 <td>Ubuntu Linux; protocol 2.0</td>
+</tr>
+<tr>
+<td>10.10.10.91</td>
+<td>5000</td>
+<td>tcp</td>
+<td>http</td>
+<td>Gunicorn</td>
+<td>19.7.1</td>
+<td>cpe:/a:gunicorn:gunicorn:19.7.1</td>
+<td></td>
 </tr>
 </tbody>
 </table></div>

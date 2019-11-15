@@ -41,8 +41,8 @@
 <div class="jumbotron">
 <h1>Scan Report<br><small>Nmap 7.70</small>
 </h1>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -6 -n -v -Pn -sV -sC -oA nmap/ipv6-version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/misc/nmap-bootstrap.xsl -p22,80 dead:beef::0250:56ff:feb9:7caa</pre>
-<p class="lead">Tue Apr  2 23:58:05 2019 – Tue Apr  2 23:58:15 2019<br>1 hosts scanned.
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,80,8888 10.10.10.87</pre>
+<p class="lead">Sat Dec 22 22:45:04 2018 – Sat Dec 22 22:45:17 2018<br>1 hosts scanned.
               1 hosts up.
               0 hosts down.
             </p>
@@ -64,7 +64,7 @@
 </tr></thead>
 <tbody><tr>
 <td><span class="label label-success">up</span></td>
-<td>dead:beef::250:56ff:feb9:7caa</td>
+<td>10.10.10.87</td>
 <td></td>
 <td>2</td>
 <td>0</td>
@@ -76,7 +76,7 @@
             });
           </script><h2 id="onlinehosts" class="target">Online Hosts</h2>
 <div class="panel panel-default">
-<div class="panel-heading"><h3 class="panel-title">dead:beef::250:56ff:feb9:7caa</h3></div>
+<div class="panel-heading"><h3 class="panel-title">10.10.10.87</h3></div>
 <div class="panel-body">
 <h4>Ports</h4>
 <div class="table-responsive"><table class="table table-bordered">
@@ -96,40 +96,51 @@
 <td title="State / Reason">open<br>syn-ack</td>
 <td title="Service">ssh</td>
 <td title="Product">OpenSSH</td>
-<td title="Version">7.6p1 Ubuntu 4</td>
-<td title="Extra Info">Ubuntu Linux; protocol 2.0</td>
+<td title="Version">7.5</td>
+<td title="Extra Info">protocol 2.0</td>
 </tr>
 <tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:openbsd:openssh:7.6p1">cpe:/a:openbsd:openssh:7.6p1</a><h5>ssh-hostkey</h5>
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:openbsd:openssh:7.5">cpe:/a:openbsd:openssh:7.5</a><h5>ssh-hostkey</h5>
 <pre style="white-space:pre-wrap; word-wrap:break-word;">
-  2048 2a:90:a6:b1:e6:33:85:07:15:b2:ee:a7:b9:46:77:52 (RSA)
-  256 d0:d7:00:7c:3b:b0:a6:32:b2:29:17:8d:69:a6:84:3f (ECDSA)
-  256 3f:1c:77:93:5c:c0:6c:ea:26:f4:bb:6c:59:e9:7c:b0 (ED25519)</pre>
+  2048 c4:ff:81:aa:ac:df:66:9e:da:e1:c8:78:00:ab:32:9e (RSA)
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCUBrGVTenfm2F4qteJkyDe6hVIFmu8bbhvIHpgyeurAI6685LtchiyT67l6xdhhc4jKe9kPp7Sb123/oqHf0lkoHywgwn2VI4Fxbj2QUoRw6LXeT1UL3W9vYMNazvGgjriv7S/pfXZA9E0IGIGauQfWhMsh2LMi7R9XLCgvtglmEe+PJP3PtR1OosHIYJzbF9iP/gaN303eDZXkDbWlIcr5hLDFDw/OLPYY1ew8oHMdJKs/WSEZfbRJFE6NTfjuumX5Sfbo8lk5jcWZ683BUeHK8PFknqlDQnqLa2F9M4vq9vSXvDNfd315vaLpLoA/OymCyXzamwXVVEUI4hm7oMj
+  256 b3:e7:54:6a:16:bd:c9:29:1f:4a:8c:cd:4c:01:24:27 (ECDSA)
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOGNlwRr8whDd+DtY94Sa6uDIuCTTnDO9rp4ezQyJRbB866Useclk0U03GooZdUNgcyHttrfBhrLRbNp4EYmSEg=
+  256 38:64:ac:57:56:44:d5:69:de:74:a8:88:dc:a0:b4:fd (ED25519)
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILhvDtrIfnHWdGIA3ewprB+7ZA1wfv/PcQtO/vlNHaks</pre>
 </td></tr>
 <tr class="success">
 <td title="Port">80</td>
 <td title="Protocol">tcp</td>
 <td title="State / Reason">open<br>syn-ack</td>
 <td title="Service">http</td>
-<td title="Product">Apache httpd</td>
-<td title="Version">2.4.29</td>
-<td title="Extra Info">(Ubuntu)</td>
+<td title="Product">nginx</td>
+<td title="Version">1.12.2</td>
+<td title="Extra Info"></td>
 </tr>
 <tr><td colspan="7">
-<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:apache:http_server:2.4.29">cpe:/a:apache:http_server:2.4.29</a><h5>http-server-header</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">Apache/2.4.29 (Ubuntu)</pre>
+<a href="https://nvd.nist.gov/vuln/search/results?form_type=Advanced&amp;cves=on&amp;cpe_version=cpe:/a:igor_sysoev:nginx:1.12.2">cpe:/a:igor_sysoev:nginx:1.12.2</a><h5>http-methods</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">
+  Supported Methods: GET HEAD POST</pre>
+<h5>http-server-header</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">nginx/1.12.2</pre>
 <h5>http-title</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">400 Bad Request</pre>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">List Manager
+Requested resource was /list.html</pre>
+<h5>http-trane-info</h5>
+<pre style="white-space:pre-wrap; word-wrap:break-word;">Problem with XML parsing of /evox/about</pre>
 </td></tr>
+<tr class="warning">
+<td>8888</td>
+<td>tcp</td>
+<td>filtered<br>no-response</td>
+<td>sun-answerbook</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table></div>
-<h4>Host Script</h4>
-<h5>address-info</h5>
-<pre style="white-space:pre-wrap; word-wrap:break-word;">
-  IPv6 EUI-64: 
-    MAC address: 
-      address: 00:50:56:b9:7c:aa
-      manuf: VMware</pre>
 </div>
 </div>
 <h2 id="openservices" class="target">Open Services</h2>
@@ -146,24 +157,24 @@
 </tr></thead>
 <tbody>
 <tr>
-<td>dead:beef::250:56ff:feb9:7caa</td>
+<td>10.10.10.87</td>
 <td>22</td>
 <td>tcp</td>
 <td>ssh</td>
 <td>OpenSSH</td>
-<td>7.6p1 Ubuntu 4</td>
-<td>cpe:/a:openbsd:openssh:7.6p1</td>
-<td>Ubuntu Linux; protocol 2.0</td>
+<td>7.5</td>
+<td>cpe:/a:openbsd:openssh:7.5</td>
+<td>protocol 2.0</td>
 </tr>
 <tr>
-<td>dead:beef::250:56ff:feb9:7caa</td>
+<td>10.10.10.87</td>
 <td>80</td>
 <td>tcp</td>
 <td>http</td>
-<td>Apache httpd</td>
-<td>2.4.29</td>
-<td>cpe:/a:apache:http_server:2.4.29</td>
-<td>(Ubuntu)</td>
+<td>nginx</td>
+<td>1.12.2</td>
+<td>cpe:/a:igor_sysoev:nginx:1.12.2</td>
+<td></td>
 </tr>
 </tbody>
 </table></div>

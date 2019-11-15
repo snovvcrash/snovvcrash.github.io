@@ -70,15 +70,15 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Dec 15 23:26:07 2018 -- 1 IP address (1 host up) scanned in 0.80 seconds
 ```
 
-Version ([красивый отчет]({{ "/nmap/htb/active/version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/reports/nmap/htb/active/version.html" | relative_url }})):
 ```text
-root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl 10.10.10.100
+root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl 10.10.10.100
 ...
 ```
 
 ```text
 root@kali:~# cat nmap/version.nmap
-# Nmap 7.70 scan initiated Sat Dec 15 23:26:38 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/nmap/nmap-bootstrap.xsl 10.10.10.100
+# Nmap 7.70 scan initiated Sat Dec 15 23:26:38 2018 as: nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl 10.10.10.100
 Nmap scan report for 10.10.10.100
 Host is up, received echo-reply ttl 127 (0.14s latency).
 Scanned at 2018-12-15 23:26:38 MSK for 200s
