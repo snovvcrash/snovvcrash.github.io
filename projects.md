@@ -80,6 +80,7 @@ permalink: /projects
 ## ][акер
 
 * Цикл «В королевстве PWN» (4 части):
+  - *ноя, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/11/20/hackthebox-smasher/) **➤**{: style="color: green;"} «4. Атака ret2bss, криптооракулы и реверс-инжиниринг на виртуалке Smasher с Hack The Box»
   - *окт, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/10/23/ctf-bitterman/) **➤**{: style="color: green;"} «3. ROP-цепочки и атака Return-to-PLT в CTF Bitterman»
   - *окт, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/10/08/hackthebox-dep-aslr/) **➤**{: style="color: green;"} «2. Обходим DEP и брутфорсим ASLR на виртуалке с Hack The Box»
   - *сен, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/09/20/stack-overflow/) **➤**{: style="color: green;"} «1. Препарируем классику переполнения буфера в современных условиях»
