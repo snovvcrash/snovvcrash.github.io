@@ -34,7 +34,7 @@ published: true
 > 
 > 1. **➤**{: style="color: green;"} [Препарируем классику переполнения стека](https://snovvcrash.github.io/2019/10/20/classic-stack-overflow.html)
 > 2. [Обходим DEP и брутфорсим ASLR в «Октябре»](https://snovvcrash.github.io/2019/11/08/htb-october.html)
-> 3. COMING SOON
+> 3. [В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman](https://snovvcrash.github.io/2019/11/23/bitterman.html)
 > 4. COMING SOON
 >
 > [Приложения](https://github.com/snovvcrash/xakepru/tree/master/pwn-kingdom/1-classic-stack-overflow)
