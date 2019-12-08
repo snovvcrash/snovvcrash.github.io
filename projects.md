@@ -77,7 +77,7 @@ permalink: /projects
 - *янв, 2018*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://habr.com/post/346572/) **➤**{: style="color: green;"} «Сказ о тотальном переборе, или Томительное ожидание декрипта»
 - *окт, 2017*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://habr.com/post/339910/) **➤**{: style="color: green;"} «Ломаем модифицированный AES-256»
 
-## ][акер
+## ][
 
 * Цикл «В королевстве PWN» (4 части):
   - *ноя, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/11/20/hackthebox-smasher/) **➤**{: style="color: green;"} «4. Атака ret2bss, криптооракулы и реверс-инжиниринг на виртуалке Smasher с Hack The Box»

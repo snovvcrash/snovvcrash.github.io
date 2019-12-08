@@ -24,7 +24,7 @@ See ya!
 ## Профили
 
 * [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
-* [\]\[акер](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
+* [\]\[](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
 * [Codeby](https://codeby.net/forum/members/snovvcrash.103302/#recent-content "snovvcrash / Форум информационной безопасности и защиты информации")
 * [GeekBrains](https://is.gd/G33KBR41N5 "Профиль / GeekBrains - образовательный портал")
 * [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
