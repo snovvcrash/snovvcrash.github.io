@@ -12,7 +12,7 @@ published: true
 
 [![xakep-badge.png]({{ "/img/xakep-badge.png" | relative_url }})](https://xakep.ru/2019/10/23/ctf-bitterman/ "В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman — «Хакер»")
 
-В этой статье мы рассмотрим особенности переполнения стека в 64-битном Linux. На примере таска Bitterman, представленном на соревновании CAMP CTF 2015, используя возможности модуля pwntools, мы построим эксплоит, демонстрирующий техники Return-oriented programming (для обмана запрета исполнения DEP/NX) и Return-to-PLT — для байпаса механизма рандомизации адресов ASLR без брутфорса.
+В этой статье мы рассмотрим особенности переполнения стека в 64-битном Linux. На примере таска Bitterman, представленном на соревновании CAMP CTF 2015, используя возможности модуля pwntools, мы построим эксплоит, демонстрирующий техники Return-oriented programming (для обмана запрета исполнения DEP/NX) и Return-to-PLT (для байпаса механизма рандомизации адресов ASLR без брутфорса).
 
 <!--cut-->
 
@@ -22,7 +22,7 @@ published: true
 > 
 > 1. [Препарируем классику переполнения стека](https://snovvcrash.github.io/2019/10/20/classic-stack-overflow.html)
 > 2. [Обходим DEP и брутфорсим ASLR в «Октябре»](https://snovvcrash.github.io/2019/11/08/htb-october.html)
-> 3. **➤**{: style="color: green;"} [В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman](https://snovvcrash.github.io/2019/11/23/bitterman.html)
+> 3. **➤**{: style="color: green;"} [ROP-цепочки и атака Return-to-PLT в CTF Bitterman](https://snovvcrash.github.io/2019/11/23/bitterman.html)
 > 4. COMING SOON
 >
 > [Приложения](https://github.com/snovvcrash/xakepru/tree/master/pwn-kingdom/3-bitterman)
