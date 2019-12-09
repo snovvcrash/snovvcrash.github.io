@@ -887,7 +887,7 @@ int main(int argc,char **argv) {
 ![bitterman-pattern-create.png]({{ "/img/pwn-kingdom/bitterman/bitterman-pattern-create.png" | relative_url }})
 {: .center-image}
 
-Генерим строку в 500 символов и скармливаем программе в уязвимом input-е.
+Генерим строку в 500 символов и скармливаем программе в уязвимом input'е.
 
 ![bitterman-pattern-offset.png]({{ "/img/pwn-kingdom/bitterman/bitterman-pattern-offset.png" | relative_url }})
 {: .center-image}
