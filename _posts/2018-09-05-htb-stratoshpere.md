@@ -9,8 +9,9 @@ published: true
 ---
 
 [//]: # (2019-09-17)
+[//]: # ({{ "/img/xakep-badge.png" | relative_url }})
 
-[![xakep-badge.png]({{ "/img/xakep-badge.png" | relative_url }})](https://xakep.ru/2019/08/13/struts-forward-shell/ "Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell - «Хакер»")
+[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/08/13/struts-forward-shell/ "Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell - «Хакер»")
 
 **Stratosphere** — уютная Linux-машина, которая встретит нас RCE-уязвимостью фреймворка *Apache Struts*, помучает невозможностью получения стандартного reverse-shell'а, заставив прибегнуть к концепции *forward-shell*'а, после чего посредством взаимодействия с СУБД *MySQL* предложит взглянуть на нарушение политики локального хранения паролей, подразнит реверсом дайджестов различных алгоритмов хеширования, а под зановес угостит практикой абьюзинга функции *eval()* из-под Python'а или же угоном Python-модулей (aka *Python Library Hijacking*) на выбор (мы угостимся и тем, и другим though). Несмотря на то, что этот бокс идеально вписывается в описанную ранее концепцию "типичной CTF-машины", найти к ней подход было действительно весело.
 

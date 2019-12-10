@@ -10,7 +10,7 @@ published: true
 
 [//]: # (2019-10-23)
 
-[![xakep-badge.png]({{ "/img/xakep-badge.png" | relative_url }})](https://xakep.ru/2019/10/23/ctf-bitterman/ "В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman — «Хакер»")
+[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/10/23/ctf-bitterman/ "В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman — «Хакер»")
 
 В этой статье мы рассмотрим особенности переполнения стека в 64-битном Linux. На примере таска Bitterman, представленном на соревновании CAMP CTF 2015, используя возможности модуля pwntools, мы построим эксплоит, демонстрирующий техники Return-oriented programming (для обмана запрета исполнения DEP/NX) и Return-to-PLT (для байпаса механизма рандомизации адресов ASLR без брутфорса).
 
