@@ -23,12 +23,12 @@ See ya!
 
 ## Профили
 
-* [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
+* [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
+* [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [\]\[](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
+* [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
 * [Codeby](https://codeby.net/forum/members/snovvcrash.103302/#recent-content "snovvcrash / Форум информационной безопасности и защиты информации")
 * [GeekBrains](https://is.gd/G33KBR41N5 "Профиль / GeekBrains - образовательный портал")
-* [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
-* [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
 * [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
 * [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")

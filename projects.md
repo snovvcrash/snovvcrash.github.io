@@ -20,7 +20,7 @@ permalink: /projects
 | *июн, 2018* | [**usbrip**](https://github.com/snovvcrash/usbrip "snovvcrash/usbrip: Simple command line forensics tool for tracking USB device artifacts (history of USB events) on GNU/Linux.") | <a class="github-button" href="https://github.com/snovvcrash/usbrip/archive/master.zip" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork snovvcrash/usbrip on GitHub">Fork</a> <a class="github-button" href="https://github.com/snovvcrash/usbrip" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star snovvcrash/usbrip on GitHub">Star</a> |
 |------+----------+---------|
 
-- Exploitation-фреймворк для генерации *forward-shell*'ов
+- Exploitation-фреймворк для генерации forward-shell'ов
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -78,6 +78,8 @@ permalink: /projects
 - *окт, 2017*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://habr.com/post/339910/) **➤**{: style="color: green;"} «Ломаем модифицированный AES-256»
 
 ## ][
+
+* *дек, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/12/26/htb-pivoting/) **➤**{: style="color: green;"} «Большой проброс. Оттачиваем искусство pivoting на виртуалках с Hack The Box»
 
 * Цикл «В королевстве PWN» (4 части):
   - *ноя, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/11/20/hackthebox-smasher/) **➤**{: style="color: green;"} «4. Атака ret2bss, криптооракулы и реверс-инжиниринг на виртуалке Smasher с Hack The Box»
