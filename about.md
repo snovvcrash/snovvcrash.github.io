@@ -6,9 +6,6 @@ permalink: /about
 
 <a class="github-button" href="https://github.com/snovvcrash" data-size="large" aria-label="Follow @snovvcrash on GitHub">Follow the Grey Hat</a>
 
-![avatar.png]({{ "/img/avatar.png" | relative_url }})
-{: style="float: right; margin-left: 10px;"}
-
 Приветствую!
 
 Меня зовут `snovvcrash`, я специалист по компьютерной и информационной безопасности, и это мой блог. Здесь я публикую райтапы с CTF-мероприятий, оставляю заметки, касающиеся тематики *cybersec*'а и *infosec*'а, разработки, а также просто делюсь своими мыслями и наблюдениями из сферы IT.
@@ -22,6 +19,9 @@ See ya!
 > Автор блога не несет отвественности за неправомерное использование информации, размещенной на страницах данного блога.
 
 ## Профили
+
+![avatar.png]({{ "/img/avatar.png" | relative_url }})
+{: style="float: right;"}
 
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")

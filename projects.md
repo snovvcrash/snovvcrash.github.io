@@ -6,7 +6,7 @@ permalink: /projects
 
 [![built-with-love.svg](https://img.shields.io/badge/built%20with-%F0%9F%92%97%F0%9F%92%97%F0%9F%92%97-lightgrey?style=flat-square)](http://project.cyberpunk.ru/lib/burning_chrome/)
 
-Здесь представлены некоторые мои работы.
+Ссылки на некоторые мои работы
 
 ## GitHub
 
