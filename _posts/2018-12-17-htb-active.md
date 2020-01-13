@@ -11,6 +11,7 @@ published: true
 [//]: # (2019-08-01)
 
 [![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/06/27/htb-kerberos/ "Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с HackTheBox - «Хакер»")
+[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
 
 **Active** — максимально простая, однако, в то же время, одна из самых полезных для прохождения Windows-машин в своей "ценовой категории" на HTB. Почему? Так это же контроллер домена AD! Тезисный обзор предлагаемых развлечений: энумерация SMB-шар (используем tуеву hучу крутых утилит а-ля smbclient, smbmap, enum4linux, nullinux); разграбление SMB с анонимным доступом для захвата файла групповых политик Groups.xml; декрипт GPP-пароля из той самой xml'ки; получение доступа к внутридоменному аккаунту с последующей инициализацией атаки типа Kerberoasting (против протокола аутентификации Kerberos) для извлечения тикета администратора с помощью коллекции Python-скриптов impacket для работы с сетевыми протоколами; наконец, офлайн-восстановление пароля администратора из хеша (с помощью Hashcat) для окончательного pwn'а контроллера.
 

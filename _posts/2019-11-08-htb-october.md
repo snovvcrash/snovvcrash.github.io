@@ -11,6 +11,7 @@ published: true
 [//]: # (2019-10-08)
 
 [![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/10/08/hackthebox-dep-aslr/ "В королевстве PWN. Обходим DEP и брутфорсим ASLR на виртуалке с Hack The Box - «Хакер»")
+[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/15 "Hack The Box :: October")
 
 **October** — относительно несложная виртуальная машина с Hack The Box, однако на ее примере удобнее всего разобрать, что, в сущности, из себя представляют: атака ret2libc, применяемая для обхода запрета выполнения данных (DEP/NX-Bit) в стеке; и подбор необходимого адреса той самой стандартной разделяемой библиотеки libc для нивелирования рандомизации размещения адресного пространства (ASLR). Ко всему прочему, на общий уровень сложности повлиял челлендж с захватом админки CMS, где случайно оставили дефолтную авторизацию, поэтому быстро пробежим вступление и более подробно остановимся на этапе privilege escalation.
 

@@ -8,6 +8,8 @@ comments: true
 published: true
 ---
 
+[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
+
 Путешествие к вершинам **Олимпа**: 1. Остров Крит — веб-сервер Apache с RCE-уязвимостью в Xdebug; 2. Олимпия — докер-контейнер с таском на брут 802.11 WPA перехвата; 3. Остров Родос — DNS-сервер, хранящий последовательность портов к Port Knocking'у для открытия портала в царство Аида; 4. Царство Аида — последний этап, сама виртуальная машина Olympus, root-сессия будет получена через захват docker'а. А теперь подробнее...
 
 <!--cut-->

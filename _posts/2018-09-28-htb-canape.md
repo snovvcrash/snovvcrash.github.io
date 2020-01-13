@@ -8,6 +8,8 @@ comments: true
 published: true
 ---
 
+[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
+
 **Canape** — Linux-тачка средней сложности. Для начала нам предстоит столкнуться с сервером на Flask'е, проанализировать исходники Python-кода, найдя в них мою любимую deserialization-уязвимость, далее нас поджидает повышение привилегий до пользователя через эксплуатацию уязвимости в СУБД CouchDB, и напоследок мы поиграем с методами обмана питоновского менеджера управления пакетами pip с целью выполнения произвольных команд. Последнее подарит root-сессию. Log on, hack in!
 
 <!--cut-->
