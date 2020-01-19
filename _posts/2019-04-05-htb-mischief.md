@@ -1085,7 +1085,7 @@ class ICMPSniffer(Thread):
 
 		setmarker = set(MARKER)
 		if set(buf[-4:]) == setmarker and set(buf) != setmarker:
-				buf = buf[:buf.index(MARKER)]
+			buf = buf[:buf.index(MARKER)]
 
 		print(buf, end='', flush=True)
 

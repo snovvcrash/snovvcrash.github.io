@@ -27,7 +27,7 @@ See ya!
 * [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [\]\[](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
 * [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
-* [Codeby](https://codeby.net/forum/members/snovvcrash.103302/#recent-content "snovvcrash / Форум информационной безопасности и защиты информации")
+* [Codeby](https://codeby.net/forum/members/snovvcrash.103302/ "snovvcrash / Форум информационной безопасности и защиты информации")
 * [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
 * [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
 * [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")
