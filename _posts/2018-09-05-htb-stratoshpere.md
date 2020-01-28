@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Stratosphere }"
 date: 2018-09-05 01:00:00 +0300
 author: snovvcrash
-tags: [xakepru, ctf, write-up, box, hackthebox, Stratosphere, linux apache, apache-struts, forward-shell, FwdSh3ll, python, eval, library-hijacking, john, hashes]
+tags: [hackthebox, xakepru, ctf, write-up, box, Stratosphere, linux apache, apache-struts, forward-shell, FwdSh3ll, python, eval, library-hijacking, john, hashes]
 comments: true
 published: true
 ---

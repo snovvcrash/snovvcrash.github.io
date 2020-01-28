@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Bounty }"
 date: 2018-11-10 20:00:00 +0300
 author: snovvcrash
-tags: [ctf, write-up, box, hackthebox, Bounty, windows, iis, asp.net, web.config, unicorn, metasploit, ms10-092, stuxnet, juicy-potato]
+tags: [hackthebox, ctf, write-up, box, Bounty, windows, iis, asp.net, web.config, unicorn, metasploit, ms10-092, stuxnet, juicy-potato]
 comments: true
 published: true
 ---

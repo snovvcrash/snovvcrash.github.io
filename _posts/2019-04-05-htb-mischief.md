@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Mischief }"
 date: 2019-04-05 16:00:00 +0300
 author: snovvcrash
-tags: [xakepru, ctf, write-up, box, hackthebox, Mischief, linux, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
+tags: [hackthebox, xakepru, ctf, write-up, box, Mischief, linux, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
 comments: true
 published: true
 ---

@@ -3,7 +3,7 @@ layout: post
 title: "В королевстве PWN. Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя"
 date: 2019-12-20 18:00:00 +0300
 author: snovvcrash
-tags: [xakepru, pwn, pwn-64, tutorial, ctf, write-up, box, hackthebox, Smasher, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum.sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
+tags: [hackthebox, xakepru, pwn, pwn-64, tutorial, ctf, write-up, box, Smasher, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum.sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
 comments: true
 published: true
 ---

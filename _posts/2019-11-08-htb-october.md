@@ -3,7 +3,7 @@ layout: post
 title: "В королевстве PWN. Обходим DEP и брутфорсим ASLR в «Октябре»"
 date: 2019-11-08 18:00:00 +0300
 author: snovvcrash
-tags: [xakepru, pwn, pwn-32, tutorial, ctf, write-up, box, hackthebox, October, linux, october-cms, default-credentials, searchsploit, php5-upload, python-simple-http, suid-files, buffer-overflow, stack-smashing, dep-bypass, ret2libc, aslr-bypass, aslr-bruteforce]
+tags: [hackthebox, xakepru, pwn, pwn-32, tutorial, ctf, write-up, box, October, linux, october-cms, default-credentials, searchsploit, php5-upload, python-simple-http, suid-files, buffer-overflow, stack-smashing, dep-bypass, ret2libc, aslr-bypass, aslr-bruteforce]
 comments: true
 published: true
 ---

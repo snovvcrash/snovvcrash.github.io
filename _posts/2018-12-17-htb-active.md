@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Active }"
 date: 2018-12-17 00:00:00 +0300
 author: snovvcrash
-tags: [xakepru, ctf, write-up, box, hackthebox, Active, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
+tags: [hackthebox, xakepru, ctf, write-up, box, Active, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
 comments: true
 published: true
 ---

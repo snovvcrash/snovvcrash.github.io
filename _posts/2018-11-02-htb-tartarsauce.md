@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ TartarSauce }"
 date: 2018-11-02 00:00:00 +0300
 author: snovvcrash
-tags: [ctf, write-up, box, hackthebox, TartarSauce, linux, cms, monstra, wordpress, wpscan, rfi, tar, code-analysis, bash]
+tags: [hackthebox, ctf, write-up, box, TartarSauce, linux, cms, monstra, wordpress, wpscan, rfi, tar, code-analysis, bash]
 comments: true
 published: true
 ---
