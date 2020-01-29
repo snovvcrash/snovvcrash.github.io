@@ -29,6 +29,8 @@ published: true
 * TOC
 {:toc}
 
+[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/htb-stratosphere)
+
 # Разведка
 ## Nmap
 Fire up NMAP! Для начала аккуратно:

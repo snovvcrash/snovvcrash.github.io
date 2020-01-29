@@ -32,6 +32,8 @@ published: true
 * TOC
 {:toc}
 
+[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/htb-active)
+
 # Разведка
 ## Nmap
 Initial:

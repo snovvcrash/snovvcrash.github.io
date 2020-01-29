@@ -34,6 +34,8 @@ published: true
 * TOC
 {:toc}
 
+[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/htb-mischief)
+
 # Разведка
 ## Nmap
 ### TCP
