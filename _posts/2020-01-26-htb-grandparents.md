@@ -10,8 +10,8 @@ published: true
 
 [//]: # (2019-12-26)
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/12/26/htb-pivoting/ "Большой проброс. Оттачиваем искусство pivoting на виртуалках с Hack The Box — «Хакер»")
 [![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/14 "Hack The Box :: Granny")
+[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/12/26/htb-pivoting/ "Большой проброс. Оттачиваем искусство pivoting на виртуалках с Hack The Box — «Хакер»")
 
 На заре становления Hack The Box как онлайн-площадки для тренировки вайтхетов в списке машин ее лаборатории значились две виртуалки: **Grandpa** и **Granny**. Обе эти машины нацелены на эксплуатацию уязвимостей WebDAV (набора дополнений для HTTP), и стратегии захвата их root-флагов практически не отличаются друг от друга. Поэтому, чтобы разнообразить прохождения, мы сначала быстро рассмотрим, как можно взломать каждый из хостов по отдельности, а после этого превратим один из них в шлюз, через который атакуем второй хост. Умение пользоваться техникой Pivoting — проброса трафика к жертве (и обратно) через промежуточные хосты — жизненно важный скил для этичного хакера, который пригодится при тестировании на проникновение любой корпоративной сетки.
 
@@ -321,12 +321,6 @@ Meterpreter     : x86/windows
 
 На этом виртуалку Granny считаю пройденной.
 
-![granny-owned-user.png]({{ "/img/htb/boxes/grandparents/granny-owned-user.png" | relative_url }})
-{: .center-image}
-
-![granny-owned-root.png]({{ "/img/htb/boxes/grandparents/granny-owned-root.png" | relative_url }})
-{: .center-image}
-
 ![granny-trophy.png]({{ "/img/htb/boxes/grandparents/granny-trophy.png" | relative_url }})
 {: .center-image}
 
@@ -434,12 +428,6 @@ C:\windows\system32\inetsrv>netstat -vb
 {: .center-image}
 
 Забираем награду, и Grandpa пройден!
-
-![grandpa-owned-user.png]({{ "/img/htb/boxes/grandparents/grandpa-owned-user.png" | relative_url }})
-{: .center-image}
-
-![grandpa-owned-root.png]({{ "/img/htb/boxes/grandparents/grandpa-owned-root.png" | relative_url }})
-{: .center-image}
 
 ![grandpa-trophy.png]({{ "/img/htb/boxes/grandparents/grandpa-trophy.png" | relative_url }})
 {: .center-image}

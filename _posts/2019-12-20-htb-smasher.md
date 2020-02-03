@@ -10,8 +10,8 @@ published: true
 
 [//]: # (2019-11-20)
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/11/20/hackthebox-smasher/ "В королевстве PWN. Атака ret2bss, криптооракулы и реверс-инжиниринг на виртуалке Smasher с Hack The Box — «Хакер»")
 [![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/141 "Hack The Box :: Smasher")
+[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/11/20/hackthebox-smasher/ "В королевстве PWN. Атака ret2bss, криптооракулы и реверс-инжиниринг на виртуалке Smasher с Hack The Box — «Хакер»")
 
 Год близится к своему логическому завершению и подчищает свои хвосты, поэтому и я, последовав его примеру, закончу цикл «В королевстве PWN» разбором хардкорной тачки **Smasher** с Hack The Box. На этом пути нас ожидает: низкоуровневый сплоитинг веб-сервера со срывом стека (куда же без него?) и генерацией шелл-кода «на лету» с помощью древней магии pwntools; проведение атаки Padding Oracle на Python-приложение для вскрытия шифртекста AES-CBC (абьюзим логику логирования приложения и реализации добивания блоков PKCS#7); реверс-инжиниринг исполняемого файла с атрибутом SUID для повышения привилегий в системе до локального суперпользователя.
 
@@ -1159,12 +1159,6 @@ Data:
 ```
 
 Вот и все: Сокрушитель повержен, root-флаг у нас!
-
-![owned-user.png]({{ "/img/htb/boxes/smasher/owned-user.png" | relative_url }})
-{: .center-image}
-
-![owned-root.png]({{ "/img/htb/boxes/smasher/owned-root.png" | relative_url }})
-{: .center-image}
 
 ![trophy.png]({{ "/img/htb/boxes/smasher/trophy.png" | relative_url }})
 {: .center-image}
