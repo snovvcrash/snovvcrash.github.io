@@ -8,13 +8,13 @@ permalink: /about
 
 Приветствую!
 
-Меня зовут `snovvcrash`, я специалист по компьютерной и информационной безопасности, и это мой блог. Здесь я публикую райтапы с CTF-мероприятий, оставляю заметки, касающиеся тематики *cybersec*'а и *infosec*'а, разработки, а также просто делюсь своими мыслями и наблюдениями из сферы IT.
+Меня зовут `snovvcrash`, я специалист в области компьютерной и информационной безопасности, и это мой блог. Здесь я: публикую райтапы с CTF-мероприятий, оставляю заметки, касающиеся тематик *cybersec*'а и *infosec*'а, разработки, администрирования, а также просто делюсь своими мыслями и наблюдениями из сферы IT.
 
 Добавляй в закладки, будет весело!
 
 See ya!
 
-> Вся информация, содержащаяся на данном сайте, представлена исключительно в образовательных целях. Любое использование описываемых техник для осуществления атак на реальные информационные системы **незаконно**. Все серверы, фигурирующие в публикациях, **созданы уязвимыми** для практики профессиональных навыков тестирования на проникновение и аудита безопасности информационных систем.
+> Вся информация, содержащаяся на данном сайте, представлена исключительно в исследовательских целях. Любое использование описываемых техник для осуществления атак на реальные информационно-вычислительные системы **незаконно**. Все сервисы, фигурирующие в публикациях, **созданы уязвимыми** для практики профессиональных навыков тестирования на проникновение и аудита безопасности информационных систем.
 >
 > Автор блога не несет отвественности за неправомерное использование информации, размещенной на страницах данного блога.
 
@@ -25,13 +25,16 @@ See ya!
 
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
+* [HackerOne](https://hackerone.com/snovvcrash)
 * [\]\[](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
 * [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
 * [Codeby](https://codeby.net/forum/members/snovvcrash.103302/ "snovvcrash / Форум информационной безопасности и защиты информации")
-* [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
-* [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
 * [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")
 * [Keybase](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) / Keybase")
+* [Docker Hub](https://hub.docker.com/u/snovvcrash)
+* [PyPI](https://pypi.org/user/snovvcrash/)
+* [Repl.it](https://repl.it/@snovvcrash "Repl.it - snovvcrash")
+* [asciinema](https://asciinema.org/~snovvcrash "snovvcrash's profile - asciinema")
 
 ## Контакты
 

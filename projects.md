@@ -12,7 +12,7 @@ permalink: /projects
 
 **Repositories**
 
-- Консольная утилита для трекинга истории USB-подключений в GNU/Linux
+- Консольная forensics-утилита для трекинга истории USB-подключений в GNU/Linux
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -28,7 +28,7 @@ permalink: /projects
 | *сен, 2018* | [**FwdSh3ll**](https://github.com/snovvcrash/FwdSh3ll "snovvcrash/FwdSh3ll: Forward shell generation framework.") | <a class="github-button" href="https://github.com/snovvcrash/usbrip/fork" data-icon="octicon-repo-forked" data-size="large" data-size="large" aria-label="Fork snovvcrash/usbrip on GitHub">Fork</a> <a class="github-button" href="https://github.com/snovvcrash/FwdSh3ll" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star snovvcrash/FwdSh3ll on GitHub">Star</a> |
 |------+----------+---------|
 
-- Дампер Twitter-аккаунтов с возможностью смены авторизаций «на лету»
+- Дампер аккаунтов Twitter с возможностью смены авторизаций «на лету»
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -44,7 +44,7 @@ permalink: /projects
 | *авг, 2017* | [**aes256m-cracker**](https://github.com/snovvcrash/aes256m-cracker "snovvcrash/aes256m-cracker: Demo of cracking the training version of AES-256 (AES-256-M).") | <a class="github-button" href="https://github.com/snovvcrash/aes256m-cracker/archive/master.zip" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork snovvcrash/aes256m-cracker on GitHub">Fork</a> <a class="github-button" href="https://github.com/snovvcrash/aes256m-cracker" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star snovvcrash/aes256m-cracker on GitHub">Star</a> |
 |------+----------+---------|
 
-- C++ библиотека для сжатия файлов, включающая 6 алгоритмов: алгоритм Шеннона, алгоритм Фано, алгоритм Хаффмана, алгоритм Хаффмана на биграммах, адаптивный алгоритм Хаффмана
+- Библиотека C++ для сжатия файлов, включающая 6 алгоритмов: алгоритм Шеннона, алгоритм Фано, алгоритм Хаффмана, алгоритм Хаффмана на биграммах, адаптивный алгоритм Хаффмана
 
 |------+----------+---------|
 | Дата | Название | Кнопки  |
@@ -54,19 +54,19 @@ permalink: /projects
 
 **Gists**
 
-- *июн, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [**s0c14lch3ck.py**](https://gist.github.com/snovvcrash/86bcbf65cbc89bf496fd19afcf19f6f5 "Username checker") — чекер зарегистрированных юзернеймов для аккаунтов сошиал медии и адресов электронной почты
+- *июн, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [**s0c14lch3ck.py**](https://gist.github.com/snovvcrash/86bcbf65cbc89bf496fd19afcf19f6f5 "Username checker") — чекер зарегистрированных юзернеймов аккаунтов сошиал медии и адресов электронной почты
 
 - *июн, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [**binasciicoder.py**](https://gist.github.com/snovvcrash/e8e129527ea77f2664a97b54cdeb9f55 "ASCII text string to binary string and vise versa (Python2/3 compatible)") — кодировщик ASCII-текста в бинарную строку и наоборот для Python2/3 (ибо надоело изобретать его заново каждый раз, когда возникает необходимость)
 
-- *мар, 2017*{: style="color: grey;"} **➤**{: style="color: green;"} [**rbtmap.cxx**](https://gist.github.com/snovvcrash/e8bbdf8fa6e750ce503be219c243887e "Implementation of map (associative container) based on the red-black tree structure") — тренировочная реализации C++ контейнера map (ассоциативный массив), основанного на красно-чёрном дереве
+- *мар, 2017*{: style="color: grey;"} **➤**{: style="color: green;"} [**rbtmap.cxx**](https://gist.github.com/snovvcrash/e8bbdf8fa6e750ce503be219c243887e "Implementation of map (associative container) based on the red-black tree structure") — тренировочная C++ реализация контейнера map (ассоциативный массив), основанного на красно-чёрном дереве
 
 **Contribution**
 
-- *дек, 2018*{: style="color: grey;"} **➤**{: style="color: green;"} [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — [модуль](https://gist.github.com/snovvcrash/5f12ffa8ce197e981e7b881903aa5122 "OpenSSL 'Heartbleed' exploit module for the EaST Framework") для open source exploitation-инструмента *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed" (CVE-2014-0160)
+- *дек, 2018*{: style="color: grey;"} **➤**{: style="color: green;"} [**simple_openssl_heartbleed_scanner**](https://github.com/C0reL0ader/EaST/blob/master/exploits/simple_openssl_heartbleed_scanner.py "EaST/simple_openssl_heartbleed_scanner.py at master · C0reL0ader/EaST") — [модуль](https://gist.github.com/snovvcrash/5f12ffa8ce197e981e7b881903aa5122 "OpenSSL 'Heartbleed' exploit module for the EaST Framework") для опенсорсного exploitation-фреймворка *EaST Framework*, реализующий сканирование и эксплуатацию уязвимости OpenSSL "Heartbleed" (CVE-2014-0160)
 
 ## Telegram
 
-- *июл, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [**HTBWriteUps**](https://t.me/HTBWriteUpsBot "Telegram: Contact @HTBWriteUpsBot") — Telegram-бот для упрощения поиска тактик пентеста, основанный на блогах, содержащих райтапы к прохождениям уязвимых виртуальных машин с Hack The Box. В репозитории бота можно найти Markdown-[дамп](https://github.com/snovvcrash/htb-write-ups-bot/blob/master/md/latest.md "htb-write-ups-bot/latest.md at master · snovvcrash/htb-write-ups-bot · GitHub") прохождений с таймкодами, удобный для поиска ключевых слов по <kbd>Ctrl</kbd>+<kbd>F</kbd>
+- *июл, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [**HTBWriteUps**](https://t.me/HTBWriteUpsBot "Telegram: Contact @HTBWriteUpsBot") — Telegram-бот для упрощения поиска тактик пентеста, основанный на блогах, содержащих райтапы к прохождениям уязвимых виртуальных машин с Hack The Box. В репозитории бота можно найти Markdown-[дамп](https://github.com/snovvcrash/htb-write-ups-bot/blob/master/md/latest.md "htb-write-ups-bot/latest.md at master · snovvcrash/htb-write-ups-bot · GitHub") прохождений с таймкодами, удобный для поиска по ключевым словам через <kbd>Ctrl</kbd>+<kbd>F</kbd>
 - *янв, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [**DebSecAnnounce**](https://t.me/DebSecAnnounceBot "Telegram: Contact @DebSecAnnounceBot") — Telegram-бот для отслеживания обновлений ресурса новостной рассылки актуальных уязвимостей [Debian Security Announce](https://lists.debian.org/debian-security-announce/ "Debian Mailing Lists -- Index for debian-security-announce") в рамках работы над системой автоматизацией системы составления «паспортов уязвимостей» для [БДУ ФСТЭК России](https://bdu.fstec.ru/vul "БДУ - Уязвимости")
 
 ## Хабр
