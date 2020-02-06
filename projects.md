@@ -87,7 +87,6 @@ permalink: /projects
   - *окт, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/10/08/hackthebox-dep-aslr/) **➤**{: style="color: green;"} «2. Обходим DEP и брутфорсим ASLR на виртуалке с Hack The Box»
   - *сен, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/09/20/stack-overflow/) **➤**{: style="color: green;"} «1. Препарируем классику переполнения буфера в современных условиях»
 
-* *сен, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/09/09/pentest-trainings/) **➤**{: style="color: green;"} «Где учиться пентесту. Обзор площадок для практики навыков этичного хакера»
 * *авг, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/08/20/compressed-token-format/) **➤**{: style="color: green;"} «Неправильный CTF. Одноразовые пароли, буйство LDAP-инъекций и трюки c архиватором 7z»
 * *авг, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/08/13/struts-forward-shell/) **➤**{: style="color: green;"} «Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell»
 * *июл, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/07/16/mischief/) **➤**{: style="color: green;"} «Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box»
