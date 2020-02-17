@@ -214,7 +214,7 @@ Content-Length: 0
 Теперь у тебя есть несколько вариантов выбора полезной нагрузки, и все зависит только от конечной цели твоего проникновения в систему.
 
 * Например, если ты точно знаешь, где лежит то, что тебе нужно, и что для доступа хватит базовых привилегий в системе, то можно ограничиться простым [веб-шеллом](https://github.com/tennc/webshell/blob/master/fuzzdb-webshell/asp/cmd.aspx), взаимодействовать с которым можно прямо из браузера.
-* Если же тебе нужно внимательнее осмотреться на хосте, тогда твоим выбором может стать тот же самый веб-шелл в связке [с пейлоадом](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#powershell) на PowerShell, что в конечном итоге дарует тебе реверс-шелл. Далее можно будет проанализировать вывод `systeminfo` с помощью какого-нибудь локального [suggester](https://github.com/AonCyberLabs/Windows-Exploit-Suggester)-а для Windows.
+* Если же тебе нужно внимательнее осмотреться на хосте, тогда твоим выбором может стать тот же самый веб-шелл в связке [с пейлоадом](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#powershell) на PowerShell, что в конечном итоге дарует тебе реверс-шелл. Далее можно будет проанализировать вывод `systeminfo` с помощью какого-нибудь локального [suggester](https://github.com/AonCyberLabs/Windows-Exploit-Suggester)'а для Windows.
 * Ну а если твоя цель — полный захват контроля над тачкой с эскалацией привилегий до админа, тогда meterpreter — твой путь.
 
 Конечно, мы выберем последний вариант.

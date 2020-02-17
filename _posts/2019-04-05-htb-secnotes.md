@@ -194,7 +194,7 @@ Host: 10.10.14.71
 Connection: Keep-Alive
 ```
 
-Обращаю внимание, что нет смысла пытаться сделать это в iframe'е: так как на ссылку будет кликать PowerShell, а не пользователь из браузера, поэтому подобное не сработает:
+Обращаю внимание, что нет смысла пытаться сделать это в iframe'е: так как на ссылку будет кликать PowerShell, а не пользователь из браузера, подобное не сработает:
 ```html
 <html>
     <iframe src="http://10.10.10.97/change_pass.php?password=newpass&confirm_password=newpass&submit=submit"></iframe>

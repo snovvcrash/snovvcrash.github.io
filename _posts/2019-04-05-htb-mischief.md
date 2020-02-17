@@ -1160,6 +1160,11 @@ if __name__ == '__main__':
 
 Результат работы можно наблюдать ниже (на панели внизу активен `tcpdump`, сниффящий входящие ICMP-пакеты):
 
+```text
+______________________________________________________________________
+root@kali:~# tcpdump -n -i tun0 -XSs 0 'icmp[icmptype]==8'
+```
+
 [![icmp-shell.gif]({{ "/img/htb/boxes/mischief/icmp-shell.gif" | relative_url }})]({{ "/img/htb/boxes/mischief/icmp-shell.gif" | relative_url }})
 
 ## iptables
