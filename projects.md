@@ -79,7 +79,7 @@ permalink: /projects
 
 ## ][
 
-* *янв, 2020*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/12/26/htb-reddish/) **➤**{: style="color: green;"} «Дьявольски-красный пентест. Строим цепочки туннелей через докер-контейнеры на виртуалке с Hack The Box»
+* *янв, 2020*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2020/02/17/htb-reddish/) **➤**{: style="color: green;"} «Дьявольски-красный пентест. Строим цепочки туннелей через докер-контейнеры на виртуалке с Hack The Box»
 
 * *дек, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/12/26/htb-pivoting/) **➤**{: style="color: green;"} «Большой проброс. Оттачиваем искусство pivoting на виртуалках с Hack The Box»
 
