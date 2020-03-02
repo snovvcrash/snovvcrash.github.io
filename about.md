@@ -4,7 +4,7 @@ title: Кто я
 permalink: /about
 ---
 
-<a class="github-button" href="https://github.com/snovvcrash" data-size="large" aria-label="Follow @snovvcrash on GitHub">Follow the Grey Hat</a>
+[//]: # (<a class="github-button" href="https://github.com/snovvcrash" data-size="large" aria-label="Follow @snovvcrash on GitHub">Follow the Grey Hat</a>)
 
 Приветствую!
 
@@ -13,6 +13,9 @@ permalink: /about
 Добавляй в закладки, будет весело!
 
 See ya!
+
+<script src="https://www.hackthebox.eu/badge/51037"></script>
+<br>
 
 > Вся информация, содержащаяся на данном сайте, представлена исключительно в исследовательских целях. Любое использование описываемых техник для осуществления атак на реальные информационно-вычислительные системы **незаконно**. Все сервисы, фигурирующие в публикациях, **созданы уязвимыми** для практики профессиональных навыков тестирования на проникновение и аудита безопасности информационных систем.
 >
@@ -30,6 +33,7 @@ See ya!
 * [\]\[](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
 * [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
 * [Codeby](https://codeby.net/forum/members/snovvcrash.103302/ "snovvcrash / Форум информационной безопасности и защиты информации")
+* [GeekBrains](https://is.gd/G33KBR41N5 "Профиль / GeekBrains - образовательный портал")
 * [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")
 * [Keybase](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) / Keybase")
 

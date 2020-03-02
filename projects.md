@@ -92,7 +92,7 @@ permalink: /projects
 * *авг, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/08/20/compressed-token-format/) **➤**{: style="color: green;"} «Неправильный CTF. Одноразовые пароли, буйство LDAP-инъекций и трюки c архиватором 7z»
 * *авг, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/08/13/struts-forward-shell/) **➤**{: style="color: green;"} «Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell»
 * *июл, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/07/16/mischief/) **➤**{: style="color: green;"} «Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box»
-* *июн, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/06/27/htb-kerberos/) **➤**{: style="color: green;"} «Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с Hack The Box»
+* *июн, 2019*{: style="color: grey;"} **➤**{: style="color: green;"} [ссылка](https://xakep.ru/2019/06/27/htb-kerberos/) **➤**{: style="color: green;"} [англ.](https://hackmag.com/security/htb-kerberos/) **➤**{: style="color: green;"} «Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с Hack The Box»
 
 ## Codeby
 
