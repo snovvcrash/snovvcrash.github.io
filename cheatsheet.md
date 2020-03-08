@@ -1933,6 +1933,41 @@ $ OUT="dpkg-query-$(date +'%FT%H%M%S').csv"; echo 'package,version' > ${OUT} && 
 ```
 
 
+### nslookup
+
+```
+$ nslookup example.com или 127.0.0.1
+
+$ nslookup
+[> server dns.example.com]
+> set q=mx
+> example.com
+
+$ nslookup
+> set q=ptr
+> 127.0.0.1
+```
+
+
+### whois
+
+IP/domain info, IP ranges:
+
+```
+$ whois [-h whois.example.com] example.com или 127.0.0.1
+```
+
+
+### dig
+
+```
+$ dig [@dns.example.com] example.com [{a,mx,ns,soa,txt,...}]
+$ dig -x example.com [+short] [+timeout=1]
+```
+
+* [viewdns.info/reverseip/](https://viewdns.info/reverseip/)
+
+
 
 ## Fun
 

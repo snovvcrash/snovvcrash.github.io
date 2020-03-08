@@ -14,3 +14,7 @@ $ JEKYLL_ENV=production bundle exec jekyll serve [--no-watch]
 ```
 $ bundle update
 ```
+
+#### Themes
+
+* [Is there a "Dark Minima" theme out there? · Issue #143 · jekyll/minima](https://github.com/jekyll/minima/issues/143)
