@@ -3,12 +3,11 @@ layout: post
 title: "HTB{ Valentine }"
 date: 2018-08-14 00:00:00 +0300
 author: snovvcrash
-tags: [hackthebox, ctf, write-up, box, Valentine, linux, heartbleed, tmux, dirtycow]
+categories: Пентест
+tags: [hackthebox, linux, heartbleed, tmux, dirtycow]
 comments: true
 published: true
 ---
-
-[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/127 "Hack The Box :: Valentine")
 
 **Valentine** входит в тройку первых решенных мною машин на Hack The Box. Вскрытие будет включать в себя эксплуатацию Heartbleed, уязвимости протокола OpenSSL, наделавшей много шума в свое время, а также использование менеджера терминальных сессий tmux. Как и у большинства машин, у Valentine существует не единственный способ повышения привилегий до суперпользователя, второй, к слову, достаточно грязный, но мы разберем и его.
 

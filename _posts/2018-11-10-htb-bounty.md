@@ -3,12 +3,11 @@ layout: post
 title: "HTB{ Bounty }"
 date: 2018-11-10 20:00:00 +0300
 author: snovvcrash
-tags: [hackthebox, ctf, write-up, box, Bounty, windows, iis, asp.net, web.config, unicorn, metasploit, ms10-092, stuxnet, juicy-potato]
+categories: Пентест
+tags: [hackthebox, windows, iis, asp.net, web.config, unicorn, metasploit, ms10-092, stuxnet, juicy-potato]
 comments: true
 published: true
 ---
-
-[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
 
 **Bounty** — очень простая Windows-машина с 1000 и одним способом PrivEsc'а до админа. Выполнив инъекцию ASP-кода в файл конфигурации web.config веб-сервера IIS, мы получим юзера, а дальше все зависит только от твоего воображения. В рамках этого райтапа будем использовать Metasploit в качестве основного инструмента сбора сведений о локальных уязвимостях и постэксплуатации оных, однако напоследок я приведу список альтернативного ПО, которое с таким же успехом позволит выпотрошить эту тачку.
 

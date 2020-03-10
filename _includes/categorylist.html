@@ -1,0 +1,4 @@
+{% assign category-len = page.categories.size %}
+{% if category-len > 0 %}
+  <span class="category-list">{% for category in page.categories %}<a href="{{ site.category_page | relative_url }}#{{ category | slugify }}" class="post-category">{{ category }}</a> {% endfor %}</span><br/><br/>
+{% endif %}

@@ -21,7 +21,7 @@ permalink: /tags
     {% for hash in tag_hashes %}
       {% assign keyValue = hash | split: '#' %}
       {% capture tag_word %}{{ keyValue[2] | strip_newlines }}{% endcapture %}
-      <h2 id="{{ tag_word | slugify }}">{{ tag_word }}<small>[{{ site.tags[tag_word].size }}]</small></h2>
+      <h2 id="{{ tag_word | slugify }}">{{ tag_word }}<small> ({{ site.tags[tag_word].size }})</small></h2>
       <ul class="tags-expo-posts">
         {% for post in site.tags[tag_word] %}
           <a href="{{ post.url | relative_url }}">

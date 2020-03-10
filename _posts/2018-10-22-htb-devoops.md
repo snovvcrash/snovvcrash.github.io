@@ -3,12 +3,11 @@ layout: post
 title: "HTB{ DevOops }"
 date: 2018-10-22 22:00:00 +0300
 author: snovvcrash
-tags: [hackthebox, ctf, write-up, box, DevOops, linux, xxe, xml-entity-injection, code-analysis, python, deserialization, pickle, reverse-shell, git]
+categories: Пентест
+tags: [hackthebox, linux, xxe, xml-entity-injection, code-analysis, python, deserialization, pickle, reverse-shell, git]
 comments: true
 published: true
 ---
-
-[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
 
 **DevOops** — ненапряжная виртуалка под Linux'ом, уязвимая для XML-инъекций (XXE). В данном случае эта атака открывает 2 основных вектора проникновения внутрь системы: тривиальный (просто забрать ssh-ключ из домашней директории; кстати, этот способ — невнимательность создателя машины) и более каноничный, который задумывался как основной (десериализация вредоносной python-нагрузки). Внутри машины все будет совсем просто: для PrivEsc'а достаточно заглянуть в историю git-коммитов репозитория с исходниками блога, который крутится на вебе. По традиции охватим оба способа и накодим немного скриптов для автоматизации pwn'а на питончике. Gonna be fun!
 

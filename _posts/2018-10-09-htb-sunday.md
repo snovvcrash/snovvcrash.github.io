@@ -3,12 +3,11 @@ layout: post
 title: "HTB{ Sunday }"
 date: 2018-10-09 22:00:00 +0300
 author: snovvcrash
-tags: [hackthebox, ctf, write-up, box, Sunday, solaris, finger, brute-force, patator, shadow, john, wget, sudoers]
+categories: Пентест
+tags: [hackthebox, solaris, finger, brute-force, patator, shadow, john, wget, sudoers]
 comments: true
 published: true
 ---
-
-[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
 
 **Sunday** — простая машина на основе ОС Solaris. В ассортименте: древний net-протокол Finger для получения информации о залогиненных пользователях в качестве входной точки, брутфорс SSH-кредов, восстановление пароля соседнего пользователя по хешу (просим помощи у Джона) для первого PrivEsc'а и целая уйма способов получения рут-сессии через эксплуатацию wget для второго PrivEsc'а (попробуем все). Несмотря на то, что это правда одна из самых нетрудных тачек на HTB, большинство людей выбирали модификацию shadow/sudoers -файлов в качестве финального повышения привилегий, откуда непрекращающиеся сбои, ресеты и туча головной боли для вежливых хакеров. Рассмотрим же вместе этот временами бесящий, но от этого не менее веселый путь к победе над Sunday.
 

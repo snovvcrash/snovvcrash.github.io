@@ -3,12 +3,11 @@ layout: post
 title: "HTB{ Celestial }"
 date: 2018-08-25 20:00:00 +0300
 author: snovvcrash
-tags: [hackthebox, ctf, write-up, box, Celestial, linux, express, node-js, deserialization, python, cron]
+categories: Пентест
+tags: [hackthebox, linux, express, node-js, deserialization, python, cron]
 comments: true
 published: true
 ---
-
-[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
 
 **Celestial** — образцовый представитель типичной CTF-машины. Уязвимый web-сервис дает возможность удаленного выполнения кода (RCE), открывая путь к получению reverse-shell'а, откуда до повышения привилегий до суперпользователя (LPE) в силу небрежно выставленных настроек прав доступа рукой подать. Let's dive into it!
 

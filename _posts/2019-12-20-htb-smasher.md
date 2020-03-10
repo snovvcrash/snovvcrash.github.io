@@ -3,14 +3,14 @@ layout: post
 title: "В королевстве PWN. Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя"
 date: 2019-12-20 18:00:00 +0300
 author: snovvcrash
-tags: [hackthebox, xakepru, pwn, pwn-64, tutorial, ctf, write-up, box, Smasher, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum.sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
+categories: Пентест
+tags: [hackthebox, xakepru, pwn-64, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum.sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
 comments: true
 published: true
 ---
 
 [//]: # (2019-11-20)
 
-[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/141 "Hack The Box :: Smasher")
 [![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/11/20/hackthebox-smasher/ "В королевстве PWN. Атака ret2bss, криптооракулы и реверс-инжиниринг на виртуалке Smasher с Hack The Box — «Хакер»")
 
 Год близится к своему логическому завершению и подчищает свои хвосты, поэтому и я, последовав его примеру, закончу цикл «В королевстве PWN» разбором хардкорной тачки **Smasher** с Hack The Box. На этом пути нас ожидает: низкоуровневый сплоитинг веб-сервера со срывом стека (куда же без него?) и генерацией шелл-кода «на лету» с помощью древней магии pwntools; проведение атаки Padding Oracle на Python-приложение для вскрытия шифртекста AES-CBC (абьюзим логику логирования приложения и реализации добивания блоков PKCS#7); реверс-инжиниринг исполняемого файла с атрибутом SUID для повышения привилегий в системе до локального суперпользователя.

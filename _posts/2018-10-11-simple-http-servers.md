@@ -3,7 +3,8 @@ layout: post
 title: "О быстром развертывании простых HTTP-серверов для трансфера файлов под Linux"
 date: 2018-10-11 00:00:00 +0300
 author: snovvcrash
-tags: [ctf-tips, ctf-tools, cheatsheet, linux, file-transfer, http-server, python-server, php-server, nginx]
+categories: Администрирование
+tags: [linux, file-transfer, http-server, python-server, php-server, nginx]
 comments: true
 published: true
 ---

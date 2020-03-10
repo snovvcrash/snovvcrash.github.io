@@ -3,14 +3,14 @@ layout: post
 title: "HTB{ Granny💔Grandpa }"
 date: 2020-01-26 22:00:00 +0300
 author: snovvcrash
-tags: [hackthebox, xakepru, pivoting, ctf, write-up, box, Granny, Grandpa, windows, webdav, davtest, burp, msfvenom, metasploit, upload-asp, cve-2017-7269, scstoragepathfromurl, ms14-070, tcpip-ioctl, msf-route, msf-socks, proxychains-ng, ssh-reverse-tcp, plink.exe, msf-portfwd, msf-hashdump, lmhash-nthash, pass-the-hash, impacket, psexec.py]
+categories: Пентест
+tags: [hackthebox, xakepru, windows, webdav, davtest, burp, msfvenom, metasploit, upload-asp, cve-2017-7269, scstoragepathfromurl, ms14-070, tcpip-ioctl, pivoting, msf-route, msf-socks, proxychains-ng, ssh-reverse-tcp, plink.exe, msf-portfwd, msf-hashdump, lmhash-nthash, pass-the-hash, impacket, psexec.py]
 comments: true
 published: true
 ---
 
 [//]: # (2019-12-26)
 
-[![htb-badge.svg](https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square)](https://www.hackthebox.eu/home/machines/profile/14 "Hack The Box :: Granny")
 [![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/12/26/htb-pivoting/ "Большой проброс. Оттачиваем искусство pivoting на виртуалках с Hack The Box — «Хакер»")
 
 На заре становления Hack The Box как онлайн-площадки для тренировки вайтхетов в списке машин ее лаборатории значились две виртуалки: **Grandpa** и **Granny**. Обе эти машины нацелены на эксплуатацию уязвимостей WebDAV (набора дополнений для HTTP), и стратегии захвата их root-флагов практически не отличаются друг от друга. Поэтому, чтобы разнообразить прохождения, мы сначала быстро рассмотрим, как можно взломать каждый из хостов по отдельности, а после этого превратим один из них в шлюз, через который атакуем второй хост. Умение пользоваться техникой Pivoting — проброса трафика к жертве (и обратно) через промежуточные хосты — жизненно важный скил для этичного хакера, который пригодится при тестировании на проникновение любой корпоративной сетки.

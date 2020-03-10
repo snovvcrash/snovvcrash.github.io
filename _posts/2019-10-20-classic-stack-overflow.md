@@ -3,7 +3,8 @@ layout: post
 title: "В королевстве PWN. Препарируем классику переполнения стека"
 date: 2019-10-20 17:00:00 +0300
 author: snovvcrash
-tags: [xakepru, pwn, pwn-32, tutorial, linux, buffer-overflow, stack-smashing, gcc-flags, asm, objdump, gdb, peda, checksec, eip-overwrite, shellcode, msfvenom, apport, core-dump, stack-boundary]
+categories: Пентест
+tags: [hackthebox, xakepru, pwn-32, linux, buffer-overflow, stack-smashing, gcc-flags, asm, objdump, gdb, peda, checksec, eip-overwrite, shellcode, msfvenom, apport, core-dump, stack-boundary]
 comments: true
 published: true
 ---
