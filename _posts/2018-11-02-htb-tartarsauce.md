@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ TartarSauce }"
 date: 2018-11-02 00:00:00 +0300
 author: snovvcrash
-categories: Пентест
+categories: /pentest
 tags: [hackthebox, linux, monstra-cms, wordpress, wpscan, rfi, tar, code-analysis, bash]
 comments: true
 published: true

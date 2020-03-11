@@ -1631,17 +1631,17 @@ root@kali:$ git clone https://github.com/snovvcrash/dotfiles-linux ~/.dotfiles
 ### Guest Additions
 
 ```
-root@kali:$ apt update & apt -y dist-upgrade
+root@kali:$ apt update & apt dist-upgrade -y
 root@kali:$ reboot
-root@kali:$ apt -y install virtualbox-guest-x11
+root@kali:$ apt install virtualbox-guest-x11 -y
 root@kali:$ reboot
 Or
-* Mount VirtualBox Guest Additions drive
-root@kali:$ cp /media/cdrom/VBoxLinuxAdditions.run /root/Desktop/
-root@kali:$ cd /root/Desktop/
-root@kali:$ chmod 755 VBoxLinuxAdditions.run
-root@kali:$ ./VBoxLinuxAdditions.run
-root@kali:$ reboot
+* Mount the VirtualBox Guest Additions drive
+root@kali:$ cp /media/cdrom0/VBoxLinuxAdditions.run /root/Desktop/
+root@kali:$ chmod 755 ~/Desktop/VBoxLinuxAdditions.run
+root@kali:$ ~/Desktop/VBoxLinuxAdditions.run && reboot
+root@kali:$ rm ~/Desktop/VBoxLinuxAdditions.run
+* Eject the VirtualBox Guest Additions drive
 ```
 
 

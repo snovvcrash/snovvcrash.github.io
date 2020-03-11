@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Celestial }"
 date: 2018-08-25 20:00:00 +0300
 author: snovvcrash
-categories: Пентест
+categories: /pentest
 tags: [hackthebox, linux, express, node-js, deserialization, python, cron]
 comments: true
 published: true

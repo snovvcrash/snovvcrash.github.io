@@ -3,7 +3,7 @@ layout: post
 title: "О быстром развертывании простых HTTP-серверов для трансфера файлов под Linux"
 date: 2018-10-11 00:00:00 +0300
 author: snovvcrash
-categories: Администрирование
+categories: /admin
 tags: [linux, file-transfer, http-server, python-server, php-server, nginx]
 comments: true
 published: true
