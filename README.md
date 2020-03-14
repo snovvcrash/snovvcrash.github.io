@@ -3,6 +3,7 @@
 #### Install
 
 ```
+$ git clone https://github.com/snovvcrash/snovvcrash.github.io && cd snovvcrash.github.io
 $ sudo apt install ruby ruby-all-dev zlib1g-dev -y
 $ gem install bundler
 $ bundle install

@@ -4,7 +4,7 @@ title: "HTB{ DevOops }"
 date: 2018-10-22 22:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [hackthebox, linux, xxe, xml-entity-injection, code-analysis, python, deserialization, pickle, reverse-shell, git]
+tags: [write-up, hackthebox, linux, xxe, xml-entity-injection, code-analysis, python, deserialization, pickle, reverse-shell, git]
 comments: true
 published: true
 ---
@@ -16,10 +16,10 @@ published: true
 **4.3/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/img/htb/boxes/devoops/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
+[![banner.png]({{ "/assets/images/htb/devoops/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
 {: .center-image}
 
-![info.png]({{ "/img/htb/boxes/devoops/info.png" | relative_url }})
+![info.png]({{ "/assets/images/htb/devoops/info.png" | relative_url }})
 {: .center-image}
 
 * TOC
@@ -49,7 +49,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Oct 20 17:05:02 2018 -- 1 IP address (1 host up) scanned in 1.07 seconds
 ```
 
-Version ([красивый отчет]({{ "/reports/nmap/htb/devoops/version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/assets/reports/nmap/htb/devoops/version.html" | relative_url }})):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,5000 10.10.10.91
 ...
@@ -89,7 +89,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 На `http://10.10.10.91:5000` нас ждет заглушка для будущего блога:
 
-[![port5000-browser-1.png]({{ "/img/htb/boxes/devoops/port5000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-1.png" | relative_url }})
+[![port5000-browser-1.png]({{ "/assets/images/htb/devoops/port5000-browser-1.png" | relative_url }})]({{ "/assets/images/htb/devoops/port5000-browser-1.png" | relative_url }})
 {: .center-image}
 
 На главной видим скриншот, демонстрирующий, как должен выглядеть фид после завершения работы над сайтом, и видим упоминание `feed.py` (его мы встретим чуть позже), "который станет [MVP](https://ru.wikipedia.org/wiki/Минимально_жизнеспособный_продукт "Минимально жизнеспособный продукт — Википедия") (***M**inimum **V**iable **P**roduct*) для местного блога".
@@ -123,12 +123,12 @@ http://10.10.10.91:5000/upload (Status: 200)
 
 `/feed` — такой же скриншот как выше, только теперь на всю страницу:
 
-[![port5000-browser-2.png]({{ "/img/htb/boxes/devoops/port5000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-2.png" | relative_url }})
+[![port5000-browser-2.png]({{ "/assets/images/htb/devoops/port5000-browser-2.png" | relative_url }})]({{ "/assets/images/htb/devoops/port5000-browser-2.png" | relative_url }})
 {: .center-image}
 
 `/upload` — загрузчик фид-ленты в виде XML-документов:
 
-[![port5000-browser-3.png]({{ "/img/htb/boxes/devoops/port5000-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/devoops/port5000-browser-3.png" | relative_url }})
+[![port5000-browser-3.png]({{ "/assets/images/htb/devoops/port5000-browser-3.png" | relative_url }})]({{ "/assets/images/htb/devoops/port5000-browser-3.png" | relative_url }})
 {: .center-image}
 
 Последняя страница с интерфейсом загрузки представляет наибольший интерес, т. к. именно она дарует нам возможность проведения XXE-атаки, речь о которой пойдет ниже.
@@ -739,13 +739,13 @@ d4fe1e7f????????????????????????
 
 DevOops пройден :triumph:
 
-![owned-user.png]({{ "/img/htb/boxes/devoops/owned-user.png" | relative_url }})
+![owned-user.png]({{ "/assets/images/htb/devoops/owned-user.png" | relative_url }})
 {: .center-image}
 
-![owned-root.png]({{ "/img/htb/boxes/devoops/owned-root.png" | relative_url }})
+![owned-root.png]({{ "/assets/images/htb/devoops/owned-root.png" | relative_url }})
 {: .center-image}
 
-![trophy.png]({{ "/img/htb/boxes/devoops/trophy.png" | relative_url }})
+![trophy.png]({{ "/assets/images/htb/devoops/trophy.png" | relative_url }})
 {: .center-image}
 
 # Эпилог

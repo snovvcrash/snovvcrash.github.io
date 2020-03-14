@@ -4,18 +4,18 @@ title: "В королевстве PWN. Return-to-bss, криптооракулы
 date: 2019-12-20 18:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [hackthebox, xakepru, pwn-64, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum.sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
+tags: [write-up, hackthebox, pwn-64, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum.sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
 comments: true
 published: true
 ---
 
 [//]: # (2019-11-20)
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/11/20/hackthebox-smasher/ "В королевстве PWN. Атака ret2bss, криптооракулы и реверс-инжиниринг на виртуалке Smasher с Hack The Box — «Хакер»")
-
 Год близится к своему логическому завершению и подчищает свои хвосты, поэтому и я, последовав его примеру, закончу цикл «В королевстве PWN» разбором хардкорной тачки **Smasher** с Hack The Box. На этом пути нас ожидает: низкоуровневый сплоитинг веб-сервера со срывом стека (куда же без него?) и генерацией шелл-кода «на лету» с помощью древней магии pwntools; проведение атаки Padding Oracle на Python-приложение для вскрытия шифртекста AES-CBC (абьюзим логику логирования приложения и реализации добивания блоков PKCS#7); реверс-инжиниринг исполняемого файла с атрибутом SUID для повышения привилегий в системе до локального суперпользователя.
 
 <!--cut-->
+
+[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/11/20/hackthebox-smasher/ "В королевстве PWN. Атака ret2bss, криптооракулы и реверс-инжиниринг на виртуалке Smasher с Hack The Box — «Хакер»")
 
 > В королевстве PWN
 > 
@@ -29,10 +29,10 @@ published: true
 **7.6/10**
 {: style="color: white; text-align: right;"}
 
-[![banner.png]({{ "/img/htb/boxes/smasher/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/141 "Hack The Box :: Smasher")
+[![banner.png]({{ "/assets/images/htb/smasher/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/141 "Hack The Box :: Smasher")
 {: .center-image}
 
-![info.png]({{ "/img/htb/boxes/smasher/info.png" | relative_url }})
+![info.png]({{ "/assets/images/htb/smasher/info.png" | relative_url }})
 {: .center-image}
 
 * TOC
@@ -59,7 +59,7 @@ root@kali:~# nmap -n -Pn -sV -sC -oA nmap/smasher -p$ports 10.10.10.89
 
 Далее с помощью стандартных средств текстового процессинга в Linux обрабатываю результаты скана, чтобы найденные порты хранились одной строкой через запятую, сохраняю эту строку в переменной `ports` и спускаю с поводка Nmap.
 
-[![port-scan.png]({{ "/img/htb/boxes/smasher/port-scan.png" | relative_url }})]({{ "/img/htb/boxes/smasher/port-scan.png" | relative_url }})
+[![port-scan.png]({{ "/assets/images/htb/smasher/port-scan.png" | relative_url }})]({{ "/assets/images/htb/smasher/port-scan.png" | relative_url }})
 {: .center-image}
 
 Судя по мнению Nmap, мы имеем дело с Ubuntu 16.04 (Xenial). Оно основано на информации [о баннере SSH](https://launchpad.net/ubuntu/+source/openssh/1:7.2p2-4ubuntu2.4). Постучаться же можно в порты 22 и 1111. На последнем, кстати, висит некий shenfeng tiny-web-server — вот его мы и отправимся исследовать в первую очередь.
@@ -70,17 +70,17 @@ root@kali:~# nmap -n -Pn -sV -sC -oA nmap/smasher -p$ports 10.10.10.89
 
 По адресу `http://10.10.10.89:1111/` тебя встретит листинг корневой директории веб-сервера.
 
-[![listdir-root.png]({{ "/img/htb/boxes/smasher/listdir-root.png" | relative_url }})]({{ "/img/htb/boxes/smasher/listdir-root.png" | relative_url }})
+[![listdir-root.png]({{ "/assets/images/htb/smasher/listdir-root.png" | relative_url }})]({{ "/assets/images/htb/smasher/listdir-root.png" | relative_url }})
 {: .center-image}
 
 Интересно, что страница `index.html` существует, но редиректа на нее нет — вместо этого открывается список файлов каталога. Запомним это.
 
-[![index-html.png]({{ "/img/htb/boxes/smasher/index-html.png" | relative_url }})]({{ "/img/htb/boxes/smasher/index-html.png" | relative_url }})
+[![index-html.png]({{ "/assets/images/htb/smasher/index-html.png" | relative_url }})]({{ "/assets/images/htb/smasher/index-html.png" | relative_url }})
 {: .center-image}
 
 Если мы перейдем на `/index.html` вручную, то увидим заглушку для формы авторизации, с которой никак нельзя взаимодействовать (можно печатать в полях ввода, но кнопка Login не работает). Забавно, что оба поля для ввода называются `input.email`.
 
-[![form-input-naming.png]({{ "/img/htb/boxes/smasher/form-input-naming.png" | relative_url }})]({{ "/img/htb/boxes/smasher/form-input-naming.png" | relative_url }})
+[![form-input-naming.png]({{ "/assets/images/htb/smasher/form-input-naming.png" | relative_url }})]({{ "/assets/images/htb/smasher/form-input-naming.png" | relative_url }})
 {: .center-image}
 
 ### A tiny web server in C
@@ -89,7 +89,7 @@ root@kali:~# nmap -n -Pn -sV -sC -oA nmap/smasher -p$ports 10.10.10.89
 
 Первое, что бросается в глаза — это крики о небезопасности кода: [первый](https://github.com/shenfeng/tiny-web-server/blob/master/README.md#non-features) в самом описании сервера (как единственная его «антифича»), [второй](https://github.com/shenfeng/tiny-web-server/issues/2) — в открытых ишью.
 
-[![tiny-web-server-path-traversal-issue.png]({{ "/img/htb/boxes/smasher/tiny-web-server-path-traversal-issue.png" | relative_url }})]({{ "/img/htb/boxes/smasher/tiny-web-server-path-traversal-issue.png" | relative_url }})
+[![tiny-web-server-path-traversal-issue.png]({{ "/assets/images/htb/smasher/tiny-web-server-path-traversal-issue.png" | relative_url }})]({{ "/assets/images/htb/smasher/tiny-web-server-path-traversal-issue.png" | relative_url }})
 {: .center-image}
 
 Если верить описанию, то tiny-web-server подвержен Path Traversal, а возможность просматривать листинги директорий как будто шепчет тебе на ухо: «Так оно и есть...».
@@ -98,19 +98,19 @@ root@kali:~# nmap -n -Pn -sV -sC -oA nmap/smasher -p$ports 10.10.10.89
 
 Проверим выполнимость Path Traversal. Так как Firefox любит исправлять синтаксически некорректные конструкции в адресной строке (в частности, резать префиксы вида `../../../`), то я сделаю это с помощью `nc`, как показано в issue.
 
-[![tiny-web-server-path-traversal-poc.png]({{ "/img/htb/boxes/smasher/tiny-web-server-path-traversal-poc.png" | relative_url }})]({{ "/img/htb/boxes/smasher/tiny-web-server-path-traversal-poc.png" | relative_url }})
+[![tiny-web-server-path-traversal-poc.png]({{ "/assets/images/htb/smasher/tiny-web-server-path-traversal-poc.png" | relative_url }})]({{ "/assets/images/htb/smasher/tiny-web-server-path-traversal-poc.png" | relative_url }})
 {: .center-image}
 
 Что и требовалось доказать — у нас есть возможность читать файлы на сервере!
 
 Что дальше? Осмотримся. Если дублировать первичный слеш для доступа к каталогам, сервер подумает, что таким образом мы обращаемся к корневой директории, — и разведку можно будет провести прямо из браузера.
 
-[![path-traversal-home.png]({{ "/img/htb/boxes/smasher/path-traversal-home.png" | relative_url }})]({{ "/img/htb/boxes/smasher/path-traversal-home.png" | relative_url }})
+[![path-traversal-home.png]({{ "/assets/images/htb/smasher/path-traversal-home.png" | relative_url }})]({{ "/assets/images/htb/smasher/path-traversal-home.png" | relative_url }})
 {: .center-image}
 
 В `/home` нам доступна всего одна директория — `www/`.
 
-[![path-traversal-www.png]({{ "/img/htb/boxes/smasher/path-traversal-www.png" | relative_url }})]({{ "/img/htb/boxes/smasher/path-traversal-www.png" | relative_url }})
+[![path-traversal-www.png]({{ "/assets/images/htb/smasher/path-traversal-www.png" | relative_url }})]({{ "/assets/images/htb/smasher/path-traversal-www.png" | relative_url }})
 {: .center-image}
 
 Из интересного здесь: скрипт `restart.sh` для перезапуска инстанса процесса сервера, а также сама директория с проектом.
@@ -125,7 +125,7 @@ ps aux | grep tiny | awk '{print $2}' | xargs kill -9
 nohup ./tiny public_html/ 1111 2>&1 > /dev/null &
 ```
 
-[![path-traversal-tiny-web-server.png]({{ "/img/htb/boxes/smasher/path-traversal-tiny-web-server.png" | relative_url }})]({{ "/img/htb/boxes/smasher/path-traversal-tiny-web-server.png" | relative_url }})
+[![path-traversal-tiny-web-server.png]({{ "/assets/images/htb/smasher/path-traversal-tiny-web-server.png" | relative_url }})]({{ "/assets/images/htb/smasher/path-traversal-tiny-web-server.png" | relative_url }})
 {: .center-image}
 
 Чтобы не мучиться с загрузкой каждого файла по отдельности, я клонирую директорию `/home/www` целиком с помощью `wget`, исключив каталог `.git` — различия в коде веб-сервера по сравнению с GitHub-версией мы узнаем чуть позже другим способом.
@@ -134,12 +134,12 @@ nohup ./tiny public_html/ 1111 2>&1 > /dev/null &
 root@kali:~# wget --mirror -X home/www/tiny-web-server/.git http://10.10.10.89:1111//home/www/
 ```
 
-[![wget-mirror.png]({{ "/img/htb/boxes/smasher/wget-mirror.png" | relative_url }})]({{ "/img/htb/boxes/smasher/wget-mirror.png" | relative_url }})
+[![wget-mirror.png]({{ "/assets/images/htb/smasher/wget-mirror.png" | relative_url }})]({{ "/assets/images/htb/smasher/wget-mirror.png" | relative_url }})
 {: .center-image}
 
 Три файла представляют для нас интерес: `Makefile`, `tiny` и `tiny.c`.
 
-[![ls-www.png]({{ "/img/htb/boxes/smasher/ls-www.png" | relative_url }})]({{ "/img/htb/boxes/smasher/ls-www.png" | relative_url }})
+[![ls-www.png]({{ "/assets/images/htb/smasher/ls-www.png" | relative_url }})]({{ "/assets/images/htb/smasher/ls-www.png" | relative_url }})
 {: .center-image}
 
 В `Makefile` содержатся инструкции для сборки исполняемого файла.
@@ -163,7 +163,7 @@ clean:
 
 Файл `tiny` — сам бинарник, который развернут на Smasher.
 
-[![tiny-checksec.png]({{ "/img/htb/boxes/smasher/tiny-checksec.png" | relative_url }})]({{ "/img/htb/boxes/smasher/tiny-checksec.png" | relative_url }})
+[![tiny-checksec.png]({{ "/assets/images/htb/smasher/tiny-checksec.png" | relative_url }})]({{ "/assets/images/htb/smasher/tiny-checksec.png" | relative_url }})
 {: .center-image}
 
 У нас есть исполняемый стек, сегменты с возможностью записи и исполнения произвольных данных и активный механизм `FORTIFY` — последний, правда, ни на что не повлияет в нашей ситуации (подробнее о нем можно прочесть [в первой части](https://snovvcrash.github.io/2019/10/20/classic-stack-overflow.html#checksec) цикла, где мы разбирали вывод `checksec`). Плюс нужно помнить, что на целевом хосте, скорее всего, активен механизм рандомизации адресного пространства ASLR.
@@ -310,7 +310,7 @@ root@kali:~# dmesg -w
 root@kali:~# curl localhost:1111/$(python -c 'print "A"*1000')
 ```
 
-[![tiny-crash-poc.gif]({{ "/img/htb/boxes/smasher/tiny-crash-poc.gif" | relative_url }}))]({{ "/img/htb/boxes/smasher/tiny-crash-poc.gif" | relative_url }})
+[![tiny-crash-poc.gif]({{ "/assets/images/htb/smasher/tiny-crash-poc.gif" | relative_url }}))]({{ "/assets/images/htb/smasher/tiny-crash-poc.gif" | relative_url }})
 {: .center-image}
 
 Класс: видим, что запрос выбивает child-процесс c general protection fault (или segmentation fault в нашем случае).
@@ -331,12 +331,12 @@ listen on port 1111, fd is 3
 
 Теперь важный момент: я не могу пользоваться циклическим паттерном де Брёйна, который предлагает PEDA, ведь он содержит символы `'%'` — а они, если помнишь, трактуются сервером как начало URL-кодировки.
 
-[![pattern-peda-percent.png]({{ "/img/htb/boxes/smasher/pattern-peda-percent.png" | relative_url }})]({{ "/img/htb/boxes/smasher/pattern-peda-percent.png" | relative_url }})
+[![pattern-peda-percent.png]({{ "/assets/images/htb/smasher/pattern-peda-percent.png" | relative_url }})]({{ "/assets/images/htb/smasher/pattern-peda-percent.png" | relative_url }})
 {: .center-image}
 
 Следовательно, нам нужен другой генератор. Можно пользоваться `msf-pattern_create -l <N>` и `msf-pattern_offset -q <0xFFFF>`, чтобы создать последовательность нужной длины и найти смещение соответственно. Однако я предпочитаю модуль `pwntools`, который работает в разы быстрее.
 
-[![pattern-msf-pwntools.png]({{ "/img/htb/boxes/smasher/pattern-msf-pwntools.png" | relative_url }})]({{ "/img/htb/boxes/smasher/pattern-msf-pwntools.png" | relative_url }})
+[![pattern-msf-pwntools.png]({{ "/assets/images/htb/smasher/pattern-msf-pwntools.png" | relative_url }})]({{ "/assets/images/htb/smasher/pattern-msf-pwntools.png" | relative_url }})
 {: .center-image}
 
 Как мы видим, ни один из инструментов не использует «плохие» символы, поэтому для генерации вредоносного URL можно юзать любой из них.
@@ -400,7 +400,7 @@ r.sendline()
 
 С работающим на фоне сервером в дебаггере запустим скрипт и убедимся, что процесс упал с «мертвым кодом» в регистре RIP.
 
-[![poc-py-fail.png]({{ "/img/htb/boxes/smasher/poc-py-fail.png" | relative_url }})]({{ "/img/htb/boxes/smasher/poc-py-fail.png" | relative_url }})
+[![poc-py-fail.png]({{ "/assets/images/htb/smasher/poc-py-fail.png" | relative_url }})]({{ "/assets/images/htb/smasher/poc-py-fail.png" | relative_url }})
 {: .center-image}
 
 С первого раза не сработало… Что пошло не так? Значение `0xd34dc0d3` упаковано в формат little-endian для x86-64, поэтому на самом деле оно выглядит как `0x00000000d34dc0d3`. При чтении первого нулевого байта сервер упал. Почему? Потому что он юзает функцию `sscanf` ([строка 278](https://github.com/snovvcrash/xakepru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny.c#L278)) для парсинга запроса — а она записывает нашу полезную нагрузку в массив `uri`, пока не споткнется о нулевой терминатор.
@@ -414,7 +414,7 @@ r.sendline(f'GET /{url_encode(payload)}')
 
 Тогда все пройдет как нужно.
 
-[![poc-py-success.png]({{ "/img/htb/boxes/smasher/poc-py-success.png" | relative_url }})]({{ "/img/htb/boxes/smasher/poc-py-success.png" | relative_url }})
+[![poc-py-success.png]({{ "/assets/images/htb/smasher/poc-py-success.png" | relative_url }})]({{ "/assets/images/htb/smasher/poc-py-success.png" | relative_url }})
 {: .center-image}
 
 ### Получение шелла
@@ -429,7 +429,7 @@ r.sendline(f'GET /{url_encode(payload)}')
 
 Идея проста: с помощью функции `read` я запишу шелл-код в секцию неинициализированных переменных. А затем посредством классического Stack Overflow передам ему управление — `.bss` не попадает под действие ASLR и имеет бит исполнения. В последнем можно убедиться с помощью комбинации `vmmap` и `readelf`.
 
-[![tiny-vmmap-readelf.png]({{ "/img/htb/boxes/smasher/tiny-vmmap-readelf.png" | relative_url }})]({{ "/img/htb/boxes/smasher/tiny-vmmap-readelf.png" | relative_url }})
+[![tiny-vmmap-readelf.png]({{ "/assets/images/htb/smasher/tiny-vmmap-readelf.png" | relative_url }})]({{ "/assets/images/htb/smasher/tiny-vmmap-readelf.png" | relative_url }})
 {: .center-image}
 
 О классификации техник обхода ASLR можно прочесть в публикации ASLR Smack & Laugh Reference, [PDF](https://ece.uwaterloo.ca/~vganesh/TEACHING/S2014/ECE458/aslr.pdf).
@@ -505,14 +505,14 @@ r.sendline(asm(shellcraft.dupsh(4)))
 
 Здесь можно поистине удивиться, на что способен pwntools: за одну строку «на лету» он нагенерил ассемблерный шелл-код со следующим содержимым.
 
-[![pwntools-shellcraft.png]({{ "/img/htb/boxes/smasher/pwntools-shellcraft.png" | relative_url }})]({{ "/img/htb/boxes/smasher/pwntools-shellcraft.png" | relative_url }})
+[![pwntools-shellcraft.png]({{ "/assets/images/htb/smasher/pwntools-shellcraft.png" | relative_url }})]({{ "/assets/images/htb/smasher/pwntools-shellcraft.png" | relative_url }})
 {: .center-image}
 
 В нашем случае это код для Linux x64 — версия и разрядность ОС берутся из инициализации контекста.
 
 Метод [dupsh](https://docs.pwntools.com/en/stable/shellcraft/amd64.html#pwnlib.shellcraft.amd64.linux.dupsh) генерит код, который спавнит шелл и перенаправляет все стандартные потоки в сетевой сокет. Нам нужен сокет со значением дескриптора `4`: такой номер присваивался новому открытому соединению с клиентом (переменная `connfd`, [строка 433](https://github.com/snovvcrash/xakepru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny.c#L433)) при локальном анализе исполняемого файла. Это логично, ведь значения `0-3` уже заняты (`0`, `1` и `2` — стандартные потоки, `3` — дескриптор родителя), поэтому процесс форка получает первый незанятый ID — четверка.
 
-[![tiny-exploit.png]({{ "/img/htb/boxes/smasher/tiny-exploit.png" | relative_url }})]({{ "/img/htb/boxes/smasher/tiny-exploit.png" | relative_url }})
+[![tiny-exploit.png]({{ "/assets/images/htb/smasher/tiny-exploit.png" | relative_url }})]({{ "/assets/images/htb/smasher/tiny-exploit.png" | relative_url }})
 {: .center-image}
 
 Отлично, мы получили сессию пользователя `www`. Интересный момент: ROP-гаджета `pop rsi; ret` в «чистом виде» в бинаре не оказалось, поэтому умный pwntools использовал цепочку `pop rsi; pop r15; ret` и заполнил регистр R15 «мусорным» значением `iaaajaaa`.
@@ -549,14 +549,14 @@ www@smasher:~$ whoami
 www
 ```
 
-[![ssh-key-inject.png]({{ "/img/htb/boxes/smasher/ssh-key-inject.png" | relative_url }})]({{ "/img/htb/boxes/smasher/ssh-key-inject.png" | relative_url }})
+[![ssh-key-inject.png]({{ "/assets/images/htb/smasher/ssh-key-inject.png" | relative_url }})]({{ "/assets/images/htb/smasher/ssh-key-inject.png" | relative_url }})
 {: .center-image}
 
 # Исследование окружения
 
 Оказавшись внутри Smasher, я поднял на локальной машине простой питоновский сервер и раздал жертве отличный разведочный скрипт [LinEnum.sh](https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh). Подробнее о передаче скриптов на удаленный сервер можно [прочесть](https://snovvcrash.github.io/2019/11/08/htb-october.html#linenum) в прохождении October.
 
-[![linenum-sh.png]({{ "/img/htb/boxes/smasher/linenum-sh.png" | relative_url }})]({{ "/img/htb/boxes/smasher/linenum-sh.png" | relative_url }})
+[![linenum-sh.png]({{ "/assets/images/htb/smasher/linenum-sh.png" | relative_url }})]({{ "/assets/images/htb/smasher/linenum-sh.png" | relative_url }})
 {: .center-image}
 
 Как это часто бывает на виртуалках с Hack The Box, векторы для повышения привилегий я обнаружил в списке запущенных процессов и листинге файлов с установленным битом SUID.
@@ -566,7 +566,7 @@ root@kali:~# ps auxww | grep crackme
 smasher    721  0.0  0.1  24364  1840 ?        S    13:14   0:00 socat TCP-LISTEN:1337,reuseaddr,fork,bind=127.0.0.1 EXEC:/usr/bin/python /home/smasher/crackme.py
 ```
 
-[![suid-files.png]({{ "/img/htb/boxes/smasher/suid-files.png" | relative_url }})]({{ "/img/htb/boxes/smasher/suid-files.png" | relative_url }})
+[![suid-files.png]({{ "/assets/images/htb/smasher/suid-files.png" | relative_url }})]({{ "/assets/images/htb/smasher/suid-files.png" | relative_url }})
 {: .center-image}
 
 Оба этих странных файла (`crackme.py` и `checker`) мы используем для повышения до обычного пользователя и рута соответственно.
@@ -600,7 +600,7 @@ Insert ciphertext:
 
 На первый взгляд это проверялка корректности шифртекста AES.
 
-[![crackme-py.png]({{ "/img/htb/boxes/smasher/crackme-py.png" | relative_url }})]({{ "/img/htb/boxes/smasher/crackme-py.png" | relative_url }})
+[![crackme-py.png]({{ "/assets/images/htb/smasher/crackme-py.png" | relative_url }})]({{ "/assets/images/htb/smasher/crackme-py.png" | relative_url }})
 {: .center-image}
 
 Если поиграть с разными вариациями входных данных, можно получить ошибку типа Invalid Padding — она прозрачно намекает на возможность использовать Padding Oracle для подбора исходного текста.
@@ -621,7 +621,7 @@ Insert ciphertext:
 
 Когда используется AES-CBC, знание о корректности дешифровки `padding` позволяет восстановить изначальное сообщение без ключа — через манипуляции с промежуточным состоянием шифртекста (далее ШТ).
 
-[![cbc-mode-decryption.png]({{ "/img/htb/boxes/smasher/cbc-mode-decryption.png" | relative_url }})]({{ "/img/htb/boxes/smasher/cbc-mode-decryption.png" | relative_url }})
+[![cbc-mode-decryption.png]({{ "/assets/images/htb/smasher/cbc-mode-decryption.png" | relative_url }})]({{ "/assets/images/htb/smasher/cbc-mode-decryption.png" | relative_url }})
 {: .center-image}
 
 Этот известный рисунок из Википедии прольет свет на ситуацию: пусть наш ШТ состоит всего из двух блоков (`C1`, `C2`). Тогда, чтобы дешифровать `C2` и получить соответствующий блок ОТ `P2`, нарушителю необходимо изменить один последний байт блока `C1` (назовем его `C1'`) и отправить оба блока на расшифровку оракулу. Вот мы и добрались до определения: **оракул** — это всего лишь абстракция, которая возвращает односложный ответ «ДА/НЕТ» на вопрос о правильности добивания. Изменение одного байта в `C1` изменит ровно один байт в `P2`, так что аналитик может перебрать все возможные значения `C1'` (всего 255), чтобы получить истинное значения последнего байта `P2`.
@@ -640,7 +640,7 @@ Insert ciphertext:
 
 Но сперва я проброшу SSH-туннель до своей машины, поскольку `crackme.py` доступен только на Smasher (видно из опции socat `bind=127.0.0.1`).
 
-[![ssh-konami-codes.png]({{ "/img/htb/boxes/smasher/ssh-konami-codes.png" | relative_url }})]({{ "/img/htb/boxes/smasher/ssh-konami-codes.png" | relative_url }})
+[![ssh-konami-codes.png]({{ "/assets/images/htb/smasher/ssh-konami-codes.png" | relative_url }})]({{ "/assets/images/htb/smasher/ssh-konami-codes.png" | relative_url }})
 {: .center-image}
 
 Я использую горячие клавиши `Enter + ~C` SSH-клиента, чтобы открыть командную строку и пробросить туннель без переподключения. В этом [посте](https://pen-testing.sans.org/blog/2015/11/10/protected-using-the-ssh-konami-code-ssh-control-sequences) автор приводит интересную аналогию: такие горячие клавиши он сравнивает с чит-кодами для видеоигр Konami.
@@ -694,12 +694,12 @@ if __name__ == '__main__':
 
 Чтобы построить свою «ломалку», необходимо всего лишь переопределить метод `oracle` в классе `PadBuster`, реализовав таким образом взаимодействие с оракулом.
 
-[![crackme-exploit.gif]({{ "/img/htb/boxes/smasher/crackme-exploit.gif" | relative_url }}))]({{ "/img/htb/boxes/smasher/crackme-exploit.gif" | relative_url }})
+[![crackme-exploit.gif]({{ "/assets/images/htb/smasher/crackme-exploit.gif" | relative_url }}))]({{ "/assets/images/htb/smasher/crackme-exploit.gif" | relative_url }})
 {: .center-image}
 
 Метод `decrypt` сосредоточен на двух блоках: восстанавливаемом (`P2`) и подбираемом (`C1'`). Второй блок шифртекста (восстанавливаемый) остается неизменным, в то время как первый блок (подбираемый) изначально заполнен нулями. На старте атаки последний байт первого блока, начиная со значения `0xff`, уменьшается до тех пор, пока не будет обработано исключение `BadPaddingException`. После этого фокус смещается на предпоследний байт, процесс повторяется заново — и так далее для всех последующих блоков.
 
-[![crackme-exploit.png]({{ "/img/htb/boxes/smasher/crackme-exploit.png" | relative_url }})]({{ "/img/htb/boxes/smasher/crackme-exploit.png" | relative_url }})
+[![crackme-exploit.png]({{ "/assets/images/htb/smasher/crackme-exploit.png" | relative_url }})]({{ "/assets/images/htb/smasher/crackme-exploit.png" | relative_url }})
 {: .center-image}
 
 Через десять минут у нас есть содержимое всех четырех блоков секретного сообщения (в последнем блоке, к слову, ему до полной длины не хватало 6 байт) с паролем пользователя smasher. Теперь мы можем повысить привилегии и забрать user-флаг.
@@ -884,7 +884,7 @@ Segmentation fault
 
 Перебросим бинарь на Kali с помощью `nc` для дальнейшего анализа.
 
-[![nc-transfer.png]({{ "/img/htb/boxes/smasher/nc-transfer.png" | relative_url }})]({{ "/img/htb/boxes/smasher/nc-transfer.png" | relative_url }})
+[![nc-transfer.png]({{ "/assets/images/htb/smasher/nc-transfer.png" | relative_url }})]({{ "/assets/images/htb/smasher/nc-transfer.png" | relative_url }})
 {: .center-image}
 
 ### Играем в реверс-инженеров
@@ -895,12 +895,12 @@ Segmentation fault
 
 В главном окне программы появилась вкладка Decompiler — она как раз отвечает за вывод информации от плагина `r2ghidra-dec`.
 
-[![cutter-decompiler.png]({{ "/img/htb/boxes/smasher/cutter-decompiler.png" | relative_url }})]({{ "/img/htb/boxes/smasher/cutter-decompiler.png" | relative_url }})
+[![cutter-decompiler.png]({{ "/assets/images/htb/smasher/cutter-decompiler.png" | relative_url }})]({{ "/assets/images/htb/smasher/cutter-decompiler.png" | relative_url }})
 {: .center-image}
 
 Ну и, конечно, здесь есть привычное графовое представление.
 
-[![cutter-graph.png]({{ "/img/htb/boxes/smasher/cutter-graph.png" | relative_url }})]({{ "/img/htb/boxes/smasher/cutter-graph.png" | relative_url }})
+[![cutter-graph.png]({{ "/assets/images/htb/smasher/cutter-graph.png" | relative_url }})]({{ "/assets/images/htb/smasher/cutter-graph.png" | relative_url }})
 {: .center-image}
 
 Вот что у меня получилось после небольших косметических правок псевдокода функции `main`.
@@ -1082,7 +1082,7 @@ root@kali:~# ./checker checker
 ...
 ```
 
-[![checker-patch.gif]({{ "/img/htb/boxes/smasher/checker-patch.gif" | relative_url }}))]({{ "/img/htb/boxes/smasher/checker-patch.gif" | relative_url }})
+[![checker-patch.gif]({{ "/assets/images/htb/smasher/checker-patch.gif" | relative_url }}))]({{ "/assets/images/htb/smasher/checker-patch.gif" | relative_url }})
 {: .center-image}
 
 Я заменил машинный код `3d e9 03 00 00`, отвечающий за инструкцию `cmp eax,0x3e9 `, на `90 83 F8 00 90` — что эквивалентно `cmp eax,0x0` с добитыми до оригинальной длины инструкциями NOP (`0x90`). Ассемблировать мнемоники в опкод (и наоборот) можно с помощью [Ropper](https://github.com/sashs/Ropper) или [онлайн](https://defuse.ca/online-x86-assembler.htm).
@@ -1160,7 +1160,7 @@ Data:
 
 Вот и все: Сокрушитель повержен, root-флаг у нас!
 
-![trophy.png]({{ "/img/htb/boxes/smasher/trophy.png" | relative_url }})
+![trophy.png]({{ "/assets/images/htb/smasher/trophy.png" | relative_url }})
 {: .center-image}
 
 # Эпилог
@@ -1229,12 +1229,12 @@ Filtered messages: 13
 
 Теперь я могу открыть `fullhtml/index.html`, чтобы ознакомиться с отчетом.
 
-[![pvs-studio-main.png]({{ "/img/htb/boxes/smasher/pvs-studio-main.png" | relative_url }})]({{ "/img/htb/boxes/smasher/pvs-studio-main.png" | relative_url }})
+[![pvs-studio-main.png]({{ "/assets/images/htb/smasher/pvs-studio-main.png" | relative_url }})]({{ "/assets/images/htb/smasher/pvs-studio-main.png" | relative_url }})
 {: .center-image}
 
 Большинство переживаний анализатора связаны с теоретическими переполнениями при использовании функций `sscanf` и `sprintf` — в нашем случае их можно отнести к ложноположительным срабатываниям. Однако ни на что другое PVS-Studio в реализации `parse_request` не пожаловался.
 
-[![pvs-studio-tiny.png]({{ "/img/htb/boxes/smasher/pvs-studio-tiny.png" | relative_url }})]({{ "/img/htb/boxes/smasher/pvs-studio-tiny.png" | relative_url }})
+[![pvs-studio-tiny.png]({{ "/assets/images/htb/smasher/pvs-studio-tiny.png" | relative_url }})]({{ "/assets/images/htb/smasher/pvs-studio-tiny.png" | relative_url }})
 {: .center-image}
 
 О чем это говорит? О том, что верификация кода все еще трудно поддается автоматизации — даже в условиях современных технологий.

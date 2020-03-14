@@ -4,18 +4,18 @@ title: "В королевстве PWN. ROP-цепочки и атака Return-t
 date: 2019-11-23 18:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [hackthebox, xakepru, ctf, pwn-64, linux, gdb-weaponize, buffer-overflow, stack-smashing, getenvaddr, dep-bypass, ret2libc, rop, rop-chain, r2, ROPgadget, ropper, pwntools, aslr-bypass, address-leak, got, plt, ret2plt, libc-database, ghidra]
+tags: [write-up, hackthebox, ctf, pwn-64, linux, gdb-weaponize, buffer-overflow, stack-smashing, getenvaddr, dep-bypass, ret2libc, rop, rop-chain, r2, ROPgadget, ropper, pwntools, aslr-bypass, address-leak, got, plt, ret2plt, libc-database, ghidra]
 comments: true
 published: true
 ---
 
 [//]: # (2019-10-23)
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/10/23/ctf-bitterman/ "В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman — «Хакер»")
-
 В этой статье мы поговорим об особенностях переполнения стека в 64-битном Linux. Начнем с прохождения трех обучающих кейсов для различных сценариев выполнения Stack Overflow в Ubuntu 19.10 x64. Далее на примере таска Bitterman, представленном на соревновании CAMP CTF 2015, используя возможности модуля pwntools, мы построим эксплоит, демонстрирующий техники Return-oriented programming для обмана запрета исполнения DEP/NX и Return-to-PLT для байпаса механизма рандомизации адресов ASLR без брутфорса.
 
 <!--cut-->
+
+[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/10/23/ctf-bitterman/ "В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman — «Хакер»")
 
 > В королевстве PWN
 > 
@@ -26,7 +26,7 @@ published: true
 > 3. **➤**{: style="color: green;"} [ROP-цепочки и атака Return-to-PLT в CTF Bitterman](https://snovvcrash.github.io/2019/11/23/bitterman.html)
 > 4. [Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя](https://snovvcrash.github.io/2019/12/20/htb-smasher.html)
 
-![banner.png]({{ "/img/pwn-kingdom/bitterman/banner.png" | relative_url }})
+![banner.png]({{ "/assets/images/pwn-kingdom/bitterman/banner.png" | relative_url }})
 {: .center-image}
 
 * TOC
@@ -117,12 +117,12 @@ $ gcc -g -fno-stack-protector -z execstack -no-pie -o classic classic.c
 $ sudo sh -c 'echo 0 > /proc/sys/kernel/randomize_va_space'
 ```
 
-[![classic-compile.png]({{ "/img/pwn-kingdom/bitterman/classic-compile.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/classic-compile.png" | relative_url }})
+[![classic-compile.png]({{ "/assets/images/pwn-kingdom/bitterman/classic-compile.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/classic-compile.png" | relative_url }})
 {: .center-image}
 
 Получив порцию негодования от GCC из-за использования `gets`, мы собрали 64-битный исполняемый файл `classic`.
 
-[![classic-checksec.png]({{ "/img/pwn-kingdom/bitterman/classic-checksec.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/classic-checksec.png" | relative_url }})
+[![classic-checksec.png]({{ "/assets/images/pwn-kingdom/bitterman/classic-checksec.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/classic-checksec.png" | relative_url }})
 {: .center-image}
 
 Скрипт `checksec.py`, идущий в комплекте с модулем pwntools и доступный из командной строки, говорит о том, что бинарь никак не защищен. Это нам и нужно для демонстрации первого кейса.
@@ -153,19 +153,19 @@ $ sudo sh -c 'echo 0 > /proc/sys/kernel/randomize_va_space'
 
 Как обычно будем пользоваться `pattern create` для генерации циклического [паттерна де Брёйна](https://ru.wikipedia.org/wiki/Последовательность_де_Брёйна), который мы скормим программе.
 
-[![classic-pattern-create.png]({{ "/img/pwn-kingdom/bitterman/classic-pattern-create.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/classic-pattern-create.png" | relative_url }})
+[![classic-pattern-create.png]({{ "/assets/images/pwn-kingdom/bitterman/classic-pattern-create.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/classic-pattern-create.png" | relative_url }})
 {: .center-image}
 
 Этим действием, как и планировалось, мы вышли за границы отведенного буфера.
 
-[![classic-overflow-exception.png]({{ "/img/pwn-kingdom/bitterman/classic-overflow-exception.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/classic-overflow-exception.png" | relative_url }})
+[![classic-overflow-exception.png]({{ "/assets/images/pwn-kingdom/bitterman/classic-overflow-exception.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/classic-overflow-exception.png" | relative_url }})
 {: .center-image}
 
 Однако несмотря на то, что отрывки нашего паттерна можно наблюдать на стеке (синим), адрес возврата (красным) перезаписать не удалось. Всему виной каноническая форма виртуальной адресации, имеющая вид `0x00007FFFFFFFFFFF`, где задействованы лишь младшие 48 бит (6 байт). В случае, если процессор видит «неканонический» адрес (в котором первые 2 значащих байта отличны от нуля), будет вызвано исключение, и контроля над RIP мы точно не получим.
 
 Чтобы перезапись удалась, посмотрим, что находится в RSP, и посчитаем смещение.
 
-[![classic-pattern-offset.png]({{ "/img/pwn-kingdom/bitterman/classic-pattern-offset.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/classic-pattern-offset.png" | relative_url }})
+[![classic-pattern-offset.png]({{ "/assets/images/pwn-kingdom/bitterman/classic-pattern-offset.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/classic-pattern-offset.png" | relative_url }})
 {: .center-image}
 
 Нам нужно 120 байт, чтобы добраться до RIP. Исходя из этого, напишем небольшой PoC-скрипт на Python, демонстрирующий возможность перезаписи адреса возврата.
@@ -195,7 +195,7 @@ with open('payload.bin', 'wb') as f:
 
 Квалификатор `<Q` упакует нужный адрес в 64-битный little-endian формат.
 
-[![classic-rip-overwrite.png]({{ "/img/pwn-kingdom/bitterman/classic-rip-overwrite.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/classic-rip-overwrite.png" | relative_url }})
+[![classic-rip-overwrite.png]({{ "/assets/images/pwn-kingdom/bitterman/classic-rip-overwrite.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/classic-rip-overwrite.png" | relative_url }})
 {: .center-image}
 
 Таким образом RIP поддается для перезаписи произвольным значением.
@@ -248,7 +248,7 @@ with open('payload.bin', 'wb') as f:
 	f.write(payload)
 ```
 
-[![classic-pwn.png]({{ "/img/pwn-kingdom/bitterman/classic-pwn.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/classic-pwn.png" | relative_url }})
+[![classic-pwn.png]({{ "/assets/images/pwn-kingdom/bitterman/classic-pwn.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/classic-pwn.png" | relative_url }})
 {: .center-image}
 
 Обрати внимание на использование конструкции `cat payload.bin; echo; cat` с идущей за ней конвейерной передачей для того, чтобы поток ввода `stdin` оставался открытым после отправки пейлоада, и мы смогли вводить команды.
@@ -296,7 +296,7 @@ $ gcc -g -fno-stack-protector -no-pie -o ret2libc ret2libc.c
 $ sudo sh -c 'echo 0 > /proc/sys/kernel/randomize_va_space'
 ```
 
-[![ret2libc-compile.png]({{ "/img/pwn-kingdom/bitterman/ret2libc-compile.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2libc-compile.png" | relative_url }})
+[![ret2libc-compile.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-compile.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-compile.png" | relative_url }})
 {: .center-image}
 
 ### ROP-цепочки
@@ -309,7 +309,7 @@ $ sudo sh -c 'echo 0 > /proc/sys/kernel/randomize_va_space'
 
 Язык ассемблера по сути представляет из себя просто набор мнемоник для опкодов процессора — символические представления машинных инструкций. Но сам процессор (в силу утверждения выше) не способен оценить уместность выполнения той или иной инструкции в текущем контексте — он просто выполнит опкод, на который указывает регистр RIP в данный момент. Поэтому, если где-то в обозримой памяти процесса существует инструкция, содержащая байт `5f`, за которым следует `c3`, то процессор выполнит `pop rdi; ret`, если «ткнуть его носом» в нужное смещение (ведь `5fc3` [означает](https://defuse.ca/online-x86-assembler.htm) ничто иное, как `pop rdi; ret`).
 
-[![online-x86-assembler.png]({{ "/img/pwn-kingdom/bitterman/online-x86-assembler.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/online-x86-assembler.png" | relative_url }})
+[![online-x86-assembler.png]({{ "/assets/images/pwn-kingdom/bitterman/online-x86-assembler.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/online-x86-assembler.png" | relative_url }})
 {: .center-image}
 
 С помощью `xxd`, к примеру, можно найти все смещения в нашем исполняемом файле, по которым расположена нужная цепочка байт (или по-другому «ROP-гаджет»).
@@ -338,7 +338,7 @@ $ r2 ret2libc
 [0x00401050]> /R pop rdi
 ```
 
-[![rop-radare2.png]({{ "/img/pwn-kingdom/bitterman/rop-radare2.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/rop-radare2.png" | relative_url }})
+[![rop-radare2.png]({{ "/assets/images/pwn-kingdom/bitterman/rop-radare2.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/rop-radare2.png" | relative_url }})
 {: .center-image}
 
 ROPgadget в своем арсенале имеет удобную опцию `depth`, позволяющую задать максимальное количество звеньев в цепочке, которую ты ищешь.
@@ -348,7 +348,7 @@ $ ROPgadget --binary ret2libc --ropchain --rawArch=x86-64 --depth 2 | grep 'pop 
 $ ROPgadget --binary ret2libc --opcode 5fc3
 ```
 
-[![rop-ropgadget.png]({{ "/img/pwn-kingdom/bitterman/rop-ropgadget.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/rop-ropgadget.png" | relative_url }})
+[![rop-ropgadget.png]({{ "/assets/images/pwn-kingdom/bitterman/rop-ropgadget.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/rop-ropgadget.png" | relative_url }})
 {: .center-image}
 
 А Ropper понимает регулярные выражения и может быть использован не только для поиска гаджетов.
@@ -358,7 +358,7 @@ $ ropper --file ret2libc --arch x86_64 --search 'pop ?di; ret'
 $ ropper --file ret2libc --arch x86_64 --disasm 5fc3
 ```
 
-[![rop-roppper.png]({{ "/img/pwn-kingdom/bitterman/rop-roppper.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/rop-roppper.png" | relative_url }})
+[![rop-roppper.png]({{ "/assets/images/pwn-kingdom/bitterman/rop-roppper.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/rop-roppper.png" | relative_url }})
 {: .center-image}
 
 Сколько утилит, столько и ответов — тебе решать, чем пользоваться.
@@ -384,7 +384,7 @@ LOAD 0x0000000000000000 0x0000000000400000 0x0000000000400000
 
 Вот, что говорит о нем `checksec`.
 
-[![ret2libc-checksec.png]({{ "/img/pwn-kingdom/bitterman/ret2libc-checksec.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2libc-checksec.png" | relative_url }})
+[![ret2libc-checksec.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-checksec.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-checksec.png" | relative_url }})
 {: .center-image}
 
 DEP включен, все по плану.
@@ -473,12 +473,12 @@ p.interactive()
 
 Попробуем запустить на исполнение.
 
-[![ret2libc-pwn-fail.png]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-fail.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-fail.png" | relative_url }})
+[![ret2libc-pwn-fail.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-fail.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-fail.png" | relative_url }})
 {: .center-image}
 
 Шелл мы не получили, и, как можно видеть, процесс упал с сегфолтом. Если запустить скрипт с параметром `DEBUG`, можно получить больше фидбека от pwntools.
 
-[![ret2libc-pwn-fail-debug.png]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-fail-debug.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-fail-debug.png" | relative_url }})
+[![ret2libc-pwn-fail-debug.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-fail-debug.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-fail-debug.png" | relative_url }})
 {: .center-image}
 
 Это не прояснило ситуацию, поэтому пойдем в отладчик смотреть, что же, на самом деле, происходит.
@@ -491,7 +491,7 @@ gdb-peda$ r < payload.bin
 gdb-peda$ si
 ```
 
-[![ret2libc-pwn-peda-1.png]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-peda-1.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-peda-1.png" | relative_url }})
+[![ret2libc-pwn-peda-1.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-peda-1.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-peda-1.png" | relative_url }})
 {: .center-image}
 
 На этом этапе RIP указывает на первую инструкцию нашего гаджета `pop rdi`, а в RSP находится строка `"/bin/sh"`, которая через мгновение окажется в RDI.
@@ -500,7 +500,7 @@ gdb-peda$ si
 gdb-peda$ si
 ```
 
-[![ret2libc-pwn-peda-2.png]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-peda-2.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-peda-2.png" | relative_url }})
+[![ret2libc-pwn-peda-2.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-peda-2.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-peda-2.png" | relative_url }})
 {: .center-image}
 
 После перехода к следующей инструкции в RIP оказалась оставшаяся часть ROP-гаджета `ret`, а RSP теперь указывает на `system`, куда и будет передано управления. Обрати внимание на значение указателя в RSP (`0x7fffffffded8`) — оно станет ключом к понимаю проблемы.
@@ -509,7 +509,7 @@ gdb-peda$ si
 gdb-peda$ si
 ```
 
-[![ret2libc-pwn-peda-3.png]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-peda-3.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-peda-3.png" | relative_url }})
+[![ret2libc-pwn-peda-3.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-peda-3.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-peda-3.png" | relative_url }})
 {: .center-image}
 
 И вот здесь программа крашится. В чем дело?
@@ -542,7 +542,7 @@ payload = junk + pop_rdi_gadget + bin_sh_addr + nop_gadget + system_addr + exit_
 
 Теперь все работает, как нужно, и я получаю честно заработанный шелл.
 
-[![ret2libc-pwn-success.png]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-success.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2libc-pwn-success.png" | relative_url }})
+[![ret2libc-pwn-success.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-success.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2libc-pwn-success.png" | relative_url }})
 {: .center-image}
 
 Го ласт кейс!
@@ -588,12 +588,12 @@ $ gcc -g -fno-stack-protector -no-pie -o ret2plt ret2plt.c
 $ sudo sh -c 'echo 2 > /proc/sys/kernel/randomize_va_space'
 ```
 
-[![ret2plt-compile.png]({{ "/img/pwn-kingdom/bitterman/ret2plt-compile.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2plt-compile.png" | relative_url }})
+[![ret2plt-compile.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-compile.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-compile.png" | relative_url }})
 {: .center-image}
 
 Мнение `checksec` об исполняемом файле.
 
-[![ret2plt-checksec.png]({{ "/img/pwn-kingdom/bitterman/ret2plt-checksec.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2plt-checksec.png" | relative_url }})
+[![ret2plt-checksec.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-checksec.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-checksec.png" | relative_url }})
 {: .center-image}
 
 Так как включен механизм рандомизации ASLR, то адрес libc будет меняться с каждым вызовом программы. Но разве нас когда-нибудь пугали трудности?
@@ -631,7 +631,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-[![ret2plt-poc.png]({{ "/img/pwn-kingdom/bitterman/ret2plt-poc.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2plt-poc.png" | relative_url }})
+[![ret2plt-poc.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-poc.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-poc.png" | relative_url }})
 {: .center-image}
 
 Как можно видеть, адрес `puts` меняется с каждым вызовом программы.
@@ -676,7 +676,7 @@ $ readelf -s /usr/lib/x86_64-linux-gnu/libc.so.6 | grep -e ' puts@' -e ' system@
 $ strings -atx /usr/lib/x86_64-linux-gnu/libc.so.6 | grep '/bin/sh'
 ```
 
-[![ret2plt-find-addr.png]({{ "/img/pwn-kingdom/bitterman/ret2plt-find-addr.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2plt-find-addr.png" | relative_url }})
+[![ret2plt-find-addr.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-find-addr.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-find-addr.png" | relative_url }})
 {: .center-image}
 
 На рисунке имена значениям я присвоил такие же, как в теле кода эксплоита.
@@ -757,7 +757,7 @@ p.interactive()
 
 Раз — и у нас уже есть шелл!
 
-[![ret2plt-pwn.png]({{ "/img/pwn-kingdom/bitterman/ret2plt-pwn.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/ret2plt-pwn.png" | relative_url }})
+[![ret2plt-pwn.png]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-pwn.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/ret2plt-pwn.png" | relative_url }})
 {: .center-image}
 
 ### Что если версия libc неизвестна?
@@ -768,7 +768,7 @@ p.interactive()
 
 Так как рандомизация памяти работает на страничном уровне, последние 12 бит (3 символа) смещения, как правило, остаются неизменными, что позволяет по «слитому» адресу функции `puts` угадать версию библиотеки.
 
-[![libc-database-search.png]({{ "/img/pwn-kingdom/bitterman/libc-database-search.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/libc-database-search.png" | relative_url }})
+[![libc-database-search.png]({{ "/assets/images/pwn-kingdom/bitterman/libc-database-search.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/libc-database-search.png" | relative_url }})
 {: .center-image}
 
 Если скачать предложенную версию и проверить хеш-суммы, то окажется, что это и правда та же самая библиотека, которая используется на моем стенде.
@@ -788,14 +788,14 @@ $ md5sum libc6_2.29-0ubuntu2_amd64.so /usr/lib/x86_64-linux-gnu/libc.so.6
 
 Для аутентичности переместимся на Kali, загрузим исполняемый файл и проведем быстрый анализ.
 
-[![bitterman-run.png]({{ "/img/pwn-kingdom/bitterman/bitterman-run.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/bitterman-run.png" | relative_url }})
+[![bitterman-run.png]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-run.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-run.png" | relative_url }})
 {: .center-image}
 
 Как можно видеть, весь функционал этой вежливой программы сводится к приветствию, запросу длины вводимой пользователем строки и, собственно, самой строки.
 
 Методом тыка выясняется, что последний ввод уязвим к переполнению буфера.
 
-[![bitterman-overflow.png]({{ "/img/pwn-kingdom/bitterman/bitterman-overflow.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/bitterman-overflow.png" | relative_url }})
+[![bitterman-overflow.png]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-overflow.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-overflow.png" | relative_url }})
 {: .center-image}
 
 ## Статический анализ
@@ -816,14 +816,14 @@ $ r2 ./bitterman
 ...
 ```
 
-[![bitterman-r2.png]({{ "/img/pwn-kingdom/bitterman/bitterman-r2.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/bitterman-r2.png" | relative_url }})
+[![bitterman-r2.png]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-r2.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-r2.png" | relative_url }})
 {: .center-image}
 
 Спойлер: красным выделена уязвимая функция ввода.
 
 Если у тебя нет возможности приобрести IDA Pro (а пиратство мы не одобряем), для нужд декомпиляции исполняемых файлов удобно пользоваться инструментарием [Ghidra](https://github.com/NationalSecurityAgency/ghidra), который АНБ так любезно подарила простым смертным.
 
-[![bitterman-ghidra.png]({{ "/img/pwn-kingdom/bitterman/bitterman-ghidra.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/bitterman-ghidra.png" | relative_url }})
+[![bitterman-ghidra.png]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-ghidra.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-ghidra.png" | relative_url }})
 {: .center-image}
 
 Если посмотреть на псевдокод функций `main` и `read_nbytes`, можно составить такой исходник на псевдо C, который будет отражать поведение Bitterman.
@@ -885,12 +885,12 @@ int main(int argc,char **argv) {
 
 Запустим отладчик и рассчитаем точку перезаписи RIP с помощью циклического паттерна.
 
-[![bitterman-pattern-create.png]({{ "/img/pwn-kingdom/bitterman/bitterman-pattern-create.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/bitterman-pattern-create.png" | relative_url }})
+[![bitterman-pattern-create.png]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-pattern-create.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-pattern-create.png" | relative_url }})
 {: .center-image}
 
 Генерим строку в 500 символов и скармливаем программе в уязвимом input'е.
 
-[![bitterman-pattern-offset.png]({{ "/img/pwn-kingdom/bitterman/bitterman-pattern-offset.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/bitterman-pattern-offset.png" | relative_url }})
+[![bitterman-pattern-offset.png]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-pattern-offset.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-pattern-offset.png" | relative_url }})
 {: .center-image}
 
 Итак, нам нужно 152 байта для того, чтобы добраться до адреса возврата.
@@ -1105,7 +1105,7 @@ r.interactive()
 
 Выполним то, что мы натворили, и получим, наконец, свой шелл.
 
-[![bitterman-pwn.png]({{ "/img/pwn-kingdom/bitterman/bitterman-pwn.png" | relative_url }})]({{ "/img/pwn-kingdom/bitterman/bitterman-pwn.png" | relative_url }})
+[![bitterman-pwn.png]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-pwn.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/bitterman/bitterman-pwn.png" | relative_url }})
 {: .center-image}
 
 Bitterman has been PwN3d! :triumph:

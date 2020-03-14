@@ -4,18 +4,18 @@ title: "HTB{ Active }"
 date: 2018-12-17 00:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [hackthebox, xakepru, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
+tags: [write-up, hackthebox, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
 comments: true
 published: true
 ---
 
 [//]: # (2019-08-01)
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/06/27/htb-kerberos/ "Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с HackTheBox - «Хакер»")
-
 **Active** — максимально простая, однако, в то же время, одна из самых полезных для прохождения Windows-машин в своей "ценовой категории" на HTB. Почему? Так это же контроллер домена AD! Тезисный обзор предлагаемых развлечений: энумерация SMB-шар (используем tуеву hучу крутых утилит а-ля smbclient, smbmap, enum4linux, nullinux); разграбление SMB с анонимным доступом для захвата файла групповых политик Groups.xml; декрипт GPP-пароля из той самой xml'ки; получение доступа к внутридоменному аккаунту с последующей инициализацией атаки типа Kerberoasting (против протокола аутентификации Kerberos) для извлечения тикета администратора с помощью коллекции Python-скриптов impacket для работы с сетевыми протоколами; наконец, офлайн-восстановление пароля администратора из хеша (с помощью Hashcat) для окончательного pwn'а контроллера.
 
 <!--cut-->
+
+[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/06/27/htb-kerberos/ "Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с HackTheBox - «Хакер»")
 
 *«...Лежа в пещере своей, в три глотки лаял огромный Цербер, и лай громовой оглашал молчаливое царство...»*
 {: style="color: #a8a8a8;"}
@@ -23,10 +23,10 @@ published: true
 **4.6/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/img/htb/boxes/active/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
+[![banner.png]({{ "/assets/images/htb/active/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
 {: .center-image}
 
-![info.png]({{ "/img/htb/boxes/active/info.png" | relative_url }})
+![info.png]({{ "/assets/images/htb/active/info.png" | relative_url }})
 {: .center-image}
 
 * TOC
@@ -73,7 +73,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Dec 15 23:26:07 2018 -- 1 IP address (1 host up) scanned in 0.80 seconds
 ```
 
-Version ([красивый отчет]({{ "/reports/nmap/htb/active/version.html" | relative_url }})):
+Version ([красивый отчет]({{ "/assets/reports/nmap/htb/active/version.html" | relative_url }})):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl 10.10.10.100
 ...
@@ -672,7 +672,7 @@ function getpwd([string]$Cpassword) {
 }
 ```
 
-[![powershell-gpp-decrypt.png]({{ "/img/htb/boxes/active/powershell-gpp-decrypt.png" | relative_url }})]({{ "/img/htb/boxes/active/powershell-gpp-decrypt.png" | relative_url }})
+[![powershell-gpp-decrypt.png]({{ "/assets/images/htb/active/powershell-gpp-decrypt.png" | relative_url }})]({{ "/assets/images/htb/active/powershell-gpp-decrypt.png" | relative_url }})
 {: .center-image}
 
 В любом случае мы получили авторизационные данные: `SVC_TGS:GPPstillStandingStrong2k18`.
@@ -790,13 +790,13 @@ C:\Windows\system32>exit
 
 Active пройден :triumph:
 
-![owned-user.png]({{ "/img/htb/boxes/active/owned-user.png" | relative_url }})
+![owned-user.png]({{ "/assets/images/htb/active/owned-user.png" | relative_url }})
 {: .center-image}
 
-![owned-root.png]({{ "/img/htb/boxes/active/owned-root.png" | relative_url }})
+![owned-root.png]({{ "/assets/images/htb/active/owned-root.png" | relative_url }})
 {: .center-image}
 
-![trophy.png]({{ "/img/htb/boxes/active/trophy.png" | relative_url }})
+![trophy.png]({{ "/assets/images/htb/active/trophy.png" | relative_url }})
 {: .center-image}
 
 # Эпилог
@@ -821,7 +821,7 @@ drwxr-xr-x 2 root root 4096 Jul 14  2009  Public
 drwxr-xr-x 2 root root 4096 Jul 21 18:16  SVC_TGS
 ```
 
-[![nautilus-smb.png]({{ "/img/htb/boxes/active/nautilus-smb.png" | relative_url }})]({{ "/img/htb/boxes/active/nautilus-smb.png" | relative_url }})
+[![nautilus-smb.png]({{ "/assets/images/htb/active/nautilus-smb.png" | relative_url }})]({{ "/assets/images/htb/active/nautilus-smb.png" | relative_url }})
 {: .center-image}
 
 Проверить состояние так:

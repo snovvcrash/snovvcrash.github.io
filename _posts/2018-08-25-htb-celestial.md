@@ -4,7 +4,7 @@ title: "HTB{ Celestial }"
 date: 2018-08-25 20:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [hackthebox, linux, express, node-js, deserialization, python, cron]
+tags: [write-up, hackthebox, linux, express, node-js, deserialization, python, cron]
 comments: true
 published: true
 ---
@@ -16,10 +16,10 @@ published: true
 **3.9/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/img/htb/boxes/celestial/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
+[![banner.png]({{ "/assets/images/htb/celestial/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
 {: .center-image}
 
-![info.png]({{ "/img/htb/boxes/celestial/info.png" | relative_url }})
+![info.png]({{ "/assets/images/htb/celestial/info.png" | relative_url }})
 {: .center-image}
 
 * TOC
@@ -84,12 +84,12 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 Ради интереса посмотрим, что скажет браузер. При загрузке страницы в первый раз нас ждет просто сухой циничный маркер пустоты и безысходности, обличенный в жирные цифры **4**, **0**, **4**:
 
-[![port3000-browser-1.png]({{ "/img/htb/boxes/celestial/port3000-browser-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-browser-1.png" | relative_url }})
+[![port3000-browser-1.png]({{ "/assets/images/htb/celestial/port3000-browser-1.png" | relative_url }})]({{ "/assets/images/htb/celestial/port3000-browser-1.png" | relative_url }})
 {: .center-image}
 
 Если быть настойчивее и обновить страничку, нас встретит очень ценное замечание:
 
-[![port3000-browser-2.png]({{ "/img/htb/boxes/celestial/port3000-browser-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-browser-2.png" | relative_url }})
+[![port3000-browser-2.png]({{ "/assets/images/htb/celestial/port3000-browser-2.png" | relative_url }})]({{ "/assets/images/htb/celestial/port3000-browser-2.png" | relative_url }})
 {: .center-image}
 
 Что-то здесь не так, потому что `2 + 2 is 4`, это я точно помню... Будем смотреть на запрос.
@@ -97,7 +97,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Burp Suite
 Перехватим запрос и посмотрим, что под капотом:
 
-[![port3000-burp-1.png]({{ "/img/htb/boxes/celestial/port3000-burp-1.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-burp-1.png" | relative_url }})
+[![port3000-burp-1.png]({{ "/assets/images/htb/celestial/port3000-burp-1.png" | relative_url }})]({{ "/assets/images/htb/celestial/port3000-burp-1.png" | relative_url }})
 {: .center-image}
 
 Cookie с профилем. Это объясняет, почему в первый раз пришло сообщение об ошибке (первый запрос был без печенек). Посмотрим, что представляет из себя значение профиля:
@@ -160,7 +160,7 @@ root@kali:~# python node_shell.py -h <LHOST> -p 31337 -r -e -o
 
 Переводим в base64 и отправляем в Burp (не забыв при этом поднять слушателя на фоне на 31337 порт):
 
-[![port3000-burp-2.png]({{ "/img/htb/boxes/celestial/port3000-burp-2.png" | relative_url }})]({{ "/img/htb/boxes/celestial/port3000-burp-2.png" | relative_url }})
+[![port3000-burp-2.png]({{ "/assets/images/htb/celestial/port3000-burp-2.png" | relative_url }})]({{ "/assets/images/htb/celestial/port3000-burp-2.png" | relative_url }})
 {: .center-image}
 
 # Внутри машины
@@ -392,13 +392,13 @@ f4ckU!
 
 Celestial пройден :triumph:
 
-![owned-user.png]({{ "/img/htb/boxes/celestial/owned-user.png" | relative_url }})
+![owned-user.png]({{ "/assets/images/htb/celestial/owned-user.png" | relative_url }})
 {: .center-image}
 
-![owned-root.png]({{ "/img/htb/boxes/celestial/owned-root.png" | relative_url }})
+![owned-root.png]({{ "/assets/images/htb/celestial/owned-root.png" | relative_url }})
 {: .center-image}
 
-![trophy.png]({{ "/img/htb/boxes/celestial/trophy.png" | relative_url }})
+![trophy.png]({{ "/assets/images/htb/celestial/trophy.png" | relative_url }})
 {: .center-image}
 
 # Эпилог

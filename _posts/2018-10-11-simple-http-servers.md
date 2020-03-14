@@ -4,7 +4,7 @@ title: "О быстром развертывании простых HTTP-сер�
 date: 2018-10-11 00:00:00 +0300
 author: snovvcrash
 categories: /admin
-tags: [linux, file-transfer, http-server, python-server, php-server, nginx]
+tags: [notes, linux, file-transfer, http-server, python-server, php-server, nginx]
 comments: true
 published: true
 ---
@@ -13,7 +13,7 @@ published: true
 
 <!--cut-->
 
-![banner.png]({{ "/img/simple-http-servers/banner.png" | relative_url }})
+![banner.png]({{ "/assets/images/simple-http-servers/banner.png" | relative_url }})
 {: .center-image}
 
 <h4 style="color:red;margin-bottom:0;">Local: 10.10.10.1</h4>
@@ -174,7 +174,7 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
 
 На скриншоте ниже (кликабельно) можно видеть всю процедуру запуска сервера: предварительная настройка на панели слева, тесты — справа.
 
-[![php.png]({{ "/img/simple-http-servers/php.png" | relative_url }})]({{ "/img/simple-http-servers/php.png" | relative_url }})
+[![php.png]({{ "/assets/images/simple-http-servers/php.png" | relative_url }})]({{ "/assets/images/simple-http-servers/php.png" | relative_url }})
 {: .center-image}
 
 Несколько слов о том, что здесь происходит:
@@ -191,7 +191,7 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
 
 Опять же на скриншоте ниже можно видеть всю процедуру запуска: предварительная настройка на панели сверху, тесты — снизу.
 
-[![nginx.png]({{ "/img/simple-http-servers/nginx.png" | relative_url }})]({{ "/img/simple-http-servers/nginx.png" | relative_url }})
+[![nginx.png]({{ "/assets/images/simple-http-servers/nginx.png" | relative_url }})]({{ "/assets/images/simple-http-servers/nginx.png" | relative_url }})
 {: .center-image}
 
 Что происходит здесь:
