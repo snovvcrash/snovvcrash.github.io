@@ -16,10 +16,10 @@ published: true
 **5.3/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/olympus/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
+[![banner.png](/assets/images/htb/machines/olympus/banner.png)](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/olympus/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/olympus/info.png)
 {: .center-image}
 
 * TOC
@@ -52,7 +52,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sun Sep 30 14:07:55 2018 -- 1 IP address (1 host up) scanned in 0.55 seconds
 ```
 
-Version ([красивый отчет]({{ "/assets/reports/nmap/htb/olympus/version.html" | relative_url }})):
+Version ([красивый отчет](/assets/reports/nmap/htb/olympus/version.html)):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p53,80,2222 10.10.10.83
 ...
@@ -147,7 +147,7 @@ root@kali:~# dig @10.10.10.83 olympus.htb
 # Web — Порт 80 [остров Крит]
 Добро пожаловать на остров Крит:
 
-[![port80-browser-1.png]({{ "/assets/images/htb/olympus/port80-browser-1.png" | relative_url }})]({{ "/assets/images/htb/olympus/port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png](/assets/images/htb/machines/olympus/port80-browser-1.png)](/assets/images/htb/machines/olympus/port80-browser-1.png)
 {: .center-image}
 
 В исходниках пусто:
@@ -185,7 +185,7 @@ root@kali:~# nikto -h http://10.10.10.83:80 -o nikto/olympus.txt
 
 То же самое можно увидеть, просмотрев заголовки HTTP-ответа:
 
-[![port80-browser-2.png]({{ "/assets/images/htb/olympus/port80-browser-2.png" | relative_url }})]({{ "/assets/images/htb/olympus/port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png](/assets/images/htb/machines/olympus/port80-browser-2.png)](/assets/images/htb/machines/olympus/port80-browser-2.png)
 {: .center-image}
 
 На задворках сознания начали всплывать китайские иероглифы, ибо как-то раз я наткнулся на китайскую публикация, описывающую элегантную атаку, основанную на этой фиче для веб-девелоперов.
@@ -282,7 +282,7 @@ round-trip min/avg/max/stddev = 68.001/68.346/68.690/0.345 ms
 
 В красках все выглядело так (красные числа — порядок активности панелей):
 
-[![xdebug-exploit-poc.png]({{ "/assets/images/htb/olympus/xdebug-exploit-poc.png" | relative_url }})]({{ "/assets/images/htb/olympus/xdebug-exploit-poc.png" | relative_url }})
+[![xdebug-exploit-poc.png](/assets/images/htb/machines/olympus/xdebug-exploit-poc.png)](/assets/images/htb/machines/olympus/xdebug-exploit-poc.png)
 {: .center-image}
 
 На этом считаю тест успешно завершенным, можно переходить к боевым действиям.
@@ -791,11 +791,11 @@ aba48699????????????????????????
 
 Olympus пройден :triumph:
 
-![owned-user.png]({{ "/assets/images/htb/olympus/owned-user.png" | relative_url }})
+![owned-user.png](/assets/images/htb/machines/olympus/owned-user.png)
 {: .center-image}
 
-![owned-root.png]({{ "/assets/images/htb/olympus/owned-root.png" | relative_url }})
+![owned-root.png](/assets/images/htb/machines/olympus/owned-root.png)
 {: .center-image}
 
-![trophy.png]({{ "/assets/images/htb/olympus/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/olympus/trophy.png)
 {: .center-image}

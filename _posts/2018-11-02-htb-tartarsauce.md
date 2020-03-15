@@ -16,10 +16,10 @@ published: true
 **6.2/10**
 {: style="color: white; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/tartarsauce/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
+[![banner.png](/assets/images/htb/machines/tartarsauce/banner.png)](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/tartarsauce/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/tartarsauce/info.png)
 {: .center-image}
 
 * TOC
@@ -48,7 +48,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Mon Oct 29 09:44:02 2018 -- 1 IP address (1 host up) scanned in 0.52 seconds
 ```
 
-Version ([красивый отчет]({{ "/assets/reports/nmap/htb/tartarsauce/version.html" | relative_url }})):
+Version ([красивый отчет](/assets/reports/nmap/htb/tartarsauce/version.html)):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p80 10.10.10.88
 ...
@@ -83,7 +83,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 На `http://10.10.10.88:80` нас поджидает немного ASCII-арта:
 
-[![port80-browser-1.png]({{ "/assets/images/htb/tartarsauce/port80-browser-1.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png](/assets/images/htb/machines/tartarsauce/port80-browser-1.png)](/assets/images/htb/machines/tartarsauce/port80-browser-1.png)
 {: .center-image}
 
 В исходниках ничего интересного кроме последней строчки после кучи whitespace'ов:
@@ -104,15 +104,15 @@ Disallow: /webservices/phpmyadmin/
 
 Все ссылки возвращают **404** кроме `http://10.10.10.88/webservices/monstra-3.0.4/`, за которой скрывается:
 
-[![port80-browser-2.png]({{ "/assets/images/htb/tartarsauce/port80-browser-2.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png](/assets/images/htb/machines/tartarsauce/port80-browser-2.png)](/assets/images/htb/machines/tartarsauce/port80-browser-2.png)
 {: .center-image}
 
 Monstra CMS. Нам даже разрешают залогиниться со стандартными кредами `admin:admin` и прогуляться по админке:
 
-[![port80-browser-3.png]({{ "/assets/images/htb/tartarsauce/port80-browser-3.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png](/assets/images/htb/machines/tartarsauce/port80-browser-3.png)](/assets/images/htb/machines/tartarsauce/port80-browser-3.png)
 {: .center-image}
 
-[![port80-browser-4.png]({{ "/assets/images/htb/tartarsauce/port80-browser-4.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png](/assets/images/htb/machines/tartarsauce/port80-browser-4.png)](/assets/images/htb/machines/tartarsauce/port80-browser-4.png)
 {: .center-image}
 
 Чтобы не разводить много лирики, сразу скажу, что это одна большая "кроличья нора": из админки нельзя сделать ровным счетом ни-че-го, редактирование кода / загрузка сущностей не проходит — очень похоже, что вся CMS находится в "[read-only режиме]({{ page.url }}#доступ-к-monstra-cms)".
@@ -141,22 +141,22 @@ http://10.10.10.88/webservices/wp (Status: 301)
 
 Итак, у нас есть WordPress:
 
-[![port80-browser-5.png]({{ "/assets/images/htb/tartarsauce/port80-browser-5.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/port80-browser-5.png" | relative_url }})
+[![port80-browser-5.png](/assets/images/htb/machines/tartarsauce/port80-browser-5.png)](/assets/images/htb/machines/tartarsauce/port80-browser-5.png)
 {: .center-image}
 
 Если в CTF-виртуалке развернут WordPress, то в большинстве случаев "из коробки" он будет сломан, т. к. использует доменные имена в ссылках. Чинится это добавлением соответствующих записей в `/etc/hosts`, но это не наш случай.
 
 Если взглянуть на сорцы, то можно увидеть ссылки вида `http:/10.10.10.88...` (один слеш). Пофиксим это в Burp'е:
 
-[![burp-settings-1.png]({{ "/assets/images/htb/tartarsauce/burp-settings-1.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/burp-settings-1.png" | relative_url }})
+[![burp-settings-1.png](/assets/images/htb/machines/tartarsauce/burp-settings-1.png)](/assets/images/htb/machines/tartarsauce/burp-settings-1.png)
 {: .center-image}
 
-[![burp-settings-2.png]({{ "/assets/images/htb/tartarsauce/burp-settings-2.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/burp-settings-2.png" | relative_url }})
+[![burp-settings-2.png](/assets/images/htb/machines/tartarsauce/burp-settings-2.png)](/assets/images/htb/machines/tartarsauce/burp-settings-2.png)
 {: .center-image}
 
 Теперь все как нужно:
 
-[![port80-browser-6.png]({{ "/assets/images/htb/tartarsauce/port80-browser-6.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/port80-browser-6.png" | relative_url }})
+[![port80-browser-6.png](/assets/images/htb/machines/tartarsauce/port80-browser-6.png)](/assets/images/htb/machines/tartarsauce/port80-browser-6.png)
 {: .center-image}
 
 Но это так, к слову, потому что больше на этой страничке ничего интересного не живет.
@@ -311,7 +311,7 @@ Linux TartarSauce 4.15.0-041500-generic #201802011154 SMP Thu Feb 1 12:05:23 UTC
 
 В красках все выглядело ни много ни мало следующим образом (красным — порядок активности панелей):
 
-[![www-data-shell.png]({{ "/assets/images/htb/tartarsauce/www-data-shell.png" | relative_url }})]({{ "/assets/images/htb/tartarsauce/www-data-shell.png" | relative_url }})
+[![www-data-shell.png](/assets/images/htb/machines/tartarsauce/www-data-shell.png)](/assets/images/htb/machines/tartarsauce/www-data-shell.png)
 {: .center-image}
 
 # PrivEsc: www-data → onuma
@@ -889,13 +889,13 @@ e79abdab8b??????????????????????
 
 TartarSauce пройден :triumph:
 
-![owned-user.png]({{ "/assets/images/htb/tartarsauce/owned-user.png" | relative_url }})
+![owned-user.png](/assets/images/htb/machines/tartarsauce/owned-user.png)
 {: .center-image}
 
-![owned-root.png]({{ "/assets/images/htb/tartarsauce/owned-root.png" | relative_url }})
+![owned-root.png](/assets/images/htb/machines/tartarsauce/owned-root.png)
 {: .center-image}
 
-![trophy.png]({{ "/assets/images/htb/tartarsauce/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/tartarsauce/trophy.png)
 {: .center-image}
 
 # Эпилог

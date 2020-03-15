@@ -16,10 +16,10 @@ published: true
 **5/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/secnotes/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/151 "Hack The Box :: SecNotes")
+[![banner.png](/assets/images/htb/machines/secnotes/banner.png)](https://www.hackthebox.eu/home/machines/profile/151 "Hack The Box :: SecNotes")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/secnotes/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/secnotes/info.png)
 {: .center-image}
 
 * TOC
@@ -48,7 +48,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Wed Mar 20 21:09:12 2019 -- 1 IP address (1 host up) scanned in 26.50 seconds
 ```
 
-Version ([красивый отчет]({{ "/assets/reports/nmap/htb/secnotes/version.html" | relative_url }})):
+Version ([красивый отчет](/assets/reports/nmap/htb/secnotes/version.html)):
 ```text
 root@kali:~# nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p80,445,8808 10.10.10.97
 ...
@@ -109,23 +109,23 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 На `http://10.10.10.97:80` нас встречает логин-форма:
 
-[![port80-browser-1.png]({{ "/assets/images/htb/secnotes/port80-browser-1.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png](/assets/images/htb/machines/secnotes/port80-browser-1.png)](/assets/images/htb/machines/secnotes/port80-browser-1.png)
 {: .center-image}
 
 А на `http://10.10.10.97:80/register.php` можно регаться:
 
-[![port80-browser-2.png]({{ "/assets/images/htb/secnotes/port80-browser-2.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png](/assets/images/htb/machines/secnotes/port80-browser-2.png)](/assets/images/htb/machines/secnotes/port80-browser-2.png)
 {: .center-image}
 
 Сделаем же это, раз разрешают. Зарегистрировавшись с кредами `evilhacker:qwe123`, смотрим, что внутри:
 
-[![port80-browser-3.png]({{ "/assets/images/htb/secnotes/port80-browser-3.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png](/assets/images/htb/machines/secnotes/port80-browser-3.png)](/assets/images/htb/machines/secnotes/port80-browser-3.png)
 {: .center-image}
 
 ## Угон аккаунта Тайлера. Способ 1, XSRF
 В контексте первого способа получения авторизационных данных Тайлера (`tyler`, админ, узнаем это из баннера в верхней части экрана) наибольший интерес для нас представляет кнопка **Contact Us**:
 
-[![port80-browser-4.png]({{ "/assets/images/htb/secnotes/port80-browser-4.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png](/assets/images/htb/machines/secnotes/port80-browser-4.png)](/assets/images/htb/machines/secnotes/port80-browser-4.png)
 {: .center-image}
 
 Если, вооружившись netcat'ом, включить в тело сообщения для админа IP-адрес своей машины и дать *Send*, то:
@@ -152,7 +152,7 @@ XSRF (aka *Сross Site Request Forgery*, *CSRF*) — это старая как 
 ### Change Password
 Когда, залогинившись, мы осматривались на главной сайте, мы видели опцию **Change Password**. Вот, что она из себя представляет:
 
-[![port80-browser-5.png]({{ "/assets/images/htb/secnotes/port80-browser-5.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-5.png" | relative_url }})
+[![port80-browser-5.png](/assets/images/htb/machines/secnotes/port80-browser-5.png)](/assets/images/htb/machines/secnotes/port80-browser-5.png)
 {: .center-image}
 
 А вот что мы видим при изменении пароля на `newpass` и просмотре тела запроса в Burp'е (будет нужно чуть позже):
@@ -177,7 +177,7 @@ password=newpass&confirm_password=newpass&submit=submit
 ### XSRF в действии
 Учитывая тот факт, что гипотетический Тайлер кликает на все ссылки, которые содержатся в сообщении из "Contact Us", подсунем ему линк на смену своего же пароля (запрос ведь будет выполнен от его имени) и сигнализируем себе на машину об успехе операции:
 
-[![port80-browser-6.png]({{ "/assets/images/htb/secnotes/port80-browser-6.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-6.png" | relative_url }})
+[![port80-browser-6.png](/assets/images/htb/machines/secnotes/port80-browser-6.png)](/assets/images/htb/machines/secnotes/port80-browser-6.png)
 {: .center-image}
 
 ```text
@@ -202,7 +202,7 @@ Connection: Keep-Alive
 
 Теперь можем с чистой совестью логиниться as `tyler:newpass`. Сделав это, увидим следующее:
 
-[![port80-browser-7.png]({{ "/assets/images/htb/secnotes/port80-browser-7.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-7.png" | relative_url }})
+[![port80-browser-7.png](/assets/images/htb/machines/secnotes/port80-browser-7.png)](/assets/images/htb/machines/secnotes/port80-browser-7.png)
 {: .center-image}
 
 XSRF в первозданном виде!
@@ -212,13 +212,13 @@ XSRF в первозданном виде!
 
 Зарегистрировав пользователя с юзернеймом `' or 1=1 -- -` и паролем на свой выбор, авторизовавшись, получим такую картину:
 
-[![port80-browser-8.png]({{ "/assets/images/htb/secnotes/port80-browser-8.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-8.png" | relative_url }})
+[![port80-browser-8.png](/assets/images/htb/machines/secnotes/port80-browser-8.png)](/assets/images/htb/machines/secnotes/port80-browser-8.png)
 {: .center-image}
 
 # SMB-шара Тайлера
 Заметка new-site содержит такую sensitive datУ:
 
-[![port80-browser-9.png]({{ "/assets/images/htb/secnotes/port80-browser-9.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-9.png" | relative_url }})
+[![port80-browser-9.png](/assets/images/htb/machines/secnotes/port80-browser-9.png)](/assets/images/htb/machines/secnotes/port80-browser-9.png)
 {: .center-image}
 
 Очень похоже на расшаренный SMB-ресурс.
@@ -254,7 +254,7 @@ smb: \> ls
 
 Непохоже, чтобы это счастье относилось к 80-у порту, но мы помним, что у нас есть еще один открытый неисследованный порт — 8808. И это и правда он:
 
-[![port80-browser-10.png]({{ "/assets/images/htb/secnotes/port80-browser-10.png" | relative_url }})]({{ "/assets/images/htb/secnotes/port80-browser-10.png" | relative_url }})
+[![port80-browser-10.png](/assets/images/htb/machines/secnotes/port80-browser-10.png)](/assets/images/htb/machines/secnotes/port80-browser-10.png)
 {: .center-image}
 
 # Шелл от имена Тайлера
@@ -538,13 +538,13 @@ C:\WINDOWS\system32>type C:\Users\Administrator\Desktop\root.txt
 
 SecNotes пройдена :triumph:
 
-![owned-user.png]({{ "/assets/images/htb/secnotes/owned-user.png" | relative_url }})
+![owned-user.png](/assets/images/htb/machines/secnotes/owned-user.png)
 {: .center-image}
 
-![owned-root.png]({{ "/assets/images/htb/secnotes/owned-root.png" | relative_url }})
+![owned-root.png](/assets/images/htb/machines/secnotes/owned-root.png)
 {: .center-image}
 
-![trophy.png]({{ "/assets/images/htb/secnotes/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/secnotes/trophy.png)
 {: .center-image}
 
 # Эпилог

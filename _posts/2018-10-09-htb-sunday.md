@@ -16,10 +16,10 @@ published: true
 **4.1/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/sunday/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
+[![banner.png](/assets/images/htb/machines/sunday/banner.png)](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/sunday/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/sunday/info.png)
 {: .center-image}
 
 * TOC
@@ -53,7 +53,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Oct  6 14:40:33 2018 -- 1 IP address (1 host up) scanned in 139.31 seconds
 ```
 
-Version ([красивый отчет]({{ "/assets/reports/nmap/htb/sunday/version.html" | relative_url }})):
+Version ([красивый отчет](/assets/reports/nmap/htb/sunday/version.html)):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p79,111,22022,47581,48935 10.10.10.76
 ...
@@ -703,7 +703,7 @@ fb40fab6????????????????????????
 
 Вот так все выглядело вживую (красным указан порядок активности панелей):
 
-[![root-troll.png]({{ "/assets/images/htb/sunday/root-troll.png" | relative_url }})]({{ "/assets/images/htb/sunday/root-troll.png" | relative_url }})
+[![root-troll.png](/assets/images/htb/machines/sunday/root-troll.png)](/assets/images/htb/machines/sunday/root-troll.png)
 {: .center-image}
 
 ### 6. Исполняемый файл с SUID
@@ -871,13 +871,13 @@ root@sunday:~# > /var/log/syslog
 
 Sunday пройден :triumph:
 
-![owned-user.png]({{ "/assets/images/htb/sunday/owned-user.png" | relative_url }})
+![owned-user.png](/assets/images/htb/machines/sunday/owned-user.png)
 {: .center-image}
 
-![owned-root.png]({{ "/assets/images/htb/sunday/owned-root.png" | relative_url }})
+![owned-root.png](/assets/images/htb/machines/sunday/owned-root.png)
 {: .center-image}
 
-![trophy.png]({{ "/assets/images/htb/sunday/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/sunday/trophy.png)
 {: .center-image}
 
 # Эпилог

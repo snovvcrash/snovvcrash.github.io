@@ -16,10 +16,10 @@ published: true
 **4.8/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/bounty/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
+[![banner.png](/assets/images/htb/machines/bounty/banner.png)](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/bounty/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/bounty/info.png)
 {: .center-image}
 
 * TOC
@@ -48,7 +48,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Fri Nov  9 16:04:50 2018 -- 1 IP address (1 host up) scanned in 0.99 seconds
 ```
 
-Version ([красивый отчет]({{ "/assets/reports/nmap/htb/bounty/version.html" | relative_url }})):
+Version ([красивый отчет](/assets/reports/nmap/htb/bounty/version.html)):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p80 10.10.10.93
 ...
@@ -81,7 +81,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 Пикча волшебника (Мерлин, ты ли это?) во всю страницу по адресу `http://10.10.10.93:80`:
 
-[![port80-browser-1.png]({{ "/assets/images/htb/bounty/port80-browser-1.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png](/assets/images/htb/machines/bounty/port80-browser-1.png)](/assets/images/htb/machines/bounty/port80-browser-1.png)
 {: .center-image}
 
 В исходниках кроме подтверждения нашей догадки о личности волшебника (и вправду Мерлин) ничего полезного не имеется:
@@ -164,7 +164,7 @@ http://10.10.10.93/uploadedfiles (Status: 301)
 
 `/transfer.aspx` — загрузчик файлов:
 
-[![port80-browser-2.png]({{ "/assets/images/htb/bounty/port80-browser-2.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png](/assets/images/htb/machines/bounty/port80-browser-2.png)](/assets/images/htb/machines/bounty/port80-browser-2.png)
 {: .center-image}
 
 `/uploadedfiles` — предположительно путь, по которому загруженные способом выше файлы можно отыскать.
@@ -172,12 +172,12 @@ http://10.10.10.93/uploadedfiles (Status: 301)
 # /transfer.aspx
 Экспериментальным образом устанавливаем, что среди прочих, `/transfer.aspx` позволяет импортировать расширения типа `.config`, выдавая позитивную надпись зеленым цветом:
 
-[![port80-browser-3.png]({{ "/assets/images/htb/bounty/port80-browser-3.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png](/assets/images/htb/machines/bounty/port80-browser-3.png)](/assets/images/htb/machines/bounty/port80-browser-3.png)
 {: .center-image}
 
 Если же расширение находится в черном списке (как, к примеру, тот же `.aspx`), то нас огорчат краснобуквенной ошибкой:
 
-[![port80-browser-4.png]({{ "/assets/images/htb/bounty/port80-browser-4.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png](/assets/images/htb/machines/bounty/port80-browser-4.png)](/assets/images/htb/machines/bounty/port80-browser-4.png)
 {: .center-image}
 
 ## web.config
@@ -228,7 +228,7 @@ Response.write("<!-"&"-")
 
 Загрузим web.config на сервер и инициируем выполнение кода, перейдя по `http://10.10.10.93/uploadedfiles/web.config`:
 
-[![port80-browser-5.png]({{ "/assets/images/htb/bounty/port80-browser-5.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-5.png" | relative_url }})
+[![port80-browser-5.png](/assets/images/htb/machines/bounty/port80-browser-5.png)](/assets/images/htb/machines/bounty/port80-browser-5.png)
 {: .center-image}
 
 Есть контакт, переходим к следующей фазе.
@@ -361,35 +361,35 @@ Response.Write(thisDir)
 
 Который в жизни будет выглядеть таким образом:
 
-[![port80-browser-6.png]({{ "/assets/images/htb/bounty/port80-browser-6.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-6.png" | relative_url }})
+[![port80-browser-6.png](/assets/images/htb/machines/bounty/port80-browser-6.png)](/assets/images/htb/machines/bounty/port80-browser-6.png)
 {: .center-image}
 
 И соберем информацию о машине.
 
 1\. `whoami`. Спрашиваем имя пользователя, который крутит веб-сервер:
 
-[![port80-browser-7.png]({{ "/assets/images/htb/bounty/port80-browser-7.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-7.png" | relative_url }})
+[![port80-browser-7.png](/assets/images/htb/machines/bounty/port80-browser-7.png)](/assets/images/htb/machines/bounty/port80-browser-7.png)
 {: .center-image}
 
 2\. ``(dir 2>&1 *`|echo CMD);&<# rem #>echo PowerShell``. Спрашиваем, что используется по дефолту: CMD или PowerShell:
 
-[![port80-browser-8.png]({{ "/assets/images/htb/bounty/port80-browser-8.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-8.png" | relative_url }})
+[![port80-browser-8.png](/assets/images/htb/machines/bounty/port80-browser-8.png)](/assets/images/htb/machines/bounty/port80-browser-8.png)
 {: .center-image}
 
 3\. `echo %cd%`. Узнаем текущую директорию:
 
-[![port80-browser-9.png]({{ "/assets/images/htb/bounty/port80-browser-9.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-9.png" | relative_url }})
+[![port80-browser-9.png](/assets/images/htb/machines/bounty/port80-browser-9.png)](/assets/images/htb/machines/bounty/port80-browser-9.png)
 {: .center-image}
 
 4\. `wmic OS get OSArchitecture`. Узнаем архитектуру системы:
 
-[![port80-browser-10.png]({{ "/assets/images/htb/bounty/port80-browser-10.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-10.png" | relative_url }})
+[![port80-browser-10.png](/assets/images/htb/machines/bounty/port80-browser-10.png)](/assets/images/htb/machines/bounty/port80-browser-10.png)
 {: .center-image}
 
 #### user.txt
 5\. `type C:\Users\merlin\Desktop\user.txt`. И даже забираем флаг пользователя:
 
-[![port80-browser-11.png]({{ "/assets/images/htb/bounty/port80-browser-11.png" | relative_url }})]({{ "/assets/images/htb/bounty/port80-browser-11.png" | relative_url }})
+[![port80-browser-11.png](/assets/images/htb/machines/bounty/port80-browser-11.png)](/assets/images/htb/machines/bounty/port80-browser-11.png)
 {: .center-image}
 
 У нас есть все необходимое, чтобы получить полноценную сессию.
@@ -664,13 +664,13 @@ c837f7b6????????????????????????
 
 Bounty пройдена :triumph:
 
-![owned-user.png]({{ "/assets/images/htb/bounty/owned-user.png" | relative_url }})
+![owned-user.png](/assets/images/htb/machines/bounty/owned-user.png)
 {: .center-image}
 
-![owned-root.png]({{ "/assets/images/htb/bounty/owned-root.png" | relative_url }})
+![owned-root.png](/assets/images/htb/machines/bounty/owned-root.png)
 {: .center-image}
 
-![trophy.png]({{ "/assets/images/htb/bounty/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/bounty/trophy.png)
 {: .center-image}
 
 # Эпилог

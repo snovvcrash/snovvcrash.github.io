@@ -23,10 +23,10 @@ published: true
 **4.6/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/active/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
+[![banner.png](/assets/images/htb/machines/active/banner.png)](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/active/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/active/info.png)
 {: .center-image}
 
 * TOC
@@ -73,7 +73,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Dec 15 23:26:07 2018 -- 1 IP address (1 host up) scanned in 0.80 seconds
 ```
 
-Version ([красивый отчет]({{ "/assets/reports/nmap/htb/active/version.html" | relative_url }})):
+Version ([красивый отчет](/assets/reports/nmap/htb/active/version.html)):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl 10.10.10.100
 ...
@@ -672,7 +672,7 @@ function getpwd([string]$Cpassword) {
 }
 ```
 
-[![powershell-gpp-decrypt.png]({{ "/assets/images/htb/active/powershell-gpp-decrypt.png" | relative_url }})]({{ "/assets/images/htb/active/powershell-gpp-decrypt.png" | relative_url }})
+[![powershell-gpp-decrypt.png](/assets/images/htb/machines/active/powershell-gpp-decrypt.png)](/assets/images/htb/machines/active/powershell-gpp-decrypt.png)
 {: .center-image}
 
 В любом случае мы получили авторизационные данные: `SVC_TGS:GPPstillStandingStrong2k18`.
@@ -790,13 +790,13 @@ C:\Windows\system32>exit
 
 Active пройден :triumph:
 
-![owned-user.png]({{ "/assets/images/htb/active/owned-user.png" | relative_url }})
+![owned-user.png](/assets/images/htb/machines/active/owned-user.png)
 {: .center-image}
 
-![owned-root.png]({{ "/assets/images/htb/active/owned-root.png" | relative_url }})
+![owned-root.png](/assets/images/htb/machines/active/owned-root.png)
 {: .center-image}
 
-![trophy.png]({{ "/assets/images/htb/active/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/active/trophy.png)
 {: .center-image}
 
 # Эпилог
@@ -821,7 +821,7 @@ drwxr-xr-x 2 root root 4096 Jul 14  2009  Public
 drwxr-xr-x 2 root root 4096 Jul 21 18:16  SVC_TGS
 ```
 
-[![nautilus-smb.png]({{ "/assets/images/htb/active/nautilus-smb.png" | relative_url }})]({{ "/assets/images/htb/active/nautilus-smb.png" | relative_url }})
+[![nautilus-smb.png](/assets/images/htb/machines/active/nautilus-smb.png)](/assets/images/htb/machines/active/nautilus-smb.png)
 {: .center-image}
 
 Проверить состояние так:

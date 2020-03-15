@@ -16,10 +16,10 @@ published: true
 **4.3/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/devoops/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
+[![banner.png](/assets/images/htb/machines/devoops/banner.png)](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/devoops/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/devoops/info.png)
 {: .center-image}
 
 * TOC
@@ -49,7 +49,7 @@ Read data files from: /usr/bin/../share/nmap
 # Nmap done at Sat Oct 20 17:05:02 2018 -- 1 IP address (1 host up) scanned in 1.07 seconds
 ```
 
-Version ([красивый отчет]({{ "/assets/reports/nmap/htb/devoops/version.html" | relative_url }})):
+Version ([красивый отчет](/assets/reports/nmap/htb/devoops/version.html)):
 ```text
 root@kali:~# nmap -n -vvv -sS -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p22,5000 10.10.10.91
 ...
@@ -89,7 +89,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ## Браузер
 На `http://10.10.10.91:5000` нас ждет заглушка для будущего блога:
 
-[![port5000-browser-1.png]({{ "/assets/images/htb/devoops/port5000-browser-1.png" | relative_url }})]({{ "/assets/images/htb/devoops/port5000-browser-1.png" | relative_url }})
+[![port5000-browser-1.png](/assets/images/htb/machines/devoops/port5000-browser-1.png)](/assets/images/htb/machines/devoops/port5000-browser-1.png)
 {: .center-image}
 
 На главной видим скриншот, демонстрирующий, как должен выглядеть фид после завершения работы над сайтом, и видим упоминание `feed.py` (его мы встретим чуть позже), "который станет [MVP](https://ru.wikipedia.org/wiki/Минимально_жизнеспособный_продукт "Минимально жизнеспособный продукт — Википедия") (***M**inimum **V**iable **P**roduct*) для местного блога".
@@ -123,12 +123,12 @@ http://10.10.10.91:5000/upload (Status: 200)
 
 `/feed` — такой же скриншот как выше, только теперь на всю страницу:
 
-[![port5000-browser-2.png]({{ "/assets/images/htb/devoops/port5000-browser-2.png" | relative_url }})]({{ "/assets/images/htb/devoops/port5000-browser-2.png" | relative_url }})
+[![port5000-browser-2.png](/assets/images/htb/machines/devoops/port5000-browser-2.png)](/assets/images/htb/machines/devoops/port5000-browser-2.png)
 {: .center-image}
 
 `/upload` — загрузчик фид-ленты в виде XML-документов:
 
-[![port5000-browser-3.png]({{ "/assets/images/htb/devoops/port5000-browser-3.png" | relative_url }})]({{ "/assets/images/htb/devoops/port5000-browser-3.png" | relative_url }})
+[![port5000-browser-3.png](/assets/images/htb/machines/devoops/port5000-browser-3.png)](/assets/images/htb/machines/devoops/port5000-browser-3.png)
 {: .center-image}
 
 Последняя страница с интерфейсом загрузки представляет наибольший интерес, т. к. именно она дарует нам возможность проведения XXE-атаки, речь о которой пойдет ниже.
@@ -475,7 +475,7 @@ def newpost():
   return "POST RECEIVED: " + postObj['Subject']
 ```
 
-Невооруженным взглядом видна *pickle-deserialization*-уязвимость, о которой мы уже говорили, когда разбирали машину [Canape]({{ "/2018/09/28/htb-canape-write-up.html#анализ-кода" | relative_url }} "HTB: Canape Write-Up / snovvcrash’s Security Blog").
+Невооруженным взглядом видна *pickle-deserialization*-уязвимость, о которой мы уже говорили, когда разбирали машину [Canape](/2018/09/28/htb-canape-write-up.html#анализ-кода "HTB: Canape Write-Up / snovvcrash’s Security Blog").
 
 Поэтому, не вдаваясь в долгие рассуждения (и пропустив Proof-of-Concept, ибо лень), соберем скрипт, который подарит нам реверс-шелл:
 ```python
@@ -739,13 +739,13 @@ d4fe1e7f????????????????????????
 
 DevOops пройден :triumph:
 
-![owned-user.png]({{ "/assets/images/htb/devoops/owned-user.png" | relative_url }})
+![owned-user.png](/assets/images/htb/machines/devoops/owned-user.png)
 {: .center-image}
 
-![owned-root.png]({{ "/assets/images/htb/devoops/owned-root.png" | relative_url }})
+![owned-root.png](/assets/images/htb/machines/devoops/owned-root.png)
 {: .center-image}
 
-![trophy.png]({{ "/assets/images/htb/devoops/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/devoops/trophy.png)
 {: .center-image}
 
 # Эпилог

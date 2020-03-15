@@ -20,10 +20,10 @@ published: true
 **5.2/10**
 {: style="color: orange; text-align: right;"}
 
-[![banner.png]({{ "/assets/images/htb/stratosphere/banner.png" | relative_url }})](https://www.hackthebox.eu/home/machines/profile/129 "Hack The Box :: Stratosphere")
+[![banner.png](/assets/images/htb/machines/stratosphere/banner.png)](https://www.hackthebox.eu/home/machines/profile/129 "Hack The Box :: Stratosphere")
 {: .center-image}
 
-![info.png]({{ "/assets/images/htb/stratosphere/info.png" | relative_url }})
+![info.png](/assets/images/htb/machines/stratosphere/info.png)
 {: .center-image}
 
 * TOC
@@ -300,7 +300,7 @@ SSH, web-сервис на 80-м, прокся на 8080-м, и два отпе�
 ## Браузер
 На `http://10.10.10.64` нас встречает цветастый градиент сайта Stratoshere:
 
-[![port80-browser-1.png]({{ "/assets/images/htb/stratosphere/port80-browser-1.png" | relative_url }})]({{ "/assets/images/htb/stratosphere/port80-browser-1.png" | relative_url }})
+[![port80-browser-1.png](/assets/images/htb/machines/stratosphere/port80-browser-1.png)](/assets/images/htb/machines/stratosphere/port80-browser-1.png)
 {: .center-image}
 
 При переходе по "GET STARTED NOW" сервер выплюнет страницу, с таким наполнением:
@@ -347,24 +347,24 @@ http://10.10.10.64/Monitoring (Status: 302)
 
 Что имеем: стандартный сервер-менеджер для Apache Tomcat (к которому у нас конечно же нет доступа):
 
-[![port80-browser-2.png]({{ "/assets/images/htb/stratosphere/port80-browser-2.png" | relative_url }})]({{ "/assets/images/htb/stratosphere/port80-browser-2.png" | relative_url }})
+[![port80-browser-2.png](/assets/images/htb/machines/stratosphere/port80-browser-2.png)](/assets/images/htb/machines/stratosphere/port80-browser-2.png)
 {: .center-image}
 
 И кое-что way more insteresting:
 
-[![port80-browser-3.png]({{ "/assets/images/htb/stratosphere/port80-browser-3.png" | relative_url }})]({{ "/assets/images/htb/stratosphere/port80-browser-3.png" | relative_url }})
+[![port80-browser-3.png](/assets/images/htb/machines/stratosphere/port80-browser-3.png)](/assets/images/htb/machines/stratosphere/port80-browser-3.png)
 {: .center-image}
 
 Есть еще две кнопки — "SIGN ON" и "REGISTER" — но от них толку мало.
 
 "SIGN ON":
 
-[![port80-browser-4.png]({{ "/assets/images/htb/stratosphere/port80-browser-4.png" | relative_url }})]({{ "/assets/images/htb/stratosphere/port80-browser-4.png" | relative_url }})
+[![port80-browser-4.png](/assets/images/htb/machines/stratosphere/port80-browser-4.png)](/assets/images/htb/machines/stratosphere/port80-browser-4.png)
 {: .center-image}
 
 "REGISTER":
 
-[![port80-browser-5.png]({{ "/assets/images/htb/stratosphere/port80-browser-5.png" | relative_url }})]({{ "/assets/images/htb/stratosphere/port80-browser-5.png" | relative_url }})
+[![port80-browser-5.png](/assets/images/htb/machines/stratosphere/port80-browser-5.png)](/assets/images/htb/machines/stratosphere/port80-browser-5.png)
 {: .center-image}
 
 При попытки ввода чего-либо в поля формы логина сервер отреагирует таким же сообщением, которое он возвращает при запросе формы регистрации.
@@ -800,13 +800,13 @@ richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 
 Stratosphere пройдена :triumph:
 
-![owned-user.png]({{ "/assets/images/htb/stratosphere/owned-user.png" | relative_url }})
+![owned-user.png](/assets/images/htb/machines/stratosphere/owned-user.png)
 {: .center-image}
 
-![owned-root.png]({{ "/assets/images/htb/stratosphere/owned-root.png" | relative_url }})
+![owned-root.png](/assets/images/htb/machines/stratosphere/owned-root.png)
 {: .center-image}
 
-![trophy.png]({{ "/assets/images/htb/stratosphere/trophy.png" | relative_url }})
+![trophy.png](/assets/images/htb/machines/stratosphere/trophy.png)
 {: .center-image}
 
 # Эпилог
