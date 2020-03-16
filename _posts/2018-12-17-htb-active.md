@@ -4,7 +4,7 @@ title: "HTB{ Active }"
 date: 2018-12-17 00:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
+tags: [xakepru, write-up, hackthebox, machine, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
 comments: true
 published: true
 ---
@@ -15,19 +15,20 @@ published: true
 
 <!--cut-->
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/06/27/htb-kerberos/ "Укрощение Kerberos. Захватываем Active Directory на виртуальной машине с HackTheBox - «Хакер»")
-
 *«...Лежа в пещере своей, в три глотки лаял огромный Цербер, и лай громовой оглашал молчаливое царство...»*
-{: style="color: #a8a8a8;"}
+{:.quote}
 
-**4.6/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+    <a href="https://xakep.ru/2019/06/27/htb-kerberos/"><img src="https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square" alt="xakep-badge.svg" /></a>
+    <a href="https://www.hackthebox.eu/home/machines/profile/148"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+    <span class="score-medium">4.6/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/active/banner.png)](https://www.hackthebox.eu/home/machines/profile/148 "Hack The Box :: Active")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/active/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/active/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -673,7 +674,7 @@ function getpwd([string]$Cpassword) {
 ```
 
 [![powershell-gpp-decrypt.png](/assets/images/htb/machines/active/powershell-gpp-decrypt.png)](/assets/images/htb/machines/active/powershell-gpp-decrypt.png)
-{: .center-image}
+{:.center-image}
 
 В любом случае мы получили авторизационные данные: `SVC_TGS:GPPstillStandingStrong2k18`.
 
@@ -791,13 +792,13 @@ C:\Windows\system32>exit
 Active пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/active/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/active/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/active/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## Монтирование SMB в Kali
@@ -822,7 +823,7 @@ drwxr-xr-x 2 root root 4096 Jul 21 18:16  SVC_TGS
 ```
 
 [![nautilus-smb.png](/assets/images/htb/machines/active/nautilus-smb.png)](/assets/images/htb/machines/active/nautilus-smb.png)
-{: .center-image}
+{:.center-image}
 
 Проверить состояние так:
 ```text

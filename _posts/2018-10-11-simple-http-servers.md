@@ -14,13 +14,12 @@ published: true
 <!--cut-->
 
 ![banner.png](/assets/images/simple-http-servers/banner.png)
-{: .center-image}
-
-<h4 style="color:red;margin-bottom:0;">Local: 10.10.10.1</h4>
-<h4 style="color:red;">Remote: 10.10.10.2</h4>
+{:.center-image}
 
 * TOC
 {:toc}
+
+Local -- 10.10.10.1, remote -- 10.10.10.2.
 
 # Python
 Питон может выручить практически в любой ситуации, и наш случай не исключение.
@@ -175,7 +174,7 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
 На скриншоте ниже (кликабельно) можно видеть всю процедуру запуска сервера: предварительная настройка на панели слева, тесты — справа.
 
 [![php.png](/assets/images/simple-http-servers/php.png)](/assets/images/simple-http-servers/php.png)
-{: .center-image}
+{:.center-image}
 
 Несколько слов о том, что здесь происходит:
   1. Создаем необходимые директории и скрипт с содержимым выше.
@@ -192,7 +191,7 @@ file_put_contents('uploads/' . $fname, file_get_contents('php://input'));
 Опять же на скриншоте ниже можно видеть всю процедуру запуска: предварительная настройка на панели сверху, тесты — снизу.
 
 [![nginx.png](/assets/images/simple-http-servers/nginx.png)](/assets/images/simple-http-servers/nginx.png)
-{: .center-image}
+{:.center-image}
 
 Что происходит здесь:
   1. Создаем необходимые директории и конфигурацию сервера по образцу из `default`'а (содержимое конфига есть ниже).

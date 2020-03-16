@@ -4,7 +4,7 @@ title: "HTB{ TartarSauce }"
 date: 2018-11-02 00:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, linux, monstra-cms, wordpress, wpscan, rfi, tar, code-analysis, bash]
+tags: [write-up, hackthebox, machine, linux, monstra-cms, wordpress, wpscan, rfi, tar, code-analysis, bash]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**6.2/10**
-{: style="color: white; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/138"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">6.2/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/tartarsauce/banner.png)](https://www.hackthebox.eu/home/machines/profile/138 "Hack The Box :: TartarSauce")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/tartarsauce/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/tartarsauce/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -84,7 +86,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 На `http://10.10.10.88:80` нас поджидает немного ASCII-арта:
 
 [![port80-browser-1.png](/assets/images/htb/machines/tartarsauce/port80-browser-1.png)](/assets/images/htb/machines/tartarsauce/port80-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 В исходниках ничего интересного кроме последней строчки после кучи whitespace'ов:
 ```html
@@ -105,15 +107,15 @@ Disallow: /webservices/phpmyadmin/
 Все ссылки возвращают **404** кроме `http://10.10.10.88/webservices/monstra-3.0.4/`, за которой скрывается:
 
 [![port80-browser-2.png](/assets/images/htb/machines/tartarsauce/port80-browser-2.png)](/assets/images/htb/machines/tartarsauce/port80-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 Monstra CMS. Нам даже разрешают залогиниться со стандартными кредами `admin:admin` и прогуляться по админке:
 
 [![port80-browser-3.png](/assets/images/htb/machines/tartarsauce/port80-browser-3.png)](/assets/images/htb/machines/tartarsauce/port80-browser-3.png)
-{: .center-image}
+{:.center-image}
 
 [![port80-browser-4.png](/assets/images/htb/machines/tartarsauce/port80-browser-4.png)](/assets/images/htb/machines/tartarsauce/port80-browser-4.png)
-{: .center-image}
+{:.center-image}
 
 Чтобы не разводить много лирики, сразу скажу, что это одна большая "кроличья нора": из админки нельзя сделать ровным счетом ни-че-го, редактирование кода / загрузка сущностей не проходит — очень похоже, что вся CMS находится в "[read-only режиме]({{ page.url }}#доступ-к-monstra-cms)".
 
@@ -142,22 +144,22 @@ http://10.10.10.88/webservices/wp (Status: 301)
 Итак, у нас есть WordPress:
 
 [![port80-browser-5.png](/assets/images/htb/machines/tartarsauce/port80-browser-5.png)](/assets/images/htb/machines/tartarsauce/port80-browser-5.png)
-{: .center-image}
+{:.center-image}
 
 Если в CTF-виртуалке развернут WordPress, то в большинстве случаев "из коробки" он будет сломан, т. к. использует доменные имена в ссылках. Чинится это добавлением соответствующих записей в `/etc/hosts`, но это не наш случай.
 
 Если взглянуть на сорцы, то можно увидеть ссылки вида `http:/10.10.10.88...` (один слеш). Пофиксим это в Burp'е:
 
 [![burp-settings-1.png](/assets/images/htb/machines/tartarsauce/burp-settings-1.png)](/assets/images/htb/machines/tartarsauce/burp-settings-1.png)
-{: .center-image}
+{:.center-image}
 
 [![burp-settings-2.png](/assets/images/htb/machines/tartarsauce/burp-settings-2.png)](/assets/images/htb/machines/tartarsauce/burp-settings-2.png)
-{: .center-image}
+{:.center-image}
 
 Теперь все как нужно:
 
 [![port80-browser-6.png](/assets/images/htb/machines/tartarsauce/port80-browser-6.png)](/assets/images/htb/machines/tartarsauce/port80-browser-6.png)
-{: .center-image}
+{:.center-image}
 
 Но это так, к слову, потому что больше на этой страничке ничего интересного не живет.
 
@@ -312,7 +314,7 @@ Linux TartarSauce 4.15.0-041500-generic #201802011154 SMP Thu Feb 1 12:05:23 UTC
 В красках все выглядело ни много ни мало следующим образом (красным — порядок активности панелей):
 
 [![www-data-shell.png](/assets/images/htb/machines/tartarsauce/www-data-shell.png)](/assets/images/htb/machines/tartarsauce/www-data-shell.png)
-{: .center-image}
+{:.center-image}
 
 # PrivEsc: www-data → onuma
 Оказавшись внутри машины, я дернул [LinEnum.sh](https://github.com/rebootuser/LinEnum "rebootuser/LinEnum: Scripted Local Linux Enumeration & Privilege Escalation Checks"), чтобы немного облегчить себе жизнь с процедурой энумерации машины. В числе прочего, вот, что он сказал:
@@ -890,13 +892,13 @@ e79abdab8b??????????????????????
 TartarSauce пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/tartarsauce/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/tartarsauce/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/tartarsauce/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## wp-load.php

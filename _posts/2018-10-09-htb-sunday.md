@@ -4,7 +4,7 @@ title: "HTB{ Sunday }"
 date: 2018-10-09 22:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, solaris, finger, brute-force, patator, shadow, john, wget, sudoers]
+tags: [write-up, hackthebox, machine, solaris, finger, brute-force, patator, shadow, john, wget, sudoers]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**4.1/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/136"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">4.1/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/sunday/banner.png)](https://www.hackthebox.eu/home/machines/profile/136 "Hack The Box :: Sunday")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/sunday/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/sunday/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -704,7 +706,7 @@ fb40fab6????????????????????????
 Вот так все выглядело вживую (красным указан порядок активности панелей):
 
 [![root-troll.png](/assets/images/htb/machines/sunday/root-troll.png)](/assets/images/htb/machines/sunday/root-troll.png)
-{: .center-image}
+{:.center-image}
 
 ### 6. Исполняемый файл с SUID
 Еще один способ, если не хочется попадать в тайминги troll'а, — это перезапись любого исполняемого файла с выставленным SUID'ом и владельцем root.
@@ -872,13 +874,13 @@ root@sunday:~# > /var/log/syslog
 Sunday пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/sunday/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/sunday/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/sunday/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## overwrite

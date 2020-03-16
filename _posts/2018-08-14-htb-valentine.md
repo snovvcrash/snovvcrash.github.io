@@ -4,7 +4,7 @@ title: "HTB{ Valentine }"
 date: 2018-08-14 00:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, linux, heartbleed, tmux, dirtycow]
+tags: [write-up, hackthebox, machine, linux, heartbleed, tmux, dirtycow]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**4.2/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/127"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">4.2/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/valentine/banner.png)](https://www.hackthebox.eu/home/machines/profile/127 "Hack The Box :: Valentine")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/valentine/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/valentine/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -100,7 +102,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Первым делом глянем, что творится на веб-страничке, предоставленной сервером Apache на 80-м порту. Запустим браузер и перейдем по `10.10.10.79`:
 
 [![port80-index-php.png](/assets/images/htb/machines/valentine/port80-index-php.png)](/assets/images/htb/machines/valentine/port80-index-php.png)
-{: .center-image}
+{:.center-image}
 
 Хмм, картинка... В исходниках ничего интересного, да и не за чем смотреть было на самом деле — изображение, как впрочем и само название машины, уже кричит в лицо о направлении, которого следует придерживаться. Скоро мы вернемся к Heartbleed'у, а пока еще немного помучаем веб-сайт.
 
@@ -139,7 +141,7 @@ DOWNLOADED: 4612 - FOUND: 6
 Нашли директорию с кокетливым названием **dev**, внутри 2 файла:
 
 [![port80-dev.png](/assets/images/htb/machines/valentine/port80-dev.png)](/assets/images/htb/machines/valentine/port80-dev.png)
-{: .center-image}
+{:.center-image}
 
 **hype_key**
 
@@ -210,7 +212,7 @@ To do:
 Base64-кодировщик:
 
 [![port80-encode-php.png](/assets/images/htb/machines/valentine/port80-encode-php.png)](/assets/images/htb/machines/valentine/port80-encode-php.png)
-{: .center-image}
+{:.center-image}
 
 Результат кодирования:
 ```text
@@ -224,7 +226,7 @@ aGFja3RoZWJveA==
 Base64-декодировщик:
 
 [![port80-decode-php.png](/assets/images/htb/machines/valentine/port80-decode-php.png)](/assets/images/htb/machines/valentine/port80-decode-php.png)
-{: .center-image}
+{:.center-image}
 
 Результат декодирования:
 ```text
@@ -243,7 +245,7 @@ hackthebox
 [Heartbleed](https://ru.wikipedia.org/wiki/Heartbleed "Heartbleed — Википедия") ([CVE-2014-0160](https://nvd.nist.gov/vuln/detail/CVE-2014-0160 "NVD - CVE-2014-0160")) — нашумевшая двусторонняя "с уровнем опасности в 11/10" *buffer-over-read*-уязвимость в программном криптообеспечении OpenSSL, позволяющая несанкционированно читать оперативую память кусками до 64 Кб. Где только не писали про эту ошибку, материала про нее достаточно (и [раз](https://security.stackexchange.com/questions/55116/how-exactly-does-the-openssl-tls-heartbeat-heartbleed-exploit-work/55117#55117 "How exactly does the OpenSSL TLS heartbeat (Heartbleed) exploit work? - Information Security Stack Exchange"), и [два](https://www.seancassidy.me/diagnosis-of-the-openssl-heartbleed-bug.html "sean cassidy : Diagnosis of the OpenSSL Heartbleed Bug"), и [три](https://blog.cryptographyengineering.com/2014/04/08/attack-of-the-week-openssl-heartbleed "Attack of the week: OpenSSL Heartbleed – A Few Thoughts on Cryptographic Engineering"); а еще [четыре](https://habr.com/post/218661 "Последствия OpenSSL HeartBleed / Хабрахабр") и [пять](https://habr.com/post/219105 "В АНБ знали о уязвимости Heartbleed два года назад / Хабрахабр"), ну так по приколу), я же в рамках этого поста ограничюсь информативным [xkcd-комиксом](https://xkcd.com/1354 "xkcd: Heartbleed Explanation"):
 
 [![heartbleed_explanation.png](https://imgs.xkcd.com/comics/heartbleed_explanation.png)](https://imgs.xkcd.com/comics/heartbleed_explanation.png)
-{: .center-image}
+{:.center-image}
 
 С помощью скриптового движка `nmap` подтвердим свое предположение относительно уязвимости сервера к Heartbleed:
 ```text
@@ -488,10 +490,10 @@ hype@Valentine:~$ rm dirty.c dirty
 Valentine пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/valentine/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/valentine/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/valentine/trophy.png)
-{: .center-image}
+{:.center-image}

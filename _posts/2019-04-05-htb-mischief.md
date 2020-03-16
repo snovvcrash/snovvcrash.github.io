@@ -4,7 +4,7 @@ title: "HTB{ Mischief }"
 date: 2019-04-05 16:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, linux, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
+tags: [xakepru, write-up, hackthebox, machine, linux, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
 comments: true
 published: true
 ---
@@ -15,21 +15,22 @@ published: true
 
 <!--cut-->
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/07/16/mischief/ "Великий пакостник. Пробираемся через дебри IPv6 к root-флагу виртуалки с Hack The Box - «Хакер»")
-
 *— Не ходи туда, там тебя ждут неприятности.*
-{: style="color: #a8a8a8;"}
+{:.quote}
 *— Ну как же туда не ходить? Они же ждут!*
-{: style="color: #a8a8a8;"}
+{:.quote}
 
-**6.3/10**
-{: style="color: white; text-align: right;"}
+<p align="right">
+    <a href="https://xakep.ru/2019/07/16/mischief/"><img src="https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square" alt="xakep-badge.svg" /></a>
+    <a href="https://www.hackthebox.eu/home/machines/profile/145"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+    <span class="score-insane">6.3/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/mischief/banner.png)](https://www.hackthebox.eu/home/machines/profile/145 "Hack The Box :: Mischief")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/mischief/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/mischief/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -360,12 +361,12 @@ root@kali:/opt/Enyx# python enyx.py 2c public 10.10.10.92
 Вернемся к нашим ~~баранам~~ открытым портам и отправимся смотреть на простой Python-HTTP-сервер:
 
 [![port3366-browser-1.png](/assets/images/htb/machines/mischief/port3366-browser-1.png)](/assets/images/htb/machines/mischief/port3366-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 Мы уже выбили креды `loki:godofmischiefisloki`, поэтому без зазрения совести авторизируемся и попадаем сюда:
 
 [![port3366-browser-2.png](/assets/images/htb/machines/mischief/port3366-browser-2.png)](/assets/images/htb/machines/mischief/port3366-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 Имеем изображение Локи (на стеганографию проверять здесь не буду, поэтому поверьте на слово — там ничего нет :unamused:) и еще одну пару логин:пароль `loki:trickeryanddeceit`.
 
@@ -434,10 +435,10 @@ Service detection performed. Please report any incorrect results at https://nmap
 На `http://[dead:beef::250:56ff:feb9:7caa]:80/` нас поджидает очередное предложение залогиниться:
 
 [![port80-ipv6-browser-1.png](/assets/images/htb/machines/mischief/port80-ipv6-browser-1.png)](/assets/images/htb/machines/mischief/port80-ipv6-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 [![port80-ipv6-browser-2.png](/assets/images/htb/machines/mischief/port80-ipv6-browser-2.png)](/assets/images/htb/machines/mischief/port80-ipv6-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 Это таск из серии "Угадай юзернейм". В [эпилоге]({{ page.url }}#hydra) сбрутим эту форму Гидрой (хотя даже этого можно не делать, ибо [авторизация байпасится]({{ page.url }}#rce-без-авторизации)), а пока сделаем вид, что креды мы угадали (хотя со мной именно так изначально и было), благо имя пользователя дефолтное — `administrator:trickeryanddeceit`.
 
@@ -445,12 +446,12 @@ Service detection performed. Please report any incorrect results at https://nmap
 После авторизации получаем окошко с RCE, где нам сразу же предлагают пингануть localhost:
 
 [![port80-ipv6-browser-3.png](/assets/images/htb/machines/mischief/port80-ipv6-browser-3.png)](/assets/images/htb/machines/mischief/port80-ipv6-browser-3.png)
-{: .center-image}
+{:.center-image}
 
 Что ж, если предлагают, то почему нет? Только вот 127.0.0.1 я, пожалуй, заменю на айпишник своей машины, чтобы убедиться в успешности выполнения команды:
 
 [![port80-ipv6-browser-4.png](/assets/images/htb/machines/mischief/port80-ipv6-browser-4.png)](/assets/images/htb/machines/mischief/port80-ipv6-browser-4.png)
-{: .center-image}
+{:.center-image}
 
 ```text
 root@kali:~# tcpdump -n -i tun0 icmp
@@ -472,7 +473,7 @@ listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 Если захочешь внаглую вызвать `nc` для инициализации реверс-подключения, ты разочаруешься:
 
 [![port80-ipv6-browser-5.png](/assets/images/htb/machines/mischief/port80-ipv6-browser-5.png)](/assets/images/htb/machines/mischief/port80-ipv6-browser-5.png)
-{: .center-image}
+{:.center-image}
 
 Скорее всего, на машине активен WAF-like механизм, блокирующий выполнение команд, которые содержат слова из черного списка. Разминки ради можно, вооружившись Burp'ом и вытащив кукисы сайта, проверить, какие команды разрешены, а какие нет.
 
@@ -539,7 +540,7 @@ done
 В качестве результата имеем:
 
 [![test-waf-blacklist-1.png](/assets/images/htb/machines/mischief/test-waf-blacklist-1.png)](/assets/images/htb/machines/mischief/test-waf-blacklist-1.png)
-{: .center-image}
+{:.center-image}
 
 [Здесь]({{ page.url }}#waf) мы обсуждаем, как именно устроен процесс фильтрации.
 
@@ -550,7 +551,7 @@ done
 Поэтому я не сильно удивился, когда увидел результат выполнения двух stacked-команд `whoami; echo`:
 
 [![port80-ipv6-browser-6.png](/assets/images/htb/machines/mischief/port80-ipv6-browser-6.png)](/assets/images/htb/machines/mischief/port80-ipv6-browser-6.png)
-{: .center-image}
+{:.center-image}
 
 То есть мы преспокойно можем видеть вывод выполненной команды. И хотя это совсем не тот путь, [который задумывался автором машины]({{ page.url }}#icmp-shell), в первом способе угона аккаунта Локи мы будем абьюзить именно эту ошибку конфигурации.
 
@@ -558,7 +559,7 @@ done
 На веб-морде панели выполнения команд есть подсказка о местоположении авторизационных данных пользователя. Но... нельзя так просто взять и написать `cat /home/loki/credentials;`, чтобы получить креды Локи, ведь слово `credentials` в блэклисте:
 
 [![test-waf-blacklist-2.png](/assets/images/htb/machines/mischief/test-waf-blacklist-2.png)](/assets/images/htb/machines/mischief/test-waf-blacklist-2.png)
-{: .center-image}
+{:.center-image}
 
 Зато, как видно из этого же скриншота, мы можем обратиться к `credentials` через `credential?` или `cred*`.
 
@@ -804,7 +805,7 @@ uid=0(root) gid=0(root) groups=0(root)
 Исправлено 2018-07-16:
 
 [![lxc-patch.png](/assets/images/htb/machines/mischief/lxc-patch.png)](/assets/images/htb/machines/mischief/lxc-patch.png)
-{: .center-image}
+{:.center-image}
 
 К сожалению, я начал возиться с машиной уже после фикса, поэтому этот способ PrivEsc'а прошел мимо меня.
 
@@ -833,18 +834,18 @@ ae155fad????????????????????????
 ```
 
 *«Локи — хитрейший лгун, бог озорства и обмана, самый очаровательный из всех богов скандинавской мифологии»*.
-{: style="color: #a8a8a8;"}
+{:.quote}
 
 Mischief пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/mischief/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/mischief/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/mischief/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## IPv6-адрес с помощью EUI-64

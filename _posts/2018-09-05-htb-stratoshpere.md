@@ -4,7 +4,7 @@ title: "HTB{ Stratosphere }"
 date: 2018-09-05 01:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, linux, apache, apache-struts, forward-shell, FwdSh3ll, python, eval, library-hijacking, john, hashes]
+tags: [xakepru, write-up, hackthebox, machine, linux, apache, apache-struts, forward-shell, FwdSh3ll, python, eval, library-hijacking, john, hashes]
 comments: true
 published: true
 ---
@@ -15,16 +15,17 @@ published: true
 
 <!--cut-->
 
-[![xakep-badge.svg](https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square)](https://xakep.ru/2019/08/13/struts-forward-shell/ "Полет в стратосферу. Ломаем Struts через Action-приложение и мастерим Forward Shell - «Хакер»")
+<p align="right">
+	<a href="https://xakep.ru/2019/08/13/struts-forward-shell/"><img src="https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square" alt="xakep-badge.svg" /></a>
+	<a href="https://www.hackthebox.eu/home/machines/profile/129"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">5.2/10</span>
+</p>
 
-**5.2/10**
-{: style="color: orange; text-align: right;"}
-
-[![banner.png](/assets/images/htb/machines/stratosphere/banner.png)](https://www.hackthebox.eu/home/machines/profile/129 "Hack The Box :: Stratosphere")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/stratosphere/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/stratosphere/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -301,7 +302,7 @@ SSH, web-сервис на 80-м, прокся на 8080-м, и два отпе�
 На `http://10.10.10.64` нас встречает цветастый градиент сайта Stratoshere:
 
 [![port80-browser-1.png](/assets/images/htb/machines/stratosphere/port80-browser-1.png)](/assets/images/htb/machines/stratosphere/port80-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 При переходе по "GET STARTED NOW" сервер выплюнет страницу, с таким наполнением:
 ```html
@@ -348,24 +349,24 @@ http://10.10.10.64/Monitoring (Status: 302)
 Что имеем: стандартный сервер-менеджер для Apache Tomcat (к которому у нас конечно же нет доступа):
 
 [![port80-browser-2.png](/assets/images/htb/machines/stratosphere/port80-browser-2.png)](/assets/images/htb/machines/stratosphere/port80-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 И кое-что way more insteresting:
 
 [![port80-browser-3.png](/assets/images/htb/machines/stratosphere/port80-browser-3.png)](/assets/images/htb/machines/stratosphere/port80-browser-3.png)
-{: .center-image}
+{:.center-image}
 
 Есть еще две кнопки — "SIGN ON" и "REGISTER" — но от них толку мало.
 
 "SIGN ON":
 
 [![port80-browser-4.png](/assets/images/htb/machines/stratosphere/port80-browser-4.png)](/assets/images/htb/machines/stratosphere/port80-browser-4.png)
-{: .center-image}
+{:.center-image}
 
 "REGISTER":
 
 [![port80-browser-5.png](/assets/images/htb/machines/stratosphere/port80-browser-5.png)](/assets/images/htb/machines/stratosphere/port80-browser-5.png)
-{: .center-image}
+{:.center-image}
 
 При попытки ввода чего-либо в поля формы логина сервер отреагирует таким же сообщением, которое он возвращает при запросе формы регистрации.
 
@@ -375,7 +376,7 @@ http://10.10.10.64/Monitoring (Status: 302)
 Позаимствовал [отсюда](https://netbeans.org/kb/docs/web/quickstart-webapps-struts.html "Introduction to the Struts Web Framework - NetBeans IDE Tutorial") картинку, демонстрирующую круговорот ~~веществ~~ трафика в природе Apache Struts:
 
 [![workflow.png](https://netbeans.org/images_www/articles/72/web/struts/workflow.png)](https://netbeans.org/images_www/articles/72/web/struts/workflow.png)
-{: .center-image}
+{:.center-image}
 
 Фреймворк известен наличием обилия уязвимостей, в том числе, позволяющих удаленное выполнение кода. Посмотрим, что предложит `searchsploit` для подтвреждения возможности эксплуатации.
 
@@ -801,13 +802,13 @@ richard@stratosphere:~$ rm /dev/shm/input* /dev/shm/output*
 Stratosphere пройдена :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/stratosphere/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/stratosphere/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/stratosphere/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## Хеши

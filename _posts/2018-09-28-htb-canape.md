@@ -4,7 +4,7 @@ title: "HTB{ Canape }"
 date: 2018-09-28 22:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, linux, git, code-analysis, flask, python, deserialization, pickle, reverse-shell, couchdb, fake-pip]
+tags: [write-up, hackthebox, machine, linux, git, code-analysis, flask, python, deserialization, pickle, reverse-shell, couchdb, fake-pip]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**5/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/134"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">5/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/canape/banner.png)](https://www.hackthebox.eu/home/machines/profile/134 "Hack The Box :: Canape")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/canape/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/canape/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -100,27 +102,27 @@ Service detection performed. Please report any incorrect results at https://nmap
 Home:
 
 [![port80-browser-1.png](/assets/images/htb/machines/canape/port80-browser-1.png)](/assets/images/htb/machines/canape/port80-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 Character Quotes:
 
 [![port80-browser-2.png](/assets/images/htb/machines/canape/port80-browser-2.png)](/assets/images/htb/machines/canape/port80-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 Submit Quote (распространенным инъекциям не поддается):
 
 [![port80-browser-3.png](/assets/images/htb/machines/canape/port80-browser-3.png)](/assets/images/htb/machines/canape/port80-browser-3.png)
-{: .center-image}
+{:.center-image}
 
 Забегая вперед скажу, что ни одна из этих вкладок не будет представлять для нас интереса. Разве что на последней вкладке мы уже сейчас можем видеть, что при попытке ввода имени персонажа, которое отсутствует в предполагаемом "белом списке", на нас накричат красной ошибкой:
 
 [![port80-browser-4.png](/assets/images/htb/machines/canape/port80-browser-4.png)](/assets/images/htb/machines/canape/port80-browser-4.png)
-{: .center-image}
+{:.center-image}
 
 А, если имя присутствует в "белом списке", нам разрешат отправить цитату и покажут зеленое сообщение об успехе:
 
 [![port80-browser-5.png](/assets/images/htb/machines/canape/port80-browser-5.png)](/assets/images/htb/machines/canape/port80-browser-5.png)
-{: .center-image}
+{:.center-image}
 
 При этом сама цитата на вкладке "Character Quotes" не появится. На этом заканчивается все полезное, что мы можем извлечь из видимой части сайта.
 
@@ -162,7 +164,7 @@ Requests/sec.: 135.8114
 
 # .git
 [![port80-browser-6.png](/assets/images/htb/machines/canape/port80-browser-6.png)](/assets/images/htb/machines/canape/port80-browser-6.png)
-{: .center-image}
+{:.center-image}
 
 Клонировать гит-репозиторий в нашем случае можно двумя способами.
 
@@ -620,7 +622,7 @@ CouchDB написан на Erlang'е, а Erlang использует серве
 В [документации](http://docs.couchdb.org/en/stable/cluster/setup.html#cluster-setup "11.1. Set Up — Apache CouchDB 2.2 Documentation") же к СУБД красуется вывеска с надписью :warning: **Warning**:
 
 [![couchdb-warning.png](/assets/images/htb/machines/canape/couchdb-warning.png)](/assets/images/htb/machines/canape/couchdb-warning.png)
-{: .center-image}
+{:.center-image}
 
 Что означает, что если порт `4369` "смотрит наружу интернета", то к нему можно будет подключиться любому желающему при наличии нужного cookie (cookie — единственный способ аутентификации, задействованный в этой схеме). Дефолтные куки для подключения к EPMD — "monster".
 
@@ -813,13 +815,13 @@ Collecting 928c3df1???????????????????????? (from -r /root/root.txt (line 1))
 Canape пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/canape/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/canape/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/canape/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## netstat as root

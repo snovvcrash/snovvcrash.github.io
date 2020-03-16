@@ -24,3 +24,31 @@
 .center-image {
 	text-align: center;
 }
+
+.quote {
+	color: #a8a8a8;
+}
+
+.green {
+	color: green;
+}
+
+.score-easy {
+	font-weight: bold;
+	color: green;
+}
+
+.score-medium {
+	font-weight: bold;
+	color: orange;
+}
+
+.score-hard {
+	font-weight: bold;
+	color: red;
+}
+
+.score-insane {
+	font-weight: bold;
+	color: white;
+}

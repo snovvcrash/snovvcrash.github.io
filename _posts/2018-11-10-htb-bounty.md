@@ -4,7 +4,7 @@ title: "HTB{ Bounty }"
 date: 2018-11-10 20:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, windows, iis, asp.net, web.config, unicorn, metasploit, ms10-092, stuxnet, juicy-potato]
+tags: [write-up, hackthebox, machine, windows, iis, asp.net, web.config, unicorn, metasploit, ms10-092, stuxnet, juicy-potato]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**4.8/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/142"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">4.8/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/bounty/banner.png)](https://www.hackthebox.eu/home/machines/profile/142 "Hack The Box :: Bounty")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/bounty/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/bounty/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -82,7 +84,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Пикча волшебника (Мерлин, ты ли это?) во всю страницу по адресу `http://10.10.10.93:80`:
 
 [![port80-browser-1.png](/assets/images/htb/machines/bounty/port80-browser-1.png)](/assets/images/htb/machines/bounty/port80-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 В исходниках кроме подтверждения нашей догадки о личности волшебника (и вправду Мерлин) ничего полезного не имеется:
 ```html
@@ -165,7 +167,7 @@ http://10.10.10.93/uploadedfiles (Status: 301)
 `/transfer.aspx` — загрузчик файлов:
 
 [![port80-browser-2.png](/assets/images/htb/machines/bounty/port80-browser-2.png)](/assets/images/htb/machines/bounty/port80-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 `/uploadedfiles` — предположительно путь, по которому загруженные способом выше файлы можно отыскать.
 
@@ -173,12 +175,12 @@ http://10.10.10.93/uploadedfiles (Status: 301)
 Экспериментальным образом устанавливаем, что среди прочих, `/transfer.aspx` позволяет импортировать расширения типа `.config`, выдавая позитивную надпись зеленым цветом:
 
 [![port80-browser-3.png](/assets/images/htb/machines/bounty/port80-browser-3.png)](/assets/images/htb/machines/bounty/port80-browser-3.png)
-{: .center-image}
+{:.center-image}
 
 Если же расширение находится в черном списке (как, к примеру, тот же `.aspx`), то нас огорчат краснобуквенной ошибкой:
 
 [![port80-browser-4.png](/assets/images/htb/machines/bounty/port80-browser-4.png)](/assets/images/htb/machines/bounty/port80-browser-4.png)
-{: .center-image}
+{:.center-image}
 
 ## web.config
 Итак, что же такое [web.config](https://ru.wikipedia.org/wiki/Web.config "Web.config — Википедия")? Грубо говоря, это просто XML-документ, содержащий набор настроек для `ASP.NET` веб-сервиса (чем-то напоминает `.htaccess` для Apache).
@@ -229,7 +231,7 @@ Response.write("<!-"&"-")
 Загрузим web.config на сервер и инициируем выполнение кода, перейдя по `http://10.10.10.93/uploadedfiles/web.config`:
 
 [![port80-browser-5.png](/assets/images/htb/machines/bounty/port80-browser-5.png)](/assets/images/htb/machines/bounty/port80-browser-5.png)
-{: .center-image}
+{:.center-image}
 
 Есть контакт, переходим к следующей фазе.
 
@@ -362,35 +364,35 @@ Response.Write(thisDir)
 Который в жизни будет выглядеть таким образом:
 
 [![port80-browser-6.png](/assets/images/htb/machines/bounty/port80-browser-6.png)](/assets/images/htb/machines/bounty/port80-browser-6.png)
-{: .center-image}
+{:.center-image}
 
 И соберем информацию о машине.
 
 1\. `whoami`. Спрашиваем имя пользователя, который крутит веб-сервер:
 
 [![port80-browser-7.png](/assets/images/htb/machines/bounty/port80-browser-7.png)](/assets/images/htb/machines/bounty/port80-browser-7.png)
-{: .center-image}
+{:.center-image}
 
 2\. ``(dir 2>&1 *`|echo CMD);&<# rem #>echo PowerShell``. Спрашиваем, что используется по дефолту: CMD или PowerShell:
 
 [![port80-browser-8.png](/assets/images/htb/machines/bounty/port80-browser-8.png)](/assets/images/htb/machines/bounty/port80-browser-8.png)
-{: .center-image}
+{:.center-image}
 
 3\. `echo %cd%`. Узнаем текущую директорию:
 
 [![port80-browser-9.png](/assets/images/htb/machines/bounty/port80-browser-9.png)](/assets/images/htb/machines/bounty/port80-browser-9.png)
-{: .center-image}
+{:.center-image}
 
 4\. `wmic OS get OSArchitecture`. Узнаем архитектуру системы:
 
 [![port80-browser-10.png](/assets/images/htb/machines/bounty/port80-browser-10.png)](/assets/images/htb/machines/bounty/port80-browser-10.png)
-{: .center-image}
+{:.center-image}
 
 #### user.txt
 5\. `type C:\Users\merlin\Desktop\user.txt`. И даже забираем флаг пользователя:
 
 [![port80-browser-11.png](/assets/images/htb/machines/bounty/port80-browser-11.png)](/assets/images/htb/machines/bounty/port80-browser-11.png)
-{: .center-image}
+{:.center-image}
 
 У нас есть все необходимое, чтобы получить полноценную сессию.
 
@@ -665,13 +667,13 @@ c837f7b6????????????????????????
 Bounty пройдена :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/bounty/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/bounty/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/bounty/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## Утилиты

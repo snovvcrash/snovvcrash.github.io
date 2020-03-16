@@ -4,7 +4,7 @@ title: "HTB{ Celestial }"
 date: 2018-08-25 20:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, linux, express, node-js, deserialization, python, cron]
+tags: [write-up, hackthebox, machine, linux, express, node-js, deserialization, python, cron]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**3.9/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/130"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">3.9/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/celestial/banner.png)](https://www.hackthebox.eu/home/machines/profile/130 "Hack The Box :: Celestial")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/celestial/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/celestial/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -85,12 +87,12 @@ Service detection performed. Please report any incorrect results at https://nmap
 Ради интереса посмотрим, что скажет браузер. При загрузке страницы в первый раз нас ждет просто сухой циничный маркер пустоты и безысходности, обличенный в жирные цифры **4**, **0**, **4**:
 
 [![port3000-browser-1.png](/assets/images/htb/machines/celestial/port3000-browser-1.png)](/assets/images/htb/machines/celestial/port3000-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 Если быть настойчивее и обновить страничку, нас встретит очень ценное замечание:
 
 [![port3000-browser-2.png](/assets/images/htb/machines/celestial/port3000-browser-2.png)](/assets/images/htb/machines/celestial/port3000-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 Что-то здесь не так, потому что `2 + 2 is 4`, это я точно помню... Будем смотреть на запрос.
 
@@ -98,7 +100,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Перехватим запрос и посмотрим, что под капотом:
 
 [![port3000-burp-1.png](/assets/images/htb/machines/celestial/port3000-burp-1.png)](/assets/images/htb/machines/celestial/port3000-burp-1.png)
-{: .center-image}
+{:.center-image}
 
 Cookie с профилем. Это объясняет, почему в первый раз пришло сообщение об ошибке (первый запрос был без печенек). Посмотрим, что представляет из себя значение профиля:
 ```text
@@ -161,7 +163,7 @@ root@kali:~# python node_shell.py -h <LHOST> -p 31337 -r -e -o
 Переводим в base64 и отправляем в Burp (не забыв при этом поднять слушателя на фоне на 31337 порт):
 
 [![port3000-burp-2.png](/assets/images/htb/machines/celestial/port3000-burp-2.png)](/assets/images/htb/machines/celestial/port3000-burp-2.png)
-{: .center-image}
+{:.center-image}
 
 # Внутри машины
 А тем временем:
@@ -393,13 +395,13 @@ f4ckU!
 Celestial пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/celestial/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/celestial/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/celestial/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## server.js

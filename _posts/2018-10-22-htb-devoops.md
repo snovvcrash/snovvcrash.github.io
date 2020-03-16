@@ -4,7 +4,7 @@ title: "HTB{ DevOops }"
 date: 2018-10-22 22:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, linux, xxe, xml-entity-injection, code-analysis, python, deserialization, pickle, reverse-shell, git]
+tags: [write-up, hackthebox, machine, linux, xxe, xml-entity-injection, code-analysis, python, deserialization, pickle, reverse-shell, git]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**4.3/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/140"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">4.3/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/devoops/banner.png)](https://www.hackthebox.eu/home/machines/profile/140 "Hack The Box :: DevOops")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/devoops/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/devoops/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -90,7 +92,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 На `http://10.10.10.91:5000` нас ждет заглушка для будущего блога:
 
 [![port5000-browser-1.png](/assets/images/htb/machines/devoops/port5000-browser-1.png)](/assets/images/htb/machines/devoops/port5000-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 На главной видим скриншот, демонстрирующий, как должен выглядеть фид после завершения работы над сайтом, и видим упоминание `feed.py` (его мы встретим чуть позже), "который станет [MVP](https://ru.wikipedia.org/wiki/Минимально_жизнеспособный_продукт "Минимально жизнеспособный продукт — Википедия") (***M**inimum **V**iable **P**roduct*) для местного блога".
 
@@ -124,12 +126,12 @@ http://10.10.10.91:5000/upload (Status: 200)
 `/feed` — такой же скриншот как выше, только теперь на всю страницу:
 
 [![port5000-browser-2.png](/assets/images/htb/machines/devoops/port5000-browser-2.png)](/assets/images/htb/machines/devoops/port5000-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 `/upload` — загрузчик фид-ленты в виде XML-документов:
 
 [![port5000-browser-3.png](/assets/images/htb/machines/devoops/port5000-browser-3.png)](/assets/images/htb/machines/devoops/port5000-browser-3.png)
-{: .center-image}
+{:.center-image}
 
 Последняя страница с интерфейсом загрузки представляет наибольший интерес, т. к. именно она дарует нам возможность проведения XXE-атаки, речь о которой пойдет ниже.
 
@@ -740,13 +742,13 @@ d4fe1e7f????????????????????????
 DevOops пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/devoops/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/devoops/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/devoops/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## feed.py

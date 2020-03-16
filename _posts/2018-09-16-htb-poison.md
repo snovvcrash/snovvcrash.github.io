@@ -4,7 +4,7 @@ title: "HTB{ Poison }"
 date: 2018-09-16 20:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, freebsd, apache, apache-tomcat, php, log-poisoning, web-shell, reverse-shell, lfi, phpinfo, vnc, ssh-tunneling]
+tags: [write-up, hackthebox, machine, freebsd, apache, apache-tomcat, php, log-poisoning, web-shell, reverse-shell, lfi, phpinfo, vnc, ssh-tunneling]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**3.9/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/132"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">3.9/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/poison/banner.png)](https://www.hackthebox.eu/home/machines/profile/132 "Hack The Box :: Poison")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/poison/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/poison/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -90,7 +92,7 @@ SSH на 22-м, и web-сервис на 80-м портах. Начнем с в�
 Перейдя по `http://10.10.10.84`, видим:
 
 [![port80-browser-1.png](/assets/images/htb/machines/poison/port80-browser-1.png)](/assets/images/htb/machines/poison/port80-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 Страничка с тестом php-скриптов. Не долго думая, откроем `listfiles.php`:
 
@@ -252,7 +254,7 @@ root@kali:~# curl -A "<?php system(\$_GET['cmd']); ?>" -X GET "http://10.10.10.8
 И можем творить, что угодно на сервере, например дадим `ls`:
 
 [![port80-browser-2.png](/assets/images/htb/machines/poison/port80-browser-2.png)](/assets/images/htb/machines/poison/port80-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 ### RCE → Reverse-Shell
 
@@ -317,7 +319,7 @@ Ukd4RVdub3dPVU5uUFQwSwo=
 Идея вкратце: PHPInfo() позволяет загружать произвольные значения в раздел PHP Variables, которые сохраняются во временный файл:
 
 [![lfi-phpinfo.png](/assets/images/htb/machines/poison/lfi-phpinfo.png)](/assets/images/htb/machines/poison/lfi-phpinfo.png)
-{: .center-image}
+{:.center-image}
 
 Но этот файл удаляется сервером сразу же после окончания загрузки странички с PHPInfo(). Этот [скрипт](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion%20-%20Path%20Traversal/phpinfolfi.py "PayloadsAllTheThings/phpinfolfi.py at master · swisskyrepo/PayloadsAllTheThings"), описанный в публикации выше, провоцирует состояние гонки для того, чтобы успеть загрузить вредоносную нагрузку во временный файл (реверс-шелл, например) и выполнить его прежде, чем сервер удалит этот файл.
 
@@ -463,18 +465,18 @@ root@kali:~# vncviewer -passwd secret 127.0.0.1:1
 Забираем флаг:
 
 [![port5901-vnc-1.png](/assets/images/htb/machines/poison/port5901-vnc-1.png)](/assets/images/htb/machines/poison/port5901-vnc-1.png)
-{: .center-image}
+{:.center-image}
 
 Poison пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/poison/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/poison/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/poison/trophy.png)
-{: .center-image}
+{:.center-image}
 
 # Эпилог
 ## Раскрытие секрета VNC
@@ -495,4 +497,4 @@ Password: VNCP@$$!
 А в этой директории лежит, файл с паролем, о чудо, идентичный распакованному `/home/charix/secret.zip`.
 
 [![port5901-vnc-2.png](/assets/images/htb/machines/poison/port5901-vnc-2.png)](/assets/images/htb/machines/poison/port5901-vnc-2.png)
-{: .center-image}
+{:.center-image}

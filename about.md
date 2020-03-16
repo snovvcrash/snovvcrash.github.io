@@ -21,7 +21,7 @@ KTHXBYE
 
 ## Профили
 
-![avatar.png]({{ "/img/avatar.png" | relative_url }})
+![avatar.png](/assets/images/avatar.png)
 {: style="float: right;"}
 
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")

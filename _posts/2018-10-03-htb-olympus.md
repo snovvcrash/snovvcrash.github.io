@@ -4,7 +4,7 @@ title: "HTB{ Olympus }"
 date: 2018-10-03 20:00:00 +0300
 author: snovvcrash
 categories: /pentest
-tags: [write-up, hackthebox, linux, nikto, xdebug, reverse-shell, aircrack-ng, airgeddon, dns-zone-transfer, dns-axfr, port-knocking, docker, metasploit]
+tags: [write-up, hackthebox, machine, linux, nikto, xdebug, reverse-shell, aircrack-ng, airgeddon, dns-zone-transfer, dns-axfr, port-knocking, docker, metasploit]
 comments: true
 published: true
 ---
@@ -13,14 +13,16 @@ published: true
 
 <!--cut-->
 
-**5.3/10**
-{: style="color: orange; text-align: right;"}
+<p align="right">
+	<a href="https://www.hackthebox.eu/home/machines/profile/135"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<span class="score-medium">5.3/10</span>
+</p>
 
-[![banner.png](/assets/images/htb/machines/olympus/banner.png)](https://www.hackthebox.eu/home/machines/profile/135 "Hack The Box :: Olympus")
-{: .center-image}
+![banner.png](/assets/images/htb/machines/olympus/banner.png)
+{:.center-image}
 
 ![info.png](/assets/images/htb/machines/olympus/info.png)
-{: .center-image}
+{:.center-image}
 
 * TOC
 {:toc}
@@ -148,7 +150,7 @@ root@kali:~# dig @10.10.10.83 olympus.htb
 Добро пожаловать на остров Крит:
 
 [![port80-browser-1.png](/assets/images/htb/machines/olympus/port80-browser-1.png)](/assets/images/htb/machines/olympus/port80-browser-1.png)
-{: .center-image}
+{:.center-image}
 
 В исходниках пусто:
 ```html
@@ -186,7 +188,7 @@ root@kali:~# nikto -h http://10.10.10.83:80 -o nikto/olympus.txt
 То же самое можно увидеть, просмотрев заголовки HTTP-ответа:
 
 [![port80-browser-2.png](/assets/images/htb/machines/olympus/port80-browser-2.png)](/assets/images/htb/machines/olympus/port80-browser-2.png)
-{: .center-image}
+{:.center-image}
 
 На задворках сознания начали всплывать китайские иероглифы, ибо как-то раз я наткнулся на китайскую публикация, описывающую элегантную атаку, основанную на этой фиче для веб-девелоперов.
 
@@ -283,7 +285,7 @@ round-trip min/avg/max/stddev = 68.001/68.346/68.690/0.345 ms
 В красках все выглядело так (красные числа — порядок активности панелей):
 
 [![xdebug-exploit-poc.png](/assets/images/htb/machines/olympus/xdebug-exploit-poc.png)](/assets/images/htb/machines/olympus/xdebug-exploit-poc.png)
-{: .center-image}
+{:.center-image}
 
 На этом считаю тест успешно завершенным, можно переходить к боевым действиям.
 
@@ -792,10 +794,10 @@ aba48699????????????????????????
 Olympus пройден :triumph:
 
 ![owned-user.png](/assets/images/htb/machines/olympus/owned-user.png)
-{: .center-image}
+{:.center-image}
 
 ![owned-root.png](/assets/images/htb/machines/olympus/owned-root.png)
-{: .center-image}
+{:.center-image}
 
 ![trophy.png](/assets/images/htb/machines/olympus/trophy.png)
-{: .center-image}
+{:.center-image}

