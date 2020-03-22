@@ -29,10 +29,16 @@ KTHXBYE
 * [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
 * [HackerOne](https://hackerone.com/snovvcrash)
 * [\]\[](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
+* [\]\[ (eng)](https://hackmag.com/author/snovvcrash/ "snovvcrash – HackMag")
 * [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
 * [Codeby](https://codeby.net/forum/members/snovvcrash.103302/ "snovvcrash / Форум информационной безопасности и защиты информации")
 * [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")
 * [Keybase](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) / Keybase")
+
+### Офтоп
+
+* [Last.fm](https://www.last.fm/user/snovvcrash "snovvcrash’s Music Profile / Last.fm")
+* [Кинопоиск](https://www.kinopoisk.ru/user/2391203/ "Профиль: snovvcrash / Кинопоиск")
 
 ## Контакты
 

