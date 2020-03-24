@@ -37,7 +37,6 @@ show_excerpts:      true
 future:             true
 
 header_pages:
-  - cheatsheet.md
   - about.md
   - categories.html
   - tags.html
