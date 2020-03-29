@@ -1,24 +1,24 @@
 .tag-list:before {
-    content: "\1f3f7";
-    font-size: 1.7em;
+	content: "\1f3f7";
+	font-size: 1.7em;
 }
 
 .tag-list {
-    word-spacing: 10px;
-    margin: 0px;
-    padding: 0px;
+	word-spacing: 10px;
+	margin: 0px;
+	padding: 0px;
 }
 
 .post-meta {
-    line-height: 11px;
+	line-height: 11px;
 }
 
 .post-list-h3 {
-    margin-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 .post-list-li {
-    line-height: 24px;
+	line-height: 24px;
 }
 
 .center-image {
@@ -26,6 +26,7 @@
 }
 
 .quote {
+	font-style: italic;
 	color: #a8a8a8;
 }
 
