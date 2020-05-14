@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "О быстром развертывании простых HTTP-серверов для трансфера файлов под Linux"
+title: "Об HTTP-серверах для трансфера файлов в Linux"
 date: 2018-10-11 00:00:00 +0300
 author: snovvcrash
 categories: /admin
@@ -221,3 +221,7 @@ root@kali:~# systemctl stop nginx
 ```
 
 Доступные методы: `GET`, `PUT`.
+
+Еще о транспорте файлов:
+
+* [Transferring Files from Linux to Windows (post-exploitation) - ropnop blog](https://blog.ropnop.com/transferring-files-from-kali-to-windows/)

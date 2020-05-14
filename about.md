@@ -42,7 +42,8 @@ KTHXBYE
 
 ## Контакты
 
-* Email: [scr.im/emsnovvcrash](http://scr.im/emsnovvcrash)
+* Email: [snovvcrash@protonmail[.]ch](mailto:snovvcrash@protonmail[.]ch)
+* Telegram: [@snovvcrash](https://t.me/snovvcrash)
 
 Если я случайно сделал что-то, за что хотелось бы сказать спасибо, можно угостить меня кофе по ссылке ниже.
 
