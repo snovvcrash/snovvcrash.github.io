@@ -320,7 +320,7 @@ site:hackerone.com inurl:login,register,upload,logout,redirect,redir,goto,admin
 1. Пассивное обнаружение:
 	* Amass
 	* Гугл дорки
-	* Онлайн-сервисы
+	* [dnsdumpster.com](https://dnsdumpster.com/)
 2. Активное обнаружение:
 	* Knockpy (AXFR)
 	* massdns (Brute)
