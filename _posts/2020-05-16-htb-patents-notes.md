@@ -15,7 +15,7 @@ Automating crafting malicious DOCX for blind XXE-OOB with external DTD.
 
 <p align="right">
 	<a href="https://www.hackthebox.eu/home/machines/profile/224"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
-	<span class="score-hard">/10</span>
+	<span class="score-hard">7.8/10</span>
 </p>
 
 ![banner.png](/assets/images/htb/machines/patents/banner.png)
@@ -245,17 +245,6 @@ if __name__ == '__main__':
 ```
 
 ![xxe-py-out.png](/assets/images/htb/machines/patents/xxe-py-out.png)
-{:.center-image}
-
-:triumph:
-
-![owned-user.png](/assets/images/htb/machines/patents/owned-user.png)
-{:.center-image}
-
-![owned-root.png](/assets/images/htb/machines/patents/owned-root.png)
-{:.center-image}
-
-![trophy.png](/assets/images/htb/machines/patents/trophy.png)
 {:.center-image}
 
 # Refs
