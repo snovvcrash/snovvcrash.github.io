@@ -21,6 +21,7 @@ published: true
 {:.quote}
 
 <p align="right">
+	<a href="https://hackmag.com/security/mischief/"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>
     <a href="https://xakep.ru/2019/07/16/mischief/"><img src="https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square" alt="xakep-badge.svg" /></a>
     <a href="https://www.hackthebox.eu/home/machines/profile/145"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
     <span class="score-insane">6.3/10</span>

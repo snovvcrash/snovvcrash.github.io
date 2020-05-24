@@ -333,3 +333,4 @@ site:hackerone.com inurl:login,register,upload,logout,redirect,redir,goto,admin
 * [PayloadsAllTheThings/Subdomains Enumeration.md at master · swisskyrepo/PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Subdomains%20Enumeration.md)
 * [Top 7 Subdomain Scanner tools to find subdomains](https://securitytrails.com/blog/subdomain-scanner-find-subdomains)
 * [Subdomain Enumeration: 2019 Workflow](https://0xpatrik.com/subdomain-enumeration-2019/)
+* [github.com/emadshanab/subs_all](https://github.com/emadshanab/subs_all)

@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-Automating crafting malicious DOCX for blind XXE-OOB with external DTD.
+Automate crafting malicious DOCX for blind XXE-OOB with external DTD.
 
 <!--cut-->
 
