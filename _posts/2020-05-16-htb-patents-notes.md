@@ -14,7 +14,7 @@ Automate crafting malicious DOCX for blind XXE-OOB with external DTD.
 <!--cut-->
 
 <p align="right">
-	<a href="https://www.hackthebox.eu/home/machines/profile/224"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<a href="https://www.hackthebox.eu/home/machines/profile/224"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
 	<span class="score-hard">7.8/10</span>
 </p>
 

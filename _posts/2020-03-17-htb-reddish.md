@@ -16,8 +16,8 @@ published: true
 <!--cut-->
 
 <p align="right">
-	<a href="https://xakep.ru/2020/02/17/htb-reddish/"><img src="https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square" alt="xakep-badge.svg" /></a>
-	<a href="https://www.hackthebox.eu/home/machines/profile/147"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<a href="https://xakep.ru/2020/02/17/htb-reddish/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
+	<a href="https://www.hackthebox.eu/home/machines/profile/147"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
 	<span class="score-insane">8/10</span>
 </p>
 

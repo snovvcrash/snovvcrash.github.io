@@ -14,7 +14,7 @@ published: true
 <!--cut-->
 
 <p align="right">
-	<a href="https://www.hackthebox.eu/home/machines/profile/138"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<a href="https://www.hackthebox.eu/home/machines/profile/138"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
 	<span class="score-medium">6.2/10</span>
 </p>
 

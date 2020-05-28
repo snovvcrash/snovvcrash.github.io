@@ -25,8 +25,8 @@ published: true
 > 4. **➤**{:.green} [Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя](https://snovvcrash.github.io/2019/12/20/htb-smasher.html)
 
 <p align="right">
-	<a href="https://xakep.ru/2019/11/20/hackthebox-smasher/"><img src="https://img.shields.io/badge/%5d%5b-xakep.ru-red?style=flat-square" alt="xakep-badge.svg" /></a>
-	<a href="https://www.hackthebox.eu/home/machines/profile/141"><img src="https://img.shields.io/badge/%e2%98%90-hackthebox.eu-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+	<a href="https://xakep.ru/2019/11/20/hackthebox-smasher/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
+	<a href="https://www.hackthebox.eu/home/machines/profile/141"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
 	<span class="score-insane">7.6/10</span>
 </p>
 
