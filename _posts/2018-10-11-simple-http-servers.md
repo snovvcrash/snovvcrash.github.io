@@ -221,7 +221,3 @@ root@kali:~# systemctl stop nginx
 ```
 
 Доступные методы: `GET`, `PUT`.
-
-Еще о транспорте файлов:
-
-* [Transferring Files from Linux to Windows (post-exploitation) - ropnop blog](https://blog.ropnop.com/transferring-files-from-kali-to-windows/)

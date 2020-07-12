@@ -38,7 +38,7 @@ future:             true
 
 header_pages:
   - cheatsheets.md
-  - about.md
+  - whoami.md
   - categories.html
   - tags.html
 

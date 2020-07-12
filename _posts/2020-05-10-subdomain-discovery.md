@@ -63,8 +63,6 @@ apikey = <REDACTED>
 
 ## Использование
 
-Для примера соберем информацию о домене `zonetransfer.me`:
-
 ```
 $ amass enum -v -df root-domains.txt -blf blacklisted-subdomains.txt -nf known-subdomains.txt -ipv4 -src -oA amass/out/subdomains.txt -config amass/config.ini -active -brute
 ```
@@ -84,7 +82,7 @@ $ amass enum -v -df root-domains.txt -blf blacklisted-subdomains.txt -nf known-s
 
 Последние два флага использовать с осторожностью, т. к. это может привлечь дополнительное внимание.
 
-Также для некоторых флагов есть аналоги, не требующие создание файлов для входных значений. Удобно, когда целей для сканирования немного:
+Также для некоторых флагов есть аналоги, не требующие создание файлов для входных значений. Удобно, когда целей для сканирования не много:
 
 ```
 $ amass enum -v -d hackerone.com -bl xyz.hackerone.com -ipv4 -src -oA amass/out/subdomains.txt -config amass/config.ini -active -brute
@@ -117,7 +115,7 @@ $ dig axfr @nsztm1.digi.ninja zonetransfer.me
 ![dig-axfr.png](/assets/images/subdomain-discovery/dig-axfr.png)
 {:.center-image}
 
-## Полезные ссылки
+## Ссылки
 
 * [Amass/user_guide.md at master · OWASP/Amass](https://github.com/OWASP/Amass/blob/master/doc/user_guide.md)
 
@@ -328,7 +326,7 @@ site:hackerone.com inurl:login,register,upload,logout,redirect,redir,goto,admin
 3. Проверка резолва:
 	* massdns (Resolve)
 
-# Полезные ссылки
+# Ссылки
 
 * [PayloadsAllTheThings/Subdomains Enumeration.md at master · swisskyrepo/PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Subdomains%20Enumeration.md)
 * [Top 7 Subdomain Scanner tools to find subdomains](https://securitytrails.com/blog/subdomain-scanner-find-subdomains)
