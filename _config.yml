@@ -55,8 +55,8 @@ plugins:
 google_analytics:  UA-123831726-1
 
 # Disqus comments
-disqus:
-  shortname:  snovvcrash-github-io
+#disqus:
+#  shortname:  snovvcrash-github-io
 
 # Page locations
 category_page:  /categories.html

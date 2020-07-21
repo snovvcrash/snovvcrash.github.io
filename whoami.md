@@ -1,12 +1,12 @@
 ---
 layout: page
-title: whoami
+title: Кто я
 permalink: /whoami
 ---
 
 Приветствую!
 
-Меня зовут `snovvcrash`, я увлечен областью <strike>похека</strike> анализа защищенности, и это мой блог. Здесь можно найти: прохождения уязвимых виртуальных машин с Hack The Box, периодически обновляемую шпаргалку по пентесту, мои контакты и список других ресурсов, где со мной можно связаться при необходимости.
+Меня зовут `snovvcrash`, я увлечен областью <strike>похека</strike> анализа защищенности, и это мой блог. Здесь можно найти: прохождения уязвимых машин с Hack The Box, периодически обновляемую шпаргалку по пентесту, мои контакты и список других ресурсов, где со мной можно связаться при необходимости.
 
 Добавляй в закладки, у нас есть печеньки :smiling_imp:
 
@@ -26,7 +26,6 @@ KTHXBYE
 
 * [GitHub](https://github.com/snovvcrash "snovvcrash (Sam Freeside)")
 * [Hack The Box](https://www.hackthebox.eu/profile/51037 "Hack The Box :: snovvcrash :: Member profile")
-* [HackerOne](https://hackerone.com/snovvcrash)
 * [\]\[](https://xakep.ru/author/snovvcrash/ "snovvcrash, автор на «Хакер»")
 * [HackMag](https://hackmag.com/author/snovvcrash/ "snovvcrash – HackMag")
 * [Хабр](https://habr.com/users/snovvcrash/posts "Публикации / Профиль snovvcrash / Хабр")
