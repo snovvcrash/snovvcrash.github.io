@@ -6,7 +6,7 @@ permalink: /whoami
 
 Приветствую!
 
-Меня зовут `snovvcrash`, я увлечен областью <strike>похека</strike> анализа защищенности, и это мой блог. Здесь можно найти: прохождения машин с Hack The Box, рандомные посты на тему офсека, периодически обновляемую шпаргалку по пентесту, мои контакты и список других ресурсов, где со мной можно связаться при необходимости.
+Меня зовут `snovvcrash`, я увлечен областью <strike>похека</strike> анализа защищенности, и это мой блог. Здесь можно найти: прохождения машин с Hack The Box, заметки на тему офсека, периодически обновляемую шпаргалку по пентесту, мои контакты и список других ресурсов, где со мной можно связаться при необходимости.
 
 Добавляй в закладки, у нас есть печеньки :smiling_imp:
 
@@ -34,15 +34,9 @@ KTHXBYE
 * [Twitter](https://twitter.com/snovvcrash "Sam Freeside (@snovvcrash) / Твиттер")
 * [Keybase](https://keybase.io/snovvcrash "snovvcrash (Sam Freeside) / Keybase")
 
-### Офтоп
-
-* [Last.fm](https://www.last.fm/user/snovvcrash "snovvcrash’s Music Profile / Last.fm")
-* [Кинопоиск](https://www.kinopoisk.ru/user/2391203/ "Профиль: snovvcrash / Кинопоиск")
-
 ## Контакты
 
-* Email: [snovvcrash@protonmail[.]ch](mailto:snovvcrash@protonmail[.]ch)
-* Telegram: [@snovvcrash](https://t.me/snovvcrash)
+* [Email](javascript:window.open('mailto:'+['snovvcrash','protonmail.ch'].join('@'))), [Telegram](https://t.me/snovvcrash)
 
 Если я случайно сделал что-то, за что хотелось бы сказать спасибо, можно угостить меня кофе по ссылке ниже.
 

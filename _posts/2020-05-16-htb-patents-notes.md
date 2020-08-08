@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-Automate crafting malicious DOCX for blind XXE-OOB with external DTD.
+Automate crafting malicious DOCX for blind XXE-OOB with external DTD using Python and Scapy.
 
 <!--cut-->
 
