@@ -1112,4 +1112,4 @@ r.interactive()
 
 Bitterman has been PwN3d! :triumph:
 
-В четвертой (и заключительной) части серии мы разберем тачку Smasher с Hack The Box, изюминкой прохождения которой стал низкоуровневый сплоитинг веб-сервера. Stay tuned!
+В [четвертой](https://snovvcrash.github.io/2019/12/20/htb-smasher.html) (и заключительной) части серии мы разберем тачку Smasher с Hack The Box, изюминкой прохождения которой стал низкоуровневый сплоитинг веб-сервера. Stay tuned!
