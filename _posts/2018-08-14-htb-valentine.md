@@ -3,9 +3,8 @@ layout: post
 title: "HTB{ Valentine }"
 date: 2018-08-14 00:00:00 +0300
 author: snovvcrash
-categories: /pentest
+categories: /ctf
 tags: [write-up, hackthebox, machine, linux, heartbleed, tmux, dirtycow]
-comments: true
 published: true
 ---
 

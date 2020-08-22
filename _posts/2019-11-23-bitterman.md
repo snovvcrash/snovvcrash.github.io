@@ -3,9 +3,8 @@ layout: post
 title: "В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman"
 date: 2019-11-23 18:00:00 +0300
 author: snovvcrash
-categories: /pentest
+categories: /ctf
 tags: [xakepru, write-up, ctf, pwn-64, linux, gdb-weaponize, buffer-overflow, stack-smashing, getenvaddr, dep-bypass, ret2libc, rop, rop-chain, r2, ROPgadget, ropper, pwntools, aslr-bypass, address-leak, got, plt, ret2plt, libc-database, ghidra]
-comments: true
 published: true
 ---
 

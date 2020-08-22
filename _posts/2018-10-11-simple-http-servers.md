@@ -5,7 +5,6 @@ date: 2018-10-11 00:00:00 +0300
 author: snovvcrash
 categories: /admin
 tags: [notes, linux, file-transfer, http-server, python-server, php-server, nginx]
-comments: true
 published: true
 ---
 

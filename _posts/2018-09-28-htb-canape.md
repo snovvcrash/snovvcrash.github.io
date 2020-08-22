@@ -3,9 +3,8 @@ layout: post
 title: "HTB{ Canape }"
 date: 2018-09-28 22:00:00 +0300
 author: snovvcrash
-categories: /pentest
+categories: /ctf
 tags: [write-up, hackthebox, machine, linux, git, code-analysis, flask, python, deserialization, pickle, reverse-shell, couchdb, fake-pip]
-comments: true
 published: true
 ---
 

@@ -5,7 +5,6 @@ date: 2020-05-10 22:00:00 +0300
 author: snovvcrash
 categories: /pentest
 tags: [notes, external-pentest, osint, dns-enumeration, subdomain-discovery, amass, knockpy, altdns, massdns, methodology]
-comments: true
 published: true
 ---
 
