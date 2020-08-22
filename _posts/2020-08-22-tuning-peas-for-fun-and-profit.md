@@ -27,7 +27,7 @@ Few pentest experts would argue that if there is an OWA client on the perimeter,
 
 One of the ways where to go next is a hunt for fileshares with juicy content through [Exchange ActiveSync](https://labs.f-secure.com/archive/accessing-internal-fileshares-through-exchange-activesync/). If you dare choose this path, then [PEAS](https://github.com/FSecureLABS/peas) could become your loyal companion along the way, but there is quite a few things that could be upgraded in this tool very simply. I will fork PEAS and add some modifications to the code.
 
-## Crawl & Dump the Shares
+## Crawl & Dump Shared Folders
 
 The first thing I felt the need for was the ability to recursively crawl the share searching for files by a given pattern. Let's say that the only share you were able to guess (or that you had access to) was DC's `SYSVOL`. Then it would be a pain to examine all the GUID style policy paths manually. If we could automate this process and add this `--download` option in order to mirror `SYSVOL` to an attacker's machine, then it would not be a big deal to run `find` through all the content and `xargs grep` for some extra hostnames / account names. That's exactly what [crawl_unc](https://github.com/snovvcrash/peas/blob/master/peas/__main__.py#L298) serves for:
 
