@@ -15,6 +15,9 @@ At the recent external pentest engagement I had a feeling that PEAS (Python Exch
 ![banner.png](/assets/images/tuning-peas-for-fun-and-profit/banner.png)
 {:.center-image}
 
+*Would you like to be modified?*
+{:.quote}
+
 * TOC
 {:toc}
 
