@@ -23,9 +23,9 @@ At the recent external pentest engagement I had a feeling that PEAS (Python Exch
 
 ## Prologue
 
-Few pentest experts would argue that if there is an OWA client on the perimeter, then be ready to collect loot. And that is because OWA means MS Exchange, and MS Exchange is not the best spot to demonstrate perfect security. [Time-based username enumeration](https://www.triaxiomsecurity.com/2019/03/15/vulnerability-walkthrough-timing-based-username-enumeration/) will give you account names and a [password spray](https://github.com/sensepost/ruler/wiki/Brute-Force#brute-force-for-credentials) will likely reveal some weak credentials in the domain.
+Few pentest experts would argue that if there is an OWA client on the perimeter, then be ready to collect loot. And that is because OWA means MS Exchange, and MS Exchange is not the best spot to demonstrate perfect security out of the box. [Time-based username enumeration](https://www.triaxiomsecurity.com/2019/03/15/vulnerability-walkthrough-timing-based-username-enumeration/) will give you account names and a [password spray](https://github.com/sensepost/ruler/wiki/Brute-Force#brute-force-for-credentials) will likely reveal some weak credentials in the domain.
 
-One of the ways where to go next is a hunt for fileshares with juicy content through [Exchange ActiveSync](https://labs.f-secure.com/archive/accessing-internal-fileshares-through-exchange-activesync/). If you dare choose this path, then [PEAS](https://github.com/FSecureLABS/peas) could become your loyal companion along the way, but there is quite a few things that could be upgraded in this tool very simply. I will fork PEAS and add some modifications to the code.
+One of the ways where to go next is a hunt for fileshares with juicy content through [Exchange ActiveSync](https://labs.f-secure.com/archive/accessing-internal-fileshares-through-exchange-activesync/). If you dare choose this path, then [PEAS](https://github.com/FSecureLABS/peas) by [@FSecureLABS](https://twitter.com/fsecurelabs) could become your loyal companion along the way, but there is quite a few things that could be upgraded in this tool very simply. I will fork PEAS and add some modifications to the code.
 
 ## Crawl & Dump Shared Folders
 
