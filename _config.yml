@@ -23,11 +23,11 @@ timezone:  Europe/Moscow
 locale:    ru-RU
 
 description: >
-  Заметки циничного хакера
+  Certified Cynical Hacker
 
-github_username:   snovvcrash
 keybase_username:  snovvcrash
-rss:               rss
+github_username:   snovvcrash
+twitter_username:  snovvcrash
 
 baseurl:            ""
 url:                https://snovvcrash.github.io
@@ -38,7 +38,7 @@ future:             true
 
 header_pages:
   - cheatsheets.md
-  - whoami.md
+  - about.md
   - categories.html
   - tags.html
 
