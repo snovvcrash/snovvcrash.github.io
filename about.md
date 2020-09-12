@@ -18,7 +18,7 @@ snovvcrash
 {:style="font-size: 22px"}
 
 ```
-ACTIVITY=penetration_tester
+OCCUPATION=penetration_tester
 PASSION=/security/offensive
 LOCATION=/Europe/Moscow
 LANG=ru_RU.UTF-8,en_US.UTF-8
