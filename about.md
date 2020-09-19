@@ -7,6 +7,8 @@ permalink: /about
 <script src="https://www.hackthebox.eu/badge/51037"></script>
 <br>
 
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=snovvcrash&hide=issues&show_icons=true&theme=chartreuse-dark)
+
 <span style="color: #88df33">λ</span>  <span style="color: #34e2e2; font-weight: bold">\~</span> whoami
 {:style="font-size: 22px"}
 

@@ -30,7 +30,7 @@ Automating an SQL injection with a custom sqlmap tamper script to bypass WAF thr
 
 ## Manual exploitation
 
-JSON format is able to understand various encodings [including UTF-16BE](https://stackoverflow.com/questions/11641983/encoding-json-in-utf-16-or-utf-32) like follows: `\uXXXX`. The payload `' OR 1=1-- -`, for example, would turn into `\u0027\u0020\u004f\u0052\u0020\u0031\u003d\u0031\u002d\u002d\u0020\u002d` after being encoded. I would abuse that fact to bypass WAF (that blocked pretty much everything) and script the injection:
+JSON format can understand various encodings [including UTF-16BE](https://stackoverflow.com/questions/11641983/encoding-json-in-utf-16-or-utf-32) like follows: `\uXXXX`. The payload `' OR 1=1-- -`, for example, will turn into `\u0027\u0020\u004f\u0052\u0020\u0031\u003d\u0031\u002d\u002d\u0020\u002d` after being encoded. I will abuse that fact to bypass WAF (that blocked pretty much everything) and script the injection:
 
 ```python
 #!/usr/bin/env python3
@@ -74,7 +74,7 @@ SQLi> 1337' union select '1',STUFF((SELECT ',' + username + ':' + password FROM 
 
 ## sqlmap
 
-To teach sqlmap how to exploit this vulnerability bypassing WAF I would write a custom tamper that converts my payload to UTF-16BE string:
+To teach sqlmap how to exploit this vulnerability bypassing WAF I will write a custom tamper that converts my payload to UTF-16BE string:
 
 ```python
 #!/usr/bin/env python3
@@ -124,18 +124,18 @@ root@kali:$ sqlmap --batch -u 'http://multimaster.megacorp.local/api/getColleagu
 {:.center-image}
 
 
-And this is how the requests looks like for real (in Burp Suite):
+And this is how the requests looks like for real (Burp Suite):
 
 ![request-in-burp.png](/assets/images/htb/machines/multimaster/request-in-burp.png)
 {:.center-image}
 
-However, after all this stuff I was pointed out that there was already a ready-made tamper script doing literally the same thing as mine... Just had to google it a little bit more :expressionless:
+However, after all this stuff I was pointed out that there was already a ready-made tamper script doing literally the same thing... Just had to google it a little bit more :expressionless:
 
 Details here: [Bypassing WAFs with JSON Unicode Escape Sequences - TrustFoundry](https://trustfoundry.net/bypassing-wafs-with-json-unicode-escape-sequences/)
 
 # RID Cycling
 
-Unfortunately, these users were not enough to login at least somewhere, so I would write a script to brute force some RIDs from within MS SQL Server:
+Unfortunately, these users were not enough to login at least somewhere, so I will write a script to brute force some RIDs from within the MS SQL Server:
 
 ```python
 #!/usr/bin/env python3
