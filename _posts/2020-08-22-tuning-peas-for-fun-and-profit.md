@@ -4,7 +4,7 @@ title: "Tuning PEAS for Fun and Profit"
 date: 2020-08-22 19:00:00 +0300
 author: snovvcrash
 categories: /dev
-tags: [pentest, exchange, activesync, peas, python]
+tags: [external-pentest, exchange, activesync, peas, python]
 published: true
 ---
 
