@@ -33,7 +33,7 @@ I built the following Python script and looped it through every TCP port at vict
 The script is mainly based on the [1u.ms](http://1u.ms/) service for DNS rebinding: it brings up a simple HTTP server on the attacker's box and then sends a malicious SOAP request to the target with `http://make-127.0.0.1-and-<ATTACKER_IP>rr.1u.ms:<PORT>` as a payload. If the target host **does not** have provided `<PORT>` opened, then DNS rebinding will be triggered and I will see that the response from victim came back right to my host (because the DNS query could not be resolved to victim's `127.0.0.1:<PORT>`). If the target host **does** have this `<PORT>` opened, then DNS rebinding will not be triggered and I will not see a response on my box which means victim's machine successfully resolved this DNS query to its localhost at the first place.
 
 ```
-$ for port in `seq 1 65535`; do sudo ./ssrf-port-scan.py $port 2>&1 | tee -a ports.log; done
+$ for port in `seq 1 65535`; do sudo python3 -u ssrf-port-scan.py $port 2>&1 | tee -a ports.log; done
 ```
 
 ```python
@@ -163,7 +163,7 @@ if __name__ == '__main__':
 ```
 
 ```
-$ python3 -u ssrf-v2.py |tee ssrf-v2-10-154-0-0_24-port88.log
+$ python3 -u ssrf-host-discovery.py | tee -a hosts.log
 [-] 192.168.10.0:88
 [-] 192.168.10.1:88
 [-] 192.168.10.2:88
