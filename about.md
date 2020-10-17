@@ -12,7 +12,7 @@ permalink: /about
 <span style="color: #88df33">λ</span>  <span style="color: #34e2e2; font-weight: bold">\~</span> git quick-stats
 {:style="font-size: 22px"}
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=snovvcrash&hide=issues&show_icons=true&theme=chartreuse-dark)
+[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=snovvcrash&hide=issues&show_icons=true&theme=chartreuse-dark)](https://github.com/snovvcrash)
 
 <span style="color: #88df33">λ</span>  <span style="color: #34e2e2; font-weight: bold">\~</span> env
 {:style="font-size: 22px"}
