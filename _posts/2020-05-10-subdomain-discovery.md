@@ -27,11 +27,13 @@ published: true
 Amass написан на Golang, поэтому можно забрать готовый исполняемый файл [из релизов](https://github.com/OWASP/Amass/releases) и просто распаковать его у себя на машине:
 
 ```
-$ wget https://github.com/OWASP/Amass/releases/download/v3.5.4/amass_v3.5.4_linux_amd64.zip -O ~/tools/amass.zip
-$ cd ~/tools
-$ unzip amass.zip && rm amass.zip && mv amass* amass
-$ cd -
-$ ln -s ~/tools/amass/amass /usr/local/bin/amass
+$ mkdir -p ~/tools/amass && cd ~/tools/amass
+$ wget https://github.com/OWASP/Amass/releases/download/v3.10.5/amass_linux_amd64.zip
+$ unzip amass_linux_amd64.zip
+$ mv amass_linux_amd64/* . && rm -rf amass_linux_amd64*
+[$ ln -s ~/tools/amass/amass /usr/local/bin/amass]
+
+$ mkdir -p ~/tools/amass && cd ~/tools/amass && wget https://github.com/OWASP/Amass/releases/download/v3.10.5/amass_linux_amd64.zip && unzip amass_linux_amd64.zip && mv amass_linux_amd64/* . && rm -rf amass_linux_amd64*
 ```
 
 ## Настройка
@@ -39,22 +41,45 @@ $ ln -s ~/tools/amass/amass /usr/local/bin/amass
 Как и `recon-ng`, Amass использует некоторые сервисы (Shodan, Censys, SecurityTrails, VirusTotal и др.), требущие для работы API-ключ, поэтому сперва нужно создать конфигурационный файл:
 
 ```
-# Provide API key information for a data source
+[data_sources]
+# When set, this time-to-live is the minimum value applied to all data source caching.
+minimum_ttl = 1440 ; One day
 
-[Censys]
+# https://censys.io/account/api
+[data_sources.Censys]
+ttl = 10080
+[data_sources.Censys.Credentials]
 apikey = <REDACTED>
 secret = <REDACTED>
 
-[GitHub]
+# https://github.com/settings/tokens/new (no additional permissions required)
+[data_sources.GitHub]
+ttl = 4320
+[data_sources.GitHub.accountname]
 apikey = <REDACTED>
 
-[SecurityTrails]
+# https://securitytrails.com/app/account/credentials
+[data_sources.SecurityTrails]
+ttl = 1440
+[data_sources.SecurityTrails.Credentials]
 apikey = <REDACTED>
 
-[Shodan]
+# https://account.shodan.io/
+[data_sources.Shodan]
+ttl = 10080
+[data_sources.Shodan.Credentials]
 apikey = <REDACTED>
 
-[VirusTotal]
+# https://developer.twitter.com/en/apps
+[data_sources.Twitter]
+[data_sources.Twitter.account1]
+apikey = <REDACTED>
+secret = <REDACTED>
+
+# https://www.virustotal.com/gui/user/snovvcrash/apikey
+[data_sources.VirusTotal]
+ttl = 10080
+[data_sources.VirusTotal.Credentials]
 apikey = <REDACTED>
 ```
 
@@ -63,7 +88,7 @@ apikey = <REDACTED>
 ## Использование
 
 ```
-$ amass enum -v -df root-domains.txt -blf blacklisted-subdomains.txt -nf known-subdomains.txt -ipv4 -src -oA amass/out/subdomains.txt -config amass/config.ini -active -brute
+$ amass enum -v -df root-domains.txt -blf blacklisted-subdomains.txt -nf known-subdomains.txt -ipv4 -src -oA ~/tools/amass/out/subdomains.txt -config ~/tools/amass/config.ini -active -brute
 ```
 
 Я остановился на использовании такого набора параметров. Вот, что они значат:
@@ -84,7 +109,8 @@ $ amass enum -v -df root-domains.txt -blf blacklisted-subdomains.txt -nf known-s
 Также для некоторых флагов есть аналоги, не требующие создание файлов для входных значений. Удобно, когда целей для сканирования не много:
 
 ```
-$ amass enum -v -d hackerone.com -bl xyz.hackerone.com -ipv4 -src -oA amass/out/subdomains.txt -config amass/config.ini -active -brute
+$ amass enum -v -d hackerone.com -bl xyz.hackerone.com -ipv4 -src -oA ~/tools/amass/out/subdomains.txt -config ~/tools/amass/config.ini -active -brute
+$ amass enum -v -d hackerone.com -ipv4 -src -config ~/tools/amass/config.ini
 ```
 
 ### Пример
@@ -92,7 +118,7 @@ $ amass enum -v -d hackerone.com -bl xyz.hackerone.com -ipv4 -src -oA amass/out/
 Для примера соберем информацию о субдоменах ресурса `zonetranfer.me`, уязвимого к трансферу зоны:
 
 ```
-$ amass enum -v -d zonetransfer.me -ipv4 -src -o amass/out/subdomains.txt -config amass/config.ini -active -brute
+$ amass enum -v -d zonetransfer.me -ipv4 -src -o ~/tools/amass/out/subdomains.txt -config ~/tools/amass/config.ini -active -brute
 ```
 
 ![amass-1.png](/assets/images/subdomain-discovery/amass-1.png)

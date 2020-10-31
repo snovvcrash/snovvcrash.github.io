@@ -7,7 +7,7 @@ permalink: /about
 <span style="color: #88df33">λ</span>  <span style="color: #34e2e2; font-weight: bold">\~</span> whoami
 {:style="font-size: 22px"}
 
-![HackTheBox-Badge](http://www.hackthebox.eu/badge/image/51037)
+[![HackTheBox-Badge](http://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/profile/51037)
 
 <span style="color: #88df33">λ</span>  <span style="color: #34e2e2; font-weight: bold">\~</span> git quick-stats
 {:style="font-size: 22px"}

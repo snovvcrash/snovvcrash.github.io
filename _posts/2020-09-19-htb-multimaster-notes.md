@@ -8,7 +8,7 @@ tags: [notes, hackthebox, machine, windows, mssql, sqli, sqlmap, sqlmap-tamper, 
 published: true
 ---
 
-Automate MS SQL injection with a custom sqlmap tamper script to bypass WAF through UTF-16BE encoded JSON payload. Enumerate AD domain users via RID cycling from within MS SQL DBMS.
+Automate MS SQL injection with a custom sqlmap tamper script to bypass WAF through a UTF-16BE encoded JSON payload. Enumerate AD domain users via RID cycling from within the MS SQL DBMS.
 
 <!--cut-->
 
