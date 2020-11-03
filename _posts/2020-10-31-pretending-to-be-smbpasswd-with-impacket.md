@@ -59,7 +59,7 @@ $ rpcclient -U'%' -c'chgpasswd2 tlavel Fabricorp01 snovvcrash1!' fuse.fabricorp.
 [![rpcclient_nt_status_access_denied.png](/assets/images/htb/machines/fuse/rpcclient_nt_status_access_denied.png)](/assets/images/htb/machines/fuse/rpcclient_nt_status_access_denied.png)
 {:.center-image}
 
-It's no secret that rpcclient [does a bad job when dealing with null session requests](https://sensepost.com/blog/2018/a-new-look-at-null-sessions-and-user-enumeration/). Long story short, after successful binding to the `IPC$` share and creating `\samr` pipe, it makes a bunch of undesirable requests (red block in the Wireshark capture) which it does not really have permissions for within a null session and eventually dies with `NT_STATUS_ACCESS_DENIED`.
+It's no secret that rpcclient [does a bad job when dealing with null session requests](https://sensepost.com/blog/2018/a-new-look-at-null-sessions-and-user-enumeration/). Long story short, after successfully binding to the `IPC$` share and creating `\samr` pipe, it makes a bunch of undesirable requests (red block in the Wireshark capture) which it does not really have permissions for within a null session and eventually dies with `NT_STATUS_ACCESS_DENIED`.
 
 [![rpcclient_wireshark.png](/assets/images/htb/machines/fuse/rpcclient_wireshark.png)](/assets/images/htb/machines/fuse/rpcclient_wireshark.png)
 {:.center-image}
