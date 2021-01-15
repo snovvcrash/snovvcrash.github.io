@@ -1,5 +1,5 @@
 ---
 layout: default
 title: 📜
-permalink: /PPN
+permalink: /ppn
 ---
