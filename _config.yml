@@ -37,8 +37,6 @@ show_excerpts:      true
 future:             true
 
 header_pages:
-  - PPN.md
-  - Tools.md
   - about.md
   - categories.html
   - tags.html
