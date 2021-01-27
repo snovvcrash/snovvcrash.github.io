@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: /categories
 Disallow: /tags
 Sitemap: https://snovvcrash.github.io/sitemap.xml

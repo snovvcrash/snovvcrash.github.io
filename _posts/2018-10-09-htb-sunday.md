@@ -3,7 +3,6 @@ layout: post
 title: "HTB{ Sunday }"
 date: 2018-10-09 22:00:00 +0300
 author: snovvcrash
-categories: /ctf
 tags: [write-up, hackthebox, machine, solaris, finger, brute-force, patator, shadow, john, wget, sudoers]
 published: true
 ---

@@ -3,7 +3,6 @@ layout: post
 title: "HTB{ SecNotes }"
 date: 2019-04-05 17:00:00 +0300
 author: snovvcrash
-categories: /ctf
 tags: [write-up, hackthebox, machine, linux, xsrf, second-order-sqli, smb, web-shell, reverse-shell, wsl, lxss, bash.exe, impacket]
 published: true
 ---

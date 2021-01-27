@@ -3,7 +3,6 @@ layout: post
 title: "Pretending to be smbpasswd with impacket"
 date: 2020-10-31 19:00:00 +0300
 author: snovvcrash
-categories: /pentest
 tags: [notes, hackthebox, machine, windows, null-session, smb, dcerpc, ms-samr, wireshark, smbpasswd, smbclient.py, rpcclient, chgpassworduser2, python, impacket, password-policies]
 published: true
 ---

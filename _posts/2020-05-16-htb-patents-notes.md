@@ -3,7 +3,6 @@ layout: post
 title: "Playing with HTB{ Patents }"
 date: 2020-05-16 19:00:00 +0300
 author: snovvcrash
-categories: /ctf
 tags: [notes, hackthebox, machine, linux, docx, xxe, python, scapy]
 published: true
 ---

@@ -3,7 +3,6 @@ layout: post
 title: "Playing with HTB{ Multimaster }"
 date: 2020-09-19 21:00:00 +0300
 author: snovvcrash
-categories: /ctf
 tags: [notes, hackthebox, machine, windows, mssql, sqli, sqlmap, sqlmap-tamper, rid-cycling]
 published: true
 ---

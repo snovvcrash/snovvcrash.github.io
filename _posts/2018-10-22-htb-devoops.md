@@ -3,7 +3,6 @@ layout: post
 title: "HTB{ DevOops }"
 date: 2018-10-22 22:00:00 +0300
 author: snovvcrash
-categories: /ctf
 tags: [write-up, hackthebox, machine, linux, xxe, xml-entity-injection, code-analysis, python, deserialization, pickle, reverse-shell, git]
 published: true
 ---

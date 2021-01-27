@@ -3,7 +3,6 @@ layout: post
 title: "HTB{ Poison }"
 date: 2018-09-16 20:00:00 +0300
 author: snovvcrash
-categories: /ctf
 tags: [write-up, hackthebox, machine, freebsd, apache, apache-tomcat, php, log-poisoning, web-shell, reverse-shell, lfi, phpinfo, vnc, ssh-tunneling]
 published: true
 ---

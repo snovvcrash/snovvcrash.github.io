@@ -3,7 +3,6 @@ layout: post
 title: "Blind SSRF with Oracle WebLogic Deserialization"
 date: 2020-09-26 22:00:00 +0300
 author: snovvcrash
-categories: /pentest
 tags: [external-pentest, oracle, weblogic, java-deserialization, bind-ssrf, dns-rebinding, python]
 published: true
 ---

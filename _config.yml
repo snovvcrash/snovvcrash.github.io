@@ -38,7 +38,6 @@ future:             true
 
 header_pages:
   - about.md
-  - categories.html
   - tags.html
 
 # Build settings
@@ -58,7 +57,6 @@ google_analytics:  UA-123831726-1
 #  shortname:  snovvcrash-github-io
 
 # Page locations
-category_page:  /categories.html
 tag_page:       /tags.html
 
 # Exclude from processing.
