@@ -49,7 +49,7 @@ information posted on the pages of this website.
 
 <p align="left">
   <a href="mailto:snovvcrash@protonmail[.]ch"><img src="https://img.shields.io/badge/-ProtonMail-8B89CC?style=for-the-badge&logo=ProtonMail&logoColor=white" alt="ProtonMail" /></a>
-  <a href="https://t.me/snovvcrash"><img src="https://img.shields.io/badge/-Telegram-3B4149?style=for-the-badge&logo=Telegram" alt="Telegram" /></a>
+  <a href="https://discordapp.com/users/795017641541894176"><img src="https://img.shields.io/badge/-snovvcrash%237064-2F3136?style=for-the-badge&logo=Discord" alt="Discord" /></a>
 </p>
 
 <span style="color: #88df33">λ</span>  <span style="color: #34e2e2; font-weight: bold">\~</span> cowsay Coffee
