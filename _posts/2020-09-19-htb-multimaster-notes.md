@@ -4,7 +4,6 @@ title: "Playing with HTB{ Multimaster }"
 date: 2020-09-19 21:00:00 +0300
 author: snovvcrash
 tags: [notes, hackthebox, machine, windows, mssql, sqli, sqlmap, sqlmap-tamper, rid-cycling]
-published: true
 ---
 
 Automate MS SQL injection with a custom sqlmap tamper script to bypass WAF through a UTF-16BE encoded JSON payload. Enumerate AD domain users via RID cycling from within the MS SQL DBMS.

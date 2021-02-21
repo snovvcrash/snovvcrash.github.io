@@ -4,7 +4,6 @@ title: "Blind SSRF with Oracle WebLogic Deserialization"
 date: 2020-09-26 22:00:00 +0300
 author: snovvcrash
 tags: [external-pentest, oracle, weblogic, java-deserialization, bind-ssrf, dns-rebinding, python]
-published: true
 ---
 
 A way to get an impact from exploiting Oracle WebLogic Server Java deserialization vulnerabilities (CVE-2017-3506, CVE-2017-10271, CVE-2019-2725, CVE-2019-2729, etc.) without triggering RCE through an SSRF attack.

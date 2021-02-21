@@ -4,7 +4,6 @@ title: "HTB{ Canape }"
 date: 2018-09-28 22:00:00 +0300
 author: snovvcrash
 tags: [write-up, hackthebox, machine, linux, git, code-analysis, flask, python, deserialization, pickle, reverse-shell, couchdb, fake-pip]
-published: true
 ---
 
 **Canape** — Linux-тачка средней сложности. Для начала нам предстоит столкнуться с сервером на Flask'е, проанализировать исходники Python-кода, найдя в них мою любимую deserialization-уязвимость, далее нас поджидает повышение привилегий до пользователя через эксплуатацию уязвимости в СУБД CouchDB, и напоследок мы поиграем с методами обмана питоновского менеджера управления пакетами pip с целью выполнения произвольных команд. Последнее подарит root-сессию. Log on, hack in!

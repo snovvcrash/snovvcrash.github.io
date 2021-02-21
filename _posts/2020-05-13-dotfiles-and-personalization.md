@@ -4,7 +4,6 @@ title: "О дотфайлах, персонализации и Kali"
 date: 2020-05-13 22:00:00 +0300
 author: snovvcrash
 tags: [xakepru, notes, personalization, dotfiles, linux, windows, wsl, zsh, tmux, tilix, wsltty, kali-setup]
-published: true
 ---
 
 [//]: # (2020-04-13)

@@ -4,7 +4,6 @@ title: "HTB{ Olympus }"
 date: 2018-10-03 20:00:00 +0300
 author: snovvcrash
 tags: [write-up, hackthebox, machine, linux, nikto, xdebug, reverse-shell, aircrack-ng, airgeddon, dns-zone-transfer, dns-axfr, port-knocking, docker, metasploit]
-published: true
 ---
 
 Путешествие к вершинам **Олимпа**: 1. Остров Крит — веб-сервер Apache с RCE-уязвимостью в Xdebug; 2. Олимпия — докер-контейнер с таском на брут 802.11 WPA перехвата; 3. Остров Родос — DNS-сервер, хранящий последовательность портов к Port Knocking'у для открытия портала в царство Аида; 4. Царство Аида — последний этап, сама виртуальная машина Olympus, root-сессия будет получена через захват docker'а. А теперь подробнее...

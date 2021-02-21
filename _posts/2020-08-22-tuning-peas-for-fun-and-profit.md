@@ -4,7 +4,6 @@ title: "Tuning PEAS for Fun and Profit"
 date: 2020-08-22 19:00:00 +0300
 author: snovvcrash
 tags: [external-pentest, exchange, activesync, peas, python]
-published: true
 ---
 
 At the recent external pentest engagement I had a feeling that PEAS (Python Exchange ActiveSync client) is missing some handy features. For example, crawling shared folders and auto downloading discovered files would be a nice function to have as well as brute forcing potential shares by a wordlist. To save time I wrote a draft script at the time of the pentest, but then I decided to fork PEAS project and tune the source code.

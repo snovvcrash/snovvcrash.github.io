@@ -4,7 +4,6 @@ title: "HTB{ Stratosphere }"
 date: 2018-09-05 01:00:00 +0300
 author: snovvcrash
 tags: [xakepru, write-up, hackthebox, machine, linux, apache, apache-struts, forward-shell, FwdSh3ll, python, eval, library-hijacking, john, hashes]
-published: true
 ---
 
 [//]: # (2019-09-17)

@@ -4,7 +4,6 @@ title: "HTB{ Active }"
 date: 2018-12-17 00:00:00 +0300
 author: snovvcrash
 tags: [xakepru, write-up, hackthebox, machine, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
-published: true
 ---
 
 [//]: # (2019-08-01)

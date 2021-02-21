@@ -4,7 +4,6 @@ title: "В королевстве PWN. Return-to-bss, криптооракулы
 date: 2019-12-20 18:00:00 +0300
 author: snovvcrash
 tags: [xakepru, write-up, hackthebox, machine, pwn-64, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum.sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
-published: true
 ---
 
 [//]: # (2019-11-20)

@@ -42,6 +42,7 @@ information posted on the pages of this website.
   <a href="https://xakep.ru/author/snovvcrash/"><img src="https://img.shields.io/badge/-%5d%5b%d0%b0%d0%ba%d0%b5%d1%80-DD2200?style=for-the-badge" alt="Xakep" /></a>
   <a href="https://hackmag.com/author/snovvcrash/"><img src="https://img.shields.io/badge/-HackMag-008CBA?style=for-the-badge" alt="HackMag" /></a>
   <a href="https://habr.com/ru/users/snovvcrash/posts/"><img src="https://img.shields.io/badge/-Habr-77A2B6?style=for-the-badge" alt="Habr" /></a>
+  <a href="https://www.exploit-db.com/?author=10989"><img src="https://img.shields.io/badge/-Exploit‐DB-CA4F0C?style=for-the-badge" alt="Exploit-DB" /></a>
 </p>
 
 <span style="color: #88df33">λ</span>  <span style="color: #34e2e2; font-weight: bold">\~</span> dig localhost mx

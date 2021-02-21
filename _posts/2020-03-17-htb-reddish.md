@@ -4,7 +4,6 @@ title: "HTB{ Reddish }"
 date: 2020-03-17 18:00:00 +0300
 author: snovvcrash
 tags: [xakepru, write-up, hackthebox, machine, linux, node-red, lse.sh, networking, host-discovery, ping-sweep, static-nmap, pivoting, ssh-reverse-tcp, dropbear, tunneling, port-forwarding, chisel, upx, file-transfer, redis, rsync, docker, docker-compose]
-published: true
 ---
 
 [//]: # (2020-02-17)

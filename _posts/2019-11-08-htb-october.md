@@ -4,7 +4,6 @@ title: "В королевстве PWN. Обходим DEP и брутфорси�
 date: 2019-11-08 18:00:00 +0300
 author: snovvcrash
 tags: [xakepru, write-up, hackthebox, machine, pwn-32, linux, october-cms, default-credentials, searchsploit, php5-upload, python-simple-http, suid-files, buffer-overflow, stack-smashing, dep-bypass, ret2libc, aslr-bypass, aslr-bruteforce]
-published: true
 ---
 
 [//]: # (2019-10-08)

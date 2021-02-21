@@ -4,7 +4,6 @@ title: "Об обнаружении субдоменов"
 date: 2020-05-10 22:00:00 +0300
 author: snovvcrash
 tags: [notes, external-pentest, osint, dns-enumeration, subdomain-discovery, amass, knockpy, altdns, massdns, methodology]
-published: true
 ---
 
 Инструментарий и краткая методика для обнаружения субдоменов при проведении внешнего пентеста / анализа веб-приложений / конкурентной разведки.

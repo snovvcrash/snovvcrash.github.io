@@ -4,7 +4,6 @@ title: "Playing with HTB{ Patents }"
 date: 2020-05-16 19:00:00 +0300
 author: snovvcrash
 tags: [notes, hackthebox, machine, linux, docx, xxe, python, scapy]
-published: true
 ---
 
 Automate crafting malicious DOCX for blind XXE-OOB with external DTD using Python and Scapy.
