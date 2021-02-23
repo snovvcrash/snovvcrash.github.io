@@ -16,14 +16,14 @@
 
 # JEKYLL_ENV=production bundle exec jekyll serve
 
-title:     snovvcrash's Security Blog
+title:     snovvcrash@gh-pages:~$ _
 author:    Sam Freeside
-email:     snovvcrash@protonmail[.]ch
+email:     snovvcrash -at- protonmail -dot- ch
 timezone:  Europe/Moscow
 locale:    ru-RU
 
 description: >
-  Certified Cynical Hacker
+  High-Speed Pizza Delivery
 
 keybase_username:  snovvcrash
 github_username:   snovvcrash
@@ -37,8 +37,8 @@ show_excerpts:      true
 future:             true
 
 header_pages:
-  - about.md
   - tags.html
+  - about.md
 
 # Build settings
 markdown:  kramdown

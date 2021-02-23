@@ -474,7 +474,7 @@ def newpost():
   return "POST RECEIVED: " + postObj['Subject']
 ```
 
-Невооруженным взглядом видна *pickle-deserialization*-уязвимость, о которой мы уже говорили, когда разбирали машину [Canape](/2018/09/28/htb-canape-write-up.html#анализ-кода "HTB: Canape Write-Up / snovvcrash’s Security Blog").
+Невооруженным взглядом видна *pickle-deserialization*-уязвимость, о которой мы уже говорили, когда разбирали машину [Canape](/2018/09/28/htb-canape-write-up.html#анализ-кода).
 
 Поэтому, не вдаваясь в долгие рассуждения (и пропустив Proof-of-Concept, ибо лень), соберем скрипт, который подарит нам реверс-шелл:
 ```python
