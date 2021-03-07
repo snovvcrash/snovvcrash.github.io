@@ -308,7 +308,7 @@ root@kali:~# dmesg -w
 root@kali:~# curl localhost:1111/$(python -c 'print "A"*1000')
 ```
 
-[![tiny-crash-poc.gif](/assets/images/pwn-kingdom/smasher/tiny-crash-poc.gif))](/assets/images/pwn-kingdom/smasher/tiny-crash-poc.gif)
+[![tiny-crash-poc.gif](/assets/images/pwn-kingdom/smasher/tiny-crash-poc.gif)](/assets/images/pwn-kingdom/smasher/tiny-crash-poc.gif)
 {:.center-image}
 
 Класс: видим, что запрос выбивает child-процесс c general protection fault (или segmentation fault в нашем случае).
@@ -692,7 +692,7 @@ if __name__ == '__main__':
 
 Чтобы построить свою «ломалку», необходимо всего лишь переопределить метод `oracle` в классе `PadBuster`, реализовав таким образом взаимодействие с оракулом.
 
-[![crackme-exploit.gif](/assets/images/pwn-kingdom/smasher/crackme-exploit.gif))](/assets/images/pwn-kingdom/smasher/crackme-exploit.gif)
+[![crackme-exploit.gif](/assets/images/pwn-kingdom/smasher/crackme-exploit.gif)](/assets/images/pwn-kingdom/smasher/crackme-exploit.gif)
 {:.center-image}
 
 Метод `decrypt` сосредоточен на двух блоках: восстанавливаемом (`P2`) и подбираемом (`C1'`). Второй блок шифртекста (восстанавливаемый) остается неизменным, в то время как первый блок (подбираемый) изначально заполнен нулями. На старте атаки последний байт первого блока, начиная со значения `0xff`, уменьшается до тех пор, пока не будет обработано исключение `BadPaddingException`. После этого фокус смещается на предпоследний байт, процесс повторяется заново — и так далее для всех последующих блоков.
@@ -1080,7 +1080,7 @@ root@kali:~# ./checker checker
 ...
 ```
 
-[![checker-patch.gif](/assets/images/pwn-kingdom/smasher/checker-patch.gif))](/assets/images/pwn-kingdom/smasher/checker-patch.gif)
+[![checker-patch.gif](/assets/images/pwn-kingdom/smasher/checker-patch.gif)](/assets/images/pwn-kingdom/smasher/checker-patch.gif)
 {:.center-image}
 
 Я заменил машинный код `3d e9 03 00 00`, отвечающий за инструкцию `cmp eax,0x3e9 `, на `90 83 F8 00 90` — что эквивалентно `cmp eax,0x0` с добитыми до оригинальной длины инструкциями NOP (`0x90`). Ассемблировать мнемоники в опкод (и наоборот) можно с помощью [Ropper](https://github.com/sashs/Ropper) или [онлайн](https://defuse.ca/online-x86-assembler.htm).
