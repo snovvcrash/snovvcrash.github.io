@@ -294,16 +294,6 @@ $ massdns -r ~/tools/massdns/lists/resolvers.txt -s 15000 -t A -o S -w massdns-a
 
 * [Rapid7 Open Data and AWS: Conducting DNS Reconnaissance](https://blog.rapid7.com/2018/10/16/how-to-conduct-dns-reconnaissance-for-02-using-rapid7-open-data-and-aws/)
 
-Если речь идет о брутфорсе виртуальных хостов (aka Virtual Host Routing), то можно:
-
-1\. Фаззить заголовок Host и анализировать ответы сервера с помощью [wfuzz](https://github.com/xmendez/wfuzz):
-
-```
-$ wfuzz -H 'Host: FUZZ.example.local' -u 'http://example.local/' -w /usr/share/seclists/Discovery/DNS/shubs-subdomains.txt --hc 400 --hh 0
-```
-
-2\. Использовать тулзу [vhostbrute](https://github.com/allyshka/vhostbrute).
-
 В Nmap NSE есть скрипт для брутфорса DNS:
 
 ```
@@ -333,6 +323,24 @@ site:hackerone.com inurl:login,register,upload,logout,redirect,redir,goto,admin
 * [Find DNS Host Records / Subdomain Finder / HackerTarget.com](https://hackertarget.com/find-dns-host-records/)
 * [Subdomain finder and subdomain Enumerating tools online](https://www.nmmapper.com/sys/tools/subdomainfinder/)
 * [DNSdumpster.com - dns recon and research, find and lookup dns records](https://dnsdumpster.com/)
+
+## VHOST
+
+Если речь идет о брутфорсе виртуальных хостов (aka Virtual Host Routing), то можно:
+
+1\. Фаззить заголовок Host и анализировать ответы сервера с помощью [wfuzz](https://github.com/xmendez/wfuzz):
+
+```
+$ wfuzz -H 'Host: FUZZ.example.local' -u 'http://example.local/' -w /usr/share/seclists/Discovery/DNS/shubs-subdomains.txt --hc 400 --hh 0
+```
+
+2\. Использовать тулзу [vhostbrute](https://github.com/allyshka/vhostbrute).
+
+3\. Использовать модуль `vhost` из gobuster:
+
+```
+$ gobuster vhost -u http://example.local -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt
+```
 
 # Методика
 
