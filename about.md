@@ -28,9 +28,9 @@ LANG=ru_RU.UTF-8,en_US.UTF-8
 {:style="font-size: 22px"}
 
 ```
-All information contained on this website is provided for educational purposes
-only. The author of the website is not responsible for the misuse of any
-information published on the pages of this website.
+All information contained on this blog is provided for educational purposes
+only. The author of the blog is not responsible for the misuse of any
+information published on the pages of the blog.
 ```
 
 <span style="color: red">$</span> ls <span style="text-decoration:underline">/etc/nginx/sites-enabled</span>
