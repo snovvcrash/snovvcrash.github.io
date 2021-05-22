@@ -10,7 +10,8 @@ A short memo on how to properly calculate Kerberos keys for different types of A
 
 <!--cut-->
 
----
+![banner.png](/assets/images/calculating-kerberos-keys/banner.png)
+{:.center-image}
 
 In order to successfully decrypt service TGS we must calculate its Kerberos key first. To do this we should obtain account's password and form the salt:
 
@@ -136,4 +137,4 @@ MEGACORP.LOCAL\fakemachine
 """
 ```
 
-The same calculation can be done with [Get-KerberosAESKey.ps1](https://gist.github.com/Kevin-Robertson/9e0f8bfdbf4c1e694e6ff4197f0a4372) or [Mimikatz](https://github.com/gentilkiwi/mimikatz) `kerberos::hash` module.
+The same calculation can be done with [Get-KerberosAESKey.ps1](https://gist.github.com/Kevin-Robertson/9e0f8bfdbf4c1e694e6ff4197f0a4372), [DSInternals](https://github.com/MichaelGrafnetter/DSInternals/blob/master/Documentation/PowerShell/ConvertTo-KerberosKey.md#convertto-kerberoskey) or [Mimikatz](https://github.com/gentilkiwi/mimikatz) `kerberos::hash` function.
