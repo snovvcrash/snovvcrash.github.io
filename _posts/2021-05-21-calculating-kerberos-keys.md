@@ -3,7 +3,7 @@ layout: post
 title: "A Note on Calculating Kerberos Keys for AD Accounts"
 date: 2021-05-21 23:00:00 +0300
 author: snovvcrash
-tags: [internal-pentest, active-directory, kerberos, krbrelayx, python, impacket, bronze-bit]
+tags: [internal-pentest, active-directory, kerberos, unconstrained-delegation, rbcd, bronze-bit, python, krbrelayx, impacket]
 ---
 
 A short memo on how to properly calculate Kerberos keys for different types of Active Directory accounts in context of decrypting TGS tickets during delegation attacks.
@@ -67,7 +67,7 @@ def printUserKerberosKeys(domain, username, rawpassword):
 	printKerberosKeys(rawpassword, salt)
 ```
 
-When performing the ["Relaying" Kerberos attack](https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/) against an unconstrained delegation **computer** account, the adversary will use krbrelayx.py as follows:
+When performing the ["Relaying" Kerberos attack](https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/) against an unconstrained delegation **computer** account, the adversary will use `krbrelayx.py` as follows:
 
 ```console
 # Calculate the AES key automatically
@@ -114,7 +114,7 @@ MEGACORP.LOCAL\Bob_Adm
 """
 ```
 
-On the other hand, when performing the [Bronze Bit attack](https://www.netspi.com/blog/technical/network-penetration-testing/machineaccountquota-is-useful-sometimes/) (by [@jakekarnes42](https://github.com/jakekarnes42)), the adversary leverages a fake service (see [Powermad.ps1](https://github.com/Kevin-Robertson/Powermad/blob/master/Powermad.ps1)) account to request the ticket which brings back AES encryption with salt (PBKDF2 from salted password used as key). Despite the fact that Powermad's function for adding fake accounts is called `New-MachineAccount`, it's actually a **service** account and the Kerberos keys should be calculated with `printUserKerberosKeys` function in terms of this note:
+On the other hand, when performing the [Bronze Bit attack](https://www.netspi.com/blog/technical/network-penetration-testing/machineaccountquota-is-useful-sometimes/) (by [@jakekarnes42](https://github.com/jakekarnes42)), the adversary leverages a fake service account (see [Powermad.ps1](https://github.com/Kevin-Robertson/Powermad/blob/master/Powermad.ps1)) to request the ticket which brings back AES encryption with salt (PBKDF2 from salted password used as key). Despite the fact that Powermad's function for adding fake accounts is called `New-MachineAccount`, it's actually a **service** account and the Kerberos keys should be calculated with `printUserKerberosKeys` function in terms of this note:
 
 ```console
 PS > New-MachineAccount -MachineAccount fakemachine -Password $(ConvertTo-SecureString 'Passw0rd!' -AsPlainText -Force) -Verbose
