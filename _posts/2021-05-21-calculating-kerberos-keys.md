@@ -18,7 +18,7 @@ In order to successfully decrypt service TGS we must calculate its Kerberos key 
 * For a user/service account the salt is built as uppercase Kerberos realm name + case sensitive username.
 * For a computer account the salt is built as uppercase Kerberos realm name + the word `host` + lowercase FQDN hostname.
 
-Let's say the domain name (Kerberos realm) is `megacorp.local`, then for user `Bob_Adm` the salt will be `MEGACORP.LOCALBob_Adm`, and for computer `SRV01$` the salt will be `MEGACORP.LOCALhostsrv01.megacorp.local`.
+Let's say the domain name (Kerberos realm) is `megacorp.local`, then for user account `Bob_Adm` the salt will be `MEGACORP.LOCALBob_Adm`, and for computer account `SRV01$` the salt will be `MEGACORP.LOCALhostsrv01.megacorp.local`.
 
 Based on the "Relaying" Kerberos attack [toolkit](https://github.com/dirkjanm/krbrelayx) (by [@dirkjanm](https://twitter.com/_dirkjan)) the keys can be calculated with the following Python code using [impacket](https://github.com/SecureAuthCorp/impacket):
 

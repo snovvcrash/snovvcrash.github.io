@@ -117,7 +117,7 @@ args = parser.parse_args()
 hSamrUnicodeChangePasswordUser2(args.username, args.oldpass, args.newpass, args.target)
 ```
 
-Now we can trigger password change with a single command insecurely leaving all the sensitive information in the bash history... Just as we've always wanted :expressionless:
+Now we can trigger password change with a single command insecurely leaving all the sensitive information in `.bash_history`... Just as we've always wanted :expressionless:
 
 ```
 $ ./smbpasswd.py tlavel Fabricorp01 'snovvcrash01!' FUSE.FABRICORP.LOCAL
