@@ -3,7 +3,7 @@ layout: post
 title: "Leveraging PrintNightmare to Abuse RBCD and DCSync the Domain"
 date: 2021-06-30 23:00:00 +0300
 author: snovvcrash
-tags: [internal-pentest, active-directory, print-spooler, printer-bug, cve-2021-1675, dll-hijacking, impacket, rbcd]
+tags: [internal-pentest, active-directory, print-spooler, printer-bug, cve-2021-1675, arbitary-file-write, impacket, rbcd]
 ---
 
 A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675) by configuring and abusing RBCD on a domain controller.
