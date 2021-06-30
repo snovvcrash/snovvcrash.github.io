@@ -24,7 +24,7 @@ I won't dive into the vulnerability analysis because exploit authors will defini
 
 Thanks to [@cube0x0](https://twitter.com/cube0x0/status/1409928527957344262) now we have [an impacket-based exploit](https://github.com/cube0x0/CVE-2021-1675) to trigger RCE from a Linux box. Another thing I though about is the red team aspect when generating a custom DLL binary. Good old *msfvenom* is (totally) not enough to fly under the radar of commercial antivirus solutions and/or the SOC team operators. If you ask me, I'd rather not run any C2 agents on the DC but aim for standard Active Directory persistence techniques.
 
-So what can we do when having access to code execution on the behalf of DC machine account and nothing more? Here is when resource-based constrained delegation comes in: acting on behalf of a computer account an adversary can configure RBCD bits for that specific computer object, so that a full AD compromise becomes real with no need for [adding new users](https://github.com/newsoft/adduser) to privileged groups (which is surely monitored) or running "noisy" malicious stuff on the DC.
+So, what can we do when having access to code execution on the behalf of DC machine account and nothing more? Here is when resource-based constrained delegation comes in: acting on the behalf of a computer account an adversary can configure RBCD bits for that specific computer object, so that a full AD compromise becomes possible with no need for [adding new users](https://github.com/newsoft/adduser) to privileged groups (which is surely monitored) or running "noisy" malicious stuff on the DC!
 
 ## Testing Environment
 
@@ -160,7 +160,7 @@ I will download and install the modified impacket library within a virtual envir
 
 [![install-impacket.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/install-impacket.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/install-impacket.png)
 
-Note that dynamic `pDriverPath` enumeration feature [was added by the author](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a few hours ago, without it the adversary had to change the script according to the environment:
+Note that dynamic `pDriverPath` enumeration feature [was added by cube0x0](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a few hours ago, without it the adversary had to change the script according to the environment:
 
 ```powershell
 PS > ls C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_*
