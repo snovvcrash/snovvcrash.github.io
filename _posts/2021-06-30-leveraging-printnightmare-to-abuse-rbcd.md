@@ -207,4 +207,4 @@ The described vulnerability poses enormous risks to active directory infrastruct
 
 *UPD*. Depending on the state of a user's access token (elevated / non-elevated) whose account one's impersonating when making RPC calls to `RpcAddPrinterDriverEx`, the attack may succeed or fail. On the following diagram (by [@StanHacked](https://twitter.com/StanHacked)) there're some conditions that can affect the token state:
 
-[![making-sence-of-printnightmare.png](https://twitter.com/StanHacked/status/1410929974358515719/photo/1)](https://pbs.twimg.com/media/E5ShO9wXwAAPAC9?format=jpg&name=4096x4096)
+[![making-sence-of-printnightmare.png](https://pbs.twimg.com/media/E5ShO9wXwAAPAC9?format=jpg&name=4096x4096)](https://twitter.com/StanHacked/status/1410929974358515719/photo/1)
