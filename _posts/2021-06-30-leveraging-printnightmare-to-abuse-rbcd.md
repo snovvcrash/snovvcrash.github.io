@@ -18,7 +18,7 @@ A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675 / CVE-2021-34
 
 ## Prologue
 
-The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) (post CVE-2021-1675, *EDIT: a few days later Microsoft assinged it a brand new **CVE-2021-34527***) exploit abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
+The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) (post CVE-2021-1675, *UPD: a few days later Microsoft assinged it a brand new **CVE-2021-34527***) exploit abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
 
 I won't dive into the vulnerability analysis because exploit authors will definitely do it better on the upcoming Black Hat event. As for now a brief description of the attack [can be found on the GitHub](https://github.com/afwu/PrintNightmare#cve-2021-1675-analysis).
 
@@ -205,6 +205,6 @@ $ secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -jus
 
 The described vulnerability poses enormous risks to active directory infrastructures and must never be used for illegal purposes. To mitigate the risk the Spooler service should be disabled or uninstalled until an official fix is released by vendor. An example on how to disable the Print Spooler can be found [here](https://github.com/LaresLLC/CVE-2021-1675).
 
-*EDIT*. Based on the state of user's access token (elevated / non-elevated) whose account one's impersonating when making RPC calls to `RpcAddPrinterDriverEx`, the attack may succeed or fail. On the following diagram (by [@StanHacked](https://twitter.com/StanHacked)) there're some conditions that can affect the token state:
+*UPD*. Depending on the state of a user's access token (elevated / non-elevated) whose account one's impersonating when making RPC calls to `RpcAddPrinterDriverEx`, the attack may succeed or fail. On the following diagram (by [@StanHacked](https://twitter.com/StanHacked)) there're some conditions that can affect the token state:
 
-[![making-sence-of-printnightmare.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/dcsync.png)](https://pbs.twimg.com/media/E5ShO9wXwAAPAC9?format=jpg&name=4096x4096)
+[![making-sence-of-printnightmare.png](https://twitter.com/StanHacked/status/1410929974358515719/photo/1)](https://pbs.twimg.com/media/E5ShO9wXwAAPAC9?format=jpg&name=4096x4096)
