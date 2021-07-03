@@ -18,7 +18,9 @@ A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675 / CVE-2021-34
 
 ## Prologue
 
-The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) exploit (post CVE-2021-1675, *\*UPD: a few days later Microsoft assinged it a brand new **CVE-2021-34527**\**) abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
+The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) exploit (post CVE-2021-1675) abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
+
+**<ins>UPD.</ins>** A few days later Microsoft assinged it a brand new **CVE-2021-34527**.
 
 I won't dive into the vulnerability analysis because exploit authors will definitely do it better on the upcoming Black Hat event. As for now a brief description of the attack [can be found on the GitHub](https://github.com/afwu/PrintNightmare#cve-2021-1675-analysis).
 
