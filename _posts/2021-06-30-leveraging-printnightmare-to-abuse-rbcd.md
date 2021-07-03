@@ -18,7 +18,7 @@ A relatively stealthy way to exploit PrintNightmare (CVE-2021-1675 / CVE-2021-34
 
 ## Prologue
 
-The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) exploit (post CVE-2021-1675, *UPD: a few days later Microsoft assinged it a brand new **CVE-2021-34527***) abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
+The recent [PrintNightmare](https://github.com/afwu/PrintNightmare) exploit (post CVE-2021-1675, *\*UPD: a few days later Microsoft assinged it a brand new **CVE-2021-34527**\**) abuses <strike>in</strike>famous Print Spooler service in order to load and execute arbitary code on a Windows machine.
 
 I won't dive into the vulnerability analysis because exploit authors will definitely do it better on the upcoming Black Hat event. As for now a brief description of the attack [can be found on the GitHub](https://github.com/afwu/PrintNightmare#cve-2021-1675-analysis).
 
@@ -30,20 +30,20 @@ So, what can we do when having access to code execution on the behalf of DC mach
 
 For demonstration purposes I will use [Multimaster](https://www.hackthebox.eu/home/machines/profile/232) - a retired machine from Hack The Box - as a lab to play with PrintNightmare:
 
-```
+```powershell
+(Get-WmiObject -ClassName Win32_OperatingSystem).Caption
+Microsoft Windows Server 2016 Standard
+
+(Get-WmiObject -ClassName Win32_OperatingSystem).ProductType
+2
+
+systeminfo
 Host Name:                 MULTIMASTER
 OS Name:                   Microsoft Windows Server 2016 Standard
 OS Version:                10.0.14393 N/A Build 14393
 OS Manufacturer:           Microsoft Corporation
 OS Configuration:          Primary Domain Controller
-OS Build Type:             Multiprocessor Free
 Domain:                    MEGACORP.LOCAL
-Hotfix(s):                 5 Hotfix(s) Installed.
-                           [01]: KB3199986
-                           [02]: KB4054590
-                           [03]: KB4512574
-                           [04]: KB4520724
-                           [05]: KB4530689
 ```
 
 ## A Living Nightmare
@@ -169,7 +169,3 @@ secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -just-
 ## Afterthoughts
 
 The described vulnerability poses enormous risks to active directory infrastructures and must never be used for illegal purposes. To mitigate the risk the Spooler service should be disabled or uninstalled until an official fix is released by vendor. An example on how to disable the Print Spooler can be found [here](https://github.com/LaresLLC/CVE-2021-1675).
-
-*UPD*. Depending on the state of a user's access token (elevated / non-elevated) whose account one's impersonating when making RPC calls to `RpcAddPrinterDriverEx`, the attack may succeed or fail. On the following diagram (by [@StanHacked](https://twitter.com/StanHacked)) there're some conditions that can affect the token state:
-
-[![making-sence-of-printnightmare.png](https://pbs.twimg.com/media/E5ShO9wXwAAPAC9?format=jpg&name=4096x4096)](https://twitter.com/StanHacked/status/1410929974358515719/photo/1)
