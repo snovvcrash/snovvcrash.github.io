@@ -46,7 +46,7 @@ Hotfix(s):                 5 Hotfix(s) Installed.
                            [05]: KB4530689
 ```
 
-## Exploiting PrintNightmare
+## A Living Nightmare
 
 The first thing I want to do is to prepare a skeleton for malicious DLL binary that will source and execute a PowerShell script served by an HTTP server on my machine. To construct a DLL one may use [a template](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation/dll-hijacking#your-own) from HackTricks. Another thing to remember is that a threaded approach should be used to run the command from the DLL in order not to kill the parent process of Spooler service when exiting (similar to `EXITFUNC=thread` when generating a payload with msfvenom). Otherwise the Spooler will probably die and you will not have a second chance to trigger the RCE if something goes wrong.
 
