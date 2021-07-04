@@ -26,20 +26,20 @@ I won't dive into the vulnerability analysis because exploit authors will defini
 
 Thanks to [@cube0x0](https://twitter.com/cube0x0/status/1409928527957344262) now we have [an impacket-based exploit](https://github.com/cube0x0/CVE-2021-1675) to trigger RCE from a Linux box. Another thing I though about is the red team aspect when generating a custom DLL binary. Good old *msfvenom* is (totally) not enough to fly under the radar of commercial antivirus solutions and/or the SOC team operators. If you ask me, I'd rather not run any C2 agents on the DC but aim for standard Active Directory persistence techniques.
 
-So, what can we do when having access to code execution on the behalf of DC machine account and nothing more? Here is when resource-based constrained delegation comes in: impersonating a computer account an adversary can configure RBCD bits for that specific computer object, so that a full AD compromise becomes possible with no need for [adding new users](https://github.com/newsoft/adduser) to privileged groups (which is surely monitored) or running "noisy" malicious stuff on the DC!
+So, what can we do when having access to code execution on the behalf of a computer account and nothing more? Here is when resource-based constrained delegation comes in: impersonating a domain controller an adversary can configure RBCD bits for that specific DC computer object, so that a full AD compromise becomes possible with no need for [adding new users](https://github.com/newsoft/adduser) to privileged groups (which is surely monitored) or running "noisy" malicious stuff on the DC!
 
 ## Testing Environment
 
 For demonstration purposes I will use [Multimaster](https://www.hackthebox.eu/home/machines/profile/232) - a retired machine from Hack The Box - as a lab to play with PrintNightmare:
 
 ```powershell
-(Get-WmiObject -ClassName Win32_OperatingSystem).Caption
+PS > (Get-WmiObject -ClassName Win32_OperatingSystem).Caption
 Microsoft Windows Server 2016 Standard
 
-(Get-WmiObject -ClassName Win32_OperatingSystem).ProductType
+PS > (Get-WmiObject -ClassName Win32_OperatingSystem).ProductType
 2
 
-systeminfo
+PS > systeminfo
 Host Name:                 MULTIMASTER
 OS Name:                   Microsoft Windows Server 2016 Standard
 OS Version:                10.0.14393 N/A Build 14393
@@ -50,7 +50,7 @@ Domain:                    MEGACORP.LOCAL
 
 ## A Living Nightmare
 
-The first thing I want to do is to prepare a skeleton for malicious DLL binary that will source and execute a PowerShell script served by an HTTP server on my machine. To construct a DLL one may use [a template](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation/dll-hijacking#your-own) from HackTricks. Another thing to remember is that a threaded approach should be used to run the command from the DLL in order not to kill the parent process of Spooler service when exiting (similar to `EXITFUNC=thread` when generating a payload with msfvenom). Otherwise the Spooler will probably die and you will not have a second chance to trigger the RCE if something goes wrong.
+The first thing I want to do is to prepare a skeleton for malicious DLL binary that will source and execute a PowerShell script served by an HTTP server on my machine. To construct a DLL one may use [a template](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation/dll-hijacking#your-own) from HackTricks. Another thing to remember is that a threaded approach should be used to run the command from inside the DLL in order not to kill the parent process of Spooler service when exiting (similar to `EXITFUNC=thread` when generating a payload with msfvenom). Otherwise the Spooler will probably die and you will not have a second chance to trigger the RCE if something goes wrong.
 
 ```c
 // pwn.c
@@ -123,11 +123,11 @@ Then move the binary to the SMB share and [check that it's accessible](https://g
 
 [![prepare-samba.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/prepare-samba.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/prepare-samba.png)
 
-I will download and install [the modified impacket library](https://github.com/cube0x0/impacket) within a virtual environment as well as download [the exploit script](https://github.com/cube0x0/CVE-2021-1675/blob/main/CVE-2021-1675.py):
+I will download and install [the modified impacket library](https://github.com/cube0x0/impacket) within a virtual environment as well as download [the exploit itself](https://github.com/cube0x0/CVE-2021-1675/blob/main/CVE-2021-1675.py):
 
 [![install-impacket.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/install-impacket.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/install-impacket.png)
 
-Note that dynamic `pDriverPath` (location of the `UNIDRV.DLL` binary) enumeration feature [was added by cube0x0](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a couple of hours after the release - without it the adversary would have to change the script according to the environment:
+Note that dynamic `pDriverPath` (location of the `UNIDRV.DLL` binary) enumeration feature [was added by cube0x0](https://github.com/cube0x0/CVE-2021-1675/commit/3bad3016aca9a6ebb75e5e687614d1c0d045b1f6) a couple of hours after the release - without it the adversary would have to change the exploit script according to the environment:
 
 ```powershell
 ls C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_*
@@ -149,7 +149,15 @@ In the background it will set the `PrincipalsAllowedToDelegateToAccount` propert
 Get-ADComputer MULTIMASTER -Properties PrincipalsAllowedToDelegateToAccount
 ```
 
-[![check-properties.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties.png)
+[![check-properties-pwsh.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties-pwsh.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties-pwsh.png)
+
+Or do it with [go-windapsearch](https://github.com/ropnop/go-windapsearch) remotely:
+
+```bash
+./go-windapsearch --dc 10.10.10.179 -d megacorp.local -u lowpriv -p 'Passw0rd1!' -m custom --filter '(&(objectClass=computer)(samAccountName=MULTIMASTER$))' --attrs msds-allowedToActOnBehalfOfOtherIdentity
+```
+
+[![check-properties-ldap.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties-ldap.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties-ldap.png)
 
 Now I can request a service ticket for LDAP:
 
@@ -171,3 +179,5 @@ secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -just-
 ## Afterthoughts
 
 The described vulnerability poses enormous risks to active directory infrastructures and must never be used for illegal purposes. To mitigate the risk the Spooler service should be disabled or uninstalled until an official fix is released by vendor. An example on how to disable the Print Spooler can be found [here](https://github.com/LaresLLC/CVE-2021-1675).
+
+More info on PrintNightmare exploits and the reproducibility of the bug [can be found on my GitBook](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/printnightmare).
