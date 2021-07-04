@@ -46,6 +46,12 @@ OS Version:                10.0.14393 N/A Build 14393
 OS Manufacturer:           Microsoft Corporation
 OS Configuration:          Primary Domain Controller
 Domain:                    MEGACORP.LOCAL
+
+PS > Get-Service Spooler
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  Spooler            Print Spooler
 ```
 
 ## A Living Nightmare
