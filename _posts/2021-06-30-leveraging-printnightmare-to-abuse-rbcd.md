@@ -39,13 +39,11 @@ Microsoft Windows Server 2016 Standard
 PS > (Get-WmiObject -ClassName Win32_OperatingSystem).ProductType
 2
 
-PS > systeminfo
-Host Name:                 MULTIMASTER
+PS > systeminfo.exe | findstr OS | select -First 4
 OS Name:                   Microsoft Windows Server 2016 Standard
 OS Version:                10.0.14393 N/A Build 14393
 OS Manufacturer:           Microsoft Corporation
 OS Configuration:          Primary Domain Controller
-Domain:                    MEGACORP.LOCAL
 
 PS > Get-Service Spooler
 
