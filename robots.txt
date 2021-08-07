@@ -1,3 +1,2 @@
 User-agent: *
 Disallow: /tags
-Sitemap: https://snovvcrash.github.io/sitemap.xml
