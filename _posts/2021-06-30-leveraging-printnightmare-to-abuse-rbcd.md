@@ -96,7 +96,7 @@ $adsiobject.Put("msDS-allowedToActOnBehalfOfOtherIdentity", $SDBytes)
 $adsiobject.setinfo()
 ```
 
-Now I have to create a fake machine account to use it when it comes to requesting a forwardable ticket with S4U2Self & S4U2Proxy (some good references on how to abuse RBCD can be found on [PPN](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/delegation-abuse#resource-based-constrained-delegation-rbcd) and in my [HTB Hades write-up](https://snovvcrash.rocks/2020/12/28/htb-hades.html#abusing-kerberos-resource-based-constrained-delegation)).
+Now I have to create a fake machine account to use it when it comes to requesting a forwardable ticket with S4U2Self & S4U2Proxy (some good references on how to abuse RBCD can be found on [PPN](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/delegation-abuse#resource-based-constrained-delegation-rbcd) and in my [HTB Hades write-up](/2020/12/28/htb-hades.html#abusing-kerberos-resource-based-constrained-delegation)).
 
 Firstly, I will enumerate if `ms-DS-MachineAccountQuota` allows to add new computer accounts. Do it with PowerShell:
 

