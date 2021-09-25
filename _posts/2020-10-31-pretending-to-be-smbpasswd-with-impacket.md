@@ -26,7 +26,7 @@ For me the most interesting aspect of pwning the Fuse machine from HTB was deali
 
 # Change Password over SMB
 
-There is this user `tlavel` with an expired password `Fabricorp01`. When trying to connect to an SMB resource (at FUSE.FABRICORP.LOCAL) [STATUS_PASSWORD_MUST_CHANGE (0xC0000224)](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-cifs/8f11e0f3-d545-46cc-97e6-f00569e3e1bc) error is raised:
+There is a user `tlavel` with an expired password `Fabricorp01`. When trying to connect to an SMB resource (at FUSE.FABRICORP.LOCAL) [STATUS_PASSWORD_MUST_CHANGE (0xC0000224)](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-cifs/8f11e0f3-d545-46cc-97e6-f00569e3e1bc) error is raised:
 
 [![cme_status_password_must_change.png](/assets/images/htb/machines/fuse/cme_status_password_must_change.png)](/assets/images/htb/machines/fuse/cme_status_password_must_change.png)
 {:.center-image}
