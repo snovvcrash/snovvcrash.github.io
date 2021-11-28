@@ -11,6 +11,7 @@ permalink: /about
   <img src="/assets/images/about/oscp.png" width="110px" alt="OSCP" />
   <img src="/assets/images/about/osep.png" width="110px" alt="OSEP" />
   <img src="/assets/images/about/crto.png" width="110px" alt="CRTO" />
+  <img src="/assets/images/about/c2dev.png" width="110px" alt="C2Dev" />
 </p>
 
 [![HackTheBox-Badge](http://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/home/users/profile/51037)
