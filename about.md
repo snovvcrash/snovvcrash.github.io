@@ -25,7 +25,7 @@ permalink: /about
 {:style="font-size: 22px"}
 
 ```
-OCCUPATION=penetration_tester
+OCCUPATION=pentester,redteamer
 PASSION=/security/offensive
 LOCATION=/Europe/Moscow
 LANG=ru_RU.UTF-8,en_US.UTF-8
