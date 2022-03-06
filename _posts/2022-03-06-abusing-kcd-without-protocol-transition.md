@@ -63,15 +63,23 @@ It can now be used to abuse S4U2proxy for the KCD with Kerberos only authenticat
 
 ## Extra: Delegate 2 Thyself
 
-I've also tried requesting a service ticket for TEXAS without explicitly configuring RBCD2self on it but using `/self` option from Rubeus (see [@exploitph](https://twitter.com/exploitph)'s post [*"Delegate 2 Thyself"*](https://exploit.ph/delegate-2-thyself.html)).
+I've also tried requesting a service ticket for TEXAS without explicitly configuring RBCD2self on it but using `/self` option from Rubeus (see [@exploitph](https://twitter.com/exploitph)'s post [*"Revisiting 'Delegate 2 Thyself'"*](https://exploit.ph/revisiting-delegate-2-thyself.html)).
 
 That's not an option for our case because the resulting TGS is returned as non-forwardable.
 
 [![delegate2self.png](/assets/images/abusing-kcd-without-protocol-transition/delegate2self.png)](/assets/images/abusing-kcd-without-protocol-transition/delegate2self.png)
+
+## Conclusion
+
+Nothing new in this post, just a way to manually perform S4U2proxy with Rubeus in case of KCD Kerberos only configuration.
+
+Mitigating factors for various delegation attacks can be observed again in Elad Shamir's [post](https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html) :clap:
+
+Happy hacking!
 
 ## Credits & References
 
 * [@cXestXlaXvie](https://t.me/cXestXlaXvie)
 * [@Riocool](https://t.me/Riocool)
 * [Elad Shamir](https://twitter.com/elad_shamir) · [Wagging the Dog: Abusing Resource-Based Constrained Delegation to Attack Active Directory](https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html)
-* [Charlie Clark](https://twitter.com/exploitph) · [Delegate 2 Thyself](https://exploit.ph/delegate-2-thyself.html)
+* [Charlie Clark](https://twitter.com/exploitph) · [Revisiting 'Delegate 2 Thyself'](https://exploit.ph/revisiting-delegate-2-thyself.html)
