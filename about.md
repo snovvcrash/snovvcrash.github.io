@@ -8,6 +8,7 @@ permalink: /about
 {:style="font-size: 22px"}
 
 <p align="left">
+  <img src="/assets/images/about/ceh.png" width="110px" alt="CEH" />
   <img src="/assets/images/about/oscp.png" width="110px" alt="OSCP" />
   <img src="/assets/images/about/osep.png" width="110px" alt="OSEP" />
   <img src="/assets/images/about/crto.png" width="110px" alt="CRTO" />
