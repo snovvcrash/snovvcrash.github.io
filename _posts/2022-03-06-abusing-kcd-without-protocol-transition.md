@@ -34,34 +34,42 @@ But what if a social engineering attack is not an option, can we get the target 
 Let's take a look at the initial setup.
 
 [![initial-setup.png](/assets/images/abusing-kcd-without-protocol-transition/initial-setup.png)](/assets/images/abusing-kcd-without-protocol-transition/initial-setup.png)
+{:.center-image}
 
 Now I'm going to PsExec as LocalSystem on TEXAS and ask for its TGT via the [tgtdeleg](https://github.com/GhostPack/Rubeus#tgtdeleg) trick.
 
 [![tgtdeleg.png](/assets/images/abusing-kcd-without-protocol-transition/tgtdeleg.png)](/assets/images/abusing-kcd-without-protocol-transition/tgtdeleg.png)
+{:.center-image}
 
 We can try to run a full S4U chain with it against `http/CHICAGO.tinycorp.net` which will expectedly fail.
 
 [![s4u-fail.png](/assets/images/abusing-kcd-without-protocol-transition/s4u-fail.png)](/assets/images/abusing-kcd-without-protocol-transition/s4u-fail.png)
+{:.center-image}
 
 As we can see, the TGS we got is not forwardable and the S4U2proxy stage raises `KDC_ERR_BADOPTION` error.
 
 [![describe-ticket-1.png](/assets/images/abusing-kcd-without-protocol-transition/describe-ticket-1.png)](/assets/images/abusing-kcd-without-protocol-transition/describe-ticket-1.png)
+{:.center-image}
 
 Acting as `TEXAS$` user I can modify my own `msds-AllowedToActOnBehalfOfOtherIdentity` property and set it to trust myself for RBCD.
 
 [![configure-rbcd.png](/assets/images/abusing-kcd-without-protocol-transition/configure-rbcd.png)](/assets/images/abusing-kcd-without-protocol-transition/configure-rbcd.png)
+{:.center-image}
 
 Now it's time for the full S4U attack against `host/TEXAS.tinycorp.net`.
 
 [![s4u-success.png](/assets/images/abusing-kcd-without-protocol-transition/s4u-success.png)](/assets/images/abusing-kcd-without-protocol-transition/s4u-success.png)
+{:.center-image}
 
 It gives us a valid forwardable TGS.
 
 [![describe-ticket-2.png](/assets/images/abusing-kcd-without-protocol-transition/describe-ticket-2.png)](/assets/images/abusing-kcd-without-protocol-transition/describe-ticket-2.png)
+{:.center-image}
 
 It can now be used to abuse S4U2proxy for the KCD with Kerberos only authentication and access the `http/CHICAGO.tinycorp.net` service impersonating an arbitrary user (which is not in Protected Users or sensitive accounts).
 
 [![s4u2proxy.png](/assets/images/abusing-kcd-without-protocol-transition/s4u2proxy.png)](/assets/images/abusing-kcd-without-protocol-transition/s4u2proxy.png)
+{:.center-image}
 
 ## Extra: Delegate 2 Thyself
 
@@ -70,6 +78,7 @@ I've also tried requesting a service ticket for TEXAS without explicitly configu
 That's not an option for our case because the resulting TGS is returned as non-forwardable.
 
 [![delegate2self.png](/assets/images/abusing-kcd-without-protocol-transition/delegate2self.png)](/assets/images/abusing-kcd-without-protocol-transition/delegate2self.png)
+{:.center-image}
 
 ## Conclusion
 

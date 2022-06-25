@@ -38,6 +38,7 @@ tags: [xakepru, maldev, shellcode-injection, dotnet, csharp, dynamic-invocation,
 Порядок действий простой. Дампаю LSA с помощью [secretsdump.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/secretsdump.py).
 
 [![kes-secretsdump-py.png](/assets/images/keethief-syscalls/kes-secretsdump-py.png)](/assets/images/keethief-syscalls/kes-secretsdump-py.png)
+{:.center-image}
 
 Потрошим LSA
 {:.quote}
@@ -45,6 +46,7 @@ tags: [xakepru, maldev, shellcode-injection, dotnet, csharp, dynamic-invocation,
 Гружу консоль администрирования KES [с офицаильного сайта](https://www.kaspersky.ru/small-to-medium-business-security/downloads/endpoint) и логинюсь, указав хостнейм KSC.
 
 [![kes-admin-console.png](/assets/images/keethief-syscalls/kes-admin-console.png)](/assets/images/keethief-syscalls/kes-admin-console.png)
+{:.center-image}
 
 Консоль администрирования KES
 {:.quote}
@@ -52,6 +54,7 @@ tags: [xakepru, maldev, shellcode-injection, dotnet, csharp, dynamic-invocation,
 Стопорю «Каспера» и делаю свои грязные делишки.
 
 [![kes-keethief.png](/assets/images/keethief-syscalls/kes-keethief.png)](/assets/images/keethief-syscalls/kes-keethief.png)
+{:.center-image}
 
 AdobeHelperAgent.exe, ну вы поняли, ага
 {:.quote}
@@ -65,6 +68,7 @@ Profit! Мастер-пароль у нас. После окончания пр�
 Полноценную сессию Meterpreter при активном антивирусе Касперского получить трудно из-за обилия артефактов в сетевом трафике, поэтому его [execute-assembly](https://github.com/b4rtik/metasploit-execute-assembly) я даже пробовать не стал. А вот модуль [execute-assembly](https://www.cobaltstrike.com/blog/cobalt-strike-3-11-the-snake-that-eats-its-tail/) Cobalt Strike принес свои результаты, если правильно получить сессию beacon (далее скриншоты будут с домашнего KIS, а не KES, но все техники работают и против последнего – проверено).
 
 [![cs-execute-assembly.png](/assets/images/keethief-syscalls/cs-execute-assembly.png)](/assets/images/keethief-syscalls/cs-execute-assembly.png)
+{:.center-image}
 
 KeeTheft.exe с помощью execute-assembly CS
 {:.quote}
@@ -78,6 +82,7 @@ KeeTheft.exe с помощью execute-assembly CS
 Дело здесь именно в уклонении от эврестического анализа, так как если спрятать сигнатуру малвари с помощью недетектируемого упаковщика, доступ к памяти нам все равно будет запрещен из-за фейла инъекции.
 
 [![kes-keethief-loader.png](/assets/images/keethief-syscalls/kes-keethief-loader.png)](/assets/images/keethief-syscalls/kes-keethief-loader.png)
+{:.center-image}
 
 Запуск криптованного KeeTheft.exe при активном EDR
 {:.quote}
@@ -91,6 +96,7 @@ KeeTheft.exe с помощью execute-assembly CS
 * [CreateRemoteThread](https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread) – запустить новый поток в удаленном процессе, который стартует свежезаписанный шеллкод.
 
 [![classic-shellcode-injection.png](/assets/images/keethief-syscalls/classic-shellcode-injection.png)](/assets/images/keethief-syscalls/classic-shellcode-injection.png)
+{:.center-image}
 
 Исполнение шеллкода с помощью Thread Execution (изображение — elastic.co)
 {:.quote}
@@ -165,6 +171,7 @@ namespace SimpleInjector
 Скомпилировав и запустив инжектор, с помощью Process Hacker можно наблюдать, как в процессе explorer.exe запустится новый поток, рисующий нам диалоговое окно MSF.
 
 [![simple-injector.png](/assets/images/keethief-syscalls/simple-injector.png)](/assets/images/keethief-syscalls/simple-injector.png)
+{:.center-image}
 
 Классическая инъекция шеллкода
 {:.quote}
@@ -172,6 +179,7 @@ namespace SimpleInjector
 Если просто положить такой бинарь на диск с активным средством антивирусной защиты, реакция будет незамедлительной независимо от содержимого массива `buf`, то есть нашего шеллкода. Все дело в комбинации потенциально опасных вызовов Win32 API, которые заведомо используются в большом количестве зловредов. Для демонстрации я перекомпилирую инжектор с пустым массивом `buf` и залью результат на VirusTotal. [Реакция](https://www.virustotal.com/gui/file/894aa4b908f51ec2202fffd1dd052716921ee1598a431b356a9a2c6c4a479367) ресурса говорит сама за себя.
 
 [![simple-injector-virustotal.png](/assets/images/keethief-syscalls/simple-injector-virustotal.png)](/assets/images/keethief-syscalls/simple-injector-virustotal.png)
+{:.center-image}
 
 VirusTotal намекает...
 {:.quote}
@@ -206,6 +214,7 @@ foreach($typeHandler in $metadataReader.TypeDefinitions) {
 ```
 
 [![simple-injector-imports.png](/assets/images/keethief-syscalls/simple-injector-imports.png)](/assets/images/keethief-syscalls/simple-injector-imports.png)
+{:.center-image}
 
 Смотрим импорты в SimpleInjector.exe
 {:.quote}
@@ -215,6 +224,7 @@ foreach($typeHandler in $metadataReader.TypeDefinitions) {
 При анализе этого добра в динамике, как ты понимаешь, дела обстоят еще проще: так как все EDR имеют привычку вешать хуки на userland-интерфейсы, вызовы подозрительных API сразу поднимут тревогу. Подробнее об этом можно почитать в [ресерче](https://s3cur3th1ssh1t.github.io/A-tale-of-EDR-bypass-methods/) [@ShitSecure](https://twitter.com/ShitSecure), а в лабораторных условиях хукинг нагляднее всего продемонстрировать с помощью [API Monitor](http://www.rohitab.com/apimonitor).
 
 [![simple-injector-apimonitor.png](/assets/images/keethief-syscalls/simple-injector-apimonitor.png)](/assets/images/keethief-syscalls/simple-injector-apimonitor.png)
+{:.center-image}
 
 Хукаем kernel32.dll в SimpleInjector.exe
 {:.quote}
@@ -338,6 +348,7 @@ namespace DynamicAPIInvoke
 ```
 
 [![dynamicapiinvoke.png](/assets/images/keethief-syscalls/dynamicapiinvoke.png)](/assets/images/keethief-syscalls/dynamicapiinvoke.png)
+{:.center-image}
 
 DynamicAPIInvoke без D/Invoke
 {:.quote}
@@ -347,6 +358,7 @@ DynamicAPIInvoke без D/Invoke
 Посмотрим, есть ли подозрительные импорты с помощью нашего импровизированного скрипта для статического анализа.
 
 [![dynamicapiinvoke-imports.png](/assets/images/keethief-syscalls/dynamicapiinvoke-imports.png)](/assets/images/keethief-syscalls/dynamicapiinvoke-imports.png)
+{:.center-image}
 
 Смотрим импорты в DynamicAPIInvoke.exe
 {:.quote}
@@ -354,6 +366,7 @@ DynamicAPIInvoke без D/Invoke
 Импортов не найдено, все по плану. А что скажет API Monitor при запуске инжектора?
 
 [![dynamicapiinvoke-apimonitor.png](/assets/images/keethief-syscalls/dynamicapiinvoke-apimonitor.png)](/assets/images/keethief-syscalls/dynamicapiinvoke-apimonitor.png)
+{:.center-image}
 
 Хукаем kernel32.dll в DynamicAPIInvoke.exe
 {:.quote}
@@ -361,6 +374,7 @@ DynamicAPIInvoke без D/Invoke
 Тоже по нулям. Проверим реакцию KIS на этот бинарь.
 
 [![dynamicapiinvoke-kis.png](/assets/images/keethief-syscalls/dynamicapiinvoke-kis.png)](/assets/images/keethief-syscalls/dynamicapiinvoke-kis.png)
+{:.center-image}
 
 «Касперский» недоволен DynamicAPIInvoke.exe
 {:.quote}
@@ -370,6 +384,7 @@ DynamicAPIInvoke без D/Invoke
 На самом деле, в этом случае «Каспер» палит еще и захардкоженные строки (например, `"VirtualAlloc"`) и имена переменных. Если их обфусцировать или зашифровать, как я делаю вот [тут](https://gist.github.com/snovvcrash/35773330434e738bd86155894338ba4f), мы останемся вне зоне видимости радаров EDR.
 
 [![dynamicapiinvoke-kis-bypass.png](/assets/images/keethief-syscalls/dynamicapiinvoke-kis-bypass.png)](/assets/images/keethief-syscalls/dynamicapiinvoke-kis-bypass.png)
+{:.center-image}
 
 Как тебе такое, Касперский?!
 {:.quote}
@@ -387,6 +402,7 @@ git clone https://github.com/TheWover/DInvoke.git
 Должно получиться что-то вроде этого.
 
 [![di-dynamicapiinvoke-project-tree.png](/assets/images/keethief-syscalls/di-dynamicapiinvoke-project-tree.png)](/assets/images/keethief-syscalls/di-dynamicapiinvoke-project-tree.png)
+{:.center-image}
 
 Структура проекта DInvoke_DynamicAPIInvoke
 {:.quote}
@@ -500,6 +516,7 @@ namespace DInvoke_DynamicAPIInvoke
 ```
 
 [![di-dynamicapiinvoke.png](/assets/images/keethief-syscalls/di-dynamicapiinvoke.png)](/assets/images/keethief-syscalls/di-dynamicapiinvoke.png)
+{:.center-image}
 
 DynamicAPIInvoke с помощью D/Invoke
 {:.quote}
@@ -575,6 +592,7 @@ $a = [DInvoke_DynamicAPIInvoke.Program]::Main(" ")
 ```
 
 [![di-dynamicapiinvoke-kis.png](/assets/images/keethief-syscalls/di-dynamicapiinvoke-kis.png)](/assets/images/keethief-syscalls/di-dynamicapiinvoke-kis.png)
+{:.center-image}
 
 И снова мы ему не угодили
 {:.quote}
@@ -591,6 +609,7 @@ $a = [DInvoke_DynamicAPIInvoke.Program]::Main(" ")
 2. Native API (`ntdll.dll`) – недокументированный <strike>и непонятный</strike> API, реализация которого может меняться от версии к версии Windows. Функции Native API в свою очередь — это обертки для системных вызовов.
 
 [![user-mode-kernel-mode.png](/assets/images/keethief-syscalls/user-mode-kernel-mode.png)](/assets/images/keethief-syscalls/user-mode-kernel-mode.png)
+{:.center-image}
 
 Архитектура Windows (изображение — jhalon.github.io)
 {:.quote}
@@ -600,6 +619,7 @@ $a = [DInvoke_DynamicAPIInvoke.Program]::Main(" ")
 К чему я это – в некоторых ситуациях для нас выгоднее использовать Native API, чем Win32 API, чтобы оставаться как можно ближе к режиму ядра (Ring 0). Ведь там не действуют законы AV/EDR, которые мертвой хваткой вцепились в пользовательский режим (Ring 3).
 
 [![protection-rings.png](/assets/images/keethief-syscalls/protection-rings.png)](/assets/images/keethief-syscalls/protection-rings.png)
+{:.center-image}
 
 Кольца привилегий архитектуры x86 в защищённом режиме (автор схемы — jhalon.github.io)
 {:.quote}
@@ -768,6 +788,7 @@ namespace DInvoke_GetSyscallStub
 Например, [в реализации](https://doxygen.reactos.org/d0/d85/dll_2win32_2kernel32_2client_2thread_8c.html#a17cb3377438e48382207f54a8d045f07) функции `CreateRemoteThread` есть недвусмысленный намек на вызов `NtCreateThread`, что относит нас к сигнатуре [NtCreateThreadEx](http://pinvoke.net/default.aspx/ntdll/NtCreateThreadEx.html).
 
 [![createremotethread-reactos.png](/assets/images/keethief-syscalls/createremotethread-reactos.png)](/assets/images/keethief-syscalls/createremotethread-reactos.png)
+{:.center-image}
 
 Тупим в исходники ReactOS
 {:.quote}
@@ -822,6 +843,7 @@ public class Program
 Что ж, попробуем запустить.
 
 [![di-getsyscallstub.png](/assets/images/keethief-syscalls/di-getsyscallstub.png)](/assets/images/keethief-syscalls/di-getsyscallstub.png)
+{:.center-image}
 
 GetSyscallStub с помощью D/Invoke
 {:.quote}
@@ -831,6 +853,7 @@ GetSyscallStub с помощью D/Invoke
 Еще один подарок от оффенсив-сообщества – это ресурс [dinvoke.net](https://dinvoke.net/) за авторством [@_RastaMouse](https://twitter.com/_RastaMouse), где можно скопипастить готовые сигнатуры делегатов для системных вызовов и подсмотреть примеры кода.
 
 [![di-getsyscallstub-kis.png](/assets/images/keethief-syscalls/di-getsyscallstub-kis.png)](/assets/images/keethief-syscalls/di-getsyscallstub-kis.png)
+{:.center-image}
 
 Easy
 {:.quote}
@@ -996,6 +1019,7 @@ $a = [KeeTheft.Program]::Main(" ")
 ```
 
 [![keetheft-kis.png](/assets/images/keethief-syscalls/keetheft-kis.png)](/assets/images/keethief-syscalls/keetheft-kis.png)
+{:.center-image}
 
 Сим-сим, откройся!
 {:.quote}
