@@ -780,7 +780,7 @@ You've poped a (fluctuating) shell!
 
 И, разумеется, я не мог не портировать созданный код на D/Invoke и не включить его в свой инжектор, который зачастую использую на проектах.
 
-[![vimeo-thumbnail](/assets/images/shellcode-fluctuation/vimeo-thumbnail)](https://vimeo.com/719398239)
+[![vimeo-thumbnail](/assets/images/shellcode-fluctuation/vimeo-thumbnail.png)](https://vimeo.com/719398239)
 
 Демо
 {:.quote}
