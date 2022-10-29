@@ -363,3 +363,4 @@ $ gobuster vhost -u http://example.local -w /usr/share/seclists/Discovery/DNS/su
 * [Top 7 Subdomain Scanner tools to find subdomains](https://securitytrails.com/blog/subdomain-scanner-find-subdomains)
 * [Subdomain Enumeration: 2019 Workflow](https://0xpatrik.com/subdomain-enumeration-2019/)
 * [github.com/emadshanab/subs_all](https://github.com/emadshanab/subs_all)
+* [Regulator: A unique method of subdomain enumeration](https://cramppet.github.io/regulator/index.html)
