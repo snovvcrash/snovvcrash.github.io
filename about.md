@@ -12,6 +12,7 @@ permalink: /about
   <img src="/assets/images/about/oscp.png" width="110px" alt="OSCP" />
   <img src="/assets/images/about/osep.png" width="110px" alt="OSEP" />
   <img src="/assets/images/about/crto.png" width="110px" alt="CRTO" />
+  <img src="/assets/images/about/crto2.png" width="110px" alt="CRTO2" />
   <img src="/assets/images/about/c2dev.png" width="110px" alt="C2Dev" />
 </p>
 
