@@ -46,12 +46,16 @@ information published on the pages of this blog.
 {:style="font-size: 22px"}
 
 <p align="left">
-  <a href="https://github.com/snovvcrash"><img src="https://img.shields.io/badge/-GitHub-181717?color=white&style=for-the-badge" alt="GitHub" /></a>
+  <a href="https://twitter.com/snovvcrash"><img src="https://img.shields.io/badge/-Twitter-1D9BF0?style=for-the-badge" alt="Twitter" /></a>
+  <a href="https://infosec.exchange/@snovvcrash"><img src="https://img.shields.io/badge/-Mastodon-5C4ADF?style=for-the-badge" alt="Mastodon" /></a>
+  <a href="https://github.com/snovvcrash"><img src="https://img.shields.io/badge/-GitHub-white?style=for-the-badge" alt="GitHub" /></a>
+  <a href="https://ppn.snovvcrash.rocks/"><img src="https://img.shields.io/badge/-GitBook-3681FC?style=for-the-badge" alt="GitBook" /></a>
   <a href="https://www.hackthebox.eu/profile/51037"><img src="https://img.shields.io/badge/-Hack%20The%20Box-9FEF00?style=for-the-badge" alt="Hack The Box" /></a>
   <a href="https://xakep.ru/author/snovvcrash/"><img src="https://img.shields.io/badge/-%5d%5b%d0%b0%d0%ba%d0%b5%d1%80-DD2200?style=for-the-badge" alt="Xakep" /></a>
   <a href="https://hackmag.com/author/snovvcrash/"><img src="https://img.shields.io/badge/-HackMag-008CBA?style=for-the-badge" alt="HackMag" /></a>
   <a href="https://habr.com/ru/users/snovvcrash/posts/"><img src="https://img.shields.io/badge/-Habr-77A2B6?style=for-the-badge" alt="Habr" /></a>
   <a href="https://www.exploit-db.com/?author=10989"><img src="https://img.shields.io/badge/-Exploit‐DB-CA4F0C?style=for-the-badge" alt="Exploit-DB" /></a>
+  <a href="https://keybase.io/snovvcrash"><img src="https://img.shields.io/badge/-Keybase-3ACD8F?style=for-the-badge" alt="Keybase" /></a>
 </p>
 
 <span style="color: red">$</span> dig localhost mx
@@ -59,5 +63,6 @@ information published on the pages of this blog.
 
 <p align="left">
   <a href="mailto:snovvcrash@protonmail[.]ch"><img src="https://img.shields.io/badge/-ProtonMail-8B89CC?style=for-the-badge&logo=ProtonMail&logoColor=white" alt="ProtonMail" /></a>
+  <a href="https://t.me/snovvcrash"><img src="https://img.shields.io/badge/-Telegram-white?style=for-the-badge&logo=Telegram" alt="Telegram" /></a>
   <a href="https://discordapp.com/users/795017641541894176"><img src="https://img.shields.io/badge/-snovvcrash%237064-2F3136?style=for-the-badge&logo=Discord" alt="Discord" /></a>
 </p>
