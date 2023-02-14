@@ -25,7 +25,7 @@ One of the items from my endless TODO-list that I never crossed out was the topi
 While playing with ThreadlessInject and [porting](https://twitter.com/snovvcrash/status/1624944014263713796) it to the [DInvoke](https://github.com/TheWover/DInvoke) API, one of the obvious desires of mine was to test it with a different shellcode. As a Proof-of-Concept Ceri provides a classic [Pop-the-Calc](https://github.com/CCob/ThreadlessInject/blob/c41df117e74b3413a8ed12ba5882058057253aac/Program.cs#L73-L82) shellcode which works smoothly but may not be enough during a real engagement:
 
 ```powershell
-Start-Process notepad; .\ThreadlessInject.exe -p (Get-Process notepad).Id -d kernel32.dll -e OpenProcess
+$notepadId = (Start-Process notepad -PassThru).Id; .\ThreadlessInject.exe -p $notepadId -d kernel32.dll -e OpenProcess
 ```
 
 [![threadless-inject-calc.png](/assets/images/pic-generation-for-threadless-injection/threadless-inject-calc.png)](/assets/images/pic-generation-for-threadless-injection/threadless-inject-calc.png)
@@ -43,7 +43,7 @@ msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o msf-calc.bin
 Providing the `msf-calc.bin` shellcode to ThreadlessInject.exe with `-x` option expectedly results in exiting the target process after calc has been spawned:
 
 ```powershell
-Start-Process notepad; .\ThreadlessInject.exe -x .\msf-calc.bin -p (Get-Process notepad).Id -d kernel32.dll -e OpenProcess
+$notepadId = (Start-Process notepad -PassThru).Id; .\ThreadlessInject.exe -x .\msf-calc.bin -p $notepadId -d kernel32.dll -e OpenProcess
 ```
 
 [![threadless-inject-msf.gif](/assets/images/pic-generation-for-threadless-injection/threadless-inject-msf.gif)](/assets/images/pic-generation-for-threadless-injection/threadless-inject-msf.gif)
