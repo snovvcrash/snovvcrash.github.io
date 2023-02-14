@@ -102,6 +102,8 @@ While testing the 3rd option I came along this terrific article by [@KlezVirus](
 
 As I was looking for a quick example to be used with ThreadlessInject, my attention was caught by one of the references to another blog of maldev magician [Chetan Nayak](https://twitter.com/NinjaParanoid) – [Executing Position Independent Shellcode from Object Files in Memory](https://bruteratel.com/research/feature-update/2021/01/30/OBJEXEC/) – which we shall focus on further.
 
+:information_source: The same technique is used by [Aleksandra Doniec](https://twitter.com/hasherezade) in [pe_to_shellcode](https://github.com/hasherezade/pe_to_shellcode) and by [@KlezVirus](https://twitter.com/KlezVirus) in [inceptor](https://github.com/klezVirus/inceptor/blob/dev/inceptor/pic-generator.py).
+
 ## PIC from Object Files
 
 In his blog Chetan provides a way to build a C function with a small assembly stub for proper stack alignment and returning to the caller gracefully.
@@ -171,6 +173,8 @@ Generate and execute:
 
 ```bash
 ./generate.sh 'cmd /c "whoami /all" > C:\Windows\Tasks\out.txt'
+[*] Payload size: 640 bytes
+[+] Saved as: exec.bin
 ```
 
 [![threadless-inject-exec.png](/assets/images/pic-generation-for-threadless-injection/threadless-inject-exec.png)](/assets/images/pic-generation-for-threadless-injection/threadless-inject-exec.png)
