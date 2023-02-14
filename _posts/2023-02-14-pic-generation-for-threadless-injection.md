@@ -18,7 +18,7 @@ In this blog I will describe a way to automate the generation of Position Indepe
 
 ## Function Stomping / Threadless Injection
 
-One of the items from my endless TODO-list that I never crossed out was the topic of [Function Stomping](https://github.com/Idov31/FunctionStomping) by [Ido Veltzman](https://twitter.com/Idov31). Luckily, [Ceri Coburn](https://twitter.com/_EthicalChaos_) [presented](https://twitter.com/_EthicalChaos_/status/1624520767483310081) an awesome [research](https://github.com/CCob/ThreadlessInject/blob/master/Needles%20without%20the%20Thread.pptx) on Threadless Shellcode Injection technique accompanying a ready-to-use [injector in C#](https://github.com/CCob/ThreadlessInject) which made me get back to that long-forgotten TODO.
+One of the items from my endless TODO-list that I never crossed out was the topic of [Function Stomping](https://idov31.github.io/2022/01/28/function-stomping.html) by [Ido Veltzman](https://twitter.com/Idov31). Luckily, [Ceri Coburn](https://twitter.com/_EthicalChaos_) [presented](https://twitter.com/_EthicalChaos_/status/1624520767483310081) an awesome [research](https://github.com/CCob/ThreadlessInject/blob/master/Needles%20without%20the%20Thread.pptx) on Threadless Shellcode Injection technique accompanying a ready-to-use [injector in C#](https://github.com/CCob/ThreadlessInject) which made me get back to that long-forgotten TODO.
 
 ## Pop-the-Calc Shellcode
 
@@ -171,6 +171,7 @@ Happy hacking!
 * [https://github.com/CCob/ThreadlessInject](https://github.com/CCob/ThreadlessInject)
 * [https://bruteratel.com/research/feature-update/2021/01/30/OBJEXEC/](https://bruteratel.com/research/feature-update/2021/01/30/OBJEXEC/)
 * [https://github.com/paranoidninja/PIC-Get-Privileges](https://github.com/paranoidninja/PIC-Get-Privileges)
+* [https://idov31.github.io/2022/01/28/function-stomping.html](https://idov31.github.io/2022/01/28/function-stomping.html)
 * [https://github.com/Idov31/FunctionStomping](https://github.com/Idov31/FunctionStomping)
 * [https://klezvirus.github.io/RedTeaming/AV_Evasion/FromInjectionToHijacking/](https://klezvirus.github.io/RedTeaming/AV_Evasion/FromInjectionToHijacking/)
 * [https://rastating.github.io/altering-msfvenom-exec-payload-to-work-without-exitfunc/](https://rastating.github.io/altering-msfvenom-exec-payload-to-work-without-exitfunc/)
