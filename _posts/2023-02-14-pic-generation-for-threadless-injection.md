@@ -40,7 +40,7 @@ Well, what will a hacker do to generate a shellcode? Summon `msfvenom`, of cours
 msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o msf-calc.bin
 ```
 
-Providing the `msf-calc.bin` shellcode to ThreadlessInject.exe with `-x` option expectedly results in exiting the target process:
+Providing the `msf-calc.bin` shellcode to ThreadlessInject.exe with `-x` option expectedly results in exiting the target process after calc has been spawned:
 
 ```powershell
 Start-Process notepad; .\ThreadlessInject.exe -x .\msf-calc.bin -p (Get-Process notepad).Id -d kernel32.dll -e OpenProcess
@@ -63,7 +63,7 @@ msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=thread -f raw -o msf-calc-thr
 It's a [known](https://rastating.github.io/altering-msfvenom-exec-payload-to-work-without-exitfunc/) thing that MSF-exec payloads are better to be started from a fresh thread 'cause the shellcode doesn't treat the stack gently. Furthermore, a hint about the required shellcode behavior is kindly left by the author of ThreadlessInject [in the comments](https://github.com/CCob/ThreadlessInject/blob/master/Program.cs#L73):
 
 ```csharp
-//x64 calc shellcode function with ret as default if no shellcode supplied
+// x64 calc shellcode function with ret as default if no shellcode supplied
 static byte[] x64 = {
     0x53, 0x56, 0x57, 0x55, 0x54, 0x58, 0x66, 0x83, 0xE4, 0xF0, 0x50, 0x6A,
     0x60, 0x5A, 0x68, 0x63, 0x61, 0x6C, 0x63, 0x54, 0x59, 0x48, 0x29, 0xD4,
@@ -90,12 +90,12 @@ So what can we do about it?
 
 ## Where's the <strike>Detonator</strike>Generator?
 
-Honestly, I don't know any other FOSS shellcode generator besides `msfvenom` so I started to google :man_shrugging: Btw, the builtin default shellcode for ThreadlessInject is as old as time and can be found in a numerous GitHub repos and [gists](https://gist.github.com/dmchell/51b8c040402e6f13bacbed317335daea#file-csinjcy-L35).
+Honestly, I don't know any other FOSS shellcode generator besides `msfvenom` so I started to google :man_shrugging: Btw, the builtin default shellcode for ThreadlessInject is as old as time and can be found in numerous GitHub repos and [gists](https://gist.github.com/dmchell/51b8c040402e6f13bacbed317335daea#file-csinjcy-L35).
 
 Among other things, I considered the following options:
 
-* Look for other less-known open source shellcode generators for Windows x64 – failed due to a total lack of them (though [win-x86-shellcoder](https://github.com/ommadawn46/win-x86-shellcoder) seems to be a nice project for x86).
-* Use an existing Pop-the-Calc `.asm` file as template for generating a WinExec shellcode with an arbitrary argument (command) – failed due me being lazy. Good examples of such 'static' calc shellcodes (with a static `lpCmdLine` argument for WinExec) are [win-exec-calc-shellcode](https://github.com/peterferrie/win-exec-calc-shellcode) and [x64win-DynamicNoNull-WinExec-PopCalc-Shellcode](https://github.com/boku7/x64win-DynamicNoNull-WinExec-PopCalc-Shellcode) by [Bobby Cooke](https://twitter.com/0xBoku).
+* Look for less-known open source shellcode generators for Windows x64 – failed due to a total lack of them (though [win-x86-shellcoder](https://github.com/ommadawn46/win-x86-shellcoder) seems to be a nice project for x86).
+* Use an existing Pop-the-Calc `.asm` file as template for generating a WinExec shellcode with an arbitrary argument (OS command) – failed due me being lazy. Good examples of such 'static' calc shellcodes (with a static `lpCmdLine` argument for WinExec) are [win-exec-calc-shellcode](https://github.com/peterferrie/win-exec-calc-shellcode) and [x64win-DynamicNoNull-WinExec-PopCalc-Shellcode](https://github.com/boku7/x64win-DynamicNoNull-WinExec-PopCalc-Shellcode) by [Bobby Cooke](https://twitter.com/0xBoku).
 * Play with popular PE → shellcode techniques like [sRDI](https://github.com/monoxgas/sRDI), [donut](https://github.com/TheWover/donut), [pe_to_shellcode](https://github.com/hasherezade/pe_to_shellcode), etc.
 
 While testing the 3rd option I came along this terrific article by [@KlezVirus](https://twitter.com/KlezVirus) – [From Process Injection to Function Hijacking](https://klezvirus.github.io/RedTeaming/AV_Evasion/FromInjectionToHijacking/) – which covers Function Stomping topic **in great depth** (one more blogpost in my TODOs).
@@ -106,7 +106,7 @@ As I was looking for a quick example to be used with ThreadlessInject, my attent
 
 In his blog Chetan provides a way to build a C function with a small assembly stub for proper stack alignment and returning to the caller gracefully. With the ability to dynamically resolve exported symbols of WinExec (which resides within `kernel32.dll`) we can extract the opcodes from the compiled binary and use them as a Position Independent shellcode. That's exactly what we need!
 
-Based on the given example of constructing the `getprivs` function I shall git clone his demo [repository](https://github.com/paranoidninja/PIC-Get-Privileges) and write a template to execute a command of my choice using WinExec:
+I shall git clone his demo [repository](https://github.com/paranoidninja/PIC-Get-Privileges) and write a template to execute a command of my choice using WinExec based on the given example of constructing the `getprivs` function:
 
 ```c
 // template.c
@@ -130,7 +130,7 @@ void exec() {
 }
 ```
 
-Then with a bit of Bash magic for automation we get a working alternative for the `windows/x64/exec` MSF module:
+Then with a bit of Bash automation we get a working alternative for the MSF `windows/x64/exec CMD= -f raw` payload generator:
 
 ```bash
 #!/usr/bin/env bash
