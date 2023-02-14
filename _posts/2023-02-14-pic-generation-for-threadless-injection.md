@@ -106,7 +106,7 @@ As I was looking for a quick example to be used with ThreadlessInject, my attent
 
 In his blog Chetan provides a way to build a C function with a small assembly stub for proper stack alignment and returning to the caller gracefully.
 
-> In order to make sure that our shellcode is always stack aligned, we will write a small assembly stub which will align the stack and call our C function which would act as our entrypoint. We will convert this assembly code to an object file which we will later link to our C source code.
+> In order to make sure that our shellcode is always stack aligned, we will write a small assembly stub which will align the stack and call our C function which would act as our entrypoint. We will convert this assembly code to an object file which we will later link to our C source code. – Chetan Nayak (@NinjaParanoid)
 
 [![bruteratel-alignstack.png](/assets/images/pic-generation-for-threadless-injection/bruteratel-alignstack.png)](/assets/images/pic-generation-for-threadless-injection/bruteratel-alignstack.png)
 {:.center-image}
