@@ -104,7 +104,17 @@ As I was looking for a quick example to be used with ThreadlessInject, my attent
 
 ## PIC from Object Files
 
-In his blog Chetan provides a way to build a C function with a small assembly stub for proper stack alignment and returning to the caller gracefully. With the ability to dynamically resolve exported symbols of WinExec (which resides within `kernel32.dll`) we can extract the opcodes from the compiled binary and use them as a Position Independent shellcode. That's exactly what we need!
+In his blog Chetan provides a way to build a C function with a small assembly stub for proper stack alignment and returning to the caller gracefully.
+
+> In order to make sure that our shellcode is always stack aligned, we will write a small assembly stub which will align the stack and call our C function which would act as our entrypoint. We will convert this assembly code to an object file which we will later link to our C source code.
+
+[![bruteratel-alignstack.png](/assets/images/pic-generation-for-threadless-injection/bruteratel-alignstack.png)](/assets/images/pic-generation-for-threadless-injection/bruteratel-alignstack.png)
+{:.center-image}
+
+alignstack assembly stub (bruteratel.com)
+{:.quote}
+
+With the ability to dynamically resolve exported symbols of WinExec (which resides within `kernel32.dll`) we can extract the opcodes from the compiled binary and use them as a Position Independent shellcode. That's exactly what we need!
 
 I shall git clone his demo [repository](https://github.com/paranoidninja/PIC-Get-Privileges) and write a template to execute a command of my choice using WinExec based on the given example of constructing the `getprivs` function:
 
@@ -148,6 +158,11 @@ x86_64-w64-mingw32-gcc exec.c -Wall -m64 -ffunction-sections -fno-asynchronous-u
 x86_64-w64-mingw32-ld -s adjuststack.o exec.o -o exec.exe
 
 echo -e `for i in $(objdump -d exec.exe | grep "^ " | cut -f2); do echo -n "\x$i"; done` > exec.bin
+
+if [ -f exec.bin ]; then
+    echo "[*] Payload size: `stat -c%s exec.bin` bytes"
+    echo "[+] Saved as: exec.bin"
+fi
 
 rm exec.exe exec.o exec.c adjuststack.o
 ```
