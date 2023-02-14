@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Adopting Position Independent Shellcodes from Object Files for Threadless Injection"
+title: "Adopting Position Independent Shellcodes from Object Files in Memory for Threadless Injection"
 date: 2023-02-14 05:00:00 +0300
 author: snovvcrash
 tags: [maldev, threadless-injection, function-stomping, shellcode-injection, shellcode-generation, pic, winexec, msfvenom]
 ---
 
-In this blog I will describe a way to automate the generation of Position Independent Shellcodes from Object Files (cc @NinjaParanoid) to be used along with Threadless Injection technique (cc @\_EthicalChaos\_).
+In this blog I will describe a way to automate the generation of Position Independent Shellcodes from object files in memory (by @NinjaParanoid) to be used along with Threadless Injection technique (by @\_EthicalChaos\_).
 
 <!--cut-->
 
