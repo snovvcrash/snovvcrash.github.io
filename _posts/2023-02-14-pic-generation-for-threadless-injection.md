@@ -158,9 +158,9 @@ SHOWWINDOW="${2}"  # https://learn.microsoft.com/en-us/windows/win32/api/winuser
 
 CMD=`echo "${CMD}" | grep -o . | sed -e ':a;N;$!ba;s/\n/\x27,\x27/g'`
 CMD="${CMD//\\/\\\\\\\\}"
-#echo -e "CHAR cmd_c[] = {'${CMD}'};\n((WINEXEC)WinExecFunc)(cmd_c, ${SHOWWINDOW});\n"
 
 cat template.c | sed "s#<CMD>#${CMD}#g" | sed "s#<SHOWWINDOW>#${SHOWWINDOW}#g" > exec.c
+#cat exec.c | grep cmd_c
 
 nasm -f win64 adjuststack.asm -o adjuststack.o
 
