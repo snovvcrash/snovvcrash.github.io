@@ -14,12 +14,11 @@ $content-width:       850px;
   border-radius: 3px;
   background:    #eef;
   @extend %vertical-rhythm;
+}
 
-  .highlighter-rouge & {
-    color:            #f5f5f5;
-    background:       #eef;
-    background-color: #505050;
-  }
+.highlighter-rouge {
+  color:            #f5f5f5;
+  background-color: #505050;
 }
 
 code {

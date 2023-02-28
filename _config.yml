@@ -25,9 +25,10 @@ locale:    ru-RU
 description: >
   High-Speed Pizza Delivery
 
-keybase_username:  snovvcrash
-github_username:   snovvcrash
-twitter_username:  snovvcrash
+twitter_username:   snovvcrash
+github_username:    snovvcrash
+mastodon_username:  snovvcrash
+keybase_username:   snovvcrash
 
 baseurl:            ""
 url:                https://snovvcrash.github.io
