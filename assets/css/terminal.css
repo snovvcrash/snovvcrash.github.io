@@ -1,6 +1,6 @@
 /* Stolen from: https://0xdf.gitlab.io/assets/css/syntax.css */
 
-.language-console:before {
+.language-terminal:before {
   content: "";
   width: 10px;
   height: 10px;
@@ -11,7 +11,7 @@
   position: absolute;
 }
 
-.language-console {
+.language-terminal {
   padding: 26px 0px 0px;
   border-radius: 5px;
 
@@ -20,30 +20,30 @@
   box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
 }
 
-.language-console pre {
+.language-terminal pre {
   border: none;
   background: #380428 !important;
 }
 
-.language-console code {
+.language-terminal code {
   background-color: #380428;
   color: #ffd;
 }
 
-.language-console .gp {
+.language-terminal .gp {
   color: #8d4;
 }
 
-.language-console .nt {
+.language-terminal .nt {
   color: #99f;
 }
 
-.language-console .go {
+.language-terminal .go {
   color: #fff;
 }
 
-.language-console .s,
-.language-console .s2,
-.language-console .nn {
+.language-terminal .s,
+.language-terminal .s2,
+.language-terminal .nn {
   color: #2ad;
 }

