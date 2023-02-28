@@ -3,7 +3,7 @@ layout: post
 title: "УдаленнаяКартошка0. Повышаем привилегии в AD через кросс-протокольную атаку NTLM Relay"
 date: 2022-12-30 03:00:00 +0300
 author: snovvcrash
-tags: [xakepru, internal-pentest, active-directory, eop, pivoting, tunneling, ntlm-relay, dcom-rpc, potatoes, remotepotato0, cobalt-strike, impacket, ntlmrelayx]
+tags: [xss-is, xakep-ru, internal-pentest, active-directory, eop, pivoting, tunneling, ntlm-relay, dcom-rpc, potatoes, remotepotato0, cobalt-strike, impacket, ntlmrelayx]
 ---
 
 [//]: # (2022-05-11)

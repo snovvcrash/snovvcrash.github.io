@@ -3,7 +3,7 @@ layout: post
 title: "Флуктуация шелл-кода. Пишем инжектор для динамического шифрования полезной нагрузки в памяти"
 date: 2022-08-07 16:00:00 +0300
 author: snovvcrash
-tags: [xakepru, maldev, c2, covenant, memory-evasion, shellcode-injection, shellcode-fluctuation, api-hooking, dotnet, csharp]
+tags: [xakep-ru, maldev, c2, covenant, memory-evasion, shellcode-injection, shellcode-fluctuation, api-hooking, dotnet, csharp]
 ---
 
 [//]: # (2022-06-17)

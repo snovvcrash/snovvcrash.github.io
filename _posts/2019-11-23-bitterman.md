@@ -3,7 +3,7 @@ layout: post
 title: "В королевстве PWN. ROP-цепочки и атака Return-to-PLT в CTF Bitterman"
 date: 2019-11-23 18:00:00 +0300
 author: snovvcrash
-tags: [xakepru, write-up, ctf, pwn-64, linux, gdb-weaponize, buffer-overflow, stack-smashing, getenvaddr, dep-bypass, ret2libc, rop, rop-chain, r2, ROPgadget, ropper, pwntools, aslr-bypass, address-leak, got, plt, ret2plt, libc-database, ghidra]
+tags: [xakep-ru, write-up, ctf, pwn-64, linux, gdb-weaponize, buffer-overflow, stack-smashing, getenvaddr, dep-bypass, ret2libc, rop, rop-chain, r2, ROPgadget, ropper, pwntools, aslr-bypass, address-leak, got, plt, ret2plt, libc-database, ghidra]
 ---
 
 [//]: # (2019-10-23)
@@ -31,7 +31,7 @@ tags: [xakepru, write-up, ctf, pwn-64, linux, gdb-weaponize, buffer-overflow, st
 * TOC
 {:toc}
 
-[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/pwn-kingdom/3-bitterman)
+[*Приложения*](https://github.com/snovvcrash/xakep-ru/tree/master/pwn-kingdom/3-bitterman)
 
 # Ликбез по срыву стека для архитектуры x86-64
 
@@ -67,7 +67,7 @@ $ sudo update-alternatives --install /usr/bin/python2 python2 /usr/bin/python2.7
 
 ### Вооружение GDB
 
-В прошлых статьях мы использовали [PEDA](https://github.com/longld/peda) в качестве основного обвеса для дебаггера, однако я знал, что на сегодняшний день существуют более продвинутые тулзы для апгрейда GDB (к тому же PEDA больше не поддерживается разработчиком), а именно: [GEF](https://github.com/hugsy/gef) и [pwndbg](https://github.com/pwndbg/pwndbg). Изучая эти инструменты, я нашел изобретательный [пост](https://medium.com/bugbountywriteup/pwndbg-gef-peda-one-for-all-and-all-for-one-714d71bf36b8), в котором рассказывается, как одновременно установить вышеупомянутый софт и переключаться между ним по одному нажатию. Мне понравилась идея, но не реализация, поэтому я набросал свой [скрипт](https://github.com/snovvcrash/xakepru/blob/master/pwn-kingdom/3-bitterman/gdb_weaponize.sh), позволяющий в одно действие инсталлировать все 3 ассистента, после чего запуск каждого из которых будет происходить следующими командами соответственно.
+В прошлых статьях мы использовали [PEDA](https://github.com/longld/peda) в качестве основного обвеса для дебаггера, однако я знал, что на сегодняшний день существуют более продвинутые тулзы для апгрейда GDB (к тому же PEDA больше не поддерживается разработчиком), а именно: [GEF](https://github.com/hugsy/gef) и [pwndbg](https://github.com/pwndbg/pwndbg). Изучая эти инструменты, я нашел изобретательный [пост](https://medium.com/bugbountywriteup/pwndbg-gef-peda-one-for-all-and-all-for-one-714d71bf36b8), в котором рассказывается, как одновременно установить вышеупомянутый софт и переключаться между ним по одному нажатию. Мне понравилась идея, но не реализация, поэтому я набросал свой [скрипт](https://github.com/snovvcrash/xakep-ru/blob/master/pwn-kingdom/3-bitterman/gdb_weaponize.sh), позволяющий в одно действие инсталлировать все 3 ассистента, после чего запуск каждого из которых будет происходить следующими командами соответственно.
 
 ```
 $ gdb-peda [ELF-файл]

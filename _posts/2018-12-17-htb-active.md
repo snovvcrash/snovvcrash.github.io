@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Active }"
 date: 2018-12-17 00:00:00 +0300
 author: snovvcrash
-tags: [xakepru, write-up, hackthebox, machine, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
+tags: [xakep-ru, hackmag-com, write-up, hackthebox, machine, windows, directory, smb, smbclient, smbmap, enum4linux, nullinux, gpp, gpp-decrypt, kerberos, kerberoasting, impacket, hashcat]
 ---
 
 [//]: # (2019-08-01)
@@ -31,7 +31,7 @@ tags: [xakepru, write-up, hackthebox, machine, windows, directory, smb, smbclien
 * TOC
 {:toc}
 
-[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/htb-active)
+[*Приложения*](https://github.com/snovvcrash/xakep-ru/tree/master/htb-active)
 
 # Разведка
 ## Nmap

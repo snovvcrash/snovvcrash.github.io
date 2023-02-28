@@ -1,0 +1,33 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// DARK
+
+$background-color:  #202020;
+$text-color:        #e6e6e6;
+$grey-color-light:  #595959;  // for the border-top separators, table titles filling
+$grey-color-dark:   #a6a6a6;  // such as the site title in the header
+$content-width:       850px;
+
+.highlight {
+  border-radius: 3px;
+  background:    #eef;
+  @extend %vertical-rhythm;
+
+  .highlighter-rouge & {
+    color:            #f5f5f5;
+    background:       #eef;
+    background-color: #505050;
+  }
+}
+
+code {
+  color: #080808;
+}
+
+@import "minima";
+
+a:visited {
+  color: #1c67ca;
+}

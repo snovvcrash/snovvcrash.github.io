@@ -41,8 +41,9 @@ header_pages:
   - about.md
 
 # Build settings
-markdown:  kramdown
-theme:     minima
+markdown:     kramdown
+highlighter:  rouge
+theme:        minima
 plugins:
   - jekyll-seo-tag
   - jemoji
@@ -55,7 +56,7 @@ google_analytics:  UA-123831726-1
 #  shortname:  snovvcrash-github-io
 
 # Page locations
-tag_page:       /tags.html
+tag_page:  /tags.html
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

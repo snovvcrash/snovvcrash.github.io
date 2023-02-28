@@ -3,7 +3,7 @@ layout: post
 title: "В королевстве PWN. Обходим DEP и брутфорсим ASLR в «Октябре»"
 date: 2019-11-08 18:00:00 +0300
 author: snovvcrash
-tags: [xakepru, write-up, hackthebox, machine, pwn-32, linux, october-cms, default-credentials, searchsploit, php5-upload, python-simple-http, suid-files, buffer-overflow, stack-smashing, dep-bypass, ret2libc, aslr-bypass, aslr-bruteforce]
+tags: [xakep-ru, write-up, hackthebox, machine, pwn-32, linux, october-cms, default-credentials, searchsploit, php5-upload, python-simple-http, suid-files, buffer-overflow, stack-smashing, dep-bypass, ret2libc, aslr-bypass, aslr-bruteforce]
 ---
 
 [//]: # (2019-10-08)
@@ -44,7 +44,7 @@ tags: [xakepru, write-up, hackthebox, machine, pwn-32, linux, october-cms, defau
 * TOC
 {:toc}
 
-[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/pwn-kingdom/2-htb-october)
+[*Приложения*](https://github.com/snovvcrash/xakep-ru/tree/master/pwn-kingdom/2-htb-october)
 
 # Разведка
 

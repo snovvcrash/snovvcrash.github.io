@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Granny💔Grandpa }"
 date: 2020-01-26 22:00:00 +0300
 author: snovvcrash
-tags: [xakepru, write-up, hackthebox, machine, windows, webdav, davtest, burp, msfvenom, metasploit, upload-asp, cve-2017-7269, scstoragepathfromurl, ms14-070, tcpip-ioctl, pivoting, port-forwarding, msf-route, msf-socks, proxychains-ng, ssh-reverse-tcp, plink.exe, msf-portfwd, msf-hashdump, lmhash-nthash, pass-the-hash, impacket, psexec.py]
+tags: [xakep-ru, hackmag-com, write-up, hackthebox, machine, windows, webdav, davtest, burp, msfvenom, metasploit, upload-asp, cve-2017-7269, scstoragepathfromurl, ms14-070, tcpip-ioctl, pivoting, port-forwarding, msf-route, msf-socks, proxychains-ng, ssh-reverse-tcp, plink, msf-portfwd, msf-hashdump, lmhash-nthash, pass-the-hash, impacket, psexec-py]
 ---
 
 [//]: # (2019-12-26)
@@ -15,7 +15,7 @@ tags: [xakepru, write-up, hackthebox, machine, windows, webdav, davtest, burp, m
 * TOC
 {:toc}
 
-[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/htb-grandparents)
+[*Приложения*](https://github.com/snovvcrash/xakep-ru/tree/master/htb-grandparents)
 
 # Granny
 

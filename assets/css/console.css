@@ -1,0 +1,49 @@
+/* Stolen from: https://0xdf.gitlab.io/assets/css/syntax.css */
+
+.language-console:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  margin: -20px 0 0 5px;
+  border-radius: 5px;
+  background:  #f25d2b;
+  box-shadow: 0 0 0 1px #595953, 15px 0 #7d7871, 15px 0 0 1px #595953, 30px 0 #7d7871, 30px 0 0 1px #595953;
+  position: absolute;
+}
+
+.language-console {
+  padding: 26px 0px 0px;
+  border-radius: 5px;
+
+  /* last one defines what's below the bar - eef is original */
+  background: linear-gradient(#504b45, #3c3b37 20px, #3c3b37 20px, #3c3b37 21px, #380428 21px);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
+}
+
+.language-console pre {
+  border: none;
+  background: #380428 !important;
+}
+
+.language-console code {
+  background-color: #380428;
+  color: #ffd;
+}
+
+.language-console .gp {
+  color: #8d4;
+}
+
+.language-console .nt {
+  color: #99f;
+}
+
+.language-console .go {
+  color: #fff;
+}
+
+.language-console .s,
+.language-console .s2,
+.language-console .nn {
+  color: #2ad;
+}

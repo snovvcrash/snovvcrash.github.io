@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Mischief }"
 date: 2019-04-05 16:00:00 +0300
 author: snovvcrash
-tags: [xakepru, write-up, hackthebox, machine, linux, snmp, snmpwalk, snmp-check, onesixtyone, enyx.py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, .bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
+tags: [xakep-ru, hackmag-com, write-up, hackthebox, machine, linux, snmp, snmpwalk, snmp-check, onesixtyone, enyx-py, python-server, ipv6, iptables, ip6tables, eui-64, hydra, command-injection, reverse-shell, acl, getfacl, bash_history, ping-pattern, icmp-shell, scapy, systemd-run, lxc]
 ---
 
 [//]: # (2019-08-20)
@@ -33,7 +33,7 @@ tags: [xakepru, write-up, hackthebox, machine, linux, snmp, snmpwalk, snmp-check
 * TOC
 {:toc}
 
-[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/htb-mischief)
+[*Приложения*](https://github.com/snovvcrash/xakep-ru/tree/master/htb-mischief)
 
 # Разведка
 ## Nmap

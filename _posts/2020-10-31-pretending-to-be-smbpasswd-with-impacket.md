@@ -3,7 +3,7 @@ layout: post
 title: "Pretending to Be smbpasswd with impacket"
 date: 2020-10-31 19:00:00 +0300
 author: snovvcrash
-tags: [notes, hackthebox, machine, windows, null-session, smb, dcerpc, ms-samr, wireshark, smbpasswd, smbclient.py, rpcclient, chgpassworduser2, python, impacket, password-policies]
+tags: [notes, hackthebox, machine, windows, null-session, smb, dcerpc, ms-samr, wireshark, smbpasswd, smbclient-py, rpcclient, chgpassworduser2, python, impacket, password-policies]
 ---
 
 For me the most interesting aspect of pwning the Fuse machine from HTB was dealing with an expired domain user password. I found no other tools except smbpasswd to invoke such a password change remotely from Linux which seemed odd to me. So I decided to create a simple Python script with impacket which binds to the \samr pipe over SMB (MSRPC-SAMR) with a null session and calls SamrUnicodeChangePasswordUser2 to trigger the password change.

@@ -3,7 +3,7 @@ layout: post
 title: "В королевстве PWN. Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя"
 date: 2019-12-20 18:00:00 +0300
 author: snovvcrash
-tags: [xakepru, write-up, hackthebox, machine, pwn-64, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum.sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
+tags: [xakep-ru, write-up, hackthebox, machine, pwn-64, linux, masscan, tiny-web-server, path-traversal, wget-mirror, diff, code-analysis, gdb-fork, python3-pwntools, ret2shellcode, ret2bss, ssh-key-injection, linenum-sh, padding-oracle, aes-cbc, pkcs7, binary-analysis, reverse, race-condition, ghidra, cutter, strace, binary-patching, pvs-studio]
 ---
 
 [//]: # (2019-11-20)
@@ -36,7 +36,7 @@ tags: [xakepru, write-up, hackthebox, machine, pwn-64, linux, masscan, tiny-web-
 * TOC
 {:toc}
 
-[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/pwn-kingdom/4-htb-smasher)
+[*Приложения*](https://github.com/snovvcrash/xakep-ru/tree/master/pwn-kingdom/4-htb-smasher)
 
 # Разведка
 
@@ -166,7 +166,7 @@ clean:
 
 У нас есть исполняемый стек, сегменты с возможностью записи и исполнения произвольных данных и активный механизм `FORTIFY` — последний, правда, ни на что не повлияет в нашей ситуации (подробнее о нем можно прочесть [в первой части](/2019/10/20/classic-stack-overflow.html#checksec) цикла, где мы разбирали вывод `checksec`). Плюс нужно помнить, что на целевом хосте, скорее всего, активен механизм рандомизации адресного пространства ASLR.
 
-Прежде чем перейти непосредственно к сплоитингу, посмотрим, изменил ли как-нибудь автор машины исходный код `tiny.c` (сам файл я положу [к себе на гитхаб](https://github.com/snovvcrash/xakepru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny.c), чтобы не загромождать тело статьи).
+Прежде чем перейти непосредственно к сплоитингу, посмотрим, изменил ли как-нибудь автор машины исходный код `tiny.c` (сам файл я положу [к себе на гитхаб](https://github.com/snovvcrash/xakep-ru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny.c), чтобы не загромождать тело статьи).
 
 ## Изменения в исходном коде tiny.c
 
@@ -401,7 +401,7 @@ r.sendline()
 [![poc-py-fail.png](/assets/images/pwn-kingdom/smasher/poc-py-fail.png)](/assets/images/pwn-kingdom/smasher/poc-py-fail.png)
 {:.center-image}
 
-С первого раза не сработало… Что пошло не так? Значение `0xd34dc0d3` упаковано в формат little-endian для x86-64, поэтому на самом деле оно выглядит как `0x00000000d34dc0d3`. При чтении первого нулевого байта сервер упал. Почему? Потому что он юзает функцию `sscanf` ([строка 278](https://github.com/snovvcrash/xakepru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny.c#L278)) для парсинга запроса — а она записывает нашу полезную нагрузку в массив `uri`, пока не споткнется о нулевой терминатор.
+С первого раза не сработало… Что пошло не так? Значение `0xd34dc0d3` упаковано в формат little-endian для x86-64, поэтому на самом деле оно выглядит как `0x00000000d34dc0d3`. При чтении первого нулевого байта сервер упал. Почему? Потому что он юзает функцию `sscanf` ([строка 278](https://github.com/snovvcrash/xakep-ru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny.c#L278)) для парсинга запроса — а она записывает нашу полезную нагрузку в массив `uri`, пока не споткнется о нулевой терминатор.
 
 Чтобы избежать этого, перед отправкой конвертируем весь пейлоад в Percent-encoding с помощью `urllib.parse.quote`.
 
@@ -508,14 +508,14 @@ r.sendline(asm(shellcraft.dupsh(4)))
 
 В нашем случае это код для Linux x64 — версия и разрядность ОС берутся из инициализации контекста.
 
-Метод [dupsh](https://docs.pwntools.com/en/stable/shellcraft/amd64.html#pwnlib.shellcraft.amd64.linux.dupsh) генерит код, который спавнит шелл и перенаправляет все стандартные потоки в сетевой сокет. Нам нужен сокет со значением дескриптора `4`: такой номер присваивался новому открытому соединению с клиентом (переменная `connfd`, [строка 433](https://github.com/snovvcrash/xakepru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny.c#L433)) при локальном анализе исполняемого файла. Это логично, ведь значения `0-3` уже заняты (`0`, `1` и `2` — стандартные потоки, `3` — дескриптор родителя), поэтому процесс форка получает первый незанятый ID — четверка.
+Метод [dupsh](https://docs.pwntools.com/en/stable/shellcraft/amd64.html#pwnlib.shellcraft.amd64.linux.dupsh) генерит код, который спавнит шелл и перенаправляет все стандартные потоки в сетевой сокет. Нам нужен сокет со значением дескриптора `4`: такой номер присваивался новому открытому соединению с клиентом (переменная `connfd`, [строка 433](https://github.com/snovvcrash/xakep-ru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny.c#L433)) при локальном анализе исполняемого файла. Это логично, ведь значения `0-3` уже заняты (`0`, `1` и `2` — стандартные потоки, `3` — дескриптор родителя), поэтому процесс форка получает первый незанятый ID — четверка.
 
 [![tiny-exploit.png](/assets/images/pwn-kingdom/smasher/tiny-exploit.png)](/assets/images/pwn-kingdom/smasher/tiny-exploit.png)
 {:.center-image}
 
 Отлично, мы получили сессию пользователя `www`. Интересный момент: ROP-гаджета `pop rsi; ret` в «чистом виде» в бинаре не оказалось, поэтому умный pwntools использовал цепочку `pop rsi; pop r15; ret` и заполнил регистр R15 «мусорным» значением `iaaajaaa`.
 
-Эксплоит, для которого ропчейн прописан в хардкоде, можно [найти](https://github.com/snovvcrash/xakepru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny-exploit-manually.py) в репозитории.
+Эксплоит, для которого ропчейн прописан в хардкоде, можно [найти](https://github.com/snovvcrash/xakep-ru/blob/master/pwn-kingdom/4-htb-smasher/tiny/tiny-exploit-manually.py) в репозитории.
 
 # От грубого шелла до SSH — порт 22
 

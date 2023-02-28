@@ -1,4 +1,4 @@
-### [snovvcrash.github.io](https://snovvcrash.github.io/")
+### [snovvcrash.github.io](https://snovvcrash.github.io/)
 
 #### Install
 
@@ -14,7 +14,7 @@ $ bundle install
 **Host:**
 
 ```
-$ JEKYLL_ENV=production bundle exec jekyll serve [--no-watch]
+$ JEKYLL_ENV=production bundle exec jekyll serve [--host 0.0.0.0] [--no-watch]
 ```
 
 **WSL 2:**

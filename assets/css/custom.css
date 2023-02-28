@@ -1,0 +1,55 @@
+.tag-list:before {
+  content: "\1f3f7";
+  font-size: 1.7em;
+}
+
+.tag-list {
+  word-spacing: 10px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.post-meta {
+  line-height: 11px;
+}
+
+.post-list-h3 {
+  margin-bottom: 0px;
+}
+
+.post-list-li {
+  line-height: 24px;
+}
+
+.center-image {
+  text-align: center;
+}
+
+.quote {
+  font-style: italic;
+  color: #a8a8a8;
+}
+
+.green {
+  color: green;
+}
+
+.score-easy {
+  font-weight: bold;
+  color: green;
+}
+
+.score-medium {
+  font-weight: bold;
+  color: orange;
+}
+
+.score-hard {
+  font-weight: bold;
+  color: red;
+}
+
+.score-insane {
+  font-weight: bold;
+  color: white;
+}

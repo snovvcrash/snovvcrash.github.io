@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ SecNotes }"
 date: 2019-04-05 17:00:00 +0300
 author: snovvcrash
-tags: [write-up, hackthebox, machine, linux, xsrf, second-order-sqli, smb, web-shell, reverse-shell, wsl, lxss, bash.exe, impacket]
+tags: [write-up, hackthebox, machine, linux, xsrf, second-order-sqli, smb, web-shell, reverse-shell, wsl, lxss, bash-exe, impacket]
 ---
 
 **SecNotes** — нетрудная машина под Windows с вариативным начальным этапом и оригинальным заключительным PrivEsc'ом. Для того, чтобы добраться до пользовательской SMB-шары (откуда ты сможешь использовать RCE через залитый веб-шелл), сперва предстоит получить доступ к аккаунту админа веб-приложения. Сделать это можно двумя способами: либо XSRF (путь, задуманный автором коробки), либо SQL-инъекция второго порядка (то, что автор не доглядел). Если же захочешь добраться до root'а, то тебе предложат взаимодействие с подсистемой Linux (WSL) с целью вытащить креды от админской SMB, а далее psexec/winexec для инициализации полноценной сессии суперпользователя. Удачи, мой друг!

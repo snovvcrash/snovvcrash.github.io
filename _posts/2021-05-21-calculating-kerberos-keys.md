@@ -137,4 +137,4 @@ MEGACORP.LOCAL\fakemachine
 """
 ```
 
-The same calculation can be done with [Get-KerberosAESKey.ps1](https://gist.github.com/Kevin-Robertson/9e0f8bfdbf4c1e694e6ff4197f0a4372), [DSInternals](https://github.com/MichaelGrafnetter/DSInternals/blob/master/Documentation/PowerShell/ConvertTo-KerberosKey.md#convertto-kerberoskey) or [Mimikatz](https://github.com/gentilkiwi/mimikatz) `kerberos::hash` function.
+The same calculation can be done with [Get-KerberosAESKey.ps1](https://gist.github.com/Kevin-Robertson/9e0f8bfdbf4c1e694e6ff4197f0a4372), [DSInternals](https://github.com/MichaelGrafnetter/DSInternals/blob/master/Documentation/PowerShell/ConvertTo-KerberosKey.md#convertto-kerberoskey), [Mimikatz](https://github.com/gentilkiwi/mimikatz) `kerberos::hash` function or [aesKrbKeyGen](https://github.com/Tw1sm/aesKrbKeyGen).

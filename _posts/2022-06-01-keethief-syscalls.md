@@ -3,7 +3,7 @@ layout: post
 title: "Вызов мастеру ключей. Инжектим шеллкод в память KeePass, обойдя антивирус"
 date: 2022-06-01 01:30:00 +0300
 author: snovvcrash
-tags: [xakepru, maldev, shellcode-injection, dotnet, csharp, dynamic-invocation, dinovke, keethief, keetheft, keepass]
+tags: [xakep-ru, hackmag-com, maldev, shellcode-injection, dotnet, csharp, dynamic-invocation, dinovke, keethief, keetheft, keepass]
 ---
 
 [//]: # (2022-03-29)

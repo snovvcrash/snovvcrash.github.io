@@ -3,7 +3,7 @@ layout: post
 title: "HTB{ Stratosphere }"
 date: 2018-09-05 01:00:00 +0300
 author: snovvcrash
-tags: [xakepru, write-up, hackthebox, machine, linux, apache, apache-struts, forward-shell, FwdSh3ll, python, eval, library-hijacking, john, hashes]
+tags: [xakep-ru, hackmag-com, write-up, hackthebox, machine, linux, apache, apache-struts, forward-shell, FwdSh3ll, python, eval, library-hijacking, john, hashes]
 ---
 
 [//]: # (2019-09-17)
@@ -28,7 +28,7 @@ tags: [xakepru, write-up, hackthebox, machine, linux, apache, apache-struts, for
 * TOC
 {:toc}
 
-[*Приложения*](https://github.com/snovvcrash/xakepru/tree/master/htb-stratosphere)
+[*Приложения*](https://github.com/snovvcrash/xakep-ru/tree/master/htb-stratosphere)
 
 # Разведка
 ## Nmap
