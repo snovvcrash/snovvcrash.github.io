@@ -11,8 +11,8 @@ tags: [write-up, hackthebox, machine, freebsd, apache, apache-tomcat, php, log-p
 <!--cut-->
 
 <p align="right">
-	<a href="https://www.hackthebox.eu/home/machines/profile/132"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
-	<span class="score-medium">3.9/10</span>
+  <a href="https://www.hackthebox.eu/home/machines/profile/132"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+  <span class="score-medium">3.9/10</span>
 </p>
 
 ![banner.png](/assets/images/htb/machines/poison/banner.png)

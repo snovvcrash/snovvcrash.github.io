@@ -11,8 +11,8 @@ tags: [write-up, hackthebox, machine, linux, xsrf, second-order-sqli, smb, web-s
 <!--cut-->
 
 <p align="right">
-	<a href="https://www.hackthebox.eu/home/machines/profile/151"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
-	<span class="score-medium">5/10</span>
+  <a href="https://www.hackthebox.eu/home/machines/profile/151"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+  <span class="score-medium">5/10</span>
 </p>
 
 ![banner.png](/assets/images/htb/machines/secnotes/banner.png)

@@ -11,8 +11,8 @@ Automate MS SQL injection with a custom sqlmap tamper script to bypass WAF throu
 <!--cut-->
 
 <p align="right">
-	<a href="https://www.hackthebox.eu/home/machines/profile/232"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
-	<span class="score-insane">7.7/10</span>
+  <a href="https://www.hackthebox.eu/home/machines/profile/232"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+  <span class="score-insane">7.7/10</span>
 </p>
 
 ![banner.png](/assets/images/htb/machines/multimaster/banner.png)

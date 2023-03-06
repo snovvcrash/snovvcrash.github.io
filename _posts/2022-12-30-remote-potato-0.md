@@ -13,8 +13,8 @@ tags: [xss-is, xakep-ru, internal-pentest, active-directory, eop, pivoting, tunn
 <!--cut-->
 
 <p align="right">
-    <a href="https://xakep.ru/2022/08/26/remotepotato0/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
-    <a href="https://xss.is/threads/66892/"><img src="https://img.shields.io/badge/%7e%2f-XSS.is-00a150?style=flat-square" alt="xss-badge.svg" /></a>
+  <a href="https://xakep.ru/2022/08/26/remotepotato0/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
+  <a href="https://xss.is/threads/66892/"><img src="https://img.shields.io/badge/%7e%2f-XSS.is-00a150?style=flat-square" alt="xss-badge.svg" /></a>
 </p>
 
 [![banner.png](/assets/images/remote-potato-0/banner.png)](/assets/images/remote-potato-0/banner.png)

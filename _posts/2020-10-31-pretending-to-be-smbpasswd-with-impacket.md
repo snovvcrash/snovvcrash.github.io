@@ -11,8 +11,8 @@ For me the most interesting aspect of pwning the Fuse machine from HTB was deali
 <!--cut-->
 
 <p align="right">
-	<a href="https://www.hackthebox.eu/home/machines/profile/256"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
-	<span class="score-medium">5.6/10</span>
+  <a href="https://www.hackthebox.eu/home/machines/profile/256"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+  <span class="score-medium">5.6/10</span>
 </p>
 
 ![banner.png](/assets/images/htb/machines/fuse/banner.png)

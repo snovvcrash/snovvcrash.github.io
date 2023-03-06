@@ -18,7 +18,7 @@ tags: [xakep-ru, hackmag-com, write-up, hackthebox, machine, linux, snmp, snmpwa
 {:.quote}
 
 <p align="right">
-	<a href="https://hackmag.com/security/mischief/"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>
+  <a href="https://hackmag.com/security/mischief/"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>
     <a href="https://xakep.ru/2019/07/16/mischief/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
     <a href="https://www.hackthebox.eu/home/machines/profile/145"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
     <span class="score-insane">6.3/10</span>

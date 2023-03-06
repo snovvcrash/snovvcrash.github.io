@@ -34,8 +34,8 @@ tags: [xakep-ru, hackmag-com, tutorial, pwn-32, linux, buffer-overflow, stack-sm
 > 4. [Return-to-bss, криптооракулы и реверс-инжиниринг против Великого Сокрушителя](/2019/12/20/htb-smasher.html)
 
 <p align="right">
-	<a href="https://hackmag.com/security/stack-overflow/"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>
-	<a href="https://xakep.ru/2019/09/20/stack-overflow/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
+  <a href="https://hackmag.com/security/stack-overflow/"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>
+  <a href="https://xakep.ru/2019/09/20/stack-overflow/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
 </p>
 
 ![banner.png](/assets/images/pwn-kingdom/classic-stack-overflow/banner.png)

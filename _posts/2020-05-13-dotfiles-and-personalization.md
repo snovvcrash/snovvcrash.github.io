@@ -13,7 +13,7 @@ tags: [xakep-ru, notes, personalization, dotfiles, linux, windows, wsl, zsh, tmu
 <!--cut-->
 
 <p align="right">
-	<a href="https://xakep.ru/2020/04/13/linux-dotfiles/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
+  <a href="https://xakep.ru/2020/04/13/linux-dotfiles/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
 </p>
 
 ![banner.png](/assets/images/dotfiles-and-personalization/banner.png)
