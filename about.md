@@ -18,11 +18,6 @@ permalink: /about
 
 [![HackTheBox-Badge](http://www.hackthebox.eu/badge/image/51037)](https://www.hackthebox.eu/home/users/profile/51037)
 
-<span style="color: red">$</span> git quick-stats
-{:style="font-size: 22px"}
-
-[![GitHub-Stats](https://github-readme-stats.vercel.app/api?username=snovvcrash&hide=issues&show_icons=true&theme=chartreuse-dark)](https://github.com/snovvcrash)
-
 <span style="color: red">$</span> env
 {:style="font-size: 22px"}
 
