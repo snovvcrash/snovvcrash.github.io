@@ -16,6 +16,10 @@ tags: [xakep-ru, maldev, c2, covenant, memory-evasion, shellcode-injection, shel
   <a href="https://xakep.ru/2022/06/17/shellcode-fluctuation/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
 </p>
 
+> **WARNING**
+>
+> Статья имеет ознакомительный характер и предназначена для специалистов по безопасности, проводящих тестирование в рамках контракта. Автор не несет ответственности за любой вред, причиненный с применением изложенной информации. Распространение вредоносных программ, нарушение работы систем и нарушение тайны переписки преследуются по закону.
+
 ![banner.png](/assets/images/shellcode-fluctuation/banner.png)
 {:.center-image}
 
