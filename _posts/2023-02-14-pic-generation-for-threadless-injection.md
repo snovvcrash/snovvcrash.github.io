@@ -88,7 +88,7 @@ As we can see no `ret` is observed within the MSF shellcode... Dunno whether the
 
 So what can we do about it?
 
-## Where's the <strike>Detonator</strike>Generator?
+## Where's the <strike>Detonator</strike> Generator?
 
 Honestly, I don't know any other FOSS shellcode generator besides `msfvenom` so I started to google :man_shrugging: Btw, the builtin default shellcode for ThreadlessInject is as old as time and can be found in numerous GitHub repos and [gists](https://gist.github.com/dmchell/51b8c040402e6f13bacbed317335daea#file-csinjcy-L35).
 
