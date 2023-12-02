@@ -170,7 +170,7 @@ x86_64-w64-mingw32-ld -s adjuststack.o exec.o -o exec.exe
 
 echo -e `for i in $(objdump -d exec.exe | grep "^ " | cut -f2); do echo -n "\x$i"; done` > exec.bin
 
-if [ -f exec.bin ]; then
+if [[ -f exec.bin ]]; then
     echo "[*] Payload size: `stat -c%s exec.bin` bytes"
     echo "[+] Saved as: exec.bin"
 fi
@@ -189,7 +189,7 @@ Generate and execute:
 [![threadless-inject-exec.png](/assets/images/pic-generation-for-threadless-injection/threadless-inject-exec.png)](/assets/images/pic-generation-for-threadless-injection/threadless-inject-exec.png)
 {:.center-image}
 
-Execution of customly generated shellcode
+Execution of the customly generated shellcode
 {:.quote}
 
 Happy hacking!
