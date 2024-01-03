@@ -27,7 +27,7 @@ Let's say an attacker has compromised a machine **TEXAS** in AD domain **tinycor
 
 Elad Shamir described a generic approach in his incredible [*"Wagging the Dog: Abusing Resource-Based Constrained Delegation to Attack Active Directory"*](https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html) research (section *"A Selfless Abuse Case: Skipping S4U2Self"*) where a social engineering attack is supposed to be used in order to coerce the victim into authenticating to a compromised service with RBCD (resource-based constrained delegation) configured. Then the attacker can dump the desired TGS and use it in S4U2proxy as an "evidence".
 
-But what if a social engineering attack is not an option, can we get the target user's TGS without user interaction? Yes, we can! With [@cXestXlaXvie](https://t.me/cXestXlaXvie) and [@Riocool](https://t.me/Riocool) we found a simple way to do that by configuring another type of delegation (RBCD2self this time) on the compromised machine and obtaining the TGS as a result of a full S4U attack against the TEXAS service.
+But what if a social engineering attack is not an option, can we get the target user's TGS without user interaction? Yes, we can! With [@MzHmO](https://github.com/MzHmO) and [@PShlyundin](https://github.com/PShlyundin) we found a simple way to do that by configuring another type of delegation (RBCD2self this time) on the compromised machine and obtaining the TGS as a result of a full S4U attack against the TEXAS service.
 
 ## The Attack
 
@@ -90,7 +90,7 @@ Happy hacking!
 
 ## Credits & References
 
-* [@cXestXlaXvie](https://t.me/cXestXlaXvie)
-* [@Riocool](https://t.me/Riocool)
+* [@MzHmO](https://github.com/MzHmO)
+* [@PShlyundin](https://github.com/PShlyundin)
 * [Elad Shamir](https://twitter.com/elad_shamir) · [Wagging the Dog: Abusing Resource-Based Constrained Delegation to Attack Active Directory](https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html)
 * [Charlie Clark](https://twitter.com/exploitph) · [Revisiting 'Delegate 2 Thyself'](https://exploit.ph/revisiting-delegate-2-thyself.html)
