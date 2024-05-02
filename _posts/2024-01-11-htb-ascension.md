@@ -19,7 +19,7 @@ This write-up is all about pwning the Ascension Endgame from Hack The Box (writt
 > [hackthebox-writeups](https://github.com/Hackplayers/hackthebox-writeups/tree/master/endgames)
 
 <p align="right">
-  <a href="https://www.hackthebox.eu/home/endgame/view/5"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+  <a href="https://app.hackthebox.com/endgames/ascension"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
 </p>
 
 ![banner.png](/assets/images/htb/endgames/ascension/banner.png)
@@ -282,7 +282,7 @@ We've discovered an existent proxy, so we can now execute the full attack to gai
 
 ## MSSQL Agent Jobs for Command Execution
 
-I will follow Optiv [research](https://www.optiv.com/explore-optiv-insights/blog/mssql-agent-jobs-command-execution) to gain RCE via Agent jobs. The only thing that I have to add is the `@proxy_id` parameter (for the `sp_add_jobstep` procedure) which will point to the discovered proxy account.
+I will follow **Optiv** [research](https://www.optiv.com/explore-optiv-insights/blog/mssql-agent-jobs-command-execution) to gain RCE via Agent jobs. The only thing that I have to add is the `@proxy_id` parameter (for the `sp_add_jobstep` procedure) which will point to the discovered proxy account.
 
 PoC script on Python to get ping back:
 
@@ -408,7 +408,7 @@ PS > Invoke-Inveigh -IP 192.168.10.39 -ConsoleOutput N -FileOutput Y -NBNS Y –
 ![web01-inveigh.png](/assets/images/htb/endgames/ascension/web01-inveigh.png)
 {:.center-image}
 
-Someone on the local box is repeatedly trying to resolve non-existent `FIN01` name. It gives me an idea that a scheduled task may be possibly involved to simulate this activity. I will attempt to run [Seatbelt](https://github.com/GhostPack/Seatbelt) to list scheduled tasks, but it fails due to insufficient privileges. That's why I decide to get a meterpreter shell, migrate to another process and try again.
+Someone on the local box is repeatedly trying to resolve non-existent `FIN01` name. It gives me an idea that a scheduled task may possibly be involved to simulate this activity. I will attempt to run [Seatbelt](https://github.com/GhostPack/Seatbelt) to list scheduled tasks, but it fails due to insufficient privileges. That's why I decide to get a meterpreter shell, migrate to another process and try again.
 
 ![web01-meterpreter-migrate.png](/assets/images/htb/endgames/ascension/web01-meterpreter-migrate.png)
 {:.center-image}
