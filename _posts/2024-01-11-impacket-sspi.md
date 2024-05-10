@@ -8,7 +8,7 @@ tags: [pt-swarm, active-directory, kerberos, tgt-delegation, impacket, sspi]
 
 [//]: # (2024-01-11)
 
-Given the [Bring Your Own Interpreter](https://synzack.github.io/Bring-Your-Own-Interpreter/) (BYOI) concept, the combination of Impacket usage and SSPI capabilities can allow attackers to fly under the radar of endpoint security mechanisms as well as custom network detection rules more efficiently. We will discuss it in more detail further in the article.
+Given the Bring Your Own Interpreter (BYOI) concept, the combination of Impacket usage and SSPI capabilities can allow attackers to fly under the radar of endpoint security mechanisms as well as custom network detection rules more efficiently. We will discuss it in more detail further in the article.
 
 <!--cut-->
 
