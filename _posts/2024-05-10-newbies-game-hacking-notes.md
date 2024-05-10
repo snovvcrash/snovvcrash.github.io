@@ -431,9 +431,9 @@ DWORD WINAPI MainThread(LPVOID param)
 
     HookTrampolineBuffers infDashesHook = { 0 };
     BYTE infDashesOrigin[] = { 0xF3, 0x0F, 0x11, 0x83, 0xF4, 0x00, 0x00, 0x00 };
-    BYTE zeroDashesDelay[] = { 0xC7, 0x83, 0xF4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+    BYTE zeroDashRechargeDelay[] = { 0xC7, 0x83, 0xF4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
     DWORD infDashesOffset = 0x3EF4C7;
-    init_hook(&infDashesHook, infDashesOrigin, sizeof(infDashesOrigin), zeroDashesDelay, 10, infDashesOffset);
+    init_hook(&infDashesHook, infDashesOrigin, sizeof(infDashesOrigin), zeroDashRechargeDelay, sizeof(zeroDashRechargeDelay), infDashesOffset);
 
     while (TRUE)
     {
