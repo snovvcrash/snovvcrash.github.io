@@ -347,14 +347,14 @@ typedef struct HookTrampolineBuffers
 UINT_PTR find_code_cave(UINT_PTR patchAddr)
 {
     LPVOID alloc = NULL;
-    UINT_PTR loaderAddress;
+    UINT_PTR addr;
     BOOL foundMem = FALSE;
 
-    for (loaderAddress = (patchAddr & 0xFFFFFFFFFFF70000) - 0x70000000;
-        loaderAddress < patchAddr + 0x70000000;
-        loaderAddress += 0x10000)
+    for (addr = (patchAddr & 0xFFFFFFFFFFF70000) - 0x70000000;
+         addr < patchAddr + 0x70000000;
+         addr += 0x10000)
     {
-        alloc = VirtualAlloc((LPVOID)loaderAddress, 0x1000, MEM_RESERVE|MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+        alloc = VirtualAlloc((LPVOID)addr, 0x1000, MEM_RESERVE|MEM_COMMIT, PAGE_EXECUTE_READWRITE);
         if (alloc == NULL) continue;
         foundMem = TRUE;
         break;
