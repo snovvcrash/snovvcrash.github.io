@@ -205,3 +205,4 @@ Happy hacking!
 * [https://rastating.github.io/altering-msfvenom-exec-payload-to-work-without-exitfunc/](https://rastating.github.io/altering-msfvenom-exec-payload-to-work-without-exitfunc/)
 * [https://github.com/ommadawn46/win-x86-shellcoder](https://github.com/ommadawn46/win-x86-shellcoder)
 * [https://github.com/boku7/x64win-DynamicNoNull-WinExec-PopCalc-Shellcode](https://github.com/boku7/x64win-DynamicNoNull-WinExec-PopCalc-Shellcode)
+* [https://github.com/Leo4j/ShellGen](https://github.com/Leo4j/ShellGen)
