@@ -33,10 +33,16 @@ The original author of the SSPI trick known as Fake TGT Delegation that — whic
 [![wireshark-capture-1.png](/assets/images/impacket-sspi/wireshark-capture-1.png)](/assets/images/impacket-sspi/wireshark-capture-1.png)
 {:.center-image}
 
+TGT Delegation Interchange (Wiresharp Capture)
+{:.quote}
+
 After that, the client will shoot an AP-REQ containing the forwarded TGT inside its Authenticator (the [`KRB-CRED`](https://datatracker.ietf.org/doc/html/rfc4120#section-3.6) part of the Authenticator checksum) via GSS-API/Kerberos whose output stream is accessible to us. The good news is that we can decrypt the Authenticator with a cached session key of the forwarded TGT, extracted from the LSA with a non-privileged Windows API call (session key extraction **does not require elevation** in this case), and re-use it for our own needs.
 
 [![wireshark-capture-2.png](/assets/images/impacket-sspi/wireshark-capture-2.png)](/assets/images/impacket-sspi/wireshark-capture-2.png)
 {:.center-image}
+
+Investigating the Authenticator (Wiresharp Capture)
+{:.quote}
 
 The technique is also implemented in [Rubeus](https://github.com/GhostPack/Rubeus)'s `tgtdeleg` module and is explained well by the authors: https://github.com/GhostPack/Rubeus#tgtdeleg.
 
@@ -49,6 +55,9 @@ A high level overview of the main Win32 API calls required for extracting Kerber
 
 [![fake-tgt-delegation.png](/assets/images/impacket-sspi/fake-tgt-delegation.png)](/assets/images/impacket-sspi/fake-tgt-delegation.png)
 {:.center-image}
+
+APIs and Logic Summary (Xmind)
+{:.quote}
 
 ## Pythonic Ntsecapi
 
@@ -150,18 +159,30 @@ First, I will git clone a clean copy of the lastest Impacket repo and curl Olive
 [![impacket-git-clone.png](/assets/images/impacket-sspi/impacket-git-clone.png)](/assets/images/impacket-sspi/impacket-git-clone.png)
 {:.center-image}
 
+Applying the SSPI Patch
+{:.quote}
+
 Then, I'll add a code snippet responsible for handling the `-sspi` option logic in the `secretsdump.py` script (an example is also available [within the gist](https://gist.github.com/snovvcrash/ff867dbd922ff2c36f480c0a61819f29#file-secretsdump-py-patch)).
 
 [![impacket-git-diff.png](/assets/images/impacket-sspi/impacket-git-diff.png)](/assets/images/impacket-sspi/impacket-git-diff.png)
 {:.center-image}
+
+SSPI Patch Diff
+{:.quote}
 
 Now, to make things fair, I'll ask a TGT while posing as a DC machine account and create a sacrificial process on its behalf, performing a classic Overpass-the-Key + Pass-the-Ticket attack chain.
 
 [![rubeus-overpass-the-key.png](/assets/images/impacket-sspi/rubeus-overpass-the-key.png)](/assets/images/impacket-sspi/rubeus-overpass-the-key.png)
 {:.center-image}
 
+Performing Overpass-the-Key (Rubeus)
+{:.quote}
+
 [![impacket-sspi-demo.png](/assets/images/impacket-sspi/impacket-sspi-demo.png)](/assets/images/impacket-sspi/impacket-sspi-demo.png)
 {:.center-image}
+
+Performing Pass-the-Ticket and DCSync (Rubeus + Impacket-SSPI)
+{:.quote}
 
 As we can see from the image above, no credentials are provided to `secretsdump.py` via the command line; instead, SSPI is used to extract DC's TGT from current context which is saved on disk and later passed to the script inside an environment variable. Further possible use cases (like extracting STs) and other desirable improvements (like not saving tickets on disk) are left as an exercise for the reader 😉
 
@@ -182,6 +203,9 @@ Now, all I have to do is to drop the cradle on the target and run it with a port
 
 [![pyramid-demo.mp4.png](/assets/images/impacket-sspi/pyramid-demo.mp4.png)](https://swarm.ptsecurity.com/wp-content/uploads/2023/12/78407c97-pyramid-demo.mp4)
 {:.center-image}
+
+Pyramid Setup to Serve Impacket-SSPI
+{:.quote}
 
 Once again, there are no credentials hardcoded inside `cradle.py` and authentication routine is performed via the SSPI interaction.
 
