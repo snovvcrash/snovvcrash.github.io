@@ -111,7 +111,7 @@ for subnet in {1..10}; do
 done
 ```
 
-Now, when we collected the hostnames, we can either compile the beta version of hashcat to utilize the `-m31300` [mode](https://github.com/hashcat/hashcat/issues/3629):
+Now, when we collected the hostnames, we can either compile the beta version of hashcat to utilize [the `-m31300` mode](https://github.com/hashcat/hashcat/issues/3629):
 
 ```terminal?prompt=$
 $ git clone https://github.com/hashcat/hashcat && cd hashcat
@@ -307,11 +307,11 @@ MD5(NT-hash || NTP-response)
 Hashcat's mode 10 `md5($pass.$salt)` can be re-used in pure kernel setting (however, [optimized kernel will refuse it due to hardcoded salt length](https://hashcat.net/wiki/doku.php?id=frequently_asked_questions#what_is_the_maximum_supported_salt_length_for_optimized_kernels)) providing `--hex-wordlist` and `--hex-salt` switches to achive our goal:
 
 ```terminal?prompt=$
-$ hashcat -m10 -a0 --session=sntp -o sntp.out sntp.in nthashes.txt
+$ hashcat -m10 -a0 --session=sntp -o sntp.out sntp.in nthashes.txt --hex-wordlist --hex-salt
 ```
 
 # Outro
 
 From my point of view, the main application of the Timeroasting attack is another (more stealthier) way of performing [pre2k](https://github.com/garrettfoster13/pre2k) spray — in an "offline" manner and with no redundant authentication attempt events.
 
-In organizations with hundreds of computers and therefore hundreds of machine accounts, this type of attack has a high risk of successful reproduction.
+In organizations with hundreds of thousands of computers and therefore hundreds of thousands of machine accounts, this type of attack has a high risk of successful reproduction.
