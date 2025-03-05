@@ -96,7 +96,7 @@ $adsiobject.Put("msDS-allowedToActOnBehalfOfOtherIdentity", $SDBytes)
 $adsiobject.setinfo()
 ```
 
-Now I have to create a fake machine account to use it when it comes to requesting a forwardable ticket with S4U2Self & S4U2Proxy (some good references on how to abuse RBCD can be found on [PPN](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/delegation-abuse#resource-based-constrained-delegation-rbcd) and in my [HTB Hades write-up](/2020/12/28/htb-hades.html#abusing-kerberos-resource-based-constrained-delegation)).
+Now I have to create a fake machine account to use it when it comes to requesting a forwardable ticket with S4U2Self & S4U2Proxy (some good references on how to abuse RBCD can be found on [PPN](https://ppn.snovvcra.sh/pentest/infrastructure/ad/delegation-abuse#resource-based-constrained-delegation-rbcd) and in my [HTB Hades write-up](/2020/12/28/htb-hades.html#abusing-kerberos-resource-based-constrained-delegation)).
 
 Firstly, I will enumerate if `ms-DS-MachineAccountQuota` allows to add new computer accounts. Do it with PowerShell:
 
@@ -202,4 +202,4 @@ secretsdump.py multimaster.megacorp.local -dc-ip 10.10.10.179 -k -no-pass -just-
 
 The described vulnerability poses enormous risks to active directory infrastructures and must never be used for illegal purposes. To mitigate the risk the Spooler service should be disabled or uninstalled until an official fix is released by vendor. An example on how to disable the Print Spooler can be found [here](https://github.com/LaresLLC/CVE-2021-1675).
 
-More info on PrintNightmare exploits and the reproducibility of the bug [can be found on my GitBook](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/printnightmare).
+More info on PrintNightmare exploits and the reproducibility of the bug [can be found on my GitBook](https://ppn.snovvcra.sh/pentest/infrastructure/ad/printnightmare).

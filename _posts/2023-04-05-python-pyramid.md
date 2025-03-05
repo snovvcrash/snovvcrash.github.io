@@ -557,7 +557,7 @@ mput \*'
 
 ## Python.NET
 
-Автор инстрмента [предложил](https://github.com/naksyn/Pyramid/blob/main/Server/base-bof.py) интересный способ для запуска других программ внутри процесса интерпретатора Python, а именно — конвертация шелл-кода из [BOF](https://ppn.snovvcrash.rocks/red-team/maldev/bof-coff)-файлов (Beacon Object Files) с помощью [BOF2shellcode](https://github.com/FalconForceTeam/BOF2shellcode) и последующий инжект в локальный процесс питона нехитрым API-трио `HeapCreate`, `RtlMoveMemory`, `CreateThread`:
+Автор инстрмента [предложил](https://github.com/naksyn/Pyramid/blob/main/Server/base-bof.py) интересный способ для запуска других программ внутри процесса интерпретатора Python, а именно — конвертация шелл-кода из [BOF](https://ppn.snovvcra.sh/red-team/maldev/bof-coff)-файлов (Beacon Object Files) с помощью [BOF2shellcode](https://github.com/FalconForceTeam/BOF2shellcode) и последующий инжект в локальный процесс питона нехитрым API-трио `HeapCreate`, `RtlMoveMemory`, `CreateThread`:
 
 ```python
 HeapCreate = ctypes.windll.kernel32.HeapCreate
@@ -589,7 +589,7 @@ print('[*] CreateThread() in same process.')
 WaitForSingleObject(thread, 0xFFFFFFFF)
 ```
 
-Я решил пойти по другому пути и принести с собой на жертву [CLR](https://www.nuget.org/packages/pythonnet) .NET-кода, вызываемый из Python – то есть оформить модуль [Python.NET](https://github.com/pythonnet/pythonnet) для его использования с Pyramid. В результате мы можем загружать программы .NET по принципу [Reflective Assembly](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/av-edr-evasion/dotnet-reflective-assembly) из памяти процесса интерпретатора Python. Это не избавляет нас от необходимости уклоняться от AMSI при исполнении, однако для этого есть другой трюк — это [donut](https://github.com/TheWover/donut)!
+Я решил пойти по другому пути и принести с собой на жертву [CLR](https://www.nuget.org/packages/pythonnet) .NET-кода, вызываемый из Python – то есть оформить модуль [Python.NET](https://github.com/pythonnet/pythonnet) для его использования с Pyramid. В результате мы можем загружать программы .NET по принципу [Reflective Assembly](https://ppn.snovvcra.sh/pentest/infrastructure/ad/av-edr-evasion/dotnet-reflective-assembly) из памяти процесса интерпретатора Python. Это не избавляет нас от необходимости уклоняться от AMSI при исполнении, однако для этого есть другой трюк — это [donut](https://github.com/TheWover/donut)!
 
 Идея в том, чтобы конвертировать заведомо «палющуюся» сборку .NET в позиционно-независимый шелл-код и использовать его вместе с тривиальным инжектором на C#. Как сделать недетектируемый инжектор, мы подробно обсуждали, когда [мучили KeePass](https://xakep.ru/2022/03/31/keethief/), а для этого демо я воспользуюсь своим закрытым инструментом для автоматизированной генерации такого инжектора.
 

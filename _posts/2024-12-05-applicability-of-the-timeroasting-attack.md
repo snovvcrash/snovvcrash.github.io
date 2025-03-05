@@ -533,3 +533,8 @@ KERNEL_FQ void m31300_m04 (KERN_ATTR_RULES ())
 From my point of view, the main application of the Timeroasting attack is another (more stealthier) way of performing [pre2k](https://github.com/garrettfoster13/pre2k) spray — in an "offline" manner and with no redundant authentication attempt events.
 
 In organizations with hundreds of thousands of computers and therefore hundreds of thousands of machine accounts, this type of attack has a high risk of successful reproduction.
+
+# References
+
+- [Secura-WP-Timeroasting-v3.pdf](https://www.secura.com/uploads/whitepapers/Secura-WP-Timeroasting-v3.pdf)
+- [SecuraBV/Timeroast: Timeroasting scripts by Tom Tervoort](https://github.com/SecuraBV/Timeroast)

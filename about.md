@@ -44,7 +44,7 @@ information published on the pages of this blog.
   <a href="https://twitter.com/snovvcrash"><img src="https://img.shields.io/badge/-Twitter-1D9BF0?style=for-the-badge" alt="Twitter" /></a>
   <a href="https://infosec.exchange/@snovvcrash"><img src="https://img.shields.io/badge/-Mastodon-5C4ADF?style=for-the-badge" alt="Mastodon" /></a>
   <a href="https://github.com/snovvcrash"><img src="https://img.shields.io/badge/-GitHub-white?style=for-the-badge" alt="GitHub" /></a>
-  <a href="https://ppn.snovvcrash.rocks/"><img src="https://img.shields.io/badge/-GitBook-3681FC?style=for-the-badge" alt="GitBook" /></a>
+  <a href="https://ppn.snovvcra.sh/"><img src="https://img.shields.io/badge/-GitBook-3681FC?style=for-the-badge" alt="GitBook" /></a>
   <a href="https://www.hackthebox.eu/profile/51037"><img src="https://img.shields.io/badge/-Hack%20The%20Box-9FEF00?style=for-the-badge" alt="Hack The Box" /></a>
   <a href="https://xakep.ru/author/snovvcrash/"><img src="https://img.shields.io/badge/-%5d%5b%d0%b0%d0%ba%d0%b5%d1%80-DD2200?style=for-the-badge" alt="Xakep" /></a>
   <a href="https://hackmag.com/author/snovvcrash/"><img src="https://img.shields.io/badge/-HackMag-008CBA?style=for-the-badge" alt="HackMag" /></a>

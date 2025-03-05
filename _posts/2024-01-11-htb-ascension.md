@@ -774,7 +774,7 @@ I will do `strings`the blob on Kali and get another password.
 ![slack-blob-strings.png](/assets/images/htb/endgames/ascension/slack-blob-strings.png)
 {:.center-image}
 
-Before going further I will build another tunnel to interact with 192.168.11.x network directly from Kali. I could create a path all the way back from MS01 over DC1 to WEB01 with SSH or Chisel (as I've described [in this example](https://snovvcrash.rocks/PPN/#local-vs-remote-port-forwarding)), but I feel lazy and will do it another way.
+Before going further I will build another tunnel to interact with 192.168.11.x network directly from Kali. I could create a path all the way back from MS01 over DC1 to WEB01 with SSH or Chisel (as I've described [in this example](https://snovvcra.sh/PPN/#local-vs-remote-port-forwarding)), but I feel lazy and will do it another way.
 
 There is IIS running on MS01 which makes it a perfect target for tunneling with [Neo-reGeorg](https://github.com/L-codes/Neo-reGeorg/blob/master/README-en.md). I will generate the `tunnel.aspx` backdoor, drop it into `\inetpub\wwwroot` on MS01 and start a SOCKS proxy at `192.168.10.6:1337`. Using proxychains (as the name suggests) I will be able to *chain* multiple proxy servers to reach targets in 192.168.11.x.
 
