@@ -122,7 +122,7 @@ Cmd > .\SharpDllProxy.exe --dll C:\windows\system32\vcruntime140.dll
 [+] Exporting DLL C source to C:\Repos\SharpDllProxy\SharpDllProxy\bin\Debug\netcoreapp3.1\output_vcruntime140\vcruntime140_pragma.c
 ```
 
-Теперь, вооружившись примером малварного SSP с [Red Team Notes](https://www.ired.team/offensive-security/credential-access-and-credential-dumping/intercepting-logon-credentials-via-custom-security-support-provider-and-authentication-package), а также честно позаимствовав шаблон для хукинга из проекта [ShellcodeFluctuation](https://github.com/mgeeky/ShellcodeFluctuation/blob/cb7a803493b9ce9fb5a5a3bc1c77773a60194ca4/ShellcodeFluctuation/main.cpp%23L178-L262)] (я уже использовал его в статье «[Флуктуация шелл-кода. Пишем инжектор для динамического шифрования полезной нагрузки в памяти](https://xakep.ru/2022/06/17/shellcode-fluctuation/)»), набросаем быстрый трамплин, который будет менять поведение `SpLsaModeInitialize`. Полный код доступен [у меня на GitHub](https://gist.github.com/snovvcrash/8e2e0e0b04014c61c81761e0bddbc6ea).
+Теперь, вооружившись примером малварного SSP с [Red Team Notes](https://www.ired.team/offensive-security/credential-access-and-credential-dumping/intercepting-logon-credentials-via-custom-security-support-provider-and-authentication-package), а также честно позаимствовав шаблон для хукинга из проекта [ShellcodeFluctuation](https://github.com/mgeeky/ShellcodeFluctuation/blob/cb7a803493b9ce9fb5a5a3bc1c77773a60194ca4/ShellcodeFluctuation/main.cpp%23L178-L262) (я уже использовал его в статье «[Флуктуация шелл-кода. Пишем инжектор для динамического шифрования полезной нагрузки в памяти](https://xakep.ru/2022/06/17/shellcode-fluctuation/)»), набросаем быстрый трамплин, который будет менять поведение `SpLsaModeInitialize`. Полный код доступен [у меня на GitHub](https://gist.github.com/snovvcrash/8e2e0e0b04014c61c81761e0bddbc6ea).
 
 ```cpp
 bool fastTrampoline(bool installHook, BYTE* addressToHook, LPVOID jumpAddress, HookTrampolineBuffers* buffers)
@@ -186,7 +186,7 @@ void NTAPI MySpLsaModeInitialize(ULONG LsaVersion, PULONG PackageVersion, PSECPK
 
 Очевидно, что скопипащенный с ired.team код SSP палится всем чем можно даже в статике, однако наша цель в данном случае — не избежать детектов на диске, а найти способ сокрытия целевой библиотеки из соответствующего ключа реестра.
 
-Компилируем как DLL с корректными экспортами, полученными с помощью `SharpDllProxy` (`output_vcruntime140\vcruntime140_pragma.c`/), и копируем результат как `C:\WINDOWS\System32\vcruntime140.dll`. Туда же кладем исходную библиотекой, предварительно переименовав в `output_vcruntime140\tmp50CA.dll`:
+Компилируем как DLL с корректными экспортами, полученными с помощью `SharpDllProxy` (`output_vcruntime140\vcruntime140_pragma.c`), и копируем результат как `C:\WINDOWS\System32\vcruntime140.dll`. Туда же кладем исходную библиотекой, предварительно переименовав в `output_vcruntime140\tmp50CA.dll`:
 
 ```terminal?prompt=>
 Cmd > move \windows\system32\vcruntime140.dll \windows\system32\vcruntime140.dll.bak 
