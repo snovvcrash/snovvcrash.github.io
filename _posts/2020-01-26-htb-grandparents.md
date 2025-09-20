@@ -22,7 +22,7 @@ tags: [xakep-ru, hackmag-com, write-up, hackthebox, machine, windows, webdav, da
 Первой мы будем проходить виртуалку Granny. Эта машина достаточно проста (рейтинг сложности — 3,4 балла из 10), однако, как по мне, она максимально приближена к случаям из реальной жизни (по крайней мере, там, где не следят за обновлением ПО). Не даром именно такие тачки часто попадаются на сертификации OSCP в лайтовой ценовой категории.
 
 <p align="right">
-  <a href="https://hackmag.com/security/htb-pivoting/"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>
+  <a href="https://hackmag.com/security/htb-pivoting"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>
   <a href="https://xakep.ru/2019/12/26/htb-pivoting/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
   <a href="https://www.hackthebox.eu/home/machines/profile/14"><img src="https://img.shields.io/badge/%e2%98%90-Hack%20The%20Box-8ac53e?style=flat-square" alt="htb-badge.svg" /></a>
   <span class="score-easy">3.4/10</span>
