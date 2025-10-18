@@ -3,7 +3,7 @@ layout: post
 title: "УдаленнаяКартошка0. Повышаем привилегии в AD через кросс-протокольную атаку NTLM Relay"
 date: 2022-12-30 03:00:00 +0300
 author: snovvcrash
-tags: [xss-is, xakep-ru, internal-pentest, active-directory, eop, pivoting, tunneling, ntlm-relay, dcom-rpc, potatoes, remotepotato0, cobalt-strike, impacket, ntlmrelayx]
+tags: [xakep-ru, internal-pentest, active-directory, eop, pivoting, tunneling, ntlm-relay, dcom-rpc, potatoes, remotepotato0, cobalt-strike, impacket, ntlmrelayx]
 ---
 
 [//]: # (2022-05-11)
@@ -15,7 +15,6 @@ tags: [xss-is, xakep-ru, internal-pentest, active-directory, eop, pivoting, tunn
 <p align="right">
   <a href="https://hackmag.com/security/remotepotato0/"><img src="https://img.shields.io/badge/F-HackMag-26a0c4?style=flat-square" alt="hackmag-badge.svg" /></a>
   <a href="https://xakep.ru/2022/08/26/remotepotato0/"><img src="https://img.shields.io/badge/%5d%5b-%d0%a5%d0%b0%d0%ba%d0%b5%d1%80-red?style=flat-square" alt="xakep-badge.svg" /></a>
-  <a href="https://xss.is/threads/66892/"><img src="https://img.shields.io/badge/%7e%2f-XSS.is-00a150?style=flat-square" alt="xss-badge.svg" /></a>
 </p>
 
 > **WARNING**
