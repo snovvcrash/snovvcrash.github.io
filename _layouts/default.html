@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<html lang="{{ page.lang | default: site.locale | default: 'en' }}">
 
   {%- include head.html -%}
 
   <body>
+    <a class="skip-link" href="#main">skip to content</a>
 
     {%- include header.html -%}
 
-    <main class="page-content" aria-label="Content">
+    <main id="main" class="site-main" aria-label="Content">
       <div class="wrapper">
         {{ content }}
       </div>
@@ -15,6 +16,9 @@
 
     {%- include footer.html -%}
 
+    <script src="{{ '/assets/js/hljs-bash.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+    <script src="{{ '/assets/js/posts.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+    <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
   </body>
 
 </html>

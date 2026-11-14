@@ -1,0 +1,12 @@
+<footer class="site-footer">
+
+  <div class="wrapper footer-in">
+    <span>
+      &copy; {{ site.time | date: "%Y" }} {{ site.github_username | default: site.author | escape }}
+      <span class="dot-sep">·</span> {{ site.email }}
+    </span>
+
+    {%- include social.html -%}
+  </div>
+
+</footer>

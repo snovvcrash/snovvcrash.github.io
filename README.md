@@ -14,7 +14,10 @@ $ bundle install
 **Host:**
 
 ```
-$ JEKYLL_ENV=production bundle exec jekyll serve [--host 0.0.0.0] [--no-watch]
+Cmd > JEKYLL_ENV=production bundle exec jekyll serve [--host 0.0.0.0] [--no-watch]
+PS > $env:JEKYLL_NO_BUNDLER_REQUIRE = "1"
+PS > $env:Path += ";C:\Ruby34-x64\bin"
+PS > jekyll serve -l -H 0.0.0.0
 ```
 
 **WSL 2:**

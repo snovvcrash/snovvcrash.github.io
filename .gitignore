@@ -1,4 +1,8 @@
-_site
-.sass-cache
+*.cmd
 .jekyll-metadata
-*.ahk
+.sass-cache
+_site
+_site_prod/
+assets/css/style.orig.css
+assets/js/site.orig.js
+tools/

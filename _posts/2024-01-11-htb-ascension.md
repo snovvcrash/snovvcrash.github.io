@@ -760,7 +760,7 @@ After running winPEAS and a bit of googling I found out that Slack leaves sensit
 ![ms01-slack-blob-locate.png](/assets/images/htb/endgames/ascension/ms01-slack-blob-locate.png)
 {:.center-image}
 
-I will pull it from the remote via SCP (**\<sarcasm\>**Windows OpenSSH SCP Syntax is awesome when dealing with spaces is path, btw**\</sarcasm\>**):
+I will pull it from the remote via SCP (**\<sarcasm\>**Windows OpenSSH SCP Syntax is awesome when dealing with spaces in the path, btw**\</sarcasm\>**):
 
 ```
 Cmd > scp -P 2222 megaairline.local\elliot@127.0.0.1:"\"\"C:\Users\elliot\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_app.slack.com_0.indexeddb.blob\1\00\7\"\"" slack.blob
