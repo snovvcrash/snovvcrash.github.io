@@ -17,7 +17,7 @@ $ bundle install
 Cmd > JEKYLL_ENV=production bundle exec jekyll serve [--host 0.0.0.0] [--no-watch]
 PS > $env:JEKYLL_NO_BUNDLER_REQUIRE = "1"
 PS > $env:Path += ";C:\Ruby34-x64\bin"
-PS > jekyll serve -l -H 0.0.0.0
+PS > bundle exec jekyll serve -l -H 0.0.0.0
 ```
 
 **WSL 2:**
@@ -29,7 +29,7 @@ $ JEKYLL_ENV=production bundler exec jekyll build && bash -c 'python3 -m http.se
 #### Update
 
 ```
-$ bundle update
+$ bundle update --all
 ```
 
 #### Themes
